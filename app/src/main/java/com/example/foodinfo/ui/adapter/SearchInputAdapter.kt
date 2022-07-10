@@ -6,22 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
+import com.example.foodinfo.model.entities.SearchInput
 
 class SearchInputAdapter(
     context: Context,
     private val onArrowClickListener: (String) -> Unit,
     private val onItemClickListener: (String) -> Unit
-) : RecyclerView.Adapter<SearchInputAdapter.SearchViewHolder>() {
+) : ListAdapter<SearchInput, SearchInputAdapter.SearchViewHolder>(SearchInput.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
-
-    private lateinit var data: List<String>
-    fun setData(data: List<String>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.tv_search_input)
@@ -37,13 +33,9 @@ class SearchInputAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.textView.text = data[position]
-        holder.textView.setOnClickListener { onItemClickListener(data[position]) }
-        holder.applySearchView.setOnClickListener { onItemClickListener(data[position]) }
-        holder.applyTextView.setOnClickListener { onArrowClickListener(data[position]) }
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
+        holder.textView.text = getItem(position).inputText
+        holder.textView.setOnClickListener { onItemClickListener(getItem(position).inputText) }
+        holder.applySearchView.setOnClickListener { onItemClickListener(getItem(position).inputText) }
+        holder.applyTextView.setOnClickListener { onArrowClickListener(getItem(position).inputText) }
     }
 }

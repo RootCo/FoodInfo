@@ -42,7 +42,7 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
          */
         viewModel.searchInputHistory.observe(viewLifecycleOwner) { inputHistory ->
             inputHistory?.let {
-                recyclerAdapter.setData(it)
+                recyclerAdapter.submitList(it)
             }
         }
 

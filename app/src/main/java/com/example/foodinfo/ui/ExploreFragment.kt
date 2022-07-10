@@ -84,7 +84,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
 
         viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             when (recipes != null) {
-                true  -> recyclerAdapter.setContent(recipes[category]!!)
+                true  -> recyclerAdapter.submitList(recipes[category]!!)
                 false -> handleNoData()
             }
         }

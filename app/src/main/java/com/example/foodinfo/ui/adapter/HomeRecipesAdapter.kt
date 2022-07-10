@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
@@ -17,15 +18,12 @@ class HomeRecipesAdapter(
     context: Context,
     private val utils: Utils,
     private val onItemClickListener: (String) -> Unit,
-) : RecyclerView.Adapter<HomeRecipesAdapter.HomeViewHolder>() {
+) : ListAdapter<RecipeShort, HomeRecipesAdapter.HomeViewHolder>(
+    RecipeShort.ItemCallBack
+) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
-    private lateinit var data: List<RecipeShort>
-    fun setRecipesList(data: List<RecipeShort>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val caloriesView: TextView = itemView.findViewById(R.id.tv_home_recipe_calories)
@@ -55,14 +53,10 @@ class HomeRecipesAdapter(
     override fun onBindViewHolder(
         holder: HomeViewHolder, position: Int
     ) {
-        holder.caloriesView.text = data[position].calories.toString()
-        holder.nameView.text = data[position].name
-        Glide.with(holder.imageView.context).load(data[position].preview)
+        holder.caloriesView.text = getItem(position).calories.toString()
+        holder.nameView.text = getItem(position).name
+        Glide.with(holder.imageView.context).load(getItem(position).preview)
             .into(holder.imageView)
-        holder.imageView.setOnClickListener { onItemClickListener(data[position].id) }
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
+        holder.imageView.setOnClickListener { onItemClickListener(getItem(position).id) }
     }
 }

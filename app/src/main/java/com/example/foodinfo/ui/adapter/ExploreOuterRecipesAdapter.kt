@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.model.entities.RecipeCategoryLabelItem
@@ -16,15 +17,11 @@ class ExploreOuterRecipesAdapter(
     private val context: Context,
     private val onOuterItemClickListener: (String) -> Unit,
     private val onInnerItemClickListener: (String) -> Unit
-) : RecyclerView.Adapter<ExploreOuterRecipesAdapter.SearchViewHolder>() {
+) : ListAdapter<RecipeCategoryLabelItem, ExploreOuterRecipesAdapter.SearchViewHolder>(
+    RecipeCategoryLabelItem.ItemCallBack
+) {
 
     private val layoutInflater = LayoutInflater.from(context)
-
-    private lateinit var data: List<RecipeCategoryLabelItem>
-    fun setContent(data: List<RecipeCategoryLabelItem>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val labelTitle: TextView = itemView.findViewById(R.id.tv_search_item_header)
@@ -52,15 +49,13 @@ class ExploreOuterRecipesAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.labelTitle.text = data[position].label
+        holder.labelTitle.text = getItem(position).label
         val recyclerAdapter =
             ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
-        recyclerAdapter.setContent(data[position].recipes)
+        recyclerAdapter.submitList(getItem(position).recipes)
         holder.recyclerView.adapter = recyclerAdapter
-        holder.expandHeader.setOnClickListener { onOuterItemClickListener(data[position].label) }
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
+        holder.expandHeader.setOnClickListener {
+            onOuterItemClickListener(getItem(position).label)
+        }
     }
 }

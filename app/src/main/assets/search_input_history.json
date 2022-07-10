@@ -1,12 +1,28 @@
 {
   "content": [
-    "english breakfast",
-    "pickles",
-    "cold appetizers",
-    "fast food",
-    "beef",
-    "caesar",
-    "naval pasta",
-    "borsch"
+    {
+      "inputText": "english breakfast"
+    },
+    {
+      "inputText": "pickles"
+    },
+    {
+      "inputText": "cold appetizers"
+    },
+    {
+      "inputText": "fast food"
+    },
+    {
+      "inputText": "beef"
+    },
+    {
+      "inputText": "caesar"
+    },
+    {
+      "inputText": "naval pasta"
+    },
+    {
+      "inputText": "borsch"
+    }
   ]
 }

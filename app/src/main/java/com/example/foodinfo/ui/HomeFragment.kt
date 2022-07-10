@@ -56,7 +56,7 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
 
         viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             when (recipes != null) {
-                true  -> recipesAdapter.setRecipesList(recipes)
+                true  -> recipesAdapter.submitList(recipes)
                 false -> handleNoData()
             }
         }
