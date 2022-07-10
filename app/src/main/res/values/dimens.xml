@@ -1,0 +1,10 @@
+<resources>
+    <dimen name = "activity_horizontal_margin">24dp</dimen>
+    <dimen name = "activity_vertical_margin">24dp</dimen>
+    <dimen name = "activity_bottom_margin">56dp</dimen>
+    <!--    отступ между элементами RecyclerView-->
+    <dimen name = "home_recipes_margin">18dp</dimen>
+    <dimen name = "search_recipes_margin">12dp</dimen>
+    <dimen name = "search_tab_padding">16dp</dimen>
+    <dimen name = "elevation">3dp</dimen>
+</resources>

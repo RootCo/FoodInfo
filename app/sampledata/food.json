@@ -1,0 +1,39 @@
+{
+  "short": [
+    {
+      "calories": 322,
+      "preview": "@drawable/im_bananas",
+      "protein": 2,
+      "fat": 7,
+      "carb": 9
+    },
+    {
+      "calories": 340,
+      "preview": "@drawable/im_rice",
+      "protein": 54,
+      "fat": 14,
+      "carb": 32
+    },
+    {
+      "calories": 780,
+      "preview": "@drawable/im_buckwheat",
+      "protein": 200,
+      "fat": 1400,
+      "carb": 90
+    },
+    {
+      "calories": 1234,
+      "preview": "@drawable/im_milk",
+      "protein": 45,
+      "fat": 88,
+      "carb": 122
+    },
+    {
+      "calories": 66,
+      "preview": "@drawable/im_potato",
+      "protein": 76,
+      "fat": 999,
+      "carb": 56
+    }
+  ]
+}

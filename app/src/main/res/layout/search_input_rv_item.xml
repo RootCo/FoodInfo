@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "54dp">
+
+    <ImageView
+        android:id = "@+id/iv_apply_search"
+        android:layout_width = "54dp"
+        android:layout_height = "54dp"
+        android:padding = "14dp"
+        android:src = "@drawable/ic_history"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+    <ImageView
+        android:id = "@+id/iv_apply_text"
+        android:layout_width = "54dp"
+        android:layout_height = "54dp"
+        android:padding = "16dp"
+        android:src = "@drawable/ic_arrow_outward"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+    <TextView
+        android:id = "@+id/tv_search_input"
+        style = "@style/ThemeMainTextView"
+        android:layout_width = "0dp"
+        android:layout_height = "54dp"
+        android:gravity = "center|start"
+        android:paddingHorizontal = "10dp"
+        android:textColor = "@color/main_font"
+        app:layout_constraintEnd_toStartOf = "@id/iv_apply_text"
+        app:layout_constraintStart_toEndOf = "@id/iv_apply_search"
+        app:layout_constraintTop_toTopOf = "parent"
+        tools:text = "@sample/search_input_history.json/content/text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

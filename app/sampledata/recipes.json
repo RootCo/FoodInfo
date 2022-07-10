@@ -1,0 +1,54 @@
+{
+  "short": [
+    {
+      "name": "Italian pizza \"Four seasons\"",
+      "calories": 1200,
+      "preview": "@drawable/im_pizza"
+    },
+    {
+      "name": "Beef burger",
+      "calories": 780,
+      "preview": "@drawable/im_burger"
+    },
+    {
+      "name": "Dinner stew",
+      "calories": 980,
+      "preview": "@drawable/im_stew"
+    },
+    {
+      "name": "Pancakes for breakfast",
+      "calories": 425,
+      "preview": "@drawable/im_pancakes"
+    },
+    {
+      "name": "Fresh and healthy dinner",
+      "calories": 230,
+      "preview": "@drawable/im_salad"
+    },
+    {
+      "name": "Tashkent lag'mon",
+      "calories": 1460,
+      "preview": "@drawable/im_lagman"
+    },
+    {
+      "name": "Russian borsch",
+      "calories": 750,
+      "preview": "@drawable/im_borsch"
+    },
+    {
+      "name": "Italian lasagna",
+      "calories": 652,
+      "preview": "@drawable/im_lasagna"
+    },
+    {
+      "name": "Ramen",
+      "calories": 280,
+      "preview": "@drawable/im_ramen"
+    },
+    {
+      "name": "Fast breakfast",
+      "calories": 750,
+      "preview": "@drawable/im_breakfast"
+    }
+  ]
+}

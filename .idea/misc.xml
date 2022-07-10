@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.229" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_arrow.xml" value="0.2365" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_arrow_back.xml" value="0.234" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_arrow_outward.xml" value="0.234" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2315" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_history.xml" value="0.234" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2315" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_kcal.xml" value="0.2375" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2345" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2295" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_search.xml" value="0.234" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_search_filter.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_spinner_chevron.xml" value="0.241" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_tab_home.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_tab_search.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_tab_settings.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/ic_vecteezy_linear_calories_burn_icon_vector_design_template_.xml" value="0.1805" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/kcal_icon_background.xml" value="0.237" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/nav_state_color.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/rounded_corner_hint.xml" value="0.2375" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/rounded_corner_main.xml" value="0.2375" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/rounded_edittext.xml" value="0.2405" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/spinner.xml" value="0.241" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/tab_indicator.xml" value="0.2345" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/drawable/tab_layout_bg.xml" value="0.2345" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/font/poppins_family.xml" value="0.40677083333333336" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/font/product_sans_family.xml" value="0.3689497716894977" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout-v26/activity_recipes.xml" value="0.38461538461538464" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/activity_recipes.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/button_back.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/explore_rv_inner_item.xml" value="0.67" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/explore_rv_outer_item.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_dashboard.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_explore.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_recipe_extended.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_search.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_search_filter.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_search_input.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_search_result.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_search_target.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/fragment_settings.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/home_activity.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/home_recipe_item.xml" value="0.25" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/home_recipes_item_padding.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/home_rv_item.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/pfc_table.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_history_rv_item.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_inpput_rv_item.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_input_rv_item.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_item.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_recipe_item_main.xml" value="0.33" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/search_tab_page.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/spinner.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/spinner_item.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/spinner_target_item.xml" value="0.3415525114155251" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/layout/tab_layout_bg.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/FoodInfo/app/src/main/res/mipmap-anydpi-v26/kcal_icon.xml" value="0.219" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_search_filter.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_search_input.xml" value="0.3424657534246575" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_search_result.xml" value="0.3424657534246575" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

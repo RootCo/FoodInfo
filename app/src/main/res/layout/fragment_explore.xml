@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "match_parent"
+    android:layout_marginTop = "@dimen/activity_vertical_margin"
+    android:layout_marginBottom = "@dimen/activity_bottom_margin"
+    tools:context = ".ui.ExploreFragment">
+
+    <TextView
+        android:id = "@+id/tv_search"
+        style = "@style/ThemeMainTextView"
+        android:layout_width = "0dp"
+        android:layout_height = "48dp"
+        android:layout_marginHorizontal = "@dimen/activity_horizontal_margin"
+        android:background = "@drawable/rounded_edittext"
+        android:gravity = "center|start"
+        android:paddingHorizontal = "@dimen/activity_horizontal_margin"
+        android:text = "@string/et_search_hint"
+        android:textSize = "16sp"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:queryBackground = "@null" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id = "@+id/tl_category"
+        style = "@style/ThemeScrollable"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:background = "@drawable/tab_layout_bg"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@id/tv_search"
+        app:tabIndicator = "@drawable/tab_indicator"
+        app:tabIndicatorColor = "@color/target_font"
+        app:tabIndicatorFullWidth = "false"
+        app:tabMode = "scrollable"
+        app:tabPaddingEnd = "@dimen/search_tab_padding"
+        app:tabPaddingStart = "@dimen/search_tab_padding"
+        app:tabRippleColor = "@null"
+        app:tabSelectedTextColor = "@color/target_font"
+        app:tabTextAppearance = "@style/ThemeTab"
+        app:tabTextColor = "@color/main_font" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id = "@+id/rv_explore_outer"
+        android:layout_width = "0dp"
+        android:layout_height = "0dp"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@id/tl_category"
+        tools:listitem = "@layout/explore_rv_outer_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name = "header_font">#2F234F</color>
+    <color name = "main_font">#2A2D37</color>
+    <color name = "active_font">#992A2D37</color>
+    <color name = "secondary_active_font">#EB5757</color>
+    <color name = "target_font">#7F57F1</color>
+
+    <color name = "main_background">#FFFFFFFF</color>
+    <color name = "hint_background">#CDDADADA</color>
+    <color name = "hint_corner_background">#66DADADA</color>
+    <color name = "edittext_background">#F6F8FA</color>
+    <color name = "secondary_background">#F6F8FA</color>
+    <color name = "secondary_active_background">#262A31</color>
+
+    <color name = "warning_background">#140074FF</color>
+    <color name = "declaim_background">#10FF0000</color>
+</resources>
