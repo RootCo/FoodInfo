@@ -21,6 +21,8 @@ class ExploreOuterRecipesAdapter(
     RecipeCategoryLabelItem.ItemCallBack
 ) {
 
+    val viewPool = RecyclerView.RecycledViewPool()
+
     private val layoutInflater = LayoutInflater.from(context)
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -43,6 +45,11 @@ class ExploreOuterRecipesAdapter(
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        // оптимизация скроллинга внешнего RecyclerView
+        holder.recyclerView.setRecycledViewPool(viewPool)
+        layoutManager.recycleChildrenOnDetach = true
+
         holder.recyclerView.layoutManager = layoutManager
 
         return holder

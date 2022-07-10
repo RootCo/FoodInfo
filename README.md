@@ -1,5 +1,4 @@
 # TODO
-- DiffUtil в RecyclerViewAdapter
 - View Binding
 
 # NOTES
