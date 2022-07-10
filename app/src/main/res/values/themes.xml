@@ -27,8 +27,7 @@
     <!--    тема для средних ShapeableImageView-->
     <style name = "ThemeShapeAppearanceNormal">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">20dp</item>
-        <item name = "elevation">3dp</item>
+        <item name = "cornerSize">18dp</item>
     </style>
 
     <!--    тема для хедеров-->

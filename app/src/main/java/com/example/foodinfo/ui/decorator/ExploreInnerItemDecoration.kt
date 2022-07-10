@@ -4,20 +4,20 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ExploreInnerItemDecoration(private val spaceSize: Int) : RecyclerView.ItemDecoration() {
+class ExploreInnerItemDecoration(private val space: Int, private val margin: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State
     ) {
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
-                right = spaceSize
-                left = spaceSize * 2
+                right = space
+                left = margin
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
-                left = spaceSize
-                right = spaceSize * 2
+                left = space
+                right = margin
             } else {
-                left = spaceSize
-                right = spaceSize
+                left = space
+                right = space
             }
         }
     }

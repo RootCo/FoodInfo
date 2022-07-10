@@ -49,6 +49,7 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
         recipesRecycler.setHasFixedSize(true)
         recipesRecycler.addItemDecoration(
             HomeItemDecoration(
+                resources.getDimensionPixelSize(R.dimen.home_recipes_space),
                 resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
             )
         )
@@ -78,8 +79,7 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
 
 
     private fun setIngredient(food: Food) {
-        Glide.with(this)
-            .load(food.preview)
+        Glide.with(this).load(food.preview)
             .into(binding.root.findViewById(R.id.iv_home_ingredient))
 
         binding.root.findViewById<TextView>(R.id.tv_home_ingredient_calories).text =
