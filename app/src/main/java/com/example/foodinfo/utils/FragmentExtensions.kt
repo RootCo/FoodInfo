@@ -1,12 +1,16 @@
 package com.example.foodinfo.utils
 
-import android.app.AlertDialog
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 
+/*
+    activity.currentFocus вместо view т.к. после view.requestFocus() фокус может
+    не успеть поставиться на view и showSoftInput вернет false, не отобразив
+    клавиатуру, т.к. принял неправильную View, на которой не стоял фокус
+ */
 fun Fragment.showKeyboard(view: View) {
     this.requireActivity().let { activity ->
         view.requestFocus()
@@ -34,18 +38,14 @@ fun Fragment.hideKeyboard() {
      для фрагментов, которые лучше закрыть, уведомив пользователя, если нету данных для
      его полноценного функционирования
      например, свернули приложение на фрагменте с рецептами, почислили кэш на телефоне
-     через условный ccleaner, выключили интернет, вернулись в приложение
+     через условный CCleaner, выключили интернет, вернулись в приложение
      локальной бд нет, к серверу не подключиться, на экран выводить нечего - просим
      пользователя проверить подключение, он нажимает ок - закрываем фрагмент
  */
 fun Fragment.handleNoData() {
     this.requireActivity().let { activity ->
-        val alertBuilder = AlertDialog.Builder(activity)
-        alertBuilder.setTitle("gg")
-        alertBuilder.setMessage("inet rip")
-        alertBuilder.setPositiveButton("OK", null)
 
-        // TODO закрыть приложение по нажатию ОК кнопки
+        // TODO диалог с оповещением "проверьте подключение к интернету"
     }
 }
 

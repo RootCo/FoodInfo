@@ -1,9 +1,7 @@
 package com.example.foodinfo.ui
 
-import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -80,14 +78,9 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
 
 
     private fun setIngredient(food: Food) {
-        val ingredientPreview =
-            binding.root.findViewById<ImageView>(R.id.iv_home_ingredient)
-        val resourceId = this.resources.getIdentifier(
-            food.previewURL, "drawable", binding.root.context.packageName
-        )
         Glide.with(this)
-            .load(AppCompatResources.getDrawable(binding.root.context, resourceId))
-            .into(ingredientPreview)
+            .load(food.preview)
+            .into(binding.root.findViewById(R.id.iv_home_ingredient))
 
         binding.root.findViewById<TextView>(R.id.tv_home_ingredient_calories).text =
             food.calories.toString()

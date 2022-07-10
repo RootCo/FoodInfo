@@ -36,6 +36,10 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = recyclerAdapter
 
+        /*
+            тут без handleNoData т.к. фрагмент может функционировать и без
+            истории поиска, её просто не будет и всё
+         */
         viewModel.searchInputHistory.observe(viewLifecycleOwner) { inputHistory ->
             inputHistory?.let {
                 recyclerAdapter.setData(it)
@@ -57,8 +61,9 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
         }
 
         binding.root.findViewById<ImageView>(R.id.btn_search_filter).setOnClickListener {
-            val action = SearchInputFragmentDirections.actionFSearchInputToFSearchFilter()
-            findNavController().navigate(action)
+            findNavController().navigate(
+                SearchInputFragmentDirections.actionFSearchInputToFSearchFilter()
+            )
         }
     }
 
@@ -69,8 +74,11 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
         showKeyboard(searchView)
     }
     private val onItemClickListener: (String) -> Unit = { text ->
-        val action = SearchInputFragmentDirections.actionFSearchInputToFSearchResult(text)
-        findNavController().navigate(action)
+        findNavController().navigate(
+            SearchInputFragmentDirections.actionFSearchInputToFSearchResult(
+                text
+            )
+        )
     }
 
 

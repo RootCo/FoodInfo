@@ -26,17 +26,17 @@ class SearchResultFragment : BaseDataFragment<FragmentSearchResultBinding>(
     }
 
     override fun initUI() {
-        binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
-
-            // возвращаемся на предыдущий экран минуя экран с вводом поиска
-            findNavController().popBackStack(R.id.f_search_input, true)
-        }
         binding.root.findViewById<TextView>(R.id.tv_header).text = args.inputText
 
+        // возвращаемся на предыдущий экран минуя экран с вводом поиска
+        binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
+            findNavController().popBackStack(R.id.f_search_input, true)
+        }
+
         binding.root.findViewById<ImageView>(R.id.btn_search).setOnClickListener {
-            val action =
+            findNavController().navigate(
                 SearchResultFragmentDirections.actionFSearchResultToFSearchInput()
-            findNavController().navigate(action)
+            )
         }
     }
 

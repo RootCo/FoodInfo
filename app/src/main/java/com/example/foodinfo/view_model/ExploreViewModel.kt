@@ -8,8 +8,9 @@ import com.example.foodinfo.model.entities.RecipeCategoryLabels
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import javax.inject.Inject
 
-class ExploreViewModel @Inject constructor(private val repositoryRecipes: RepositoryRecipes) :
-    ViewModel() {
+class ExploreViewModel @Inject constructor(
+    private val repositoryRecipes: RepositoryRecipes
+) : ViewModel() {
 
     private val _recipes: MutableLiveData<Map<String, List<RecipeCategoryLabelItem>>> by lazy {
         MutableLiveData<Map<String, List<RecipeCategoryLabelItem>>>()

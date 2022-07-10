@@ -23,8 +23,10 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepositoryFood(foodDAO: FoodDAO): RepositoryFood {
-        return RepositoryFoodImpl(foodDAO)
+    fun provideRepositoryFood(
+        resourcesProvider: ResourcesProvider, foodDAO: FoodDAO
+    ): RepositoryFood {
+        return RepositoryFoodImpl(resourcesProvider, foodDAO)
     }
 
     @Provides

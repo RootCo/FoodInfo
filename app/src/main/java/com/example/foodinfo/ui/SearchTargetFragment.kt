@@ -26,16 +26,16 @@ class SearchTargetFragment : BaseDataFragment<FragmentSearchTargetBinding>(
     }
 
     override fun initUI() {
+        binding.root.findViewById<TextView>(R.id.tv_header).text = args.label
+
         binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
             findNavController().navigateUp()
         }
 
         binding.root.findViewById<ImageView>(R.id.btn_search).setOnClickListener {
-            val action =
+            findNavController().navigate(
                 SearchTargetFragmentDirections.actionFSearchTargetToFSearchInput()
-            findNavController().navigate(action)
+            )
         }
-
-        binding.root.findViewById<TextView>(R.id.tv_header).text = args.label
     }
 }

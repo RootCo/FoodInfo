@@ -15,6 +15,12 @@ abstract class BaseFragment<VB : ViewBinding>(
     private var _binding: VB? = null
     val binding get() = _binding!!
 
+
+    /*
+        наследниках выносить все инициализации RecyclerView и их адаптеров
+        подписывать все View на данные из viewModel
+        добавлять к ним clickListener и т.д.
+     */
     abstract fun initUI()
 
     override fun onCreateView(
@@ -27,6 +33,8 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // вычитал что лучше это делать в onViewCreated, а не в onCreateView
         initUI()
     }
 

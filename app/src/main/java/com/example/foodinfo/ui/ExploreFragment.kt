@@ -50,24 +50,30 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         }
 
         binding.root.findViewById<TextView>(R.id.tv_search).setOnClickListener {
-            findNavController().navigate(R.id.action_f_explore_to_f_search_input)
+            findNavController().navigate(
+                ExploreFragmentDirections.actionFExploreToFSearchInput()
+            )
         }
     }
 
 
     private val onOuterItemClickListener: (String) -> Unit = { label ->
-        val action = ExploreFragmentDirections.actionFExploreToFSearchTarget(
-            selectedTabTitle, label
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFSearchTarget(
+                selectedTabTitle, label
+            )
         )
-        findNavController().navigate(action)
     }
     private val onInnerItemClickListener: (String) -> Unit = { id ->
-        val action = ExploreFragmentDirections.actionFExploreToFRecipeExtended(id)
-        findNavController().navigate(action)
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFRecipeExtended(
+                id
+            )
+        )
     }
 
 
-    fun prepareTab(tab: String) {
+    fun prepareTab(category: String) {
         val recyclerView = binding.root.findViewById<RecyclerView>(R.id.rv_explore_outer)
         val recyclerAdapter = ExploreOuterRecipesAdapter(
             binding.root.context, onOuterItemClickListener, onInnerItemClickListener
@@ -78,7 +84,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
 
         viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             when (recipes != null) {
-                true  -> recyclerAdapter.setContent(recipes[tab]!!)
+                true  -> recyclerAdapter.setContent(recipes[category]!!)
                 false -> handleNoData()
             }
         }

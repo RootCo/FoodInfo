@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView, navController
         )
 
+        // не долго думая сделал так как ты и рассказывал
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             when (destination.id) {
                 R.id.f_home,
