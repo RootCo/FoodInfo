@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,7 +20,7 @@ class HomeRecipesAdapter(
     private val utils: Utils,
     private val onItemClickListener: (String) -> Unit,
 ) : ListAdapter<RecipeShort, HomeRecipesAdapter.HomeViewHolder>(
-    RecipeShort.ItemCallBack
+    AsyncDifferConfig.Builder(RecipeShort.ItemCallBack).build()
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -31,6 +32,7 @@ class HomeRecipesAdapter(
         val imageView: ShapeableImageView =
             itemView.findViewById(R.id.iv_home_recipe_preview)
     }
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int

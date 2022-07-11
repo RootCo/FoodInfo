@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,18 +19,19 @@ class ExploreOuterRecipesAdapter(
     private val onOuterItemClickListener: (String) -> Unit,
     private val onInnerItemClickListener: (String) -> Unit
 ) : ListAdapter<RecipeCategoryLabelItem, ExploreOuterRecipesAdapter.SearchViewHolder>(
-    RecipeCategoryLabelItem.ItemCallBack
+    AsyncDifferConfig.Builder(RecipeCategoryLabelItem.ItemCallBack).build()
 ) {
 
-    val viewPool = RecyclerView.RecycledViewPool()
-
+    private val viewPool = RecyclerView.RecycledViewPool()
     private val layoutInflater = LayoutInflater.from(context)
+
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val labelTitle: TextView = itemView.findViewById(R.id.tv_search_item_header)
         val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_explore_outer_item)
         val expandHeader: ConstraintLayout = itemView.findViewById(R.id.cl_expand_header)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView = layoutInflater.inflate(
