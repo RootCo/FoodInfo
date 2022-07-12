@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.entities.RecipeCategoryLabelItem
 import com.example.foodinfo.model.entities.RecipeCategoryLabels
+import com.example.foodinfo.model.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import javax.inject.Inject
 
@@ -28,7 +29,7 @@ class ExploreViewModel @Inject constructor(
             for (label in category.labels) {
                 categoryItem.add(
                     RecipeCategoryLabelItem(
-                        label, repositoryRecipes.getByCategory(category.name, label)
+                        label, repositoryRecipes.getByFilter(SearchFilter())
                     )
                 )
             }

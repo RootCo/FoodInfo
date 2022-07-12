@@ -1,9 +1,9 @@
 package com.example.foodinfo.model.dao.impl
 
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.model.dao.RecipesDAO
 import com.example.foodinfo.model.entities.RecipeCategoryLabels
 import com.example.foodinfo.model.entities.RecipeShort
-import com.example.foodinfo.model.entities.SearchFilter
 import com.example.foodinfo.utils.AssetProvider
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
@@ -46,15 +46,7 @@ class RecipesDAOImpl @Inject constructor(assetProvider: AssetProvider) : Recipes
         return recipes
     }
 
-    override fun getByCategory(category: String, label: String): List<RecipeShort> {
-        val recipes = recipes.mapTo(arrayListOf()) { it.copy() }
-        recipes.shuffle()
-        return recipes
-    }
-
-    override fun getByFilter(
-        query: String, searchFilter: SearchFilter
-    ): List<RecipeShort> {
+    override fun getByFilter(query: SupportSQLiteQuery): List<RecipeShort> {
         val recipes = recipes.mapTo(arrayListOf()) { it.copy() }
         recipes.shuffle()
         return recipes

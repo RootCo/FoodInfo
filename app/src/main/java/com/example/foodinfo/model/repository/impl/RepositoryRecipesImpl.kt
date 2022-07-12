@@ -1,5 +1,6 @@
 package com.example.foodinfo.model.repository.impl
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.model.dao.RecipesDAO
 import com.example.foodinfo.model.entities.RecipeCategoryLabels
 import com.example.foodinfo.model.entities.RecipeShort
@@ -16,15 +17,10 @@ class RepositoryRecipesImpl @Inject constructor(
         return recipesDAO.getDaily().map { loadPreview(it) } as ArrayList
     }
 
-    override fun getByCategory(category: String, label: String): List<RecipeShort> {
-        return recipesDAO.getByCategory(category, label)
-            .map { loadPreview(it) } as ArrayList
-    }
+    override fun getByFilter(filter: SearchFilter): List<RecipeShort> {
 
-    override fun getByFilter(
-        query: String, searchFilter: SearchFilter
-    ): List<RecipeShort> {
-        return recipesDAO.getByFilter(query, searchFilter)
+        // TODO формирование query запроса на из SearchFilter
+        return recipesDAO.getByFilter(SimpleSQLiteQuery(""))
             .map { loadPreview(it) } as ArrayList
     }
 

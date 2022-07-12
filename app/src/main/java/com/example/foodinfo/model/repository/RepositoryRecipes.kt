@@ -7,9 +7,7 @@ import com.example.foodinfo.model.entities.SearchFilter
 interface RepositoryRecipes {
     fun getDaily(): List<RecipeShort>
 
-    fun getByCategory(category: String, label: String): List<RecipeShort>
-
-    fun getByFilter(query: String, searchFilter: SearchFilter): List<RecipeShort>
+    fun getByFilter(filter: SearchFilter): List<RecipeShort>
 
     fun getById(id: String): RecipeShort
 

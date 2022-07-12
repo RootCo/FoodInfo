@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.entities.RecipeShort
+import com.example.foodinfo.model.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import javax.inject.Inject
 
@@ -18,6 +19,6 @@ class SearchTargetViewModel @Inject constructor(
         get() = _recipes
 
     fun updateRecipes(category: String, label: String) {
-        _recipes.value = repositoryRecipes.getByCategory(category, label)
+        _recipes.value = repositoryRecipes.getByFilter(SearchFilter())
     }
 }
