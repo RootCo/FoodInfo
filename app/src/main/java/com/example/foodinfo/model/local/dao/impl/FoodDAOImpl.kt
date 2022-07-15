@@ -1,7 +1,7 @@
-package com.example.foodinfo.model.dao.impl
+package com.example.foodinfo.model.local.dao.impl
 
-import com.example.foodinfo.model.dao.FoodDAO
-import com.example.foodinfo.model.entities.Food
+import com.example.foodinfo.model.local.dao.FoodDAO
+import com.example.foodinfo.model.local.Food
 import com.example.foodinfo.utils.AssetProvider
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 import kotlin.random.Random
+
 
 class FoodDAOImpl @Inject constructor(assetProvider: AssetProvider) : FoodDAO {
 

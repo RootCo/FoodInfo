@@ -1,9 +1,9 @@
 package com.example.foodinfo.di.module
 
-import com.example.foodinfo.model.dao.FoodDAO
-import com.example.foodinfo.model.dao.RecipesDAO
-import com.example.foodinfo.model.dao.SearchFilterDAO
-import com.example.foodinfo.model.dao.SearchInputHistoryDAO
+import com.example.foodinfo.model.local.dao.FoodDAO
+import com.example.foodinfo.model.local.dao.RecipesDAO
+import com.example.foodinfo.model.local.dao.SearchFilterDAO
+import com.example.foodinfo.model.local.dao.SearchInputHistoryDAO
 import com.example.foodinfo.model.repository.RepositoryFood
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import com.example.foodinfo.model.repository.RepositorySearchFilter

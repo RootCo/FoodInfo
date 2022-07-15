@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
-import com.example.foodinfo.model.entities.Food
+import com.example.foodinfo.model.local.Food
 import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.Utils

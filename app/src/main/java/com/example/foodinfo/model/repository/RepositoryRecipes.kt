@@ -1,15 +1,15 @@
 package com.example.foodinfo.model.repository
 
-import com.example.foodinfo.model.entities.RecipeCategoryLabels
-import com.example.foodinfo.model.entities.RecipeShort
-import com.example.foodinfo.model.entities.SearchFilter
+import com.example.foodinfo.model.local.RecipeFull
+import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.entities.SearchFilter
 
 interface RepositoryRecipes {
     fun getDaily(): List<RecipeShort>
 
-    fun getByFilter(filter: SearchFilter): List<RecipeShort>
+    fun getByFilterShort(filter: SearchFilter): List<RecipeShort>
+
+    fun getByFilterFull(filter: SearchFilter): List<RecipeFull>
 
     fun getById(id: String): RecipeShort
-
-    fun getCategories(): List<RecipeCategoryLabels>
 }

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
-import com.example.foodinfo.model.entities.RecipeShort
+import com.example.foodinfo.model.local.RecipeShort
 import com.google.android.material.imageview.ShapeableImageView
 
 class ExploreInnerRecipesAdapter(

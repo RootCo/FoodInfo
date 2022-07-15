@@ -1,8 +1,6 @@
 package com.example.foodinfo.di.module
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.foodinfo.di.BaseViewModelFactory
 import com.example.foodinfo.view_model.*
 import dagger.Binds
 import dagger.MapKey

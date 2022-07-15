@@ -1,20 +1,14 @@
 package com.example.foodinfo.model.repository
 
-import com.example.foodinfo.model.entities.SearchFilter
+import com.example.foodinfo.model.local.entities.SearchFilter
 
 
 interface RepositorySearchFilter {
-    fun updateFilter()
-
     fun getFilter(): SearchFilter
 
-    fun setFilter(filter: SearchFilter)
-
-    fun getFromPreset(id: Int): SearchFilter
+    fun getFromPreset(id: Long): SearchFilter
 
     fun addToPreset(filter: SearchFilter)
 
-    fun delFromPreset(id: Int)
-
-    fun toQuery(filter: SearchFilter): String
+    fun delFromPreset(id: Long)
 }

@@ -1,4 +1,4 @@
-package com.example.foodinfo.model.entities
+package com.example.foodinfo.model.local
 
 import android.graphics.drawable.Drawable
 

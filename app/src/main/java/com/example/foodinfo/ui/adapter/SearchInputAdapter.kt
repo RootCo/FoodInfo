@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
-import com.example.foodinfo.model.entities.SearchInput
+import com.example.foodinfo.model.local.entities.SearchInput
 
 class SearchInputAdapter(
     context: Context,

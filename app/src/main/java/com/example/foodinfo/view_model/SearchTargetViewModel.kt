@@ -3,8 +3,9 @@ package com.example.foodinfo.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.foodinfo.model.entities.RecipeShort
-import com.example.foodinfo.model.entities.SearchFilter
+import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.dao.filter_field.CategoryField
+import com.example.foodinfo.model.local.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import javax.inject.Inject
 
@@ -19,6 +20,14 @@ class SearchTargetViewModel @Inject constructor(
         get() = _recipes
 
     fun updateRecipes(category: String, label: String) {
-        _recipes.value = repositoryRecipes.getByFilter(SearchFilter())
+        val filter = SearchFilter()
+        filter.categoryFields.add(
+            CategoryField(
+                CategoryField.fromLabel(category),
+                listOf(label)
+            )
+        )
+        filter.buildQuery()
+        _recipes.value = repositoryRecipes.getByFilterShort(filter)
     }
 }

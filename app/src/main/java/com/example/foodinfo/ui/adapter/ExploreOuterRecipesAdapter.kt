@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
-import com.example.foodinfo.model.entities.RecipeCategoryLabelItem
+import com.example.foodinfo.model.local.RecipeCategoryLabelItem
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
 
 class ExploreOuterRecipesAdapter(

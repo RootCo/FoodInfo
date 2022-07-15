@@ -9,7 +9,7 @@ import dagger.android.AndroidInjectionModule
     RepositoryModule::class,
     ViewModelModule::class,
     ContextModule::class,
-    DAOModule::class,
+    RoomModule::class,
     AndroidInjectionModule::class
 ])
 class BaseApplicationModule

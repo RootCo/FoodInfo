@@ -3,7 +3,7 @@ package com.example.foodinfo.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.foodinfo.model.entities.SearchInput
+import com.example.foodinfo.model.local.entities.SearchInput
 import com.example.foodinfo.model.repository.RepositorySearchInput
 import javax.inject.Inject
 

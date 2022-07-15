@@ -45,7 +45,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         // создаем для каждой категории рецепта вкладку
         for (category in viewModel.categories) {
             tlRecipesTypes.addTab(
-                tlRecipesTypes.newTab().setText(category.name)
+                tlRecipesTypes.newTab().setText(category.label)
             )
         }
 

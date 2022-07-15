@@ -10,6 +10,6 @@ class SearchFilterViewModel @Inject constructor(
 
     // имитация обновления фильтра (якобы сюда передался введенные пользователем данные)
     fun updateFilter() {
-        repositorySearchFilter.updateFilter()
+        return
     }
 }
