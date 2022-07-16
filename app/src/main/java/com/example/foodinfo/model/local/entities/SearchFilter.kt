@@ -2,15 +2,16 @@ package com.example.foodinfo.model.local.entities
 
 import androidx.room.*
 import com.example.foodinfo.model.local.RecipeShort
-import com.example.foodinfo.model.local.dao.filter_field.CategoryFields
-import com.example.foodinfo.model.local.dao.filter_field.NutrientFields
-import com.example.foodinfo.model.local.dao.filter_field.RangeFields
+import com.example.foodinfo.model.local.dao.filter_field.*
 import com.example.foodinfo.model.local.dao.type_converter.CategoryFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.NutrientFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.RangeFieldTypeConverter
 import com.example.foodinfo.model.local.entities.recipe_field.Nutrient
 
 
+/**
+ * @sample queryExample
+ */
 @Entity(tableName = SearchFilter.TABLE_NAME)
 data class SearchFilter(
     @ColumnInfo(name = Columns.ID)
@@ -166,4 +167,55 @@ data class SearchFilter(
         const val RECIPE_SELECTOR_SHORT = 1
         const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
+}
+
+fun queryExample() {
+    val filter = SearchFilter()
+    filter.categoryFields.data.add(
+        CategoryField(CategoryField.Fields.DIET_TYPE, listOf("low-fat", "low-carb"))
+    )
+    filter.categoryFields.data.add(
+        CategoryField(CategoryField.Fields.CUISINE_TYPE, listOf("Japanese", "Chinese"))
+    )
+
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Protein"), minValue = 3f)
+    )
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Carbs"), maxValue = 2f)
+    )
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Fat"), 1f, 2f)
+    )
+
+    filter.rangeFields.data.add(
+        RangeField(RangeField.Fields.CALORIES, 200, 600)
+    )
+    filter.rangeFields.data.add(
+        RangeField(RangeField.Fields.TOTAL_TIME, maxValue = 30)
+    )
+    filter.rangeFields.data.add(
+        RangeField(RangeField.Fields.TOTAL_INGREDIENTS, minValue = 5)
+    )
+    filter.buildQuery()
+
+
+    /*
+    >>>filter.query
+        SELECT * FROM recipe WHERE
+        calories BETWEEN 200 AND 600
+        AND total_time <= 30
+        AND ingredients >= 5
+        AND id IN (SELECT diet_recipe_id FROM diet_type WHERE label IN
+            ('low-fat', 'low-carb')) " +
+        AND id IN (SELECT cuisine_recipe_id FROM cuisine_type WHERE label IN
+            ('Japanese', 'Chinese'))
+        AND id IN (SELECT  nutrient_recipe_id FROM nutrient WHERE CASE
+                WHEN label = 'Protein' THEN quantity >= 3
+                WHEN label = 'Carbs' THEN quantity <= 2
+                WHEN label = 'Fat' THEN quantity BETWEEN 1 AND
+                ELSE NULL END
+            GROUP BY nutrient_recipe_id
+            HAVING count(nutrient_recipe_id) = 3)
+     */
 }

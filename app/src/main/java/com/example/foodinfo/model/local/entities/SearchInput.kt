@@ -7,6 +7,11 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 
+/*
+    требуемые доработки:
+    - время и дата запроса
+    - уникальность поля inputText
+ */
 @Entity(tableName = SearchInput.TABLE_NAME)
 data class SearchInput(
     @PrimaryKey(autoGenerate = true)

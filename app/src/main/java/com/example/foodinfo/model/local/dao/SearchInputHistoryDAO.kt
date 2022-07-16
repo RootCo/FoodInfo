@@ -7,6 +7,7 @@ import com.example.foodinfo.model.local.entities.SearchInput
 
 @Dao
 interface SearchInputHistoryDAO {
-    @Query(SearchInput.SELECTOR)
+    // пока не решил куда лучше вынести эту "7"
+    @Query("${SearchInput.SELECTOR} LIMIT 7")
     fun getHistory(): List<SearchInput>
 }

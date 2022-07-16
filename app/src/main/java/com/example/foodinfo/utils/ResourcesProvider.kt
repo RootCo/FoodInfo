@@ -2,7 +2,6 @@ package com.example.foodinfo.utils
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.appcompat.content.res.AppCompatResources
 import javax.inject.Inject
 
 class ResourcesProvider @Inject constructor(private val context: Context) {
@@ -16,7 +15,7 @@ class ResourcesProvider @Inject constructor(private val context: Context) {
             name, "drawable", context.packageName
         )
         if (resourceId != 0) {
-            return AppCompatResources.getDrawable(context, resourceId)
+            return getDrawableById(resourceId)
         }
         return null
     }

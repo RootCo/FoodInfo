@@ -1,11 +1,29 @@
 package com.example.foodinfo.model.local.dao.filter_field
 
+import com.example.foodinfo.model.local.dao.filter_field.NutrientField.Fields
 
+
+/**
+ * if minValue == null query will be like: 'field <= maxValue'
+ *
+ * if maxValue == null query will be like: 'field >= minValue'
+ *
+ * if both != null query will be like: 'field BETWEEN minValue AND maxValue'
+ *
+ * @param value [Fields] object that contains all necessary information for
+ * query generation
+ * @param minValue positive float, specifies the minimum value of the field
+ * @param maxValue positive float, specifies the maximum value of the field
+ */
 data class NutrientField(
     val value: Fields,
     val minValue: Float? = null,
     val maxValue: Float? = null
-) {
+) : BaseField {
+    /**
+     * @param label database table column name that will be used in query
+     * (also can be presented to user)
+     */
     enum class Fields(val label: String) {
         FAT("Fat"),
         FASAT("Saturated"),
@@ -49,11 +67,5 @@ data class NutrientField(
     }
 }
 
-class NutrientFields(private val _data: MutableSet<NutrientField> = mutableSetOf()) {
-    val data: MutableSet<NutrientField>
-        get() = _data
-
-    fun add(field: NutrientField) {
-        _data.add(field)
-    }
-}
+class NutrientFields(_data: MutableSet<NutrientField> = mutableSetOf()) :
+    BaseFieldSet<NutrientField>(_data)
