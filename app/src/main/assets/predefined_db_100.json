@@ -34933,5 +34933,43 @@
       "recipeId": "3PX8KF1NSU30XLI6FR51",
       "label": "Eastern Europe"
     }
+  ],
+  "search_history": [
+    {
+      "inputText": "english breakfast",
+      "date": 1657985930670
+    },
+    {
+      "inputText": "pickles",
+      "date": 1657985930671
+    },
+    {
+      "inputText": "cold appetizers",
+      "date": 1657985930672
+    },
+    {
+      "inputText": "fast food",
+      "date": 1657985930673
+    },
+    {
+      "inputText": "fried beef",
+      "date": 1657985930674
+    },
+    {
+      "inputText": "caesar",
+      "date": 1657985930675
+    },
+    {
+      "inputText": "naval pasta",
+      "date": 1657985930676
+    },
+    {
+      "inputText": "borsch",
+      "date": 1657985930677
+    },
+    {
+      "inputText": "boiled beef",
+      "date": 1657985930678
+    }
   ]
 }

@@ -28,12 +28,12 @@ class ExploreViewModel @Inject constructor(
             val categoryItem = arrayListOf<RecipeCategoryLabelItem>()
             for (label in category.validLabels) {
                 val searchFilter = SearchFilter()
-                searchFilter.setSelector(SearchFilter.RECIPE_SELECTOR_SHORT)
+                searchFilter.setSelector(SearchFilter.RECIPE_SELECTOR_EXPLORE)
                 searchFilter.categoryFields.add(CategoryField(category, listOf(label)))
                 searchFilter.buildQuery()
                 categoryItem.add(
                     RecipeCategoryLabelItem(
-                        label, repositoryRecipes.getByFilterShort(searchFilter)
+                        label, repositoryRecipes.getByFilterExplore(searchFilter)
                     )
                 )
             }

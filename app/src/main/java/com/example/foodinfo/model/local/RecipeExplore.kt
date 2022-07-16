@@ -7,7 +7,7 @@ import androidx.room.Ignore
 import com.example.foodinfo.model.local.entities.Recipe
 
 
-data class RecipeShort(
+data class RecipeExplore(
     @ColumnInfo(name = Recipe.Columns.ID)
     val id: String,
 
@@ -23,16 +23,15 @@ data class RecipeShort(
     @Ignore
     var preview: Drawable? = null
 
-    object ItemCallBack : DiffUtil.ItemCallback<RecipeShort>() {
-
+    object ItemCallBack : DiffUtil.ItemCallback<RecipeExplore>() {
         override fun areItemsTheSame(
-            oldItem: RecipeShort, newItem: RecipeShort
+            oldItem: RecipeExplore, newItem: RecipeExplore
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: RecipeShort, newItem: RecipeShort
+            oldItem: RecipeExplore, newItem: RecipeExplore
         ): Boolean {
             return oldItem.name == newItem.name && oldItem.calories == newItem.calories
         }

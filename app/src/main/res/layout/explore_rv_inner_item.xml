@@ -1,35 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "94dp"
-    android:layout_height = "match_parent"
-    android:gravity = "center"
+    android:layout_height = "170dp"
     android:orientation = "vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id = "@+id/iv_search_recipe_preview"
-        android:layout_width = "0dp"
+        android:layout_width = "94dp"
         android:layout_height = "94dp"
         android:scaleType = "centerCrop"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
         app:shapeAppearanceOverlay = "@style/ThemeShapeAppearanceNormal"
         tools:src = "@sample/recipes.json/short/preview" />
 
     <TextView
         android:id = "@+id/tv_search_recipe_name"
-        style = "@style/ThemeMainTextView"
-        android:layout_width = "0dp"
+        style = "@style/ThemeRecipeNameTextView"
+        android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
         android:layout_marginTop = "4dp"
         android:ellipsize = "end"
-        android:maxLines = "2"
-        android:textSize = "13sp"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@id/iv_search_recipe_preview"
         tools:text = "@sample/recipes.json/short/name" />
 
     <TextView
@@ -38,16 +29,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "20dp"
         android:textSize = "14sp"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@id/tv_search_recipe_name"
+        app:drawableEndCompat = "@drawable/ic_kcal_20"
         tools:text = "@sample/recipes.json/short/calories" />
 
-    <ImageView
-        android:layout_marginTop="1dp"
-        android:layout_width = "20dp"
-        android:layout_height = "20dp"
-        android:src = "@drawable/ic_kcal"
-        app:layout_constraintStart_toEndOf = "@id/tv_search_recipe_calories"
-        app:layout_constraintTop_toTopOf = "@id/tv_search_recipe_calories" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

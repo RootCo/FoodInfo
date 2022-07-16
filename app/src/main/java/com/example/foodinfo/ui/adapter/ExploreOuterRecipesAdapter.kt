@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -29,7 +29,7 @@ class ExploreOuterRecipesAdapter(
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val labelTitle: TextView = itemView.findViewById(R.id.tv_search_item_header)
         val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_explore_outer_item)
-        val expandHeader: ConstraintLayout = itemView.findViewById(R.id.cl_expand_header)
+        val expandHeader: FrameLayout = itemView.findViewById(R.id.ll_expand_header)
     }
 
 
@@ -59,13 +59,13 @@ class ExploreOuterRecipesAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.labelTitle.text = getItem(position).label
+        holder.labelTitle.text = getItem(holder.adapterPosition).label
         val recyclerAdapter =
             ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
-        recyclerAdapter.submitList(getItem(position).recipes)
+        recyclerAdapter.submitList(getItem(holder.adapterPosition).recipes)
         holder.recyclerView.adapter = recyclerAdapter
         holder.expandHeader.setOnClickListener {
-            onOuterItemClickListener(getItem(position).label)
+            onOuterItemClickListener(getItem(holder.adapterPosition).label)
         }
     }
 }

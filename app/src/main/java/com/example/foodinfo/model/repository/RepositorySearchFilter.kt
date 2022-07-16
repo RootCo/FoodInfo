@@ -4,9 +4,13 @@ import com.example.foodinfo.model.local.entities.SearchFilter
 
 
 interface RepositorySearchFilter {
-    fun getFilter(): SearchFilter
+    fun getTarget(): SearchFilter
+
+    fun delTarget()
 
     fun getFromPreset(id: Long): SearchFilter
+
+    fun getAllFromPreset(): List<SearchFilter>
 
     fun addToPreset(filter: SearchFilter)
 

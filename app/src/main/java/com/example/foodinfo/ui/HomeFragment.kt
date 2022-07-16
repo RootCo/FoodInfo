@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.widget.TableLayout
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
-import com.example.foodinfo.model.local.Food
+import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.Utils
@@ -62,9 +61,9 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
             }
         }
 
-        viewModel.food.observe(viewLifecycleOwner) { food ->
+        viewModel.dailyRecipe.observe(viewLifecycleOwner) { food ->
             when (food != null) {
-                true  -> setIngredient(food)
+                true  -> setDailyRecipe(food)
                 false -> handleNoData()
             }
         }
@@ -78,17 +77,13 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
     }
 
 
-    private fun setIngredient(food: Food) {
-        Glide.with(this).load(food.preview)
-            .into(binding.root.findViewById(R.id.iv_home_ingredient))
-
-        binding.root.findViewById<TextView>(R.id.tv_home_ingredient_calories).text =
-            food.calories.toString()
-
-        val pfcTable = binding.root.findViewById<TableLayout>(R.id.tb_ingredient_pfc)
-        pfcTable.findViewById<TextView>(R.id.tv_pfc_protein).text =
-            food.protein.toString()
-        pfcTable.findViewById<TextView>(R.id.tv_pfc_fat).text = food.fat.toString()
-        pfcTable.findViewById<TextView>(R.id.tv_pfc_carb).text = food.carb.toString()
+    private fun setDailyRecipe(recipe: RecipeExplore) {
+        Glide.with(this)
+            .load(recipe.preview)
+            .into(binding.root.findViewById(R.id.iv_daily_recipe_preview))
+        binding.root.findViewById<TextView>(R.id.tv_daily_recipe_calories).text =
+            recipe.calories.toString()
+        binding.root.findViewById<TextView>(R.id.tv_daily_recipe_name).text =
+            recipe.name
     }
 }

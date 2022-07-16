@@ -1,17 +1,14 @@
 package com.example.foodinfo.di.module
 
-import com.example.foodinfo.model.local.dao.FoodDAO
 import com.example.foodinfo.model.local.dao.RecipesDAO
 import com.example.foodinfo.model.local.dao.SearchFilterDAO
-import com.example.foodinfo.model.local.dao.SearchInputHistoryDAO
-import com.example.foodinfo.model.repository.RepositoryFood
+import com.example.foodinfo.model.local.dao.SearchHistoryDAO
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import com.example.foodinfo.model.repository.RepositorySearchFilter
-import com.example.foodinfo.model.repository.RepositorySearchInput
-import com.example.foodinfo.model.repository.impl.RepositoryFoodImpl
+import com.example.foodinfo.model.repository.RepositorySearchHistory
 import com.example.foodinfo.model.repository.impl.RepositoryRecipesImpl
 import com.example.foodinfo.model.repository.impl.RepositorySearchFilterImpl
-import com.example.foodinfo.model.repository.impl.RepositorySearchInputImpl
+import com.example.foodinfo.model.repository.impl.RepositorySearchHistoryImpl
 import com.example.foodinfo.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
@@ -20,14 +17,6 @@ import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
-
-    @Provides
-    @Singleton
-    fun provideRepositoryFood(
-        resourcesProvider: ResourcesProvider, foodDAO: FoodDAO
-    ): RepositoryFood {
-        return RepositoryFoodImpl(resourcesProvider, foodDAO)
-    }
 
     @Provides
     @Singleton
@@ -45,7 +34,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepositorySearchInput(searchInputHistoryDAO: SearchInputHistoryDAO): RepositorySearchInput {
-        return RepositorySearchInputImpl(searchInputHistoryDAO)
+    fun provideRepositorySearchInput(searchHistoryDAO: SearchHistoryDAO): RepositorySearchHistory {
+        return RepositorySearchHistoryImpl(searchHistoryDAO)
     }
 }

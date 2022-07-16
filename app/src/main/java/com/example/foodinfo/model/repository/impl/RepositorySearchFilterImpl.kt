@@ -10,12 +10,20 @@ class RepositorySearchFilterImpl @Inject constructor(
     private val searchFilterDAO: SearchFilterDAO
 ) : RepositorySearchFilter {
 
-    override fun getFilter(): SearchFilter {
+    override fun getTarget(): SearchFilter {
         return searchFilterDAO.getTarget()
+    }
+
+    override fun delTarget() {
+        searchFilterDAO.delTarget()
     }
 
     override fun getFromPreset(id: Long): SearchFilter {
         return searchFilterDAO.getFromPreset(id)
+    }
+
+    override fun getAllFromPreset(): List<SearchFilter> {
+        return searchFilterDAO.getAllFromPreset()
     }
 
     override fun addToPreset(filter: SearchFilter) {

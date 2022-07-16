@@ -1,6 +1,7 @@
 package com.example.foodinfo.ui
 
 import android.widget.ImageView
+import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,7 +25,7 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
     }
 
     override fun updateViewModelData() {
-        viewModel.updateSearchInput()
+        viewModel.updateSearchHistory()
     }
 
     override fun initUI() {
@@ -40,8 +41,8 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
             тут без handleNoData т.к. фрагмент может функционировать и без
             истории поиска, её просто не будет и всё
          */
-        viewModel.searchInputHistory.observe(viewLifecycleOwner) { inputHistory ->
-            inputHistory?.let {
+        viewModel.searchHistory.observe(viewLifecycleOwner) { searchHistory ->
+            searchHistory?.let {
                 recyclerAdapter.submitList(it)
             }
         }
@@ -65,6 +66,25 @@ class SearchInputFragment : BaseDataFragment<FragmentSearchInputBinding>(
                 SearchInputFragmentDirections.actionFSearchInputToFSearchFilter()
             )
         }
+
+        binding.root.findViewById<SearchView>(R.id.et_search_input)
+            .setOnQueryTextListener(object : OnQueryTextListener,
+                SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    viewModel.updateSearchHistory(newText)
+                    return false
+                }
+
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    viewModel.addToHistory(query)
+                    findNavController().navigate(
+                        SearchInputFragmentDirections.actionFSearchInputToFSearchResult(
+                            query
+                        )
+                    )
+                    return false
+                }
+            })
     }
 
 

@@ -1,54 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
-    android:id = "@+id/rv_home_recipes"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
     android:layout_gravity = "center">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id = "@+id/iv_home_recipe_preview"
-        android:layout_width = "0dp"
-        android:layout_height = "0dp"
+        android:id = "@+id/iv_home_rv_recipe_preview"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent"
         android:scaleType = "centerCrop"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
         app:shapeAppearanceOverlay = "@style/ThemeShapeAppearanceBig"
         tools:src = "@sample/recipes.json/short/preview" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id = "@+id/tv_home_rv_recipe_calories"
+        style = "@style/ThemeTextViewBig"
         android:layout_width = "110dp"
         android:layout_height = "36dp"
+        android:layout_gravity = "center|top"
         android:layout_marginVertical = "16dp"
         android:background = "@drawable/rounded_corner_hint"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
-
-        <TextView
-            android:id = "@+id/tv_home_recipe_calories"
-            style = "@style/ThemeTextViewBig"
-            android:layout_width = "0dp"
-            android:layout_height = "0dp"
-            android:layout_marginHorizontal = "8dp"
-            app:drawableEndCompat = "@drawable/ic_kcal"
-            app:layout_constraintBottom_toBottomOf = "parent"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "parent"
-            tools:text = "@sample/recipes.json/short/calories" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:paddingHorizontal = "8dp"
+        app:drawableEndCompat = "@drawable/ic_kcal_28"
+        tools:text = "@sample/recipes.json/short/calories" />
 
     <TextView
-        android:id = "@+id/tv_home_recipe_name"
-        android:layout_width = "0dp"
+        android:id = "@+id/tv_home_rv_recipe_name"
+        android:layout_width = "match_parent"
         android:layout_height = "60dp"
+        android:layout_gravity = "center|bottom"
         android:layout_marginHorizontal = "16dp"
         android:layout_marginVertical = "16dp"
         android:background = "@drawable/rounded_corner_hint"
@@ -59,9 +42,6 @@
         android:paddingHorizontal = "8dp"
         android:textColor = "@color/main_font"
         android:textSize = "16sp"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
         tools:text = "@sample/recipes.json/short/name" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -7,8 +7,8 @@
     <string name = "title_home">Home</string>
     <string name = "title_explore">Search</string>
     <string name = "title_settings">Settings</string>
-    <string name = "text_home_ingredient_header">Daily food</string>
-    <string name = "text_home_recipes_header">Daily recipes</string>
+    <string name = "text_home_ingredient_header">Recipe of the day</string>
+    <string name = "text_home_recipes_header">Popular</string>
     <string name = "tv_gram">g</string>
     <string name = "tv_protein">P</string>
     <string name = "tv_fat">F</string>

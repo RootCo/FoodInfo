@@ -51,6 +51,14 @@
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
+    <!--    тема для маленьких текствью-->
+    <style name = "ThemeRecipeNameTextView">
+        <item name = "android:textColor">@color/active_font</item>
+        <item name = "android:textSize">13sp</item>
+        <item name = "android:maxLines">2</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
     <!--    тема для TabLayout, не знаю как тут задать tabTextColor-->
     <style name = "ThemeTab">
         <item name = "android:textSize">16sp</item>

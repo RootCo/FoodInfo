@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.foodinfo.model.local.dao.RecipesDAO
 import com.example.foodinfo.model.local.dao.SearchFilterDAO
-import com.example.foodinfo.model.local.dao.SearchInputHistoryDAO
+import com.example.foodinfo.model.local.dao.SearchHistoryDAO
 import com.example.foodinfo.model.local.dao.type_converter.CategoryFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.NutrientFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.RangeFieldTypeConverter
@@ -49,7 +49,7 @@ import kotlinx.coroutines.launch
 abstract class DataBase : RoomDatabase() {
     abstract val recipesDAO: RecipesDAO
     abstract val searchFilterDAO: SearchFilterDAO
-    abstract val searchInputHistoryDAO: SearchInputHistoryDAO
+    abstract val searchHistoryDAO: SearchHistoryDAO
 
     companion object {
         private const val DB_NAME = "data_base"
@@ -85,7 +85,7 @@ abstract class DataBase : RoomDatabase() {
             val gson = GsonBuilder().create()
 
             val predefinedDB = jsonLoader.load(
-                assetProvider.getAsset(AssetsKeyWords.PREDEFINED_RECIPES_100)
+                assetProvider.getAsset(AssetsKeyWords.PREDEFINED_DB_100)
             )
             val recipesString = predefinedDB.get(AssetsKeyWords.RECIPES).toString()
             val nutrientsString = predefinedDB.get(AssetsKeyWords.NUTRIENTS).toString()
@@ -98,6 +98,8 @@ abstract class DataBase : RoomDatabase() {
                 predefinedDB.get(AssetsKeyWords.HEALTH_TYPES).toString()
             val cuisineTypesString =
                 predefinedDB.get(AssetsKeyWords.CUISINE_TYPES).toString()
+            val searchHistoryString =
+                predefinedDB.get(AssetsKeyWords.SEARCH_HISTORY).toString()
 
             val typeRecipes = object : TypeToken<List<Recipe>>() {}.type
             val typeNutrients = object : TypeToken<List<Nutrient>>() {}.type
@@ -107,6 +109,7 @@ abstract class DataBase : RoomDatabase() {
             val typeDietTypes = object : TypeToken<List<DietType>>() {}.type
             val typeHealthType = object : TypeToken<List<HealthType>>() {}.type
             val typeCuisineTypes = object : TypeToken<List<CuisineType>>() {}.type
+            val typeSearchInput = object : TypeToken<List<SearchInput>>() {}.type
 
             scope.launch {
                 dataBase.recipesDAO.addAll(
@@ -118,6 +121,9 @@ abstract class DataBase : RoomDatabase() {
                     gson.fromJson(mealTypesString, typeMealTypes),
                     gson.fromJson(healthTypesString, typeHealthType),
                     gson.fromJson(cuisineTypesString, typeCuisineTypes)
+                )
+                dataBase.searchHistoryDAO.addHistory(
+                    gson.fromJson(searchHistoryString, typeSearchInput)
                 )
             }
         }

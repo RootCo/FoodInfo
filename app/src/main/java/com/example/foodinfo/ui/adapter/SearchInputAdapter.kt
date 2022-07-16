@@ -37,10 +37,17 @@ class SearchInputAdapter(
         return SearchViewHolder(itemView)
     }
 
+    // holder.adapterPosition вместо position потому что: https://stackoverflow.com/a/34466167
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.textView.text = getItem(position).inputText
-        holder.textView.setOnClickListener { onItemClickListener(getItem(position).inputText) }
-        holder.applySearchView.setOnClickListener { onItemClickListener(getItem(position).inputText) }
-        holder.applyTextView.setOnClickListener { onArrowClickListener(getItem(position).inputText) }
+        holder.textView.text = getItem(holder.adapterPosition).inputText
+        holder.textView.setOnClickListener {
+            onItemClickListener(getItem(holder.adapterPosition).inputText)
+        }
+        holder.applySearchView.setOnClickListener {
+            onItemClickListener(getItem(holder.adapterPosition).inputText)
+        }
+        holder.applyTextView.setOnClickListener {
+            onArrowClickListener(getItem(holder.adapterPosition).inputText)
+        }
     }
 }

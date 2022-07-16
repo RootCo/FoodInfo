@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
-import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.utils.Utils
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -19,18 +19,18 @@ class HomeRecipesAdapter(
     context: Context,
     private val utils: Utils,
     private val onItemClickListener: (String) -> Unit,
-) : ListAdapter<RecipeShort, HomeRecipesAdapter.HomeViewHolder>(
-    AsyncDifferConfig.Builder(RecipeShort.ItemCallBack).build()
+) : ListAdapter<RecipeExplore, HomeRecipesAdapter.HomeViewHolder>(
+    AsyncDifferConfig.Builder(RecipeExplore.ItemCallBack).build()
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
 
     class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val caloriesView: TextView = itemView.findViewById(R.id.tv_home_recipe_calories)
-        val nameView: TextView = itemView.findViewById(R.id.tv_home_recipe_name)
+        val caloriesView: TextView = itemView.findViewById(R.id.tv_home_rv_recipe_calories)
+        val nameView: TextView = itemView.findViewById(R.id.tv_home_rv_recipe_name)
         val imageView: ShapeableImageView =
-            itemView.findViewById(R.id.iv_home_recipe_preview)
+            itemView.findViewById(R.id.iv_home_rv_recipe_preview)
     }
 
 
@@ -55,10 +55,12 @@ class HomeRecipesAdapter(
     override fun onBindViewHolder(
         holder: HomeViewHolder, position: Int
     ) {
-        holder.caloriesView.text = getItem(position).calories.toString()
-        holder.nameView.text = getItem(position).name
-        Glide.with(holder.imageView.context).load(getItem(position).preview)
+        holder.caloriesView.text = getItem(holder.adapterPosition).calories.toString()
+        holder.nameView.text = getItem(holder.adapterPosition).name
+        Glide.with(holder.imageView.context).load(getItem(holder.adapterPosition).preview)
             .into(holder.imageView)
-        holder.imageView.setOnClickListener { onItemClickListener(getItem(position).id) }
+        holder.imageView.setOnClickListener {
+            onItemClickListener(getItem(holder.adapterPosition).id)
+        }
     }
 }

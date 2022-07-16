@@ -1,13 +1,13 @@
 package com.example.foodinfo.model.local.entities
 
 import android.graphics.drawable.Drawable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 
-@Entity(tableName = Recipe.TABLE_NAME)
+@Entity(
+    tableName = Recipe.TABLE_NAME,
+    indices = [Index(value = arrayOf(Recipe.Columns.ID), unique = true)]
+)
 data class Recipe(
     @PrimaryKey
     @ColumnInfo(name = Columns.ID)
@@ -67,5 +67,6 @@ data class Recipe(
     companion object {
         const val TABLE_NAME = "recipe"
         const val SELECTOR = "SELECT * FROM $TABLE_NAME"
+        const val LIMIT = 10
     }
 }

@@ -8,9 +8,9 @@
         android:allowBackup = "true"
         android:dataExtractionRules = "@xml/data_extraction_rules"
         android:fullBackupContent = "@xml/backup_rules"
-        android:icon = "@drawable/ic_kcal"
+        android:icon = "@drawable/ic_kcal_28"
         android:label = "@string/app_name"
-        android:roundIcon = "@drawable/ic_kcal"
+        android:roundIcon = "@drawable/ic_kcal_28"
         android:supportsRtl = "true"
         android:theme = "@style/Theme.FoodInfo"
         tools:targetApi = "31">

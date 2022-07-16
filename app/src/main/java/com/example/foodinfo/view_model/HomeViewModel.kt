@@ -3,35 +3,32 @@ package com.example.foodinfo.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.foodinfo.model.local.Food
-import com.example.foodinfo.model.local.RecipeShort
-import com.example.foodinfo.model.repository.RepositoryFood
+import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes,
-    private val repositoryFood: RepositoryFood
 ) : ViewModel() {
 
-    private val _food: MutableLiveData<Food> by lazy {
-        MutableLiveData<Food>()
+    private val _dailyRecipe: MutableLiveData<RecipeExplore> by lazy {
+        MutableLiveData<RecipeExplore>()
     }
-    val food: LiveData<Food>
-        get() = _food
+    val dailyRecipe: LiveData<RecipeExplore>
+        get() = _dailyRecipe
 
-    private val _recipes: MutableLiveData<List<RecipeShort>> by lazy {
-        MutableLiveData<List<RecipeShort>>()
+    private val _recipes: MutableLiveData<List<RecipeExplore>> by lazy {
+        MutableLiveData<List<RecipeExplore>>()
     }
-    val recipes: LiveData<List<RecipeShort>>
+    val recipes: LiveData<List<RecipeExplore>>
         get() = _recipes
 
 
     fun updateRecipes() {
-        _recipes.value = repositoryRecipes.getDaily()
+        _recipes.value = repositoryRecipes.getPopular()
     }
 
     fun updateFood() {
-        _food.value = repositoryFood.getDaily()
+        _dailyRecipe.value = repositoryRecipes.getDaily()
     }
 }

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
-import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.RecipeExplore
 import com.google.android.material.imageview.ShapeableImageView
 
 class ExploreInnerRecipesAdapter(
     context: Context, private val onInnerItemClickListener: (String) -> Unit
-) : ListAdapter<RecipeShort, ExploreInnerRecipesAdapter.SearchViewHolder>(
-    AsyncDifferConfig.Builder(RecipeShort.ItemCallBack).build()
+) : ListAdapter<RecipeExplore, ExploreInnerRecipesAdapter.SearchViewHolder>(
+    AsyncDifferConfig.Builder(RecipeExplore.ItemCallBack).build()
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -43,10 +43,12 @@ class ExploreInnerRecipesAdapter(
     override fun onBindViewHolder(
         holder: SearchViewHolder, position: Int
     ) {
-        holder.nameView.text = getItem(position).name
-        holder.caloriesView.text = getItem(position).calories.toString()
-        Glide.with(holder.imageView.context).load(getItem(position).preview)
+        holder.nameView.text = getItem(holder.adapterPosition).name
+        holder.caloriesView.text = getItem(holder.adapterPosition).calories.toString()
+        Glide.with(holder.imageView.context).load(getItem(holder.adapterPosition).preview)
             .into(holder.imageView)
-        holder.view.setOnClickListener { onInnerItemClickListener(getItem(position).id) }
+        holder.view.setOnClickListener {
+            onInnerItemClickListener(getItem(holder.adapterPosition).id)
+        }
     }
 }

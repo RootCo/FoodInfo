@@ -1,7 +1,9 @@
 package com.example.foodinfo.model.local.entities
 
 import androidx.room.*
-import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.model.local.RecipeExtended
+import com.example.foodinfo.model.local.RecipeResult
 import com.example.foodinfo.model.local.dao.filter_field.*
 import com.example.foodinfo.model.local.dao.type_converter.CategoryFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.NutrientFieldTypeConverter
@@ -10,9 +12,25 @@ import com.example.foodinfo.model.local.entities.recipe_field.Nutrient
 
 
 /**
+ * Class that generate query for [Recipe]
+ *
+ * Fields order:
+ * * Range fields - fastest one, search goes through the fields of [Recipe] itself
+ * * Nutrient fields - slowly than Range fields but only one query to another table
+ * for multiple nutrients
+ * * Category fields - the slowest one, each category requires
+ * subquery to another tables
+ *
+ * Because of AND separator between subqueries if any of subquery don't
+ * match the condition, row will be denied, so it makes sense to check the fastest
+ * conditions first
+ *
  * @sample queryExample
  */
-@Entity(tableName = SearchFilter.TABLE_NAME)
+@Entity(
+    tableName = SearchFilter.TABLE_NAME,
+    indices = [Index(value = arrayOf(SearchFilter.Columns.NAME), unique = true)]
+)
 data class SearchFilter(
     @ColumnInfo(name = Columns.ID)
     @PrimaryKey(autoGenerate = true)
@@ -40,7 +58,7 @@ data class SearchFilter(
     private var _query: String = ""
 
     @Ignore
-    private var selector: String = Recipe.SELECTOR
+    private var selector: String = RecipeExplore.SELECTOR
 
     @Ignore
     private val separator: String = " AND "
@@ -112,8 +130,9 @@ data class SearchFilter(
 
     fun setSelector(id: Int) {
         when (id) {
-            RECIPE_SELECTOR_FULL  -> selector = Recipe.SELECTOR
-            RECIPE_SELECTOR_SHORT -> selector = RecipeShort.SELECTOR
+            RECIPE_SELECTOR_RESULT   -> selector = RecipeResult.SELECTOR
+            RECIPE_SELECTOR_EXPLORE  -> selector = RecipeExplore.SELECTOR
+            RECIPE_SELECTOR_EXTENDED -> selector = RecipeExtended.SELECTOR
         }
     }
 
@@ -127,6 +146,13 @@ data class SearchFilter(
                 field.maxValue
             )
         })
+        val nutrientQueryList = nutrientFields.data.map { field ->
+            nutrientFieldToQuery(
+                field.value.label,
+                field.minValue,
+                field.maxValue
+            )
+        }
         subQueryList.addAll(categoryFields.data.map { field ->
             categoryFieldToQuery(
                 field.value.tableName,
@@ -135,13 +161,6 @@ data class SearchFilter(
                 field.labels
             )
         })
-        val nutrientQueryList = nutrientFields.data.map { field ->
-            nutrientFieldToQuery(
-                field.value.label,
-                field.minValue,
-                field.maxValue
-            )
-        }
         subQueryList.add(nutrientFieldsToQuery(nutrientQueryList))
         subQueryList.add(inputTextToQuery())
         subQueryList.removeAll(setOf(""))
@@ -163,8 +182,9 @@ data class SearchFilter(
 
     companion object {
         const val TABLE_NAME = "filter_search"
-        const val RECIPE_SELECTOR_FULL = 0
-        const val RECIPE_SELECTOR_SHORT = 1
+        const val RECIPE_SELECTOR_RESULT = 0
+        const val RECIPE_SELECTOR_EXPLORE = 1
+        const val RECIPE_SELECTOR_EXTENDED = 2
         const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }
@@ -178,16 +198,6 @@ fun queryExample() {
         CategoryField(CategoryField.Fields.CUISINE_TYPE, listOf("Japanese", "Chinese"))
     )
 
-    filter.nutrientFields.data.add(
-        NutrientField(NutrientField.fromLabel("Protein"), minValue = 3f)
-    )
-    filter.nutrientFields.data.add(
-        NutrientField(NutrientField.fromLabel("Carbs"), maxValue = 2f)
-    )
-    filter.nutrientFields.data.add(
-        NutrientField(NutrientField.fromLabel("Fat"), 1f, 2f)
-    )
-
     filter.rangeFields.data.add(
         RangeField(RangeField.Fields.CALORIES, 200, 600)
     )
@@ -196,6 +206,16 @@ fun queryExample() {
     )
     filter.rangeFields.data.add(
         RangeField(RangeField.Fields.TOTAL_INGREDIENTS, minValue = 5)
+    )
+
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Protein"), minValue = 3f)
+    )
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Carbs"), maxValue = 2f)
+    )
+    filter.nutrientFields.data.add(
+        NutrientField(NutrientField.fromLabel("Fat"), 1f, 2f)
     )
     filter.buildQuery()
 
@@ -206,10 +226,6 @@ fun queryExample() {
         calories BETWEEN 200 AND 600
         AND total_time <= 30
         AND ingredients >= 5
-        AND id IN (SELECT diet_recipe_id FROM diet_type WHERE label IN
-            ('low-fat', 'low-carb')) " +
-        AND id IN (SELECT cuisine_recipe_id FROM cuisine_type WHERE label IN
-            ('Japanese', 'Chinese'))
         AND id IN (SELECT  nutrient_recipe_id FROM nutrient WHERE CASE
                 WHEN label = 'Protein' THEN quantity >= 3
                 WHEN label = 'Carbs' THEN quantity <= 2
@@ -217,5 +233,9 @@ fun queryExample() {
                 ELSE NULL END
             GROUP BY nutrient_recipe_id
             HAVING count(nutrient_recipe_id) = 3)
+        AND id IN (SELECT diet_recipe_id FROM diet_type WHERE label IN
+            ('low-fat', 'low-carb'))
+        AND id IN (SELECT cuisine_recipe_id FROM cuisine_type WHERE label IN
+            ('Japanese', 'Chinese'))
      */
 }

@@ -8,7 +8,7 @@ import com.example.foodinfo.model.local.entities.Recipe
 import com.example.foodinfo.model.local.entities.recipe_field.*
 
 
-data class RecipeFull(
+data class RecipeExtended(
     @ColumnInfo(name = Recipe.Columns.ID)
     val id: String,
 
@@ -89,7 +89,11 @@ data class RecipeFull(
         entityColumn = Nutrient.Columns.RECIPE_ID
     )
     val totalDaily: List<Nutrient>
-){
+) {
     @Ignore
     var preview: Drawable? = null
+
+    companion object {
+        const val SELECTOR = "SELECT * FROM ${Recipe.TABLE_NAME}"
+    }
 }
