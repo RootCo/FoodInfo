@@ -5,12 +5,8 @@ import com.example.foodinfo.model.local.DataBase
 import com.example.foodinfo.model.local.dao.RecipesDAO
 import com.example.foodinfo.model.local.dao.SearchFilterDAO
 import com.example.foodinfo.model.local.dao.SearchHistoryDAO
-import com.example.foodinfo.utils.AssetProvider
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
 
@@ -18,12 +14,8 @@ import javax.inject.Singleton
 class RoomModule {
     @Singleton
     @Provides
-    fun provideDataBase(
-        context: Context,
-        assetProvider: AssetProvider,
-        scope: CoroutineScope
-    ): DataBase {
-        return DataBase.getDatabase(context, assetProvider, scope)
+    fun provideDataBase(context: Context): DataBase {
+        return DataBase.getDatabase(context)
     }
 
     @Provides
@@ -40,12 +32,5 @@ class RoomModule {
     @Provides
     fun provideSearchInputHistoryDAO(database: DataBase): SearchHistoryDAO {
         return database.searchHistoryDAO
-    }
-
-    // заглушка чтобы напихать в бд данные при первой инизиализации
-    @Singleton
-    @Provides
-    fun providesCoroutineScope(): CoroutineScope {
-        return CoroutineScope(SupervisorJob() + Dispatchers.IO)
     }
 }
