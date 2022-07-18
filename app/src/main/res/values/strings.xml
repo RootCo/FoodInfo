@@ -16,4 +16,5 @@
     <string name = "tv_search_header_text">Search over 2.3m recipes by different categories</string>
     <string name = "et_search_hint">Search for recipes…</string>
     <string name = "tv_diet_text">diet:</string>
+    <string name = "tv_loading_text">loading…</string>
 </resources>

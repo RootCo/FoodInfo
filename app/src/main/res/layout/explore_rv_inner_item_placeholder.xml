@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
-    xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "@dimen/explore_recipes_size"
     android:layout_height = "170dp"
     android:orientation = "vertical">
@@ -10,9 +9,9 @@
         android:id = "@+id/iv_search_recipe_preview"
         android:layout_width = "@dimen/explore_recipes_size"
         android:layout_height = "@dimen/explore_recipes_size"
+        android:background = "@color/secondary_background"
         android:scaleType = "centerCrop"
-        app:shapeAppearanceOverlay = "@style/ThemeShapeAppearanceNormal"
-        tools:src = "@sample/recipes.json/short/preview" />
+        app:shapeAppearanceOverlay = "@style/ThemeShapeAppearanceNormal" />
 
     <TextView
         android:id = "@+id/tv_search_recipe_name"
@@ -21,15 +20,6 @@
         android:layout_height = "wrap_content"
         android:layout_marginTop = "4dp"
         android:ellipsize = "end"
-        tools:text = "@sample/recipes.json/short/name" />
-
-    <TextView
-        android:id = "@+id/tv_search_recipe_calories"
-        style = "@style/ThemeTextViewBig"
-        android:layout_width = "wrap_content"
-        android:layout_height = "20dp"
-        android:textSize = "14sp"
-        app:drawableEndCompat = "@drawable/ic_kcal_20"
-        tools:text = "@sample/recipes.json/short/calories" />
+        android:text = "@string/tv_loading_text" />
 
 </LinearLayout>

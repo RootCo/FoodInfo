@@ -8,6 +8,8 @@
     <dimen name = "search_recipes_space">9dp</dimen>
     <!--    отступ между элементами краем экрана и центральным элементов RecyclerView в Home-->
     <dimen name = "home_recipes_margin">72dp</dimen>
+    <!--    размер элемента внутреннего RecyclerView в Explore-->
+    <dimen name = "explore_recipes_size">94dp</dimen>
     <dimen name = "search_tab_padding">16dp</dimen>
     <dimen name = "elevation">3dp</dimen>
 </resources>

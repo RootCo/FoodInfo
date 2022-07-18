@@ -2,65 +2,58 @@ package com.example.foodinfo.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.AsyncDifferConfig
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.foodinfo.R
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeExplore
-import com.example.foodinfo.utils.Utils
-import com.google.android.material.imageview.ShapeableImageView
+import com.example.foodinfo.ui.view_holder.HomeProgressViewHolder
+import com.example.foodinfo.ui.view_holder.HomeViewHolder
+import com.example.foodinfo.utils.applicationComponent
 
 
 class HomeRecipesAdapter(
     context: Context,
-    private val utils: Utils,
-    private val onItemClickListener: (String) -> Unit,
-) : ListAdapter<RecipeExplore, HomeRecipesAdapter.HomeViewHolder>(
-    AsyncDifferConfig.Builder(RecipeExplore.ItemCallBack).build()
+    private val onItemClickListener: (String) -> Unit
+) : PagingDataAdapter<RecipeExplore, ViewHolder>(
+    RecipeExplore.ItemCallBack
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
+    private val utils = context.applicationComponent.decorationUtils
 
 
-    class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val caloriesView: TextView = itemView.findViewById(R.id.tv_home_rv_recipe_calories)
-        val nameView: TextView = itemView.findViewById(R.id.tv_home_rv_recipe_name)
-        val imageView: ShapeableImageView =
-            itemView.findViewById(R.id.iv_home_rv_recipe_preview)
-    }
-
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): HomeViewHolder {
-        val itemView = layoutInflater.inflate(
-            R.layout.home_rv_item, parent, false
-        )
-
-        /*
-        задаем размеры элемента
-        ширину высчитываем в рантайме, т.к. по другому не придумал
-        для доп информации см HomeItemDecoration и getHomeRecipeWidth() в Utils
-        */
-        itemView.layoutParams = ViewGroup.LayoutParams(
-            (utils.getHomeRecipeWidth()), ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        return HomeViewHolder(itemView)
-    }
-
-    override fun onBindViewHolder(
-        holder: HomeViewHolder, position: Int
-    ) {
-        holder.caloriesView.text = getItem(holder.adapterPosition).calories.toString()
-        holder.nameView.text = getItem(holder.adapterPosition).name
-        Glide.with(holder.imageView.context).load(getItem(holder.adapterPosition).preview)
-            .into(holder.imageView)
-        holder.imageView.setOnClickListener {
-            onItemClickListener(getItem(holder.adapterPosition).id)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return when (viewType) {
+            ViewTypes.LOADED_VIEW.ordinal -> {
+                HomeViewHolder(
+                    HomeViewHolder.createView(layoutInflater, parent),
+                    utils,
+                    onItemClickListener
+                )
+            }
+            else                          -> {
+                HomeProgressViewHolder(
+                    HomeProgressViewHolder.createView(layoutInflater, parent),
+                    utils
+                )
+            }
         }
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        getItem(position)?.let { recipe ->
+            holder as HomeViewHolder
+            holder.bind(recipe)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        getItem(position) ?: return ViewTypes.PROGRESS_VIEW.ordinal
+        return ViewTypes.LOADED_VIEW.ordinal
+    }
+
+    enum class ViewTypes {
+        PROGRESS_VIEW,
+        LOADED_VIEW
     }
 }

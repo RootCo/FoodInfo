@@ -2,6 +2,7 @@ package com.example.foodinfo.model.local
 
 import androidx.recyclerview.widget.DiffUtil
 
+
 data class RecipeCategoryLabelItem(
     val label: String, val recipes: List<RecipeExplore>
 ) {
@@ -19,6 +20,5 @@ data class RecipeCategoryLabelItem(
         ): Boolean {
             return oldItem.label == newItem.label
         }
-
     }
 }

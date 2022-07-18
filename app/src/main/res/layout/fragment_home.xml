@@ -99,6 +99,12 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <ProgressBar
+            android:id = "@+id/home_progress"
+            android:layout_width = "50dp"
+            android:layout_height = "match_parent"
+            android:visibility = "gone" />
+
     </LinearLayout>
 
 </LinearLayout>

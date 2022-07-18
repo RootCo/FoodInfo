@@ -1,5 +1,6 @@
 package com.example.foodinfo.model.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.model.local.RecipeExplore
@@ -7,6 +8,7 @@ import com.example.foodinfo.model.local.RecipeExtended
 import com.example.foodinfo.model.local.RecipeResult
 import com.example.foodinfo.model.local.entities.Recipe
 import com.example.foodinfo.model.local.entities.recipe_field.*
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -17,15 +19,15 @@ interface RecipesDAO {
                 "IN (SELECT ${Recipe.Columns.ID} " +
                 "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM() LIMIT 1)"
     )
-    fun getDaily(): RecipeExplore
+    fun getDaily(): Flow<RecipeExplore>
 
     @Query(
         "SELECT * FROM ${Recipe.TABLE_NAME} " +
                 "WHERE ${Recipe.Columns.ID} " +
                 "IN (SELECT ${Recipe.Columns.ID} " +
-                "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM() LIMIT ${Recipe.LIMIT})"
+                "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM())"
     )
-    fun getPopular(): List<RecipeExplore>
+    fun getPopular(): PagingSource<Int, RecipeExplore>
 
     @Query("${RecipeExtended.SELECTOR} WHERE ${Recipe.Columns.ID} == :id")
     fun getById(id: String): RecipeExtended

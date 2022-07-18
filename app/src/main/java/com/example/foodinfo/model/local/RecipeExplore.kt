@@ -12,13 +12,13 @@ data class RecipeExplore(
     val id: String,
 
     @ColumnInfo(name = Recipe.Columns.NAME)
-    val name: String,
+    val name: String = "",
 
     @ColumnInfo(name = Recipe.Columns.CALORIES)
-    val calories: Int,
+    val calories: Int = 0,
 
     @ColumnInfo(name = Recipe.Columns.PREVIEW_URL)
-    val previewURL: String,
+    val previewURL: String = "",
 ) {
     @Ignore
     var preview: Drawable? = null

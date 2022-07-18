@@ -5,7 +5,7 @@ import dagger.android.AndroidInjectionModule
 
 @Module(includes = [
     ContextModule::class,
-    ProviderModule::class,
+    UtilsModule::class,
     RepositoryModule::class,
     ViewModelModule::class,
     ContextModule::class,
