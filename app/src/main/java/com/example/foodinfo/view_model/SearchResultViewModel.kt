@@ -24,6 +24,6 @@ class SearchResultViewModel @Inject constructor(
         val filter = SearchFilter()
         filter.inputText = header
         filter.buildQuery()
-        _recipes.value = repositoryRecipes.getByFilterExplore(filter)
+//        _recipes.value = repositoryRecipes.getByFilterExplore(filter)
     }
 }

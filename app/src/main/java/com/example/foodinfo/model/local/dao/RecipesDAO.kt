@@ -35,8 +35,20 @@ interface RecipesDAO {
     @RawQuery
     fun getByFilterResult(query: SupportSQLiteQuery): List<RecipeResult>
 
-    @RawQuery
-    fun getByFilterExplore(query: SupportSQLiteQuery): List<RecipeExplore>
+    @RawQuery(
+        observedEntities = [
+            Recipe::class,
+            Nutrient::class,
+            Ingredient::class,
+            DietType::class,
+            DishType::class,
+            MealType::class,
+            HealthType::class,
+            CuisineType::class,
+            CuisineType::class,
+        ]
+    )
+    fun getByFilterExplore(query: SupportSQLiteQuery): PagingSource<Int, RecipeExplore>
 
     @Transaction
     @RawQuery

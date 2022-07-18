@@ -14,7 +14,7 @@ interface RepositoryRecipes {
 
     fun getByFilterResult(filter: SearchFilter): List<RecipeResult>
 
-    fun getByFilterExplore(filter: SearchFilter): List<RecipeExplore>
+    fun getByFilterExplore(filter: SearchFilter): Flow<PagingData<RecipeExplore>>
 
     fun getByFilterExtended(filter: SearchFilter): List<RecipeExtended>
 

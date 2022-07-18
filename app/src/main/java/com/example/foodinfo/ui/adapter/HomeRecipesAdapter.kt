@@ -52,6 +52,7 @@ class HomeRecipesAdapter(
         return ViewTypes.LOADED_VIEW.ordinal
     }
 
+
     enum class ViewTypes {
         PROGRESS_VIEW,
         LOADED_VIEW

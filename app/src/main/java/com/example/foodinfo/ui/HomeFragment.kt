@@ -63,7 +63,6 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
                 )
             )
             adapter = recipesAdapter
-            itemAnimator = null
         }
 
         lifecycleScope.launchWhenStarted {

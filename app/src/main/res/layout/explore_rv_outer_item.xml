@@ -34,6 +34,13 @@
 
     </FrameLayout>
 
+    <ProgressBar
+        android:id = "@+id/explore_progress"
+        android:layout_width = "50dp"
+        android:layout_height = "170dp"
+        android:layout_gravity = "center"
+        android:visibility = "gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id = "@+id/rv_explore_outer_item"
         android:layout_width = "match_parent"

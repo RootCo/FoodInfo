@@ -37,7 +37,7 @@ data class DietType(
 
     companion object {
         const val TABLE_NAME = "diet_type"
-        val validLabels = listOf(
+        val validLabels = arrayListOf(
             "balanced",
             "high-protein",
             "high-fiber",

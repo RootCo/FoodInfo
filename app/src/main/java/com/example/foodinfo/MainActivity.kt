@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         prepopulateDB()
     }
 
-    fun prepopulateDB() {
+    private fun prepopulateDB() {
         val dataBase = applicationComponent.dataBase
         val jsonLoader = JSONLoader()
         val gson = GsonBuilder().create()

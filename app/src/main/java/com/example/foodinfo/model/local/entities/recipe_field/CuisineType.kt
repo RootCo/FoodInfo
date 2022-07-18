@@ -37,7 +37,7 @@ data class CuisineType(
 
     companion object {
         const val TABLE_NAME = "cuisine_type"
-        val validLabels = listOf(
+        val validLabels = arrayListOf(
             "American",
             "Asian",
             "British",

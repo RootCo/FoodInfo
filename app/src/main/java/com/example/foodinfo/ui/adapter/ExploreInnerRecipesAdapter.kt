@@ -2,53 +2,54 @@ package com.example.foodinfo.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.AsyncDifferConfig
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.foodinfo.R
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeExplore
-import com.google.android.material.imageview.ShapeableImageView
+import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
+import com.example.foodinfo.ui.view_holder.ExploreProgressViewHolder
+
 
 class ExploreInnerRecipesAdapter(
-    context: Context, private val onInnerItemClickListener: (String) -> Unit
-) : ListAdapter<RecipeExplore, ExploreInnerRecipesAdapter.SearchViewHolder>(
-    AsyncDifferConfig.Builder(RecipeExplore.ItemCallBack).build()
+    context: Context, private val onItemClickListener: (String) -> Unit
+) : PagingDataAdapter<RecipeExplore, ViewHolder>(
+    RecipeExplore.ItemCallBack
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
 
-    class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameView: TextView = itemView.findViewById(R.id.tv_search_recipe_name)
-        val caloriesView: TextView = itemView.findViewById(R.id.tv_search_recipe_calories)
-        val imageView: ShapeableImageView =
-            itemView.findViewById(R.id.iv_search_recipe_preview)
-        val view = itemView
-    }
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): SearchViewHolder {
-        val itemView = layoutInflater.inflate(
-            R.layout.explore_rv_inner_item, parent, false
-        )
-        return SearchViewHolder(itemView)
+    ): ViewHolder {
+        return when (viewType) {
+            ViewTypes.LOADED_VIEW.ordinal -> ExploreInnerViewHolder(
+                ExploreInnerViewHolder.createView(layoutInflater, parent),
+                onItemClickListener
+            )
+            else                          -> {
+                ExploreProgressViewHolder(
+                    ExploreProgressViewHolder.createView(layoutInflater, parent)
+                )
+            }
+        }
     }
 
-    override fun onBindViewHolder(
-        holder: SearchViewHolder, position: Int
-    ) {
-        holder.nameView.text = getItem(holder.adapterPosition).name
-        holder.caloriesView.text = getItem(holder.adapterPosition).calories.toString()
-        Glide.with(holder.imageView.context).load(getItem(holder.adapterPosition).preview)
-            .into(holder.imageView)
-        holder.view.setOnClickListener {
-            onInnerItemClickListener(getItem(holder.adapterPosition).id)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        getItem(position)?.let { recipes ->
+            holder as ExploreInnerViewHolder
+            holder.bind(recipes)
         }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        getItem(position) ?: return ViewTypes.PROGRESS_VIEW.ordinal
+        return ViewTypes.LOADED_VIEW.ordinal
+    }
+
+
+    enum class ViewTypes {
+        PROGRESS_VIEW,
+        LOADED_VIEW
     }
 }

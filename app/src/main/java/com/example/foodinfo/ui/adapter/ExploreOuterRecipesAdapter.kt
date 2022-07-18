@@ -2,70 +2,48 @@ package com.example.foodinfo.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.TextView
-import androidx.recyclerview.widget.AsyncDifferConfig
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodinfo.R
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeCategoryLabelItem
-import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
+import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.ui.view_holder.ExploreOuterViewHolder
+import kotlinx.coroutines.flow.Flow
+
 
 class ExploreOuterRecipesAdapter(
     private val context: Context,
     private val onOuterItemClickListener: (String) -> Unit,
-    private val onInnerItemClickListener: (String) -> Unit
-) : ListAdapter<RecipeCategoryLabelItem, ExploreOuterRecipesAdapter.SearchViewHolder>(
-    AsyncDifferConfig.Builder(RecipeCategoryLabelItem.ItemCallBack).build()
+    private val onInnerItemClickListener: (String) -> Unit,
+    private val onReadyToLoadData: (
+        ExploreInnerRecipesAdapter,
+        Flow<PagingData<RecipeExplore>>
+    ) -> Unit,
+) : PagingDataAdapter<RecipeCategoryLabelItem, ViewHolder>(
+    RecipeCategoryLabelItem.ItemCallBack
 ) {
 
     private val viewPool = RecyclerView.RecycledViewPool()
     private val layoutInflater = LayoutInflater.from(context)
 
 
-    class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val labelTitle: TextView = itemView.findViewById(R.id.tv_search_item_header)
-        val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_explore_outer_item)
-        val expandHeader: FrameLayout = itemView.findViewById(R.id.ll_expand_header)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ExploreOuterViewHolder(
+            ExploreOuterViewHolder.createView(layoutInflater, parent),
+            context,
+            viewPool,
+            onOuterItemClickListener,
+            onInnerItemClickListener,
+            onReadyToLoadData
+        )
     }
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val itemView = layoutInflater.inflate(
-            R.layout.explore_rv_outer_item, parent, false
-        )
-        val holder = SearchViewHolder(itemView)
-
-        holder.recyclerView.addItemDecoration(
-            ExploreInnerItemDecoration(
-                context.resources.getDimensionPixelSize(R.dimen.search_recipes_space),
-                context.resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin),
-            )
-        )
-
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-
-        // оптимизация скроллинга внешнего RecyclerView
-        holder.recyclerView.setRecycledViewPool(viewPool)
-        layoutManager.recycleChildrenOnDetach = true
-
-        holder.recyclerView.layoutManager = layoutManager
-
-        return holder
-    }
-
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.labelTitle.text = getItem(holder.adapterPosition).label
-        val recyclerAdapter =
-            ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
-        recyclerAdapter.submitList(getItem(holder.adapterPosition).recipes)
-        holder.recyclerView.adapter = recyclerAdapter
-        holder.expandHeader.setOnClickListener {
-            onOuterItemClickListener(getItem(holder.adapterPosition).label)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        getItem(position)?.let { recipes ->
+            holder as ExploreOuterViewHolder
+            holder.bind(recipes)
         }
     }
 }

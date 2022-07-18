@@ -37,7 +37,7 @@ data class HealthType(
 
     companion object {
         const val TABLE_NAME = "health_type"
-        val validLabels = listOf(
+        val validLabels = arrayListOf(
             "vegan",
             "vegetarian",
             "paleo",

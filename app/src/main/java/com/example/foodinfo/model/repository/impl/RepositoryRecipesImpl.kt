@@ -53,12 +53,19 @@ class RepositoryRecipesImpl @Inject constructor(
             }
     }
 
-    override fun getByFilterExplore(filter: SearchFilter): List<RecipeExplore> {
-        return recipesDAO.getByFilterExplore(SimpleSQLiteQuery(filter.query))
-            .map { recipe ->
+    override fun getByFilterExplore(filter: SearchFilter): Flow<PagingData<RecipeExplore>> {
+        return Pager(
+            config = DB_EXPLORE_INNER_PAGER,
+            pagingSourceFactory = {
+                recipesDAO.getByFilterExplore(SimpleSQLiteQuery(filter.query))
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { recipe ->
+                delay(100L) // для теста плейсхолдеров и прогресс бара
                 recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
                 recipe
             }
+        }
     }
 
     override fun getByFilterExtended(filter: SearchFilter): List<RecipeExtended> {

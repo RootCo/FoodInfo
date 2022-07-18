@@ -28,6 +28,6 @@ class SearchTargetViewModel @Inject constructor(
             )
         )
         filter.buildQuery()
-        _recipes.value = repositoryRecipes.getByFilterExplore(filter)
+//        _recipes.value = repositoryRecipes.getByFilterExplore(filter)
     }
 }

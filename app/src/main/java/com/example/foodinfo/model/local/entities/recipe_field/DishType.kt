@@ -37,7 +37,7 @@ data class DishType(
 
     companion object {
         const val TABLE_NAME = "dish_type"
-        val validLabels = listOf(
+        val validLabels = arrayListOf(
             "alcohol-cocktail",
             "biscuits and cookies",
             "bread",

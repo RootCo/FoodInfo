@@ -25,7 +25,7 @@ data class CategoryField(
         val childKey: String,
         val column: String,
         val label: String,
-        val validLabels: List<String>
+        val validLabels: ArrayList<String>
     ) {
         MEAL_TYPE(
             MealType.TABLE_NAME,
