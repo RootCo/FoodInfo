@@ -23,11 +23,7 @@ class ExploreViewModel @Inject constructor(
         return Pager(
             config = RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER,
             pagingSourceFactory = {
-                ExploreCategoriesDataSource(
-                    repositoryRecipes,
-                    category,
-                    CategoryField.fromLabel(category).validLabels
-                )
+                ExploreCategoriesDataSource(repositoryRecipes, category)
             }).flow
     }
 }

@@ -23,8 +23,6 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     FragmentExploreBinding::inflate
 ) {
 
-    private var selectedTabTitle: String = ""
-
     private val viewModel: ExploreViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
     }
@@ -35,18 +33,15 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     override fun initUI() {
         val tlRecipesTypes = binding.root.findViewById<TabLayout>(R.id.tl_category)
 
-        // до создания вкладок чтобы при создании первой вкладки оно сработало
         tlRecipesTypes.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 prepareTab(tab.text.toString())
-                selectedTabTitle = tab.text.toString()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        // создаем для каждой категории рецепта вкладку
         for (category in viewModel.getCategories()) {
             tlRecipesTypes.addTab(
                 tlRecipesTypes.newTab().setText(category)
@@ -61,13 +56,6 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     }
 
 
-    private val onOuterItemClickListener: (String) -> Unit = { label ->
-        findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFSearchTarget(
-                selectedTabTitle, label
-            )
-        )
-    }
     private val onInnerItemClickListener: (String) -> Unit = { id ->
         findNavController().navigate(
             ExploreFragmentDirections.actionFExploreToFRecipeExtended(
@@ -76,9 +64,16 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         )
     }
 
+    private val onOuterItemClickListener: (String, String) -> Unit = { category, label ->
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFSearchTarget(
+                category, label
+            )
+        )
+    }
+
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter,
-        Flow<PagingData<RecipeExplore>>
+        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
     ) -> Unit = { adapter, recipes ->
         lifecycleScope.launchWhenResumed {
             recipes.collectLatest(adapter::submitData)
@@ -90,8 +85,8 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         val recyclerView = binding.root.findViewById<RecyclerView>(R.id.rv_explore_outer)
         val recyclerAdapter = ExploreOuterRecipesAdapter(
             binding.root.context,
-            onOuterItemClickListener,
             onInnerItemClickListener,
+            onOuterItemClickListener,
             onReadyToLoadData
         )
         recyclerView.adapter = recyclerAdapter

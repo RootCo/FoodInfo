@@ -26,7 +26,9 @@ class ExploreInnerViewHolder(
 
 
     init {
-        itemView.setOnClickListener { onItemClickListener(item.id) }
+        itemView.setOnClickListener {
+            onItemClickListener(item.id)
+        }
     }
 
 

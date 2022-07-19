@@ -15,11 +15,10 @@ import kotlinx.coroutines.flow.Flow
 
 class ExploreOuterRecipesAdapter(
     private val context: Context,
-    private val onOuterItemClickListener: (String) -> Unit,
     private val onInnerItemClickListener: (String) -> Unit,
+    private val onOuterItemClickListener: (String, String) -> Unit,
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter,
-        Flow<PagingData<RecipeExplore>>
+        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
     ) -> Unit,
 ) : PagingDataAdapter<RecipeCategoryLabelItem, ViewHolder>(
     RecipeCategoryLabelItem.ItemCallBack
@@ -34,8 +33,8 @@ class ExploreOuterRecipesAdapter(
             ExploreOuterViewHolder.createView(layoutInflater, parent),
             context,
             viewPool,
-            onOuterItemClickListener,
             onInnerItemClickListener,
+            onOuterItemClickListener,
             onReadyToLoadData
         )
     }

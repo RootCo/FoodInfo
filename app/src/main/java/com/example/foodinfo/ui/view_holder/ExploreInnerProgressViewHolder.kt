@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.example.foodinfo.R
 
 
-class ExploreProgressViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+class ExploreInnerProgressViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(

@@ -6,55 +6,55 @@ import com.example.foodinfo.model.local.RecipeCategoryLabelItem
 import com.example.foodinfo.model.local.dao.filter_field.CategoryField
 import com.example.foodinfo.model.local.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
+import com.example.foodinfo.model.repository.impl.RepositoryRecipesImpl
+
 
 class ExploreCategoriesDataSource(
     private val repositoryRecipes: RepositoryRecipes,
-    private val category: String,
-    private var labels: ArrayList<String>
+    private val category: String
 ) : PagingSource<Int, RecipeCategoryLabelItem>() {
+
+    private val pages: List<List<Pair<String, SearchFilter>>>
+
+    init {
+        pages = CategoryField.fromLabel(category).validLabels.map { label ->
+            Pair(label, createFilter(label))
+        }.chunked(RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER.pageSize)
+    }
+
+    private fun createFilter(label: String): SearchFilter {
+        val filter = SearchFilter()
+        filter.categoryFields.add(
+            CategoryField(
+                CategoryField.fromLabel(category),
+                listOf(label)
+            )
+        )
+        filter.buildQuery()
+        return filter
+    }
+
 
     override fun getRefreshKey(state: PagingState<Int, RecipeCategoryLabelItem>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
-        val anchorPage = state.closestPageToPosition(anchorPosition) ?: return null
-        return anchorPage.prevKey?.plus(1) ?: anchorPage.nextKey?.minus(1)
+        val page = state.closestPageToPosition(anchorPosition) ?: return null
+        return page.prevKey?.plus(1) ?: page.nextKey?.minus(1)
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecipeCategoryLabelItem> {
-        val currentPosition = params.key ?: INITIAL_POSITION
-        val loadSize = params.loadSize.coerceAtMost(labels.size - 1)
+        val targetPosition = params.key ?: 0
+        val prevPosition = if (targetPosition > 0) targetPosition - 1 else null
+        val nextPosition =
+            if (targetPosition < pages.lastIndex) targetPosition + 1 else null
 
-        var nextPosition = currentPosition + 1
-        val prevPosition =
-            if (currentPosition != 0) currentPosition - 1 else INITIAL_POSITION
-
-        val data = arrayListOf<RecipeCategoryLabelItem>()
-
-        for (index in currentPosition..loadSize) {
-            nextPosition += 1
-            val filter = SearchFilter()
-            filter.categoryFields.add(
-                CategoryField(
-                    CategoryField.fromLabel(category),
-                    listOf(labels[index])
-                )
-            )
-            filter.buildQuery()
-            data.add(
-                RecipeCategoryLabelItem(
-                    category,
-                    labels[index],
-                    repositoryRecipes.getByFilterExplore(filter)
-                )
+        val data = pages[targetPosition].map { pair ->
+            RecipeCategoryLabelItem(
+                category,
+                pair.first,
+                repositoryRecipes.getByFilterExplore(pair.second)
             )
         }
-        nextPosition += 1
-        val prev = if (prevPosition == 0) null else prevPosition
-        val next = if (nextPosition > labels.size) null else nextPosition
 
-        return LoadResult.Page(data, prev, next)
-    }
-
-    companion object {
-        const val INITIAL_POSITION = 0
+        return LoadResult.Page(data, prevPosition, nextPosition)
     }
 }

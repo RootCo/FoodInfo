@@ -25,11 +25,10 @@ class ExploreOuterViewHolder(
     itemView: View,
     context: Context,
     viewPool: RecyclerView.RecycledViewPool,
-    onOuterItemClickListener: (String) -> Unit,
     onInnerItemClickListener: (String) -> Unit,
+    onOuterItemClickListener: (String, String) -> Unit,
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter,
-        Flow<PagingData<RecipeExplore>>
+        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
     ) -> Unit
 ) :
     BaseViewHolder<RecipeCategoryLabelItem>(itemView) {
@@ -50,11 +49,19 @@ class ExploreOuterViewHolder(
 
 
     init {
-        expandHeader.setOnClickListener { onOuterItemClickListener(item.label) }
+        expandHeader.setOnClickListener {
+            onOuterItemClickListener(item.category, item.label)
+        }
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         layoutManager.recycleChildrenOnDetach = true
+
+        recyclerAdapter = ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
+        recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
+            recyclerView.isVisible = state.refresh != LoadState.Loading
+            recipesProgress.isVisible = state.refresh == LoadState.Loading
+        }
 
         recyclerView.addItemDecoration(
             ExploreInnerItemDecoration(
@@ -62,14 +69,10 @@ class ExploreOuterViewHolder(
                 context.resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin),
             )
         )
+        recyclerView.adapter = recyclerAdapter
         recyclerView.setRecycledViewPool(viewPool)
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
-
-        recyclerAdapter = ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
-        recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
-            recyclerView.isVisible = state.refresh != LoadState.Loading
-            recipesProgress.isVisible = state.refresh == LoadState.Loading
-        }
     }
 
 
@@ -77,7 +80,6 @@ class ExploreOuterViewHolder(
         super.bind(item)
         with(item) {
             labelTitle.text = label
-            recyclerView.adapter = recyclerAdapter
             onReadyToLoadData.invoke(recyclerAdapter, recipes)
         }
     }

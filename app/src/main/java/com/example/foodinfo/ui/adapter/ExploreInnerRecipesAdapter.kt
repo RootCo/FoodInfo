@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.ui.view_holder.ExploreInnerProgressViewHolder
 import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
-import com.example.foodinfo.ui.view_holder.ExploreProgressViewHolder
 
 
 class ExploreInnerRecipesAdapter(
@@ -28,8 +28,8 @@ class ExploreInnerRecipesAdapter(
                 onItemClickListener
             )
             else                          -> {
-                ExploreProgressViewHolder(
-                    ExploreProgressViewHolder.createView(layoutInflater, parent)
+                ExploreInnerProgressViewHolder(
+                    ExploreInnerProgressViewHolder.createView(layoutInflater, parent)
                 )
             }
         }
@@ -41,6 +41,7 @@ class ExploreInnerRecipesAdapter(
             holder.bind(recipes)
         }
     }
+
 
     override fun getItemViewType(position: Int): Int {
         getItem(position) ?: return ViewTypes.PROGRESS_VIEW.ordinal
