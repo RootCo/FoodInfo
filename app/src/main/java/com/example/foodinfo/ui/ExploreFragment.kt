@@ -4,24 +4,31 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
-import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.ui.adapter.ExploreInnerRecipesAdapter
 import com.example.foodinfo.ui.adapter.ExploreOuterRecipesAdapter
 import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.restoreState
 import com.example.foodinfo.view_model.ExploreViewModel
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 
 class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     FragmentExploreBinding::inflate
 ) {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerAdapter: ExploreOuterRecipesAdapter
 
     private val viewModel: ExploreViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
@@ -31,9 +38,16 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     }
 
     override fun initUI() {
-        val tlRecipesTypes = binding.root.findViewById<TabLayout>(R.id.tl_category)
+        recyclerView = binding.root.findViewById(R.id.rv_explore_outer)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.setItemViewCacheSize(20)
+        recyclerView.layoutManager = LinearLayoutManager(context).also {
+            it.initialPrefetchItemCount = 3
+        }
 
-        tlRecipesTypes.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        val categoryTabs = binding.root.findViewById<TabLayout>(R.id.tl_category)
+
+        categoryTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 prepareTab(tab.text.toString())
             }
@@ -42,10 +56,8 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        for (category in viewModel.getCategories()) {
-            tlRecipesTypes.addTab(
-                tlRecipesTypes.newTab().setText(category)
-            )
+        for (category in viewModel.categories) {
+            categoryTabs.addTab(categoryTabs.newTab().setText(category))
         }
 
         binding.root.findViewById<TextView>(R.id.tv_search).setOnClickListener {
@@ -58,9 +70,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
 
     private val onInnerItemClickListener: (String) -> Unit = { id ->
         findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFRecipeExtended(
-                id
-            )
+            ExploreFragmentDirections.actionFExploreToFRecipeExtended(id)
         )
     }
 
@@ -73,28 +83,52 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     }
 
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
-    ) -> Unit = { adapter, recipes ->
-        lifecycleScope.launchWhenResumed {
-            recipes.collectLatest(adapter::submitData)
+        RecyclerView, ExploreInnerRecipesAdapter, CategoryItem
+    ) -> Unit = { recycler, adapter, item ->
+        lifecycleScope.launch {
+            item.recipes.collectLatest { recipes ->
+                delay(200)
+                adapter.submitData(recipes)
+            }
+        }
+        /*
+            отдельная корутина т.к. submitDate не возвращает ничего и код после неё
+            не отрабатывает
+
+            всё остальное бездумно спизжено с:
+            https://developer.android.com/reference/androidx/paging/AsyncPagingDataDiffer#loadStateFlow()
+
+            чего я хотел добиться - чтобы recycler.restoreState(item.state)
+            отрабатывал ПОСЛЕ adapter.submitData(recipes) т.к. если он отработает
+            ДО adapter.submitData(recipes), то скролл будет на первом элементе
+         */
+        lifecycleScope.launch {
+            adapter.loadStateFlow.map { it.refresh }
+                .distinctUntilChanged()
+                .collectLatest { loadState ->
+                    if (loadState is LoadState.NotLoading) {
+                        recycler.restoreState(item.state)
+                    }
+                }
         }
     }
 
-
+    // вынести в viewModel
     fun prepareTab(category: String) {
-        val recyclerView = binding.root.findViewById<RecyclerView>(R.id.rv_explore_outer)
-        val recyclerAdapter = ExploreOuterRecipesAdapter(
+        recyclerAdapter = ExploreOuterRecipesAdapter(
             binding.root.context,
             onInnerItemClickListener,
             onOuterItemClickListener,
-            onReadyToLoadData
+            onReadyToLoadData,
         )
+
         recyclerView.adapter = recyclerAdapter
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
 
         lifecycleScope.launchWhenResumed {
-            viewModel.getRecipes(category).collectLatest(recyclerAdapter::submitData)
+            viewModel.categoryRecipes[category]?.collectLatest { recipes ->
+                delay(100)
+                recyclerAdapter.submitData(recipes)
+            }
         }
     }
 }

@@ -1,27 +1,30 @@
 package com.example.foodinfo.model.local
 
+import android.os.Parcelable
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DiffUtil
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 
-data class RecipeCategoryLabelItem(
+data class CategoryItem(
     val category: String,
     val label: String,
-    val recipes: Flow<PagingData<RecipeExplore>>
+    val recipes: StateFlow<PagingData<RecipeExplore>>
 ) {
+    var state: Parcelable? = null
+
     object ItemCallBack :
-        DiffUtil.ItemCallback<RecipeCategoryLabelItem>() {
+        DiffUtil.ItemCallback<CategoryItem>() {
 
         override fun areItemsTheSame(
-            oldItem: RecipeCategoryLabelItem, newItem: RecipeCategoryLabelItem
+            oldItem: CategoryItem, newItem: CategoryItem
         ): Boolean {
             return oldItem.category == newItem.category &&
                     oldItem.label == newItem.label
         }
 
         override fun areContentsTheSame(
-            oldItem: RecipeCategoryLabelItem, newItem: RecipeCategoryLabelItem
+            oldItem: CategoryItem, newItem: CategoryItem
         ): Boolean {
             return oldItem.category == newItem.category &&
                     oldItem.label == newItem.label

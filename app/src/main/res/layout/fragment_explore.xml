@@ -39,6 +39,7 @@
         app:tabTextColor = "@color/main_font" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:descendantFocusability="blocksDescendants"
         android:id = "@+id/rv_explore_outer"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"

@@ -10,28 +10,24 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
-import com.example.foodinfo.model.local.RecipeCategoryLabelItem
-import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.ui.adapter.ExploreInnerRecipesAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
-import kotlinx.coroutines.flow.Flow
 
 
 class ExploreOuterViewHolder(
     itemView: View,
     context: Context,
-    viewPool: RecyclerView.RecycledViewPool,
     onInnerItemClickListener: (String) -> Unit,
     onOuterItemClickListener: (String, String) -> Unit,
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
+        RecyclerView, ExploreInnerRecipesAdapter, CategoryItem
     ) -> Unit
 ) :
-    BaseViewHolder<RecipeCategoryLabelItem>(itemView) {
+    BaseViewHolder<CategoryItem>(itemView) {
 
     private val labelTitle: TextView = itemView.findViewById(
         R.id.tv_search_item_header
@@ -47,15 +43,15 @@ class ExploreOuterViewHolder(
     )
     private val recyclerAdapter: ExploreInnerRecipesAdapter
 
-
     init {
         expandHeader.setOnClickListener {
             onOuterItemClickListener(item.category, item.label)
         }
 
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        layoutManager.recycleChildrenOnDetach = true
+        val layoutManager = LinearLayoutManager(context).also {
+            it.initialPrefetchItemCount = 4
+            it.orientation = LinearLayoutManager.HORIZONTAL
+        }
 
         recyclerAdapter = ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
         recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
@@ -70,20 +66,22 @@ class ExploreOuterViewHolder(
             )
         )
         recyclerView.adapter = recyclerAdapter
-        recyclerView.setRecycledViewPool(viewPool)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = layoutManager
     }
 
 
-    override fun bind(item: RecipeCategoryLabelItem) {
+    override fun bind(item: CategoryItem) {
         super.bind(item)
-        with(item) {
+        with(this.item) {
             labelTitle.text = label
-            onReadyToLoadData.invoke(recyclerAdapter, recipes)
+            onReadyToLoadData.invoke(recyclerView, recyclerAdapter, this)
         }
     }
 
+    fun saveState() {
+        item.state = recyclerView.layoutManager?.onSaveInstanceState() ?: return
+    }
 
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {

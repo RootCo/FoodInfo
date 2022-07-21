@@ -97,7 +97,7 @@ class RepositoryRecipesImpl @Inject constructor(
         )
         val DB_EXPLORE_OUTER_PAGER = PagingConfig(
             pageSize = 3,
-            maxSize = 30
+            maxSize = 20
         )
     }
 }

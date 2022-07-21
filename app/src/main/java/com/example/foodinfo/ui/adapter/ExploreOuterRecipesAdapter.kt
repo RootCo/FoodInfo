@@ -7,10 +7,10 @@ import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.model.local.RecipeCategoryLabelItem
+import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.ui.view_holder.ExploreOuterViewHolder
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 
 class ExploreOuterRecipesAdapter(
@@ -18,13 +18,12 @@ class ExploreOuterRecipesAdapter(
     private val onInnerItemClickListener: (String) -> Unit,
     private val onOuterItemClickListener: (String, String) -> Unit,
     private val onReadyToLoadData: (
-        ExploreInnerRecipesAdapter, Flow<PagingData<RecipeExplore>>
+        RecyclerView, ExploreInnerRecipesAdapter, CategoryItem
     ) -> Unit,
-) : PagingDataAdapter<RecipeCategoryLabelItem, ViewHolder>(
-    RecipeCategoryLabelItem.ItemCallBack
+) : PagingDataAdapter<CategoryItem, ViewHolder>(
+    CategoryItem.ItemCallBack
 ) {
 
-    private val viewPool = RecyclerView.RecycledViewPool()
     private val layoutInflater = LayoutInflater.from(context)
 
 
@@ -32,11 +31,11 @@ class ExploreOuterRecipesAdapter(
         return ExploreOuterViewHolder(
             ExploreOuterViewHolder.createView(layoutInflater, parent),
             context,
-            viewPool,
             onInnerItemClickListener,
             onOuterItemClickListener,
             onReadyToLoadData
         )
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -44,5 +43,11 @@ class ExploreOuterRecipesAdapter(
             holder as ExploreOuterViewHolder
             holder.bind(recipes)
         }
+    }
+
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder as ExploreOuterViewHolder
+        holder.saveState()
     }
 }
