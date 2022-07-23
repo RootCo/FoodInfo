@@ -33,10 +33,11 @@ class ExploreViewModel @Inject constructor(
     private val tabsStates = hashMapOf<String, Parcelable>()
     private val tabsAdapters = hashMapOf<String, ExploreOuterRecipesAdapter>()
 
-    private var submitCategoryJobs: HashMap<String, Job> = hashMapOf()
-    private var submitLabelJobs: HashMap<String, Job> = hashMapOf()
-    private var restoreLabelJobs: HashMap<String, Job> = hashMapOf()
-    private var restoreTabJobs: HashMap<String, Job> = hashMapOf()
+    // Collections of Jobs for canceling previous started job to prevent memory leaks
+    private var submitCategoryJobs = hashMapOf<String, Job>()
+    private var submitLabelJobs = hashMapOf<String, Job>()
+    private var restoreLabelJobs = hashMapOf<String, Job>()
+    private var restoreTabJobs = hashMapOf<String, Job>()
 
     private val adapter: ExploreOuterRecipesAdapter
         get() {
@@ -44,12 +45,10 @@ class ExploreViewModel @Inject constructor(
                 submitCategoryJobs[tabLabel]?.cancel()
                 submitCategoryJobs[tabLabel] = viewModelScope.launch {
                     tabsItems[tabLabel]?.collectLatest { categoryItem ->
-                        delay(100)
+                        delay(100) // for smooth animation
                         adapter.submitData(categoryItem)
                     }
                 }
-                adapter.stateRestorationPolicy =
-                    RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             }
         }
 
@@ -60,12 +59,22 @@ class ExploreViewModel @Inject constructor(
         submitLabelJobs[item.label]?.cancel()
         submitLabelJobs[item.label] = viewModelScope.launch {
             item.recipes.collectLatest { recipes ->
-                delay(250)
+                delay(250) // for smooth animation
                 adapter.submitData(recipes)
             }
         }
     }
 
+
+    /*
+        Calling recycler.restoreState() right after setting up adapter for recycler
+        causes situations where state restoration executes faster than adapter creates
+        it's items so state will restored with scroll position at the very start.
+        It's possible to avoid that by setting up delay before state restoration but
+        it's not good because sometimes that delay might be less than needed, too big
+        delay is also not a good option so below code calls restoreState only when
+        adapter is ready for that
+     */
     private val readyToRestoreStateLabel: (
         ExploreInnerRecipesAdapter,
         CategoryItem,
@@ -78,7 +87,7 @@ class ExploreViewModel @Inject constructor(
                 .collectLatest { loadState ->
                     if (loadState is LoadState.NotLoading) {
                         recycler.restoreState(item.state)
-                        cancel()
+                        cancel() // doesn't work properly without that
                     }
                 }
         }

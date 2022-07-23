@@ -71,6 +71,17 @@ class ExploreOuterViewHolder(
                 context.resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin),
             )
         )
+
+        /*
+            For situations when user scrolls recycler and go to another fragment.
+            In such situation onViewDetachedFromWindow() will not be called and scroll
+            state will not be saved.
+            One option to save state in that situation is to set
+            recycleChildrenOnDetach = true for outerAdapter.layoutManager
+            and save state in onViewRecycled() but recycleChildrenOnDetach isn't good
+            for performance (as doc says) and can lead to undesired behavior in other
+            situations
+         */
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
