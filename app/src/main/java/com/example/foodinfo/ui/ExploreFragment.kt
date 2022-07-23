@@ -17,6 +17,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
 ) {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var categoryTabs: TabLayout
 
     private val viewModel: ExploreViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
@@ -29,27 +30,32 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         viewModel.initAdapters(onInnerItemClickListener, onOuterItemClickListener)
 
         recyclerView = binding.root.findViewById(R.id.rv_explore_outer)
+        categoryTabs = binding.root.findViewById(R.id.tl_category)
+
         recyclerView.setHasFixedSize(true)
         recyclerView.setItemViewCacheSize(20)
         recyclerView.layoutManager = LinearLayoutManager(context).also {
             it.initialPrefetchItemCount = 3
         }
 
-        val categoryTabs = binding.root.findViewById<TabLayout>(R.id.tl_category)
+        for (category in viewModel.categories) {
+            categoryTabs.addTab(categoryTabs.newTab().setText(category))
+        }
+
+        categoryTabs.getTabAt(viewModel.tabIndex)!!.also { tab ->
+            tab.select()
+            viewModel.updateTab(tab, recyclerView)
+        }
 
         categoryTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.updateTab(tab)
-                recyclerView.adapter = viewModel.adapter
+                viewModel.updateTab(tab, recyclerView)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        for (category in viewModel.categories) {
-            categoryTabs.addTab(categoryTabs.newTab().setText(category))
-        }
 
         binding.root.findViewById<TextView>(R.id.tv_search).setOnClickListener {
             findNavController().navigate(

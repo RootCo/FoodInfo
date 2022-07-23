@@ -1,6 +1,7 @@
 package com.example.foodinfo.view_model
 
 import android.app.Application
+import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
@@ -28,14 +29,31 @@ class ExploreViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
 
-    private val adapters: HashMap<String, ExploreOuterRecipesAdapter> = hashMapOf()
-    private val categoryItems = hashMapOf<String, StateFlow<PagingData<CategoryItem>>>()
+    private val tabsItems = hashMapOf<String, StateFlow<PagingData<CategoryItem>>>()
+    private val tabsStates = hashMapOf<String, Parcelable>()
+    private val tabsAdapters = hashMapOf<String, ExploreOuterRecipesAdapter>()
 
     private var submitCategoryJobs: HashMap<String, Job> = hashMapOf()
     private var submitLabelJobs: HashMap<String, Job> = hashMapOf()
     private var restoreLabelJobs: HashMap<String, Job> = hashMapOf()
+    private var restoreTabJobs: HashMap<String, Job> = hashMapOf()
 
-    private val readyToSubscribe: (
+    private val adapter: ExploreOuterRecipesAdapter
+        get() {
+            return tabsAdapters[tabLabel]!!.also { adapter ->
+                submitCategoryJobs[tabLabel]?.cancel()
+                submitCategoryJobs[tabLabel] = viewModelScope.launch {
+                    tabsItems[tabLabel]?.collectLatest { categoryItem ->
+                        delay(100)
+                        adapter.submitData(categoryItem)
+                    }
+                }
+                adapter.stateRestorationPolicy =
+                    RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+            }
+        }
+
+    private val readyToSubscribeLabel: (
         ExploreInnerRecipesAdapter,
         CategoryItem
     ) -> Unit = { adapter, item ->
@@ -48,7 +66,7 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
-    private val readyToRestoreState: (
+    private val readyToRestoreStateLabel: (
         ExploreInnerRecipesAdapter,
         CategoryItem,
         RecyclerView
@@ -66,6 +84,22 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
+    private val readyToRestoreStateTab: (
+        RecyclerView
+    ) -> Unit = { recycler ->
+        restoreTabJobs[tabLabel]?.cancel()
+        restoreTabJobs[tabLabel] = viewModelScope.launch {
+            adapter.loadStateFlow.map { it.refresh }
+                .distinctUntilChanged()
+                .collectLatest { loadState ->
+                    if (loadState is LoadState.NotLoading) {
+                        recycler.restoreState(tabsStates[tabLabel])
+                        cancel()
+                    }
+                }
+        }
+    }
+
     private val getRecipes: (SearchFilter) -> StateFlow<PagingData<RecipeExplore>> =
         { filter ->
             repositoryRecipes.getByFilterExplore(filter)
@@ -74,30 +108,15 @@ class ExploreViewModel @Inject constructor(
                 .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
         }
 
-
-    val adapter: ExploreOuterRecipesAdapter
-        get() {
-            return adapters[tabLabel]!!.also { adapter ->
-                submitCategoryJobs[tabLabel]?.cancel()
-                submitCategoryJobs[tabLabel] = viewModelScope.launch {
-                    categoryItems[tabLabel]?.collectLatest { categoryItem ->
-                        delay(100)
-                        adapter.submitData(categoryItem)
-                    }
-                }
-            }
-        }
-
     val categories = CategoryField.Fields.values().map { it.label }
     var tabLabel = categories[0]
         private set
     var tabIndex = 0
         private set
 
-
     init {
         for (category in categories) {
-            categoryItems[category] = Pager(
+            tabsItems[category] = Pager(
                 config = RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER,
                 pagingSourceFactory = {
                     ExploreCategoriesDataSource(getRecipes, category)
@@ -108,10 +127,15 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
-    fun updateTab(tab: TabLayout.Tab) {
+    fun updateTab(tab: TabLayout.Tab, recycler: RecyclerView) {
         submitCategoryJobs[tabLabel]?.cancel()
+        tabsStates[tabLabel] = recycler.layoutManager?.onSaveInstanceState()!!
+
         tabLabel = tab.text.toString()
-        tabIndex = tab.id
+        tabIndex = tab.position
+
+        recycler.adapter = adapter
+        readyToRestoreStateTab.invoke(recycler)
     }
 
     fun initAdapters(
@@ -119,12 +143,12 @@ class ExploreViewModel @Inject constructor(
         onOuterItemClickListener: (String, String) -> Unit
     ) {
         for (category in categories) {
-            adapters[category] = ExploreOuterRecipesAdapter(
+            tabsAdapters[category] = ExploreOuterRecipesAdapter(
                 context,
                 onInnerItemClickListener,
                 onOuterItemClickListener,
-                readyToRestoreState,
-                readyToSubscribe
+                readyToRestoreStateLabel,
+                readyToSubscribeLabel
             )
         }
     }

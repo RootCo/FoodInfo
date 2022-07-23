@@ -65,13 +65,21 @@ class ExploreOuterViewHolder(
             it.initialPrefetchItemCount = 4
             it.orientation = LinearLayoutManager.HORIZONTAL
         }
-
         recyclerView.addItemDecoration(
             ExploreInnerItemDecoration(
                 context.resources.getDimensionPixelSize(R.dimen.search_recipes_space),
                 context.resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin),
             )
         )
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    saveState()
+                }
+            }
+        })
+
         recyclerView.adapter = recyclerAdapter
         recyclerView.setHasFixedSize(true)
     }
