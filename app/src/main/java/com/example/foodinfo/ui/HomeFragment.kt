@@ -19,7 +19,9 @@ import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.HomeViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
@@ -29,6 +31,9 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
     private val viewModel: HomeViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
     }
+
+    private var dailyRecipeJob: Job? = null
+    private var popularRecipesJob: Job? = null
 
     override fun updateViewModelData() {
     }
@@ -65,10 +70,13 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
             adapter = recipesAdapter
         }
 
-        lifecycleScope.launchWhenStarted {
+        dailyRecipeJob?.cancel()
+        dailyRecipeJob = lifecycleScope.launch {
             viewModel.dailyRecipe.collectLatest(::setDailyRecipe)
         }
-        lifecycleScope.launchWhenStarted {
+
+        popularRecipesJob?.cancel()
+        popularRecipesJob = lifecycleScope.launch {
             viewModel.recipes.collectLatest(recipesAdapter::submitData)
         }
     }
