@@ -12,9 +12,7 @@ import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
 
 class ExploreInnerRecipesAdapter(
     context: Context, private val onItemClickListener: (String) -> Unit
-) : PagingDataAdapter<RecipeExplore, ViewHolder>(
-    RecipeExplore.ItemCallBack
-) {
+) : PagingDataAdapter<RecipeExplore, ViewHolder>(RecipeExplore.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -41,7 +39,6 @@ class ExploreInnerRecipesAdapter(
             holder.bind(recipes)
         }
     }
-
 
     override fun getItemViewType(position: Int): Int {
         getItem(position) ?: return ViewTypes.PROGRESS_VIEW.ordinal

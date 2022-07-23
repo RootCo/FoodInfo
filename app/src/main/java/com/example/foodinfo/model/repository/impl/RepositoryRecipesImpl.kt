@@ -61,6 +61,7 @@ class RepositoryRecipesImpl @Inject constructor(
             }
         ).flow.map { pagingData ->
             pagingData.map { recipe ->
+                delay(100L) // для теста плейсхолдеров и прогресс бара
                 recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
                 recipe
             }
@@ -90,10 +91,10 @@ class RepositoryRecipesImpl @Inject constructor(
             maxSize = 40
         )
         val DB_EXPLORE_INNER_PAGER = PagingConfig(
-            pageSize = 10,
-            initialLoadSize = 20,
-            jumpThreshold = 40,
-            maxSize = 40
+            pageSize = 5,
+            initialLoadSize = 5,
+            jumpThreshold = 15,
+            maxSize = 15
         )
         val DB_EXPLORE_OUTER_PAGER = PagingConfig(
             pageSize = 3,

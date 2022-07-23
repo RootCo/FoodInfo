@@ -17,22 +17,11 @@ class ExploreCategoriesDataSource(
 ) : PagingSource<Int, CategoryItem>() {
 
     private val pages: List<List<Pair<String, SearchFilter>>>
-    private val placeholders: List<Pair<Int, Int>>
 
     init {
         pages = CategoryField.fromLabel(category).validLabels.map { label ->
-            Pair(
-                label,
-                createFilter(label)
-            )
+            Pair(label, createFilter(label))
         }.chunked(RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER.pageSize)
-
-        placeholders = pages.mapIndexed { index, _ ->
-            Pair(
-                (0 until index).sumOf { pages[it].size },
-                (index + 1 until pages.size).sumOf { pages[it].size }
-            )
-        }
     }
 
     private fun createFilter(label: String): SearchFilter {
@@ -46,14 +35,14 @@ class ExploreCategoriesDataSource(
 
 
     override fun getRefreshKey(state: PagingState<Int, CategoryItem>): Int? {
-        return null
+        return state.anchorPosition?.let {
+            state.closestPageToPosition(it)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CategoryItem> {
         val targetPosition = params.key ?: 0
-        val prevPosition = if (targetPosition > 0) targetPosition - 1 else null
-        val nextPosition =
-            if (targetPosition < pages.lastIndex) targetPosition + 1 else null
 
         val data = pages[targetPosition].map { pair ->
             CategoryItem(category, pair.first, getRecipes(pair.second))
@@ -61,10 +50,8 @@ class ExploreCategoriesDataSource(
 
         return LoadResult.Page(
             data,
-            prevPosition,
-            nextPosition,
-            placeholders[targetPosition].first,
-            placeholders[targetPosition].second
+            if (targetPosition > 0) targetPosition - 1 else null,
+            if (targetPosition < pages.lastIndex) targetPosition + 1 else null
         )
     }
 }

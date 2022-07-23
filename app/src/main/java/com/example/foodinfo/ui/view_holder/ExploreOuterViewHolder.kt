@@ -23,40 +23,47 @@ class ExploreOuterViewHolder(
     context: Context,
     onInnerItemClickListener: (String) -> Unit,
     onOuterItemClickListener: (String, String) -> Unit,
-    private val onReadyToLoadData: (
-        RecyclerView, ExploreInnerRecipesAdapter, CategoryItem
-    ) -> Unit
-) :
-    BaseViewHolder<CategoryItem>(itemView) {
+    private val readyToRestoreState: (
+        ExploreInnerRecipesAdapter,
+        CategoryItem,
+        RecyclerView
+    ) -> Unit,
+    private val readyToSubscribe: (
+        ExploreInnerRecipesAdapter,
+        CategoryItem
+    ) -> Unit,
+) : BaseViewHolder<CategoryItem>(itemView) {
+
 
     private val labelTitle: TextView = itemView.findViewById(
         R.id.tv_search_item_header
     )
-    private val recyclerView: RecyclerView = itemView.findViewById(
+    val recyclerView: RecyclerView = itemView.findViewById(
         R.id.rv_explore_outer_item
     )
     private val expandHeader: FrameLayout = itemView.findViewById(
         R.id.ll_expand_header
     )
-    private val recipesProgress: ProgressBar = itemView.findViewById(
+    private val progressBar: ProgressBar = itemView.findViewById(
         R.id.explore_progress
     )
     private val recyclerAdapter: ExploreInnerRecipesAdapter
+
 
     init {
         expandHeader.setOnClickListener {
             onOuterItemClickListener(item.category, item.label)
         }
 
-        val layoutManager = LinearLayoutManager(context).also {
-            it.initialPrefetchItemCount = 4
-            it.orientation = LinearLayoutManager.HORIZONTAL
-        }
-
         recyclerAdapter = ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
         recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
             recyclerView.isVisible = state.refresh != LoadState.Loading
-            recipesProgress.isVisible = state.refresh == LoadState.Loading
+            progressBar.isVisible = state.refresh == LoadState.Loading
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(context).also {
+            it.initialPrefetchItemCount = 4
+            it.orientation = LinearLayoutManager.HORIZONTAL
         }
 
         recyclerView.addItemDecoration(
@@ -67,7 +74,6 @@ class ExploreOuterViewHolder(
         )
         recyclerView.adapter = recyclerAdapter
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = layoutManager
     }
 
 
@@ -75,8 +81,12 @@ class ExploreOuterViewHolder(
         super.bind(item)
         with(this.item) {
             labelTitle.text = label
-            onReadyToLoadData.invoke(recyclerView, recyclerAdapter, this)
         }
+    }
+
+    fun subscribe() {
+        readyToSubscribe.invoke(recyclerAdapter, item)
+        readyToRestoreState.invoke(recyclerAdapter, item, recyclerView)
     }
 
     fun saveState() {
