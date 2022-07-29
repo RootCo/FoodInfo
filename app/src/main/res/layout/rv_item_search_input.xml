@@ -25,12 +25,11 @@
 
     <TextView
         android:id = "@+id/tv_search_input"
-        style = "@style/ThemeMainTextView"
+        style = "@style/TextViewMediumMain"
         android:layout_width = "0dp"
         android:layout_height = "54dp"
         android:gravity = "center|start"
         android:paddingHorizontal = "10dp"
-        android:textColor = "@color/main_font"
         app:layout_constraintEnd_toStartOf = "@id/iv_apply_text"
         app:layout_constraintStart_toEndOf = "@id/iv_apply_search"
         app:layout_constraintTop_toTopOf = "parent"

@@ -6,55 +6,55 @@
     <path
         android:pathData = "M15.75,3H10.5"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M7.5,3H2.25"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M15.75,9H9"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M6,9H2.25"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M15.75,15H12"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M9,15H2.25"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M10.5,1.5V4.5"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M6,7.5V10.5"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
     <path
         android:pathData = "M12,13.5V16.5"
         android:strokeWidth = "2"
-        android:strokeColor = "@color/active_font"
+        android:strokeColor = "#000000"
         android:strokeLineCap = "round"
         android:strokeLineJoin = "round" />
 </vector>

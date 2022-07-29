@@ -7,13 +7,11 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.model.local.RecipeExplore
-import com.example.foodinfo.utils.DecorationUtils
 import com.google.android.material.imageview.ShapeableImageView
 
 
-class HomeViewHolder(
-    itemView: View, utils: DecorationUtils, onItemClickListener: (String) -> Unit,
-) : BaseViewHolder<RecipeExplore>(itemView) {
+class HomeViewHolder(itemView: View, onItemClickListener: (String) -> Unit) :
+    BaseViewHolder<RecipeExplore>(itemView) {
 
     private val caloriesView: TextView = itemView.findViewById(
         R.id.tv_home_rv_recipe_calories
@@ -27,10 +25,9 @@ class HomeViewHolder(
 
 
     init {
-        itemView.layoutParams = ViewGroup.LayoutParams(
-            (utils.homeRecipesWidth), ViewGroup.LayoutParams.MATCH_PARENT
-        )
-        imageView.setOnClickListener { onItemClickListener(item.id) }
+        imageView.setOnClickListener {
+            onItemClickListener(item.id)
+        }
     }
 
 
@@ -47,7 +44,7 @@ class HomeViewHolder(
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(
-                R.layout.home_rv_item, parent, false
+                R.layout.rv_item_home, parent, false
             )
         }
     }

@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.foodinfo.databinding.ActivityRecipesBinding
+import com.example.foodinfo.databinding.ActivityMainBinding
 import com.example.foodinfo.model.local.entities.Recipe
 import com.example.foodinfo.model.local.entities.SearchInput
 import com.example.foodinfo.model.local.entities.recipe_field.*
@@ -20,12 +20,12 @@ import com.google.gson.reflect.TypeToken
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRecipesBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRecipesBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navigationHost =

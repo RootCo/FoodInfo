@@ -1,6 +1,6 @@
 package com.example.foodinfo.view_model
 
-import android.app.Application
+import android.content.Context
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,7 +25,6 @@ import javax.inject.Inject
 
 
 class ExploreViewModel @Inject constructor(
-    private val context: Application,
     private val repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
 
@@ -64,7 +63,6 @@ class ExploreViewModel @Inject constructor(
             }
         }
     }
-
 
     /*
         Calling recycler.restoreState() right after setting up adapter for recycler
@@ -148,6 +146,7 @@ class ExploreViewModel @Inject constructor(
     }
 
     fun initAdapters(
+        context: Context,
         onInnerItemClickListener: (String) -> Unit,
         onOuterItemClickListener: (String, String) -> Unit
     ) {

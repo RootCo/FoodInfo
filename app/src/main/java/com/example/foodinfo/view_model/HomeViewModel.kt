@@ -7,17 +7,18 @@ import androidx.paging.cachedIn
 import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
-
-    val dailyRecipe: Flow<RecipeExplore?> =
-        repositoryRecipes.getDaily().flowOn(Dispatchers.IO)
-
-    val recipes: Flow<PagingData<RecipeExplore>> =
-        repositoryRecipes.getPopular().cachedIn(viewModelScope).flowOn(Dispatchers.IO)
+    val recipes: StateFlow<PagingData<RecipeExplore>> =
+        repositoryRecipes.getPopular()
+            .flowOn(Dispatchers.IO)
+            .cachedIn(viewModelScope)
+            .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 }

@@ -10,7 +10,7 @@ class ExploreInnerProgressViewHolder(itemView: View) : BaseViewHolder<Any>(itemV
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(
-                R.layout.explore_rv_inner_item_placeholder, parent, false
+                R.layout.rv_item_explore_inner_placeholder, parent, false
             )
         }
     }

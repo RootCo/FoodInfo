@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name = "appPrimaryColor" format = "reference" />
+    <attr name = "appMainBackgroundColor" format = "reference" />
+    <attr name = "appSecondaryBackgroundColor" format = "reference" />
+    <attr name = "appMainFontColor" format = "reference" />
+    <attr name = "appSecondaryFontColor" format = "reference" />
+    <attr name = "appWarningColor" format = "reference" />
+    <attr name = "appErrorColor" format = "reference" />
+    <attr name = "appDivider" format = "reference" />
+
+    <attr name = "appRoundedEdittext" format = "reference" />
+    <attr name = "appNavStateColor" format = "reference" />
+    <attr name = "appTabLayoutIndicator" format = "reference" />
+    <attr name = "appProgressBarLine" format = "reference" />
+    <attr name = "appBackgroundBig" format = "reference" />
+    <attr name = "appBackgroundItemBig" format = "reference" />
+    <attr name = "appBackgroundItemSmall" format = "reference" />
+</resources>

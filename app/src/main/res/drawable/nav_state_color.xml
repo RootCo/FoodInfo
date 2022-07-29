@@ -1,5 +1,5 @@
 <selector xmlns:android = "http://schemas.android.com/apk/res/android">
-    <item android:color = "@color/target_font" android:state_checked = "true" />
-    <item android:color = "@color/active_font" />
+    <item android:color = "@color/primary" android:state_checked = "true" />
+    <item android:color = "@color/secondary_font" />
 </selector>
     

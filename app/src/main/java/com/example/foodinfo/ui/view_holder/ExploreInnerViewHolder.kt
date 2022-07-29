@@ -45,7 +45,7 @@ class ExploreInnerViewHolder(
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(
-                R.layout.explore_rv_inner_item, parent, false
+                R.layout.rv_item_explore_inner, parent, false
             )
         }
     }

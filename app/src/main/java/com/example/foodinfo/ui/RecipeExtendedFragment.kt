@@ -31,13 +31,13 @@ class RecipeExtendedFragment : BaseDataFragment<FragmentRecipeExtendedBinding>(
             findNavController().navigateUp()
         }
 
-        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-            when (recipe != null) {
-                true  -> {
-                    binding.root.findViewById<TextView>(R.id.tv_header).text = recipe.name
-                }
-                false -> handleNoData()
-            }
-        }
+//        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
+//            when (recipe != null) {
+//                true  -> {
+//                    binding.root.findViewById<TextView>(R.id.tv_header).text = recipe.name
+//                }
+//                false -> handleNoData()
+//            }
+//        }
     }
 }

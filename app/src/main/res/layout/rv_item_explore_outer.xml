@@ -15,7 +15,7 @@
 
         <TextView
             android:id = "@+id/tv_search_item_header"
-            style = "@style/ThemeTextViewBig"
+            style = "@style/TextViewBigMain"
             android:layout_width = "wrap_content"
             android:layout_height = "60dp"
             android:layout_gravity = "center|start"
@@ -48,6 +48,6 @@
         android:layout_height = "170dp"
         android:orientation = "horizontal"
         app:layoutManager = "LinearLayoutManager"
-        tools:listitem = "@layout/explore_rv_inner_item" />
+        tools:listitem = "@layout/rv_item_explore_inner" />
 
 </LinearLayout>

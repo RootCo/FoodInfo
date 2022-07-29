@@ -1,93 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
+    android:layout_marginBottom = "@dimen/activity_bottom_margin"
     android:orientation = "vertical"
     android:paddingTop = "20dp"
-    android:paddingBottom = "@dimen/activity_bottom_margin"
-    android:weightSum = "1"
     tools:context = ".ui.HomeFragment">
 
+
+    <TextView
+        android:id = "@+id/tv_header"
+        style = "@style/TextViewBigMain"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginHorizontal = "@dimen/activity_horizontal_margin"
+        android:layout_marginTop = "20dp"
+        android:text = "@string/home_header_text"
+        android:textAlignment = "textStart"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+    <TextView
+        android:id = "@+id/tv_search"
+        style = "@style/SearchInput"
+        android:layout_marginHorizontal = "@dimen/activity_horizontal_margin"
+        android:layout_marginTop = "20dp"
+        android:paddingHorizontal = "@dimen/activity_horizontal_margin"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/tv_header" />
+
     <LinearLayout
-        android:layout_width = "match_parent"
-        android:layout_height = "0dp"
-        android:layout_weight = "0.35"
-        android:gravity = "center"
-        android:orientation = "vertical"
-        android:paddingHorizontal = "30dp">
-
-        <TextView
-            android:id = "@+id/tv_daily_recipe_header"
-            style = "@style/ThemeTextViewHeader"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "@string/text_home_ingredient_header" />
-
-        <FrameLayout
-            android:id = "@+id/lout_daily_recipe"
-            android:layout_width = "match_parent"
-            android:layout_height = "match_parent">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id = "@+id/iv_daily_recipe_preview"
-                android:layout_width = "match_parent"
-                android:layout_height = "match_parent"
-                android:scaleType = "centerCrop"
-                app:shapeAppearanceOverlay = "@style/ThemeShapeAppearanceBig"
-                tools:src = "@sample/recipes.json/short/preview" />
-
-            <TextView
-                android:id = "@+id/tv_daily_recipe_calories"
-                style = "@style/ThemeTextViewBig"
-                android:layout_width = "110dp"
-                android:layout_height = "36dp"
-                android:layout_gravity = "center|top"
-                android:layout_marginVertical = "16dp"
-                android:background = "@drawable/rounded_corner_hint"
-                android:paddingHorizontal = "8dp"
-                app:drawableEndCompat = "@drawable/ic_kcal_28"
-                tools:text = "@sample/recipes.json/short/calories" />
-
-            <TextView
-                android:id = "@+id/tv_daily_recipe_name"
-                android:layout_width = "match_parent"
-                android:layout_height = "40dp"
-                android:layout_gravity = "center|bottom"
-                android:layout_marginHorizontal = "16dp"
-                android:layout_marginVertical = "16dp"
-                android:background = "@drawable/rounded_corner_hint"
-                android:ellipsize = "end"
-                android:gravity = "center"
-                android:maxLines = "1"
-                android:orientation = "horizontal"
-                android:paddingHorizontal = "8dp"
-                android:textColor = "@color/main_font"
-                android:textSize = "16sp"
-                tools:text = "@sample/recipes.json/short/name" />
-        </FrameLayout>
-
-    </LinearLayout>
-
-    <Space
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:layout_weight = "0.05" />
-
-    <LinearLayout
-        android:layout_width = "match_parent"
-        android:layout_height = "0dp"
-        android:layout_weight = "0.6"
-        android:gravity = "center"
-        android:orientation = "vertical">
+        android:layout_marginVertical = "10dp"
+        android:orientation = "vertical"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintHeight_max = "450dp"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@id/tv_search">
 
         <TextView
-            android:id = "@+id/tv_home_recipes_header"
-            style = "@style/ThemeTextViewHeader"
+            android:id = "@+id/tv_home_recipes_header1"
+            style = "@style/TextViewHeader"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
+            android:layout_marginVertical = "20dp"
+            android:layout_marginStart = "@dimen/activity_vertical_margin"
             android:text = "@string/text_home_recipes_header" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -95,18 +59,19 @@
             android:layout_width = "match_parent"
             android:layout_height = "match_parent"
             android:clipToPadding = "true"
-            tools:listitem = "@layout/home_rv_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:orientation = "horizontal"
+            app:layoutManager = "LinearLayoutManager"
+            tools:listitem = "@layout/rv_item_home" />
 
         <ProgressBar
             android:id = "@+id/home_progress"
             android:layout_width = "50dp"
             android:layout_height = "match_parent"
+            android:layout_gravity = "center"
             android:visibility = "gone" />
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

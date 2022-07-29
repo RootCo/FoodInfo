@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/search/baseline_search_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/favorite_border/baseline_favorite_border_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -316,8 +316,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_search" />
-                            <entry key="sourceFile" value="C:\Users\Vlad\Desktop\this cord\ic_tab_settings.svg" />
+                            <entry key="outputName" value="ic_baseline_favorite_border_24" />
+                            <entry key="sourceFile" value="C:\Users\Vlad\Desktop\this cord\scale.svg" />
                           </map>
                         </option>
                       </PersistentState>

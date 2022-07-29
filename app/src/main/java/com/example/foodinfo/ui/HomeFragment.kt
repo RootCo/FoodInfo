@@ -1,8 +1,6 @@
 package com.example.foodinfo.ui
 
-import android.widget.FrameLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,10 +9,8 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
-import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.applicationComponent
@@ -32,7 +28,6 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    private var dailyRecipeJob: Job? = null
     private var popularRecipesJob: Job? = null
 
     override fun updateViewModelData() {
@@ -65,14 +60,10 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
                 HomeItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.home_recipes_space),
                     resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
+//                    context.applicationComponent.decorationUtils.homeRecipesMargin
                 )
             )
             adapter = recipesAdapter
-        }
-
-        dailyRecipeJob?.cancel()
-        dailyRecipeJob = lifecycleScope.launch {
-            viewModel.dailyRecipe.collectLatest(::setDailyRecipe)
         }
 
         popularRecipesJob?.cancel()
@@ -86,23 +77,5 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
         findNavController().navigate(
             HomeFragmentDirections.actionFHomeToFRecipeExtended(id)
         )
-    }
-
-
-    private fun setDailyRecipe(recipe: RecipeExplore?) {
-        recipe ?: return
-        with(binding.root) {
-            Glide.with(this)
-                .load(recipe.preview)
-                .into(findViewById(R.id.iv_daily_recipe_preview))
-            findViewById<TextView>(R.id.tv_daily_recipe_calories).text =
-                recipe.calories.toString()
-            findViewById<TextView>(R.id.tv_daily_recipe_name).text = recipe.name
-            findViewById<FrameLayout>(R.id.lout_daily_recipe).setOnClickListener {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionFHomeToFRecipeExtended(recipe.id)
-                )
-            }
-        }
     }
 }

@@ -1,0 +1,127 @@
+<resources>
+
+    <style name = "BackgroundBig">
+        <item name = "android:background">?attr/appBackgroundBig</item>
+    </style>
+
+    <style name = "BackgroundItemBig">
+        <item name = "android:background">?attr/appBackgroundItemBig</item>
+    </style>
+
+    <style name = "BackgroundItemSmall">
+        <item name = "android:background">?attr/appBackgroundItemSmall</item>
+    </style>
+
+    <style name = "ShapeAppearanceBig">
+        <item name = "cornerFamily">rounded</item>
+        <item name = "cornerSize">24dp</item>
+    </style>
+
+    <style name = "ShapeAppearanceNormal">
+        <item name = "cornerFamily">rounded</item>
+        <item name = "cornerSize">18dp</item>
+    </style>
+
+    <style name = "SearchInput">
+        <item name = "android:textColor">?appSecondaryFontColor</item>
+        <item name = "android:textSize">16sp</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+        <item name = "android:background">?appRoundedEdittext</item>
+        <item name = "android:layout_width">match_parent</item>
+        <item name = "android:layout_height">48dp</item>
+        <item name = "android:gravity">center|start</item>
+        <item name = "android:text">@string/et_search_hint</item>
+    </style>
+
+    <style name = "SearchView">
+        <item name = "android:textSize">16sp</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:textColorHint">?appSecondaryFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewHeader">
+        <item name = "android:textSize">18sp</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "fontFamily">@font/product_sans_medium</item>
+    </style>
+
+    <style name = "TextViewBigMain">
+        <item name = "android:textSize">18sp</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewBigSecondary" parent = "TextViewBigMain">
+        <item name = "android:textColor">?appSecondaryFontColor</item>
+    </style>
+
+    <style name = "TextViewMediumMain">
+        <item name = "android:textSize">15sp</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewMediumSecondary" parent = "TextViewMediumMain">
+        <item name = "android:textColor">?appSecondaryFontColor</item>
+    </style>
+
+    <style name = "TextViewSmallMain">
+        <item name = "android:textSize">13sp</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewSmallSecondary" parent = "TextViewSmallMain">
+        <item name = "android:textColor">?appSecondaryFontColor</item>
+    </style>
+
+    <style name = "Scrollable">
+        <item name = "android:clipChildren">false</item>
+        <item name = "android:clipToPadding">false</item>
+    </style>
+
+    <style name = "navBar">
+        <item name = "itemIconTint">?appNavStateColor</item>
+    </style>
+
+    <style name = "TabLayout" parent = "Scrollable">
+        <item name = "android:textSize">16sp</item>
+        <item name = "android:fontFamily">@font/product_sans_medium</item>
+        <item name = "tabIndicator">?appTabLayoutIndicator</item>
+        <item name = "tabRippleColor">@null</item>
+        <item name = "tabTextAppearance">@style/Tab</item>
+        <item name = "tabIndicatorColor">?appPrimaryColor</item>
+        <item name = "tabSelectedTextColor">?appPrimaryColor</item>
+        <item name = "tabTextColor">?appSecondaryFontColor</item>
+    </style>
+
+    <style name = "Tab">
+        <item name = "android:textSize">16sp</item>
+        <item name = "android:fontFamily">@font/product_sans_medium</item>
+    </style>
+
+    <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
+        <item name = "android:layout_height">8dp</item>
+        <item name = "android:progressDrawable">?appProgressBarLine</item>
+    </style>
+
+    <style name = "ProgressBarCircle">
+        <item name = "indicatorColor">?appMainFontColor</item>
+        <item name = "trackColor">?appSecondaryBackgroundColor</item>
+        <item name = "trackCornerRadius">6dp</item>
+        <item name = "trackThickness">6dp</item>
+    </style>
+
+    <style name = "Divider">
+        <item name = "android:layout_width">0dp</item>
+        <item name = "android:layout_height">1dp</item>
+        <item name = "android:background">?appDivider</item>
+    </style>
+
+    <style name = "ButtonTransparent">
+        <item name = "android:layout_width">60dp</item>
+        <item name = "android:layout_height">60dp</item>
+        <item name = "android:padding">18dp</item>
+    </style>
+</resources>

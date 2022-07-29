@@ -32,7 +32,7 @@ class SearchInputAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView = layoutInflater.inflate(
-            R.layout.search_input_rv_item, parent, false
+            R.layout.rv_item_search_input, parent, false
         )
         return SearchViewHolder(itemView)
     }

@@ -5,15 +5,12 @@ import com.example.foodinfo.R
 
 
 class DecorationUtils(context: Context) {
-    private val screenWidth: Int
-
-    val homeRecipesWidth: Int
+    val homeRecipesMargin: Int
 
     init {
         with(context.resources) {
-            screenWidth = displayMetrics.widthPixels
-            homeRecipesWidth =
-                screenWidth - getDimension(R.dimen.home_recipes_margin).toInt() * 2
+            homeRecipesMargin =
+                ((displayMetrics.widthPixels - getDimension(R.dimen.home_recipes_width)) / 2).toInt()
         }
     }
 }

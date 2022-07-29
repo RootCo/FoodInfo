@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.ui.view_holder.HomeProgressViewHolder
 import com.example.foodinfo.ui.view_holder.HomeViewHolder
-import com.example.foodinfo.utils.applicationComponent
 
 
 class HomeRecipesAdapter(
@@ -19,22 +18,18 @@ class HomeRecipesAdapter(
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)
-    private val utils = context.applicationComponent.decorationUtils
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             ViewTypes.LOADED_VIEW.ordinal -> {
                 HomeViewHolder(
-                    HomeViewHolder.createView(layoutInflater, parent),
-                    utils,
-                    onItemClickListener
+                    HomeViewHolder.createView(layoutInflater, parent), onItemClickListener
                 )
             }
             else                          -> {
                 HomeProgressViewHolder(
-                    HomeProgressViewHolder.createView(layoutInflater, parent),
-                    utils
+                    HomeProgressViewHolder.createView(layoutInflater, parent)
                 )
             }
         }

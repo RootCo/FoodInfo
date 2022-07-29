@@ -4,10 +4,10 @@
     android:viewportWidth = "24"
     android:viewportHeight = "24">
     <group
-        android:translateX="24"
-        android:scaleX="-1">
+        android:scaleX = "-1"
+        android:translateX = "24">
         <path
-            android:fillColor = "@color/active_font"
+            android:fillColor = "#000000"
             android:pathData = "M6,6l0,2l8.59,0l-9.59,9.59l1.41,1.41l9.59,-9.59l0,8.59l2,0l0,-12z" />
 
     </group>

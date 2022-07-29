@@ -9,15 +9,14 @@
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ThemeButton"
+        style = "@style/ButtonTransparent"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
 
     <ImageView
         android:id = "@+id/btn_search_filter"
-        android:layout_width = "60dp"
-        android:layout_height = "60dp"
+        style = "@style/ButtonTransparent"
         android:padding = "20dp"
         android:src = "@drawable/ic_search_filter"
         app:layout_constraintEnd_toEndOf = "parent"
@@ -30,7 +29,7 @@
         android:hint = "@string/et_search_hint"
         android:imeOptions = "actionSearch"
         android:singleLine = "true"
-        android:theme = "@style/ThemeSearchView"
+        android:theme = "@style/SearchView"
         app:defaultQueryHint = "@string/et_search_hint"
         app:iconifiedByDefault = "false"
         app:layout_constraintEnd_toStartOf = "@id/btn_search_filter"
@@ -41,9 +40,7 @@
 
     <View
         android:id = "@+id/divider"
-        android:layout_width = "0dp"
-        android:layout_height = "1dp"
-        android:background = "@color/hint_background"
+        style = "@style/Divider"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@id/et_search_input" />
@@ -58,6 +55,6 @@
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@id/divider"
         tools:itemCount = "8"
-        tools:listitem = "@layout/search_input_rv_item" />
+        tools:listitem = "@layout/rv_item_search_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

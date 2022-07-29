@@ -11,38 +11,25 @@
 
     <TextView
         android:id = "@+id/tv_search"
-        style = "@style/ThemeMainTextView"
+        style = "@style/SearchInput"
         android:layout_width = "match_parent"
-        android:layout_height = "48dp"
         android:layout_marginHorizontal = "@dimen/activity_horizontal_margin"
-        android:background = "@drawable/rounded_edittext"
-        android:gravity = "center|start"
-        android:paddingHorizontal = "@dimen/activity_horizontal_margin"
-        android:text = "@string/et_search_hint"
-        android:textSize = "16sp"
-        app:queryBackground = "@null" />
+        android:paddingHorizontal = "@dimen/activity_horizontal_margin" />
 
     <com.google.android.material.tabs.TabLayout
         android:id = "@+id/tl_category"
-        style = "@style/ThemeScrollable"
+        style = "@style/TabLayout"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
-        android:background = "@drawable/tab_layout_bg"
         android:paddingHorizontal = "@dimen/search_tab_padding"
-        app:tabIndicator = "@drawable/tab_indicator"
-        app:tabIndicatorColor = "@color/target_font"
         app:tabIndicatorFullWidth = "false"
-        app:tabMode = "scrollable"
-        app:tabRippleColor = "@null"
-        app:tabSelectedTextColor = "@color/target_font"
-        app:tabTextAppearance = "@style/ThemeTab"
-        app:tabTextColor = "@color/main_font" />
+        app:tabMode = "scrollable" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:descendantFocusability="blocksDescendants"
         android:id = "@+id/rv_explore_outer"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
-        tools:listitem = "@layout/explore_rv_outer_item" />
+        android:descendantFocusability = "blocksDescendants"
+        tools:listitem = "@layout/rv_item_explore_outer" />
 
 </LinearLayout>

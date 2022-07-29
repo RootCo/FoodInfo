@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-
+/**
+ * Base class to avoid boilerplate binding initialization and releasing.
+ */
 abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ) : Fragment() {
@@ -15,11 +17,10 @@ abstract class BaseFragment<VB : ViewBinding>(
     private var _binding: VB? = null
     val binding get() = _binding!!
 
-
-    /*
-        наследниках выносить все инициализации RecyclerView и их адаптеров
-        подписывать все View на данные из viewModel
-        добавлять к ним clickListener и т.д.
+    /**
+     * Calls in onViewCreated().
+     *
+     * Function to initialize Views, subscribe to viewModel data and add clickListeners to Views.
      */
     abstract fun initUI()
 
@@ -33,8 +34,6 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // вычитал что лучше это делать в onViewCreated, а не в onCreateView
         initUI()
     }
 

@@ -1,95 +1,29 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name = "Theme.FoodInfo" parent = "Theme.MaterialComponents.Light.NoActionBar">
+
+    <style name = "appTheme" parent = "Theme.MaterialComponents.Light.NoActionBar">
         <item name = "android:windowNoTitle">true</item>
         <item name = "android:windowActionBar">false</item>
         <item name = "android:windowFullscreen">true</item>
         <item name = "android:windowContentOverlay">@null</item>
-        <!-- для изменения цвета курсора и выделенного текста в EditText -->
-        <item name = "colorAccent">@color/target_font</item>
-    </style>
+        <item name = "android:windowBackground">@color/main_background</item>
 
-    <!--    недоделанная тема для нижней навигации-->
-    <style name = "Theme.NavBar" parent = "Theme.MaterialComponents.Light.DarkActionBar">
-        <item name = "android:background">@color/secondary_background</item>
-        <item name = "android:colorPrimary">@color/main_font</item>
-        <item name = "itemIconTint">@color/active_font</item>
-        <item name = "itemTextColor">@color/active_font</item>
-    </style>
+        <item name = "colorAccent">@color/primary</item>
 
-    <!--    тема для больших ShapeableImageView-->
-    <style name = "ThemeShapeAppearanceBig">
-        <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">30dp</item>
-        <item name = "elevation">3dp</item>
-    </style>
+        <item name = "appPrimaryColor">@color/primary</item>
+        <item name = "appMainBackgroundColor">@color/main_background</item>
+        <item name = "appSecondaryBackgroundColor">@color/secondary_background</item>
+        <item name = "appMainFontColor">@color/main_font</item>
+        <item name = "appSecondaryFontColor">@color/secondary_font</item>
+        <item name = "appWarningColor">@color/warning</item>
+        <item name = "appErrorColor">@color/error</item>
+        <item name = "appDivider">@color/divider</item>
 
-    <!--    тема для средних ShapeableImageView-->
-    <style name = "ThemeShapeAppearanceNormal">
-        <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">18dp</item>
-    </style>
-
-    <!--    тема для хедеров-->
-    <style name = "ThemeTextViewHeader">
-        <item name = "fontFamily">@font/product_sans_medium</item>
-        <item name = "android:textSize">18sp</item>
-        <item name = "android:textColor">@color/header_font</item>
-    </style>
-
-    <!--    тема для калорий и заголовков-->
-    <style name = "ThemeTextViewBig">
-        <item name = "android:textSize">18sp</item>
-        <item name = "android:gravity">center</item>
-        <item name = "android:textColor">@color/header_font</item>
-    </style>
-
-    <!--    тема для основных текствью-->
-    <style name = "ThemeMainTextView">
-        <item name = "android:textColor">@color/active_font</item>
-        <item name = "android:textSize">15sp</item>
-        <item name = "android:fontFamily">@font/product_sans_regular</item>
-    </style>
-
-    <!--    тема для маленьких текствью-->
-    <style name = "ThemeRecipeNameTextView">
-        <item name = "android:textColor">@color/active_font</item>
-        <item name = "android:textSize">13sp</item>
-        <item name = "android:maxLines">2</item>
-        <item name = "android:fontFamily">@font/product_sans_regular</item>
-    </style>
-
-    <!--    тема для TabLayout, не знаю как тут задать tabTextColor-->
-    <style name = "ThemeTab">
-        <item name = "android:textSize">16sp</item>
-        <item name = "android:fontFamily">@font/product_sans_medium</item>
-    </style>
-
-    <!--    тема для TabLayout, не знаю как тут задать tabTextColor-->
-    <style name = "ThemeSearchView">
-        <item name = "android:textSize">16sp</item>
-        <item name = "android:textColor">@color/header_font</item>
-        <item name = "android:textColorHint">@color/active_font</item>
-        <item name = "android:fontFamily">@font/product_sans_regular</item>
-    </style>
-
-    <!--    тема для выделенных текствью-->
-    <style name = "ThemeTargetTextView">
-        <item name = "android:textColor">@color/target_font</item>
-        <item name = "android:textSize">15sp</item>
-        <item name = "android:fontFamily">@font/product_sans_regular</item>
-    </style>
-
-    <!--    тема scrollable элементов-->
-    <style name = "ThemeScrollable">
-        <item name = "android:clipChildren">false</item>
-        <item name = "android:clipToPadding">false</item>
-    </style>
-
-    <!--    тема кнопки-->
-    <style name = "ThemeButton">
-        <item name = "android:layout_width">60dp</item>
-        <item name = "android:layout_height">60dp</item>
-        <item name = "android:padding">18dp</item>
+        <item name = "appRoundedEdittext">@drawable/rounded_edittext</item>
+        <item name = "appNavStateColor">@drawable/nav_state_color</item>
+        <item name = "appTabLayoutIndicator">@drawable/tab_layout_indicator</item>
+        <item name = "appProgressBarLine">@drawable/progress_bar</item>
+        <item name = "appBackgroundBig">@drawable/background_big</item>
+        <item name = "appBackgroundItemBig">@drawable/background_item_big</item>
+        <item name = "appBackgroundItemSmall">@drawable/background_item_small</item>
     </style>
 </resources>

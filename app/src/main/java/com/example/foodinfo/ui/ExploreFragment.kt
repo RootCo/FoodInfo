@@ -27,7 +27,11 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     }
 
     override fun initUI() {
-        viewModel.initAdapters(onInnerItemClickListener, onOuterItemClickListener)
+        viewModel.initAdapters(
+            context!!,
+            onInnerItemClickListener,
+            onOuterItemClickListener
+        )
 
         recyclerView = binding.root.findViewById(R.id.rv_explore_outer)
         categoryTabs = binding.root.findViewById(R.id.tl_category)
