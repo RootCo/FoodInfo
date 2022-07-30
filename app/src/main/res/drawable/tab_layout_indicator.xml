@@ -4,9 +4,9 @@
     <item android:gravity = "center">
         <shape>
             <size
-                android:width = "8dp"
-                android:height = "8dp" />
-            <corners android:radius = "8dp" />
+                android:width = "@dimen/dp_8"
+                android:height = "@dimen/dp_8" />
+            <corners android:radius = "@dimen/dp_8" />
         </shape>
     </item>
 </layer-list>

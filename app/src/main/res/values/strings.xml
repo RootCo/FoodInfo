@@ -1,23 +1,13 @@
 <resources>
     <string name = "app_name">FoodInfo</string>
-    <string name = "btn_get_started_text">Get started</string>
-    <string name = "recipes_api_header_text">Search over 2.3 million recipes by diets, calories and nutrient ranges</string>
-    <string name = "food_db_api_header_text">Paste any food recipe and learn its nutrition details in under a second</string>
     <string name = "title_activity_recipes">FoodInfo</string>
     <string name = "title_home">Home</string>
     <string name = "title_explore">Search</string>
     <string name = "title_settings">Settings</string>
-    <string name = "text_home_ingredient_header">Recipe of the day</string>
     <string name = "text_home_recipes_header">Popular recipes</string>
-    <string name = "tv_gram">g</string>
-    <string name = "tv_protein">P</string>
-    <string name = "tv_fat">F</string>
-    <string name = "tv_carb">C</string>
-    <string name = "tv_search_header_text">Search over 2.3m recipes by different categories</string>
     <string name = "et_search_hint">Search for recipes…</string>
-    <string name = "tv_diet_text">diet:</string>
     <string name = "tv_loading_text">loading…</string>
-    <string name = "home_header_text">Search over 2.3 million recipes</string>
+    <string name = "home_header_text">Search over 2.3 million recipes by different categories</string>
     <string name = "protein_header">Protein</string>
     <string name = "fat_header">Fat</string>
     <string name = "carb_header">Carb</string>

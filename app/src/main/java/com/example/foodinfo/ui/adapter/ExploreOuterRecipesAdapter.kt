@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.ui.view_holder.ExploreOuterViewHolder
+import com.example.foodinfo.utils.applicationComponent
 
 
 class ExploreOuterRecipesAdapter(
@@ -26,11 +27,13 @@ class ExploreOuterRecipesAdapter(
 ) : PagingDataAdapter<CategoryItem, ViewHolder>(CategoryItem.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
+    private val utils = context.applicationComponent.decorationUtils
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ExploreOuterViewHolder(
             ExploreOuterViewHolder.createView(layoutInflater, parent),
+            utils,
             context,
             onInnerItemClickListener,
             onOuterItemClickListener,

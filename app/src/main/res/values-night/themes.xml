@@ -17,13 +17,5 @@
         <item name = "appWarningColor">@color/warning</item>
         <item name = "appErrorColor">@color/error</item>
         <item name = "appDivider">@color/divider_dark</item>
-
-        <item name = "appRoundedEdittext">@drawable/rounded_edittext_dark</item>
-        <item name = "appNavStateColor">@drawable/nav_state_color_dark</item>
-        <item name = "appTabLayoutIndicator">@drawable/tab_layout_indicator</item>
-        <item name = "appProgressBarLine">@drawable/progress_bar_dark</item>
-        <item name = "appBackgroundBig">@drawable/background_big_dark</item>
-        <item name = "appBackgroundItemBig">@drawable/background_item_big_dark</item>
-        <item name = "appBackgroundItemSmall">@drawable/background_item_small_dark</item>
     </style>
 </resources>

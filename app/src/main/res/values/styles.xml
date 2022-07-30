@@ -1,15 +1,15 @@
 <resources>
 
     <style name = "BackgroundBig">
-        <item name = "android:background">?attr/appBackgroundBig</item>
+        <item name = "android:background">@drawable/background_big</item>
     </style>
 
     <style name = "BackgroundItemBig">
-        <item name = "android:background">?attr/appBackgroundItemBig</item>
+        <item name = "android:background">@drawable/background_item_big</item>
     </style>
 
     <style name = "BackgroundItemSmall">
-        <item name = "android:background">?attr/appBackgroundItemSmall</item>
+        <item name = "android:background">@drawable/background_item_small</item>
     </style>
 
     <style name = "ShapeAppearanceBig">
@@ -26,7 +26,7 @@
         <item name = "android:textColor">?appSecondaryFontColor</item>
         <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
-        <item name = "android:background">?appRoundedEdittext</item>
+        <item name = "android:background">@drawable/rounded_edittext</item>
         <item name = "android:layout_width">match_parent</item>
         <item name = "android:layout_height">@dimen/search_view_height</item>
         <item name = "android:gravity">center|start</item>
@@ -76,7 +76,7 @@
     </style>
 
     <style name = "navBar">
-        <item name = "itemIconTint">?appNavStateColor</item>
+        <item name = "itemIconTint">@drawable/nav_state_color</item>
         <item name = "android:background">?appMainBackgroundColor</item>
     </style>
 
@@ -84,7 +84,7 @@
         <item name = "android:background">?appMainBackgroundColor</item>
         <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_medium</item>
-        <item name = "tabIndicator">?appTabLayoutIndicator</item>
+        <item name = "tabIndicator">@drawable/tab_layout_indicator</item>
         <item name = "tabRippleColor">@null</item>
         <item name = "tabTextAppearance">@style/Tab</item>
         <item name = "tabIndicatorColor">?appPrimaryColor</item>
@@ -99,7 +99,7 @@
 
     <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
         <item name = "android:layout_height">@dimen/progress_bar_line_height</item>
-        <item name = "android:progressDrawable">?appProgressBarLine</item>
+        <item name = "android:progressDrawable">@drawable/progress_bar</item>
     </style>
 
     <style name = "ProgressBarCircle">

@@ -27,9 +27,11 @@ class ExploreInnerViewHolder(
 
 
     init {
-        itemView.layoutParams = ViewGroup.LayoutParams(
-            utils.exploreItemWidth, utils.exploreItemHeight
-        )
+        itemView.layoutParams.width = utils.exploreItemWidth
+        itemView.layoutParams.height = utils.exploreItemHeight
+//        itemView.layoutParams = ViewGroup.LayoutParams(
+//            utils.exploreItemWidth, utils.exploreItemHeight
+//        )
 
         itemView.setOnClickListener {
             onItemClickListener(item.id)

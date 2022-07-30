@@ -5,7 +5,6 @@
     <dimen name = "dp_8">8dp</dimen>
     <dimen name = "dp_10">10dp</dimen>
     <dimen name = "dp_12">12dp</dimen>
-    <dimen name = "dp_16">16dp</dimen>
     <dimen name = "dp_18">18dp</dimen>
     <dimen name = "dp_20">20dp</dimen>
     <dimen name = "dp_24">24dp</dimen>
@@ -16,13 +15,11 @@
 
     <!--Typography-->
     <dimen name = "text_13">13sp</dimen>
-    <dimen name = "text_14">14sp</dimen>
     <dimen name = "text_15">15sp</dimen>
     <dimen name = "text_16">16sp</dimen>
     <dimen name = "text_18">18sp</dimen>
     <dimen name = "text_20">20sp</dimen>
     <dimen name = "text_22">22sp</dimen>
-    <dimen name = "text_24">24sp</dimen>
 
     <!--Spacing-->
     <dimen name = "screen_horizontal_margin">@dimen/dp_24</dimen>

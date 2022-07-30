@@ -16,10 +16,12 @@ import com.example.foodinfo.R
 import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.ui.adapter.ExploreInnerRecipesAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
+import com.example.foodinfo.utils.DecorationUtils
 
 
 class ExploreOuterViewHolder(
     itemView: View,
+    utils: DecorationUtils,
     context: Context,
     onInnerItemClickListener: (String) -> Unit,
     onOuterItemClickListener: (String, String) -> Unit,
@@ -54,6 +56,9 @@ class ExploreOuterViewHolder(
         expandHeader.setOnClickListener {
             onOuterItemClickListener(item.category, item.label)
         }
+
+        progressBar.layoutParams.height = utils.exploreItemHeight
+        recyclerView.layoutParams.height = utils.exploreItemHeight
 
         recyclerAdapter = ExploreInnerRecipesAdapter(context, onInnerItemClickListener)
         recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
