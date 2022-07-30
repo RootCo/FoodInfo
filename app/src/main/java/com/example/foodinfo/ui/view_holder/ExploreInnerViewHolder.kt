@@ -7,25 +7,30 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.utils.DecorationUtils
 import com.google.android.material.imageview.ShapeableImageView
 
 
 class ExploreInnerViewHolder(
-    itemView: View, onItemClickListener: (String) -> Unit,
+    itemView: View, utils: DecorationUtils, onItemClickListener: (String) -> Unit,
 ) : BaseViewHolder<RecipeExplore>(itemView) {
 
     private val nameView: TextView = itemView.findViewById(
-        R.id.tv_search_recipe_name
+        R.id.tv_search_rv_recipe_name
     )
     private val caloriesView: TextView = itemView.findViewById(
-        R.id.tv_search_recipe_calories
+        R.id.tv_search_rv_recipe_calories
     )
     private val imageView: ShapeableImageView = itemView.findViewById(
-        R.id.iv_search_recipe_preview
+        R.id.iv_search_rv_recipe_preview
     )
 
 
     init {
+        itemView.layoutParams = ViewGroup.LayoutParams(
+            utils.exploreItemWidth, utils.exploreItemHeight
+        )
+
         itemView.setOnClickListener {
             onItemClickListener(item.id)
         }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Scalable dp-->
+    <dimen name = "dp_6">6dp</dimen>
+    <dimen name = "dp_8">8dp</dimen>
+    <dimen name = "dp_10">10dp</dimen>
+    <dimen name = "dp_12">12dp</dimen>
+    <dimen name = "dp_16">16dp</dimen>
+    <dimen name = "dp_18">18dp</dimen>
+    <dimen name = "dp_20">20dp</dimen>
+    <dimen name = "dp_24">24dp</dimen>
+    <dimen name = "dp_30">30dp</dimen>
+    <dimen name = "dp_40">40dp</dimen>
+    <dimen name = "dp_50">50dp</dimen>
+    <dimen name = "dp_60">60dp</dimen>
+
+    <!--Typography-->
+    <dimen name = "text_13">13sp</dimen>
+    <dimen name = "text_14">14sp</dimen>
+    <dimen name = "text_15">15sp</dimen>
+    <dimen name = "text_16">16sp</dimen>
+    <dimen name = "text_18">18sp</dimen>
+    <dimen name = "text_20">20sp</dimen>
+    <dimen name = "text_22">22sp</dimen>
+    <dimen name = "text_24">24sp</dimen>
+
+    <!--Spacing-->
+    <dimen name = "screen_horizontal_margin">@dimen/dp_24</dimen>
+    <dimen name = "screen_vertical_margin">@dimen/dp_24</dimen>
+    <dimen name = "screen_bottom_margin">56dp</dimen>
+    <dimen name = "home_recipes_space">8dp</dimen>
+    <dimen name = "home_recipes_margin">20dp</dimen>
+    <dimen name = "tab_padding_horizontal">16dp</dimen>
+    <dimen name = "search_recipes_space">12dp</dimen>
+
+    <!--Rounded corners-->
+    <dimen name = "image_radius_big">@dimen/dp_24</dimen>
+    <dimen name = "image_radius_normal">@dimen/dp_18</dimen>
+
+    <!--View sizes-->
+    <dimen name = "progress_size">@dimen/dp_50</dimen>
+    <dimen name = "search_view_height">@dimen/dp_50</dimen>
+    <dimen name = "progress_bar_line_height">@dimen/dp_8</dimen>
+    <dimen name = "progress_bar_circle_thickness">@dimen/dp_6</dimen>
+    <dimen name = "button_transparent_size">@dimen/dp_60</dimen>
+    <dimen name = "button_transparent_padding">@dimen/dp_18</dimen>
+    <dimen name = "button_like_big_size">@dimen/dp_50</dimen>
+    <dimen name = "button_like_small_size">@dimen/dp_40</dimen>
+    <!--Home RecyclerView item size (used for aspect ratio calculation)-->
+    <dimen name = "home_recipes_width">240dp</dimen>
+    <dimen name = "home_recipes_height">370dp</dimen>
+</resources>

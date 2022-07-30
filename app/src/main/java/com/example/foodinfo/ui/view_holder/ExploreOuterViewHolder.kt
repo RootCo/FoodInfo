@@ -68,7 +68,7 @@ class ExploreOuterViewHolder(
         recyclerView.addItemDecoration(
             ExploreInnerItemDecoration(
                 context.resources.getDimensionPixelSize(R.dimen.search_recipes_space),
-                context.resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin),
+                context.resources.getDimensionPixelSize(R.dimen.screen_horizontal_margin),
             )
         )
 

@@ -4,9 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.foodinfo.R
+import com.example.foodinfo.utils.DecorationUtils
 
 
-class ExploreInnerProgressViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
+class ExploreInnerProgressViewHolder(itemView: View, utils: DecorationUtils) :
+    BaseViewHolder<Any>(itemView) {
+
+    init {
+        itemView.layoutParams = ViewGroup.LayoutParams(
+            utils.exploreItemWidth, utils.exploreItemHeight
+        )
+    }
+
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(

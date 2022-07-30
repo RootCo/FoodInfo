@@ -5,12 +5,20 @@ import com.example.foodinfo.R
 
 
 class DecorationUtils(context: Context) {
-    val homeRecipesMargin: Int
+    val exploreItemWidth: Int
+    val exploreItemHeight: Int
 
     init {
         with(context.resources) {
-            homeRecipesMargin =
-                ((displayMetrics.widthPixels - getDimension(R.dimen.home_recipes_width)) / 2).toInt()
+            val screenWidth = displayMetrics.widthPixels
+            val exploreItemSpace = getDimension(R.dimen.search_recipes_space)
+            val exploreItemMargin = getDimension(R.dimen.screen_horizontal_margin)
+            val aspectRatio =
+                getDimension(R.dimen.home_recipes_height) / getDimension(R.dimen.home_recipes_width)
+
+            exploreItemWidth =
+                ((screenWidth / 2) - exploreItemSpace - exploreItemMargin).toInt()
+            exploreItemHeight = (exploreItemWidth * aspectRatio).toInt()
         }
     }
 }

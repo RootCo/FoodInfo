@@ -117,8 +117,8 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/extended_pfc_element_circle.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/extended_pfc_element_line.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_explore.xml" value="0.33" />
-        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended.xml" value="0.3246753246753247" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended.xml" value="0.33" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_2.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_search_filter.xml" value="0.3424657534246575" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_search_input.xml" value="0.3424657534246575" />
@@ -131,8 +131,9 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/home_rv_item_new.xml" value="0.3424657534246575" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/home_rv_item_placeholder.xml" value="0.3424657534246575" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_e.xml" value="0.33" />
-        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore_inner.xml" value="0.3246753246753247" />
-        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore_outer.xml" value="0.3246753246753247" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore_inner.xml" value="0.33" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore_inner_placeholder.xml" value="0.33" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore_outer.xml" value="0.33" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_home.xml" value="0.33" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_home_placeholder.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_recipe_big.xml" value="0.3246753246753247" />
@@ -148,12 +149,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.22" />
-      </ProjectState>
-    </option>
   </component>
 </project>

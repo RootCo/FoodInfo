@@ -14,40 +14,34 @@
 
     <style name = "ShapeAppearanceBig">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">24dp</item>
+        <item name = "cornerSize">@dimen/image_radius_big</item>
     </style>
 
     <style name = "ShapeAppearanceNormal">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">18dp</item>
+        <item name = "cornerSize">@dimen/image_radius_normal</item>
     </style>
 
     <style name = "SearchInput">
         <item name = "android:textColor">?appSecondaryFontColor</item>
-        <item name = "android:textSize">16sp</item>
+        <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
         <item name = "android:background">?appRoundedEdittext</item>
         <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">48dp</item>
+        <item name = "android:layout_height">@dimen/search_view_height</item>
         <item name = "android:gravity">center|start</item>
         <item name = "android:text">@string/et_search_hint</item>
     </style>
 
     <style name = "SearchView">
-        <item name = "android:textSize">16sp</item>
+        <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:textColorHint">?appSecondaryFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
-    <style name = "TextViewHeader">
-        <item name = "android:textSize">18sp</item>
-        <item name = "android:textColor">?appMainFontColor</item>
-        <item name = "fontFamily">@font/product_sans_medium</item>
-    </style>
-
     <style name = "TextViewBigMain">
-        <item name = "android:textSize">18sp</item>
+        <item name = "android:textSize">@dimen/text_18</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
@@ -57,7 +51,7 @@
     </style>
 
     <style name = "TextViewMediumMain">
-        <item name = "android:textSize">15sp</item>
+        <item name = "android:textSize">@dimen/text_15</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
@@ -67,7 +61,7 @@
     </style>
 
     <style name = "TextViewSmallMain">
-        <item name = "android:textSize">13sp</item>
+        <item name = "android:textSize">@dimen/text_13</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
@@ -83,10 +77,12 @@
 
     <style name = "navBar">
         <item name = "itemIconTint">?appNavStateColor</item>
+        <item name = "android:background">?appMainBackgroundColor</item>
     </style>
 
     <style name = "TabLayout" parent = "Scrollable">
-        <item name = "android:textSize">16sp</item>
+        <item name = "android:background">?appMainBackgroundColor</item>
+        <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_medium</item>
         <item name = "tabIndicator">?appTabLayoutIndicator</item>
         <item name = "tabRippleColor">@null</item>
@@ -97,20 +93,20 @@
     </style>
 
     <style name = "Tab">
-        <item name = "android:textSize">16sp</item>
+        <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_medium</item>
     </style>
 
     <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
-        <item name = "android:layout_height">8dp</item>
+        <item name = "android:layout_height">@dimen/progress_bar_line_height</item>
         <item name = "android:progressDrawable">?appProgressBarLine</item>
     </style>
 
     <style name = "ProgressBarCircle">
         <item name = "indicatorColor">?appMainFontColor</item>
         <item name = "trackColor">?appSecondaryBackgroundColor</item>
-        <item name = "trackCornerRadius">6dp</item>
-        <item name = "trackThickness">6dp</item>
+        <item name = "trackCornerRadius">@dimen/progress_bar_circle_thickness</item>
+        <item name = "trackThickness">@dimen/progress_bar_circle_thickness</item>
     </style>
 
     <style name = "Divider">
@@ -120,8 +116,8 @@
     </style>
 
     <style name = "ButtonTransparent">
-        <item name = "android:layout_width">60dp</item>
-        <item name = "android:layout_height">60dp</item>
-        <item name = "android:padding">18dp</item>
+        <item name = "android:layout_width">@dimen/button_transparent_size</item>
+        <item name = "android:layout_height">@dimen/button_transparent_size</item>
+        <item name = "android:padding">@dimen/button_transparent_padding</item>
     </style>
 </resources>

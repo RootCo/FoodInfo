@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.ui.view_holder.ExploreInnerProgressViewHolder
 import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
+import com.example.foodinfo.utils.applicationComponent
 
 
 class ExploreInnerRecipesAdapter(
@@ -15,6 +16,7 @@ class ExploreInnerRecipesAdapter(
 ) : PagingDataAdapter<RecipeExplore, ViewHolder>(RecipeExplore.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
+    private val utils = context.applicationComponent.decorationUtils
 
 
     override fun onCreateViewHolder(
@@ -23,11 +25,13 @@ class ExploreInnerRecipesAdapter(
         return when (viewType) {
             ViewTypes.LOADED_VIEW.ordinal -> ExploreInnerViewHolder(
                 ExploreInnerViewHolder.createView(layoutInflater, parent),
+                utils,
                 onItemClickListener
             )
             else                          -> {
                 ExploreInnerProgressViewHolder(
-                    ExploreInnerProgressViewHolder.createView(layoutInflater, parent)
+                    ExploreInnerProgressViewHolder.createView(layoutInflater, parent),
+                    utils
                 )
             }
         }
