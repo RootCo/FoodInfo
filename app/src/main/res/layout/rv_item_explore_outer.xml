@@ -15,28 +15,25 @@
 
         <TextView
             android:id = "@+id/tv_search_item_header"
+            style = "@style/TextViewBig"
             android:layout_width = "wrap_content"
             android:layout_height = "60dp"
             android:layout_gravity = "bottom|start"
             android:layout_marginStart = "@dimen/screen_horizontal_margin"
-            android:fontFamily = "@font/product_sans_regular"
             android:gravity = "center|start"
             android:maxLength = "25"
-            android:text = "@string/tv_loading_text"
-            android:textColor = "?appMainFontColor"
-            android:textSize = "@dimen/text_20" />
+            android:text = "@string/tv_loading_text" />
 
         <TextView
             android:id = "@+id/tv_see_all"
+            style = "@style/TextViewSmall"
             android:layout_width = "wrap_content"
             android:layout_height = "60dp"
             android:layout_gravity = "bottom|end"
             android:layout_marginEnd = "@dimen/screen_horizontal_margin"
-            android:fontFamily = "@font/product_sans_regular"
             android:gravity = "center|end"
             android:text = "@string/see_all_text"
-            android:textColor = "?appPrimaryColor"
-            android:textSize = "@dimen/text_16" />
+            android:textColor = "?appPrimaryColor" />
 
     </FrameLayout>
 

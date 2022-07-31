@@ -7,7 +7,6 @@
     <string name = "text_home_recipes_header">Popular recipes</string>
     <string name = "et_search_hint">Search for recipes…</string>
     <string name = "tv_loading_text">loading…</string>
-    <string name = "home_header_text">Search over 2.3 million recipes by different categories</string>
     <string name = "protein_header">Protein</string>
     <string name = "fat_header">Fat</string>
     <string name = "carb_header">Carb</string>

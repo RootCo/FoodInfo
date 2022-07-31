@@ -35,6 +35,7 @@
 
         <TextView
             android:id = "@+id/tv_home_rv_recipe_name"
+            style = "@style/TextViewVeryBig"
             android:layout_width = "0dp"
             android:layout_height = "wrap_content"
             android:layout_marginHorizontal = "@dimen/dp_30"
@@ -44,8 +45,6 @@
             android:gravity = "top|start"
             android:maxLines = "1"
             android:textAlignment = "textStart"
-            android:textColor = "?appMainFontColor"
-            android:textSize = "@dimen/text_22"
             app:layout_constraintEnd_toEndOf = "parent"
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toBottomOf = "@id/iv_home_rv_recipe_preview"
@@ -53,44 +52,41 @@
 
         <TextView
             android:id = "@+id/tv_home_rv_recipe_servings"
+            style = "@style/TextViewMedium"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:layout_marginStart = "@dimen/dp_30"
             android:layout_marginTop = "@dimen/dp_6"
             android:drawablePadding = "@dimen/dp_6"
-            android:fontFamily = "@font/product_sans_regular"
             android:gravity = "bottom|start"
             android:text = "34"
             android:textColor = "?appSecondaryFontColor"
-            android:textSize = "@dimen/text_18"
             app:drawableEndCompat = "@drawable/ic_peoples_20"
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toBottomOf = "@+id/tv_home_rv_recipe_name" />
 
         <TextView
             android:id = "@+id/tv_home_rv_recipe_time"
+            style = "@style/TextViewMedium"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:layout_marginStart = "@dimen/dp_20"
             android:layout_marginTop = "@dimen/dp_6"
             android:drawablePadding = "@dimen/dp_6"
-            android:fontFamily = "@font/product_sans_regular"
             android:gravity = "bottom|start"
             android:text = "56 min"
             android:textColor = "?appSecondaryFontColor"
-            android:textSize = "@dimen/text_18"
             app:drawableEndCompat = "@drawable/ic_time_20"
             app:layout_constraintStart_toEndOf = "@+id/tv_home_rv_recipe_servings"
             app:layout_constraintTop_toBottomOf = "@+id/tv_home_rv_recipe_name" />
 
         <TextView
             android:id = "@+id/tv_home_rv_recipe_calories"
+            style = "@style/TextViewVeryBig"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:layout_marginStart = "@dimen/dp_30"
             android:fontFamily = "@font/product_sans_medium"
-            android:textColor = "?appMainFontColor"
-            android:textSize = "@dimen/text_22"
             app:drawableEndCompat = "@drawable/ic_kcal_28"
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toTopOf = "@+id/btn_like"

@@ -34,40 +34,40 @@
     </style>
 
     <style name = "SearchView">
-        <item name = "android:textSize">@dimen/text_16</item>
+        <item name = "android:textSize">@dimen/text_18</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:textColorHint">?appSecondaryFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
-    <style name = "TextViewBigMain">
+    <style name = "TextViewVeryBig">
+        <item name = "android:textSize">@dimen/text_22</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewBig">
+        <item name = "android:textSize">@dimen/text_20</item>
+        <item name = "android:textColor">?appMainFontColor</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
+    </style>
+
+    <style name = "TextViewMedium">
         <item name = "android:textSize">@dimen/text_18</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
-    <style name = "TextViewBigSecondary" parent = "TextViewBigMain">
-        <item name = "android:textColor">?appSecondaryFontColor</item>
-    </style>
-
-    <style name = "TextViewMediumMain">
-        <item name = "android:textSize">@dimen/text_15</item>
+    <style name = "TextViewSmall">
+        <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
-    <style name = "TextViewMediumSecondary" parent = "TextViewMediumMain">
-        <item name = "android:textColor">?appSecondaryFontColor</item>
-    </style>
-
-    <style name = "TextViewSmallMain">
-        <item name = "android:textSize">@dimen/text_13</item>
+    <style name = "TextViewVerySmall">
+        <item name = "android:textSize">@dimen/text_14</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
-    </style>
-
-    <style name = "TextViewSmallSecondary" parent = "TextViewSmallMain">
-        <item name = "android:textColor">?appSecondaryFontColor</item>
     </style>
 
     <style name = "NavigationMenu">

@@ -38,15 +38,14 @@
 
         <TextView
             android:id = "@+id/tv_home_recipes_header1"
+            style = "@style/TextViewVeryBig"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:layout_marginVertical = "@dimen/dp_20"
             android:layout_marginStart = "@dimen/screen_vertical_margin"
             android:fontFamily = "@font/product_sans_medium"
             android:text = "@string/text_home_recipes_header"
-            android:textAlignment = "textStart"
-            android:textColor = "?appMainFontColor"
-            android:textSize = "@dimen/text_20" />
+            android:textAlignment = "textStart" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id = "@+id/rv_home_recipes"
