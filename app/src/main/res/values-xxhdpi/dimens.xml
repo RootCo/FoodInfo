@@ -10,6 +10,7 @@
     <dimen name = "dp_20">20dp</dimen>
     <dimen name = "dp_24">24dp</dimen>
     <dimen name = "dp_30">30dp</dimen>
+    <dimen name = "dp_36">36dp</dimen>
     <dimen name = "dp_40">40dp</dimen>
     <dimen name = "dp_50">50dp</dimen>
     <dimen name = "dp_54">54dp</dimen>
@@ -23,32 +24,4 @@
     <dimen name = "text_18">18sp</dimen>
     <dimen name = "text_20">20sp</dimen>
     <dimen name = "text_22">22sp</dimen>
-
-    <!--Spacing-->
-    <dimen name = "screen_horizontal_margin">@dimen/dp_24</dimen>
-    <dimen name = "screen_vertical_margin">@dimen/dp_24</dimen>
-    <dimen name = "screen_bottom_margin">56dp</dimen>
-    <dimen name = "home_recipes_space">8dp</dimen>
-    <dimen name = "home_recipes_margin">20dp</dimen>
-    <dimen name = "tab_padding_horizontal">16dp</dimen>
-    <dimen name = "search_recipes_space">12dp</dimen>
-
-    <!--Rounded corners-->
-    <dimen name = "image_corner_big">@dimen/dp_24</dimen>
-    <dimen name = "image_corner_normal">@dimen/dp_18</dimen>
-    <dimen name = "background_corner_item_big">@dimen/dp_30</dimen>
-    <dimen name = "background_corner_item_small">@dimen/dp_20</dimen>
-
-    <!--View sizes-->
-    <dimen name = "progress_size">@dimen/dp_50</dimen>
-    <dimen name = "search_view_height">@dimen/dp_50</dimen>
-    <dimen name = "progress_bar_line_height">@dimen/dp_8</dimen>
-    <dimen name = "progress_bar_circle_thickness">@dimen/dp_6</dimen>
-    <dimen name = "button_transparent_size">@dimen/dp_60</dimen>
-    <dimen name = "button_transparent_padding">@dimen/dp_18</dimen>
-    <dimen name = "button_like_big_size">@dimen/dp_54</dimen>
-    <dimen name = "button_like_small_size">@dimen/dp_40</dimen>
-    <!--Home RecyclerView item size (used for aspect ratio calculation)-->
-    <dimen name = "home_recipes_width">240dp</dimen>
-    <dimen name = "home_recipes_height">370dp</dimen>
 </resources>

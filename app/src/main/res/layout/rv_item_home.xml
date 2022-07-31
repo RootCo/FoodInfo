@@ -98,11 +98,7 @@
 
         <ImageView
             android:id = "@+id/btn_like"
-            android:layout_width = "@dimen/button_like_big_size"
-            android:layout_height = "@dimen/button_like_big_size"
-            android:background = "@drawable/button_like_big"
-            android:padding = "@dimen/dp_10"
-            android:src = "@drawable/ic_like_20"
+            style = "@style/ButtonLikeBig"
             app:layout_constraintBottom_toBottomOf = "parent"
             app:layout_constraintEnd_toEndOf = "parent" />
 

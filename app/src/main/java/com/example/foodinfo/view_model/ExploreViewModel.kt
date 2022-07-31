@@ -18,7 +18,6 @@ import com.example.foodinfo.model.repository.impl.RepositoryRecipesImpl
 import com.example.foodinfo.ui.adapter.ExploreInnerRecipesAdapter
 import com.example.foodinfo.ui.adapter.ExploreOuterRecipesAdapter
 import com.example.foodinfo.utils.restoreState
-import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -28,22 +27,21 @@ class ExploreViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
 
-    private val tabsItems = hashMapOf<String, StateFlow<PagingData<CategoryItem>>>()
-    private val tabsStates = hashMapOf<String, Parcelable>()
-    private val tabsAdapters = hashMapOf<String, ExploreOuterRecipesAdapter>()
+    private val tabsItems = hashMapOf<Int, StateFlow<PagingData<CategoryItem>>>()
+    private val tabsStates = hashMapOf<Int, Parcelable>()
+    private val tabsAdapters = hashMapOf<Int, ExploreOuterRecipesAdapter>()
 
     // Collections of Jobs for canceling previous started job to prevent memory leaks
-    private var submitCategoryJobs = hashMapOf<String, Job>()
+    private var submitTabJobs = hashMapOf<Int, Job>()
+    private var restoreTabJobs = hashMapOf<Int, Job>()
     private var submitLabelJobs = hashMapOf<String, Job>()
     private var restoreLabelJobs = hashMapOf<String, Job>()
-    private var restoreTabJobs = hashMapOf<String, Job>()
-
     private val adapter: ExploreOuterRecipesAdapter
         get() {
-            return tabsAdapters[tabLabel]!!.also { adapter ->
-                submitCategoryJobs[tabLabel]?.cancel()
-                submitCategoryJobs[tabLabel] = viewModelScope.launch {
-                    tabsItems[tabLabel]?.collectLatest { categoryItem ->
+            return tabsAdapters[tabIndex]!!.also { adapter ->
+                submitTabJobs[tabIndex]?.cancel()
+                submitTabJobs[tabIndex] = viewModelScope.launch {
+                    tabsItems[tabIndex]?.collectLatest { categoryItem ->
                         delay(100) // for smooth animation
                         adapter.submitData(categoryItem)
                     }
@@ -94,13 +92,13 @@ class ExploreViewModel @Inject constructor(
     private val readyToRestoreStateTab: (
         RecyclerView
     ) -> Unit = { recycler ->
-        restoreTabJobs[tabLabel]?.cancel()
-        restoreTabJobs[tabLabel] = viewModelScope.launch {
+        restoreTabJobs[tabIndex]?.cancel()
+        restoreTabJobs[tabIndex] = viewModelScope.launch {
             adapter.loadStateFlow.map { it.refresh }
                 .distinctUntilChanged()
                 .collectLatest { loadState ->
                     if (loadState is LoadState.NotLoading) {
-                        recycler.restoreState(tabsStates[tabLabel])
+                        recycler.restoreState(tabsStates[tabIndex])
                         cancel()
                     }
                 }
@@ -116,14 +114,13 @@ class ExploreViewModel @Inject constructor(
         }
 
     val categories = CategoryField.Fields.values().map { it.label }
-    var tabLabel = categories[0]
-        private set
     var tabIndex = 0
         private set
 
+
     init {
-        for (category in categories) {
-            tabsItems[category] = Pager(
+        categories.forEachIndexed { index, category ->
+            tabsItems[index] = Pager(
                 config = RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER,
                 pagingSourceFactory = {
                     ExploreCategoriesDataSource(getRecipes, category)
@@ -134,12 +131,11 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
-    fun updateTab(tab: TabLayout.Tab, recycler: RecyclerView) {
-        submitCategoryJobs[tabLabel]?.cancel()
-        tabsStates[tabLabel] = recycler.layoutManager?.onSaveInstanceState()!!
+    fun updateTab(newIndex: Int, recycler: RecyclerView) {
+        submitTabJobs[tabIndex]?.cancel()
+        tabsStates[tabIndex] = recycler.layoutManager?.onSaveInstanceState()!!
 
-        tabLabel = tab.text.toString()
-        tabIndex = tab.position
+        tabIndex = newIndex
 
         recycler.adapter = adapter
         readyToRestoreStateTab.invoke(recycler)
@@ -150,8 +146,8 @@ class ExploreViewModel @Inject constructor(
         onInnerItemClickListener: (String) -> Unit,
         onOuterItemClickListener: (String, String) -> Unit
     ) {
-        for (category in categories) {
-            tabsAdapters[category] = ExploreOuterRecipesAdapter(
+        categories.forEachIndexed { index, _ ->
+            tabsAdapters[index] = ExploreOuterRecipesAdapter(
                 context,
                 onInnerItemClickListener,
                 onOuterItemClickListener,

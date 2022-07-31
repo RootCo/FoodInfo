@@ -19,11 +19,11 @@
     <com.google.android.material.tabs.TabLayout
         android:id = "@+id/tl_category"
         style = "@style/TabLayout"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:paddingHorizontal = "@dimen/tab_padding_horizontal"
-        app:tabIndicatorFullWidth = "false"
-        app:tabMode = "scrollable" />
+        android:layout_marginVertical = "@dimen/dp_24"
+        android:paddingHorizontal = "@dimen/dp_16"
+        app:tabMode = "scrollable">
+
+    </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id = "@+id/rv_explore_outer"

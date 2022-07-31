@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Below dimensions declared because they can be reused multiple times
+        (for example screen margin) or used from code (for example recipes space and margin).
+        All other view dimensions declared directly in their layout or styles
+        (for example size for Tab in tab_layout.xml and for button in styles/ButtonTransparent)-->
+
+    <!--Spacing-->
+    <dimen name = "screen_horizontal_margin">@dimen/dp_24</dimen>
+    <dimen name = "screen_vertical_margin">@dimen/dp_24</dimen>
+    <dimen name = "home_recipes_space">@dimen/dp_12</dimen>
+    <dimen name = "home_recipes_margin">@dimen/dp_24</dimen>
+    <dimen name = "search_recipes_space">@dimen/dp_12</dimen>
+    <dimen name = "search_recipes_margin">@dimen/dp_24</dimen>
+    <dimen name = "screen_bottom_margin">56dp</dimen>
+
+    <!--Rounded corners-->
+    <dimen name = "background_corner_item_big">@dimen/dp_30</dimen>
+    <dimen name = "background_corner_item_small">@dimen/dp_20</dimen>
+
+    <!--View sizes-->
+    <dimen name = "progress_size">@dimen/dp_50</dimen>
+    <!--Home RecyclerView item size (used for aspect ratio calculation)-->
+    <dimen name = "home_recipes_width">240dp</dimen>
+    <dimen name = "home_recipes_height">370dp</dimen>
+</resources>

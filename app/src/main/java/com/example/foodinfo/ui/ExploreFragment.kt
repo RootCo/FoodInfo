@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -42,18 +43,25 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
             it.initialPrefetchItemCount = 3
         }
 
-        for (category in viewModel.categories) {
-            categoryTabs.addTab(categoryTabs.newTab().setText(category))
+        with(LayoutInflater.from(context)) {
+            viewModel.categories.forEachIndexed { index, category ->
+                categoryTabs.addTab(
+                    categoryTabs.newTab()
+                        .setCustomView(inflate(R.layout.tab_layout, null, false))
+                        .setText(category)
+                        .setId(index)
+                )
+            }
         }
 
         categoryTabs.getTabAt(viewModel.tabIndex)!!.also { tab ->
             tab.select()
-            viewModel.updateTab(tab, recyclerView)
+            viewModel.updateTab(tab.id, recyclerView)
         }
 
         categoryTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewModel.updateTab(tab, recyclerView)
+                viewModel.updateTab(tab.id, recyclerView)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -77,9 +85,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
 
     private val onOuterItemClickListener: (String, String) -> Unit = { category, label ->
         findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFSearchTarget(
-                category, label
-            )
+            ExploreFragmentDirections.actionFExploreToFSearchTarget(category, label)
         )
     }
 }

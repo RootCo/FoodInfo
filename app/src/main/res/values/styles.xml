@@ -5,30 +5,30 @@
     </style>
 
     <style name = "BackgroundItemBig">
-        <item name = "android:background">@drawable/background_item_big</item>
+        <item name = "android:background">@drawable/rv_item_background_big</item>
     </style>
 
     <style name = "BackgroundItemSmall">
-        <item name = "android:background">@drawable/background_item_small</item>
+        <item name = "android:background">@drawable/rv_item_background_small</item>
     </style>
 
     <style name = "ShapeAppearanceBig">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">@dimen/image_corner_big</item>
+        <item name = "cornerSize">@dimen/dp_24</item>
     </style>
 
     <style name = "ShapeAppearanceNormal">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">@dimen/image_corner_normal</item>
+        <item name = "cornerSize">@dimen/dp_18</item>
     </style>
 
     <style name = "SearchInput">
         <item name = "android:textColor">?appSecondaryFontColor</item>
         <item name = "android:textSize">@dimen/text_16</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
-        <item name = "android:background">@drawable/rounded_edittext</item>
+        <item name = "android:background">@drawable/search_view_background</item>
         <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">@dimen/search_view_height</item>
+        <item name = "android:layout_height">@dimen/dp_50</item>
         <item name = "android:gravity">center|start</item>
         <item name = "android:text">@string/et_search_hint</item>
     </style>
@@ -70,41 +70,32 @@
         <item name = "android:textColor">?appSecondaryFontColor</item>
     </style>
 
-    <style name = "Scrollable">
-        <item name = "android:clipChildren">false</item>
+    <style name = "NavigationMenu">
+        <item name = "itemIconTint">@drawable/navigation_selector_color</item>
+        <item name = "android:background">?appMainBackgroundColor</item>
+    </style>
+
+    <style name = "TabLayout">
+        <item name = "android:layout_width">match_parent</item>
+        <item name = "android:layout_height">wrap_content</item>
         <item name = "android:clipToPadding">false</item>
-    </style>
-
-    <style name = "navBar">
-        <item name = "itemIconTint">@drawable/nav_state_color</item>
         <item name = "android:background">?appMainBackgroundColor</item>
-    </style>
-
-    <style name = "TabLayout" parent = "Scrollable">
-        <item name = "android:background">?appMainBackgroundColor</item>
-        <item name = "tabIndicator">@drawable/tab_layout_indicator</item>
+        <item name = "tabIndicator">@null</item>
         <item name = "tabRippleColor">@null</item>
-        <item name = "tabTextAppearance">@style/Tab</item>
-        <item name = "tabIndicatorColor">?appPrimaryColor</item>
-        <item name = "tabSelectedTextColor">?appPrimaryColor</item>
-        <item name = "tabTextColor">?appSecondaryFontColor</item>
-    </style>
-
-    <style name = "Tab">
-        <item name = "android:textSize">@dimen/text_16</item>
-        <item name = "android:fontFamily">@font/product_sans_regular</item>
+        <item name = "tabPaddingEnd">@dimen/dp_8</item>
+        <item name = "tabPaddingStart">@dimen/dp_8</item>
     </style>
 
     <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
-        <item name = "android:layout_height">@dimen/progress_bar_line_height</item>
+        <item name = "android:layout_height">@dimen/dp_8</item>
         <item name = "android:progressDrawable">@drawable/progress_bar</item>
     </style>
 
     <style name = "ProgressBarCircle">
         <item name = "indicatorColor">?appMainFontColor</item>
         <item name = "trackColor">?appSecondaryBackgroundColor</item>
-        <item name = "trackCornerRadius">@dimen/progress_bar_circle_thickness</item>
-        <item name = "trackThickness">@dimen/progress_bar_circle_thickness</item>
+        <item name = "trackCornerRadius">@dimen/dp_6</item>
+        <item name = "trackThickness">@dimen/dp_6</item>
     </style>
 
     <style name = "Divider">
@@ -114,8 +105,24 @@
     </style>
 
     <style name = "ButtonTransparent">
-        <item name = "android:layout_width">@dimen/button_transparent_size</item>
-        <item name = "android:layout_height">@dimen/button_transparent_size</item>
-        <item name = "android:padding">@dimen/button_transparent_padding</item>
+        <item name = "android:layout_width">@dimen/dp_60</item>
+        <item name = "android:layout_height">@dimen/dp_60</item>
+        <item name = "android:padding">@dimen/dp_18</item>
+    </style>
+
+    <style name = "ButtonLikeBig">
+        <item name = "android:layout_width">@dimen/dp_54</item>
+        <item name = "android:layout_height">@dimen/dp_54</item>
+        <item name = "android:padding">@dimen/dp_10</item>
+        <item name = "android:src">@drawable/ic_like_20</item>
+        <item name = "android:background">@drawable/button_like_big</item>
+    </style>
+
+    <style name = "ButtonLikeSmall">
+        <item name = "android:layout_width">@dimen/dp_40</item>
+        <item name = "android:layout_height">@dimen/dp_40</item>
+        <item name = "android:padding">@dimen/dp_8</item>
+        <item name = "android:src">@drawable/ic_like_20</item>
+        <item name = "android:background">@drawable/button_like_small</item>
     </style>
 </resources>
