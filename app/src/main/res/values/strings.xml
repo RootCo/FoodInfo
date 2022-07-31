@@ -12,4 +12,6 @@
     <string name = "fat_header">Fat</string>
     <string name = "carb_header">Carb</string>
     <string name = "calories_header">Calories</string>
+    <string name = "see_all_text">see all</string>
+    <string name = "logo_text">no logo <b><u>yet</u></b> <font color = "#D27842"> :(</font></string>
 </resources>

@@ -26,11 +26,17 @@
             android:textColor = "?appMainFontColor"
             android:textSize = "@dimen/text_20" />
 
-        <ImageView
-            android:id = "@+id/iv_search_item_expand"
-            style = "@style/ButtonTransparent"
+        <TextView
+            android:id = "@+id/tv_see_all"
+            android:layout_width = "wrap_content"
+            android:layout_height = "60dp"
             android:layout_gravity = "bottom|end"
-            android:src = "@drawable/ic_arrow" />
+            android:layout_marginEnd = "@dimen/screen_horizontal_margin"
+            android:fontFamily = "@font/product_sans_regular"
+            android:gravity = "center|end"
+            android:text = "@string/see_all_text"
+            android:textColor = "?appPrimaryColor"
+            android:textSize = "@dimen/text_16" />
 
     </FrameLayout>
 

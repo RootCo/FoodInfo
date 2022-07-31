@@ -10,6 +10,7 @@
         <item name = "colorAccent">@color/primary</item>
 
         <item name = "appPrimaryColor">@color/primary</item>
+        <item name = "appPrimaryVariantColor">@color/primary_variant</item>
         <item name = "appMainBackgroundColor">@color/main_background</item>
         <item name = "appSecondaryBackgroundColor">@color/secondary_background</item>
         <item name = "appMainFontColor">@color/main_font</item>

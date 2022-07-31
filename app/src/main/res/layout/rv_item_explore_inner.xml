@@ -46,25 +46,22 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:layout_marginStart = "@dimen/dp_20"
-        android:layout_marginBottom = "@dimen/dp_20"
         android:fontFamily = "@font/product_sans_medium"
         android:textColor = "?appMainFontColor"
         android:textSize = "@dimen/text_18"
         app:drawableEndCompat = "@drawable/ic_kcal_20"
-        app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "@+id/btn_like"
         tools:text = "@sample/recipes.json/short/calories" />
 
     <ImageView
+        android:id = "@+id/btn_like"
         android:layout_width = "@dimen/button_like_small_size"
         android:layout_height = "@dimen/button_like_small_size"
-        android:layout_marginEnd = "@dimen/dp_20"
-        android:background = "@drawable/rounded_button"
-        android:elevation = "2dp"
-        android:padding = "@dimen/dp_6"
+        android:background = "@drawable/button_like_small"
+        android:padding = "@dimen/dp_8"
         android:src = "@drawable/ic_like_20"
-        app:layout_constraintBottom_toBottomOf = "@+id/tv_search_rv_recipe_calories"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintTop_toTopOf = "@+id/tv_search_rv_recipe_calories" />
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

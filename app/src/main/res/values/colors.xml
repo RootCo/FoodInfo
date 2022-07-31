@@ -3,14 +3,17 @@
     <color name = "primary">#D27842</color>
     <color name = "primary_dark">#D27842</color>
 
+    <color name = "primary_variant">#282828</color>
+    <color name = "primary_variant_dark">#F08C46</color>
+
     <color name = "main_background">#FFFFFFFF</color>
     <color name = "main_background_dark">#0C0F14</color>
 
     <color name = "secondary_background">#CCF4F4F4</color>
     <color name = "secondary_background_dark">#141923</color>
 
-    <color name = "main_font">#0A222F</color>
-    <color name = "main_font_dark">#CCFFFFFF</color>
+    <color name = "main_font">#282828</color>
+    <color name = "main_font_dark">#FAFAFA</color>
 
     <color name = "secondary_font">#727E86</color>
     <color name = "secondary_font_dark">#52555A</color>

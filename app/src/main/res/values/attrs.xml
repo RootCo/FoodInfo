@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name = "appPrimaryColor" format = "reference" />
+    <attr name = "appPrimaryVariantColor" format = "reference" />
     <attr name = "appMainBackgroundColor" format = "reference" />
     <attr name = "appSecondaryBackgroundColor" format = "reference" />
     <attr name = "appMainFontColor" format = "reference" />

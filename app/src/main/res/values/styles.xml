@@ -14,12 +14,12 @@
 
     <style name = "ShapeAppearanceBig">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">@dimen/image_radius_big</item>
+        <item name = "cornerSize">@dimen/image_corner_big</item>
     </style>
 
     <style name = "ShapeAppearanceNormal">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">@dimen/image_radius_normal</item>
+        <item name = "cornerSize">@dimen/image_corner_normal</item>
     </style>
 
     <style name = "SearchInput">
@@ -82,8 +82,6 @@
 
     <style name = "TabLayout" parent = "Scrollable">
         <item name = "android:background">?appMainBackgroundColor</item>
-        <item name = "android:textSize">@dimen/text_16</item>
-        <item name = "android:fontFamily">@font/product_sans_medium</item>
         <item name = "tabIndicator">@drawable/tab_layout_indicator</item>
         <item name = "tabRippleColor">@null</item>
         <item name = "tabTextAppearance">@style/Tab</item>
@@ -94,7 +92,7 @@
 
     <style name = "Tab">
         <item name = "android:textSize">@dimen/text_16</item>
-        <item name = "android:fontFamily">@font/product_sans_medium</item>
+        <item name = "android:fontFamily">@font/product_sans_regular</item>
     </style>
 
     <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
