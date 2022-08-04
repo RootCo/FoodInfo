@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Vlad\.android\avd\samsung_API_31.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="afe4d6b4" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-08-04T18:08:16.689127Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-08-04T18:48:31.522671400Z" />
   </component>
 </project>
