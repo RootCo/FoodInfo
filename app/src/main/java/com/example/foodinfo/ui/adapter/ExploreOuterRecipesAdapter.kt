@@ -24,6 +24,9 @@ class ExploreOuterRecipesAdapter(
         ExploreInnerRecipesAdapter,
         CategoryItem
     ) -> Unit,
+    private val readyToUnsubscribe: (
+        CategoryItem
+    ) -> Unit,
 ) : PagingDataAdapter<CategoryItem, ViewHolder>(CategoryItem.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -38,7 +41,8 @@ class ExploreOuterRecipesAdapter(
             onInnerItemClickListener,
             onOuterItemClickListener,
             readyToRestoreState,
-            readyToSubscribe
+            readyToSubscribe,
+            readyToUnsubscribe
         )
     }
 
@@ -59,5 +63,6 @@ class ExploreOuterRecipesAdapter(
         super.onViewDetachedFromWindow(holder)
         holder as ExploreOuterViewHolder
         holder.saveState()
+        holder.unsubscribe()
     }
 }

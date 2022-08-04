@@ -34,6 +34,9 @@ class ExploreOuterViewHolder(
         ExploreInnerRecipesAdapter,
         CategoryItem
     ) -> Unit,
+    private val readyToUnsubscribe: (
+        CategoryItem
+    ) -> Unit,
 ) : BaseViewHolder<CategoryItem>(itemView) {
 
 
@@ -111,6 +114,10 @@ class ExploreOuterViewHolder(
     fun subscribe() {
         readyToSubscribe.invoke(recyclerAdapter, item)
         readyToRestoreState.invoke(recyclerAdapter, item, recyclerView)
+    }
+
+    fun unsubscribe(){
+        readyToUnsubscribe.invoke(item)
     }
 
     fun saveState() {

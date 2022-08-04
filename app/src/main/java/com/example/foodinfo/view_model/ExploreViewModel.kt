@@ -62,6 +62,10 @@ class ExploreViewModel @Inject constructor(
         }
     }
 
+    private val readyToUnsubscribeLabel: (CategoryItem) -> Unit = { item ->
+        submitLabelJobs[item.label]?.cancel()
+    }
+
     /*
         Calling recycler.restoreState() right after setting up adapter for recycler
         causes situations where state restoration executes faster than adapter creates
@@ -152,7 +156,8 @@ class ExploreViewModel @Inject constructor(
                 onInnerItemClickListener,
                 onOuterItemClickListener,
                 readyToRestoreStateLabel,
-                readyToSubscribeLabel
+                readyToSubscribeLabel,
+                readyToUnsubscribeLabel
             )
         }
     }

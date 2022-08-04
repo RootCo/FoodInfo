@@ -35,23 +35,26 @@ data class HealthType(
         const val LABEL = "label"
     }
 
+    enum class Labels(val label: String, val icon: String) {
+        VEGAN("vegan", "ic_cat_health_vegan"),
+        PALEO("paleo", "ic_cat_health_paleo"),
+        FAT_FREE("fat-free", "ic_cat_health_fat_free"),
+        EGG_FREE("egg-free", "ic_cat_health_egg_free"),
+        SOY_FREE("soy-free", "ic_cat_health_soy_free"),
+        FISH_FREE("fish-free", "ic_cat_health_fish_free"),
+        LOW_SUGAR("low-sugar", "ic_cat_health_low_sugar"),
+        DAIRY_FREE("dairy-free", "ic_cat_health_dairy_free"),
+        WHEAT_FREE("wheat-free", "ic_cat_health_wheat_free"),
+        VEGETARIAN("vegetarian", "ic_cat_health_vegetarian"),
+        PEANUT_FREE("peanut-free", "ic_cat_health_peanut_free"),
+        GLUTEN_FREE("gluten-free", "ic_cat_health_gluten_free"),
+        TREE_NUT_FREE("tree-nut-free", "ic_cat_health_tree_nut_free"),
+        SHELLFISH_FREE("shellfish-free", "ic_cat_health_shellfish_free"),
+    }
+
     companion object {
         const val TABLE_NAME = "health_type"
-        val validLabels = arrayListOf(
-            "vegan",
-            "vegetarian",
-            "paleo",
-            "dairy-free",
-            "gluten-free",
-            "wheat-free",
-            "fat-free",
-            "low-sugar",
-            "egg-free",
-            "peanut-free",
-            "tree-nut-free",
-            "soy-free",
-            "fish-free",
-            "shellfish-free"
-        )
+        val LABELS = Labels.values().map { it.label } as ArrayList
+        val ICONS = Labels.values().map { it.icon } as ArrayList
     }
 }

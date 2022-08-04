@@ -19,7 +19,7 @@ class ExploreCategoriesDataSource(
     private val pages: List<List<Pair<String, SearchFilter>>>
 
     init {
-        pages = CategoryField.fromLabel(category).validLabels.map { label ->
+        pages = CategoryField.fromLabel(category).labels.map { label ->
             Pair(label, createFilter(label))
         }.chunked(RepositoryRecipesImpl.DB_EXPLORE_OUTER_PAGER.pageSize)
     }
