@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
+import com.example.foodinfo.ui.decorator.ExploreItemDecoration
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.ExploreViewModel
 import com.google.android.material.tabs.TabLayout
@@ -28,28 +29,29 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
     }
 
     override fun initUI() {
-        viewModel.initAdapters(
-            context!!,
-            onInnerItemClickListener,
-            onOuterItemClickListener
-        )
+        viewModel.initAdapters(context!!, onItemClickListener)
 
         recyclerView = binding.root.findViewById(R.id.rv_explore_outer)
         categoryTabs = binding.root.findViewById(R.id.tl_category)
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.setItemViewCacheSize(20)
-        recyclerView.layoutManager = LinearLayoutManager(context).also {
-            it.initialPrefetchItemCount = 3
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            addItemDecoration(
+                ExploreItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.explore_item_space),
+                    resources.getDimensionPixelSize(R.dimen.explore_item_margin)
+                )
+            )
         }
 
         with(LayoutInflater.from(context)) {
-            viewModel.categories.forEachIndexed { index, category ->
+            for (entry in viewModel.categories.entries) {
                 categoryTabs.addTab(
                     categoryTabs.newTab()
                         .setCustomView(inflate(R.layout.tab_layout, null, false))
-                        .setText(category)
-                        .setId(index)
+                        .setText(entry.value.label)
+                        .setId(entry.key)
                 )
             }
         }
@@ -76,14 +78,7 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         }
     }
 
-
-    private val onInnerItemClickListener: (String) -> Unit = { id ->
-        findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFRecipeExtended(id)
-        )
-    }
-
-    private val onOuterItemClickListener: (String, String) -> Unit = { category, label ->
+    private val onItemClickListener: (String, String) -> Unit = { category, label ->
         findNavController().navigate(
             ExploreFragmentDirections.actionFExploreToFSearchTarget(category, label)
         )

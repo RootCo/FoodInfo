@@ -60,7 +60,6 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
                 HomeItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.home_recipes_space),
                     resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
-//                    context.applicationComponent.decorationUtils.homeRecipesMargin
                 )
             )
             adapter = recipesAdapter

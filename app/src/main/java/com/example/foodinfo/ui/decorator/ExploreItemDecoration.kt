@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ExploreInnerItemDecoration(
+class ExploreItemDecoration(
     private val space: Int, private val margin: Int
 ) : RecyclerView.ItemDecoration() {
 
@@ -13,14 +13,14 @@ class ExploreInnerItemDecoration(
     ) {
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
-                right = space
-                left = margin
+                bottom = space
+                top = margin
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
-                left = space
-                right = margin
+                top = space
+                bottom = margin
             } else {
-                left = space
-                right = space
+                top = space
+                bottom = space
             }
         }
     }

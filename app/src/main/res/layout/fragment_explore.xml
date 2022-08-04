@@ -29,9 +29,9 @@
         android:id = "@+id/rv_explore_outer"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
+        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
         android:clipToPadding = "false"
         android:descendantFocusability = "blocksDescendants"
-        android:paddingBottom = "@dimen/dp_30"
-        tools:listitem = "@layout/rv_item_explore_outer" />
+        android:paddingBottom = "@dimen/dp_30" />
 
 </LinearLayout>

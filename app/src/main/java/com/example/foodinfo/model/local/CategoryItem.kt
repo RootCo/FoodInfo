@@ -1,17 +1,14 @@
 package com.example.foodinfo.model.local
 
-import android.os.Parcelable
-import androidx.paging.PagingData
+import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.DiffUtil
-import kotlinx.coroutines.flow.StateFlow
 
 
 data class CategoryItem(
     val category: String,
     val label: String,
-    val recipes: StateFlow<PagingData<RecipeExplore>>
+    val icon: Drawable
 ) {
-    var state: Parcelable? = null
 
     object ItemCallBack :
         DiffUtil.ItemCallback<CategoryItem>() {
