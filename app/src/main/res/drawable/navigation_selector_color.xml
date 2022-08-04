@@ -2,4 +2,3 @@
     <item android:color = "?appPrimaryColor" android:state_checked = "true" />
     <item android:color = "?appSecondaryFontColor" />
 </selector>
-    

@@ -3,12 +3,7 @@
     android:height = "24dp"
     android:viewportWidth = "24"
     android:viewportHeight = "24">
-    <group
-        android:scaleX = "-1"
-        android:translateX = "24">
-        <path
-            android:fillColor = "?appSecondaryFontColor"
-            android:pathData = "M6,6l0,2l8.59,0l-9.59,9.59l1.41,1.41l9.59,-9.59l0,8.59l2,0l0,-12z" />
-
-    </group>
+    <path
+        android:fillColor = "?appSecondaryFontColor"
+        android:pathData = "M18 6v2H9.41L19 17.59 17.59 19 8 9.41V18H6V6z" />
 </vector>

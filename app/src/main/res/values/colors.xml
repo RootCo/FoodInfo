@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name = "primary">#D27842</color>
-    <color name = "primary_dark">#D27842</color>
+    <color name = "primary">#FFAA5A</color>
+    <color name = "primary_dark">#FFAA5A</color>
 
     <color name = "primary_variant">#282828</color>
     <color name = "primary_variant_dark">#F08C46</color>
@@ -9,7 +9,7 @@
     <color name = "main_background">#FFFFFFFF</color>
     <color name = "main_background_dark">#0C0F14</color>
 
-    <color name = "secondary_background">#CCF4F4F4</color>
+    <color name = "secondary_background">#F5F5F5</color>
     <color name = "secondary_background_dark">#141923</color>
 
     <color name = "main_font">#282828</color>
@@ -21,6 +21,6 @@
     <color name = "warning">#1A0074FF</color>
     <color name = "error">#1AFF0000</color>
 
-    <color name = "divider">#D3D3D3</color>
+    <color name = "divider">#C8C8C8</color>
     <color name = "divider_dark">#1E232D</color>
 </resources>

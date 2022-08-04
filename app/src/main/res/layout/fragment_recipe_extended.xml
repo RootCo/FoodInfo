@@ -1,119 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
-    xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginTop = "16dp"
-    tools:context = ".ui.SearchResultFragment">
+    android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
+    android:layout_marginTop = "@dimen/screen_vertical_margin">
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ButtonTransparent"
-        android:elevation = "1dp"
+        style = "@style/ButtonStroke"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/main_info"
-        style = "@style/BackgroundBig"
-        android:layout_width = "0dp"
-        android:layout_height = "0dp"
-        android:layout_marginHorizontal = "16dp"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintHeight_max = "500dp"
-        app:layout_constraintHeight_percent = "0.7"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent">
+    <ImageView
+        android:id = "@+id/btn_like"
+        style = "@style/ButtonStroke"
+        android:layout_marginEnd = "@dimen/dp_16"
+        android:elevation = "1dp"
+        android:src = "@drawable/ic_like_20"
+        app:layout_constraintEnd_toStartOf = "@+id/btn_share"
+        app:layout_constraintTop_toTopOf = "parent" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id = "@+id/img"
-            android:layout_width = "match_parent"
-            android:layout_height = "0dp"
-            android:layout_marginBottom = "@dimen/dp_20"
-            android:scaleType = "centerCrop"
-            android:src = "@drawable/im_lagman"
-            app:layout_constraintBottom_toTopOf = "@+id/tv_header"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "parent"
-            app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig" />
+    <ImageView
+        android:id = "@+id/btn_share"
+        style = "@style/ButtonStroke"
+        android:elevation = "1dp"
+        android:src = "@drawable/ic_share_20"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id = "@+id/img"
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        android:layout_marginTop = "@dimen/dp_16"
+        android:scaleType = "centerCrop"
+        android:src = "@drawable/im_lagman"
+        app:layout_constraintDimensionRatio = "1"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/btn_back"
+        app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig" />
+
+    <TextView
+        android:id = "@+id/tv_header"
+        style = "@style/TextViewBig"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "@dimen/dp_12"
+        android:fontFamily = "@font/product_sans_medium"
+        android:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/img" />
+
+    <LinearLayout
+        android:id = "@+id/some_data"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "@dimen/dp_12"
+        app:layout_constraintEnd_toEndOf = "@+id/pfc_data"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/tv_header">
 
         <TextView
-            android:id = "@+id/tv_header"
+            android:id = "@+id/tv_home_rv_recipe_servings"
             style = "@style/TextViewSmall"
-            android:layout_width = "0dp"
+            android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:layout_marginHorizontal = "@dimen/dp_20"
-            android:layout_marginBottom = "@dimen/dp_20"
-            android:fontFamily = "@font/product_sans_medium"
-            android:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe"
-            android:textAlignment = "center"
-            app:layout_constraintBottom_toTopOf = "@+id/some_data"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent" />
+            android:layout_weight = "1"
+            android:drawablePadding = "6dp"
+            android:gravity = "center|start"
+            android:text = "34"
+            android:textColor = "?appSecondaryFontColor"
+            app:drawableStartCompat = "@drawable/ic_peoples_20" />
 
-        <LinearLayout
-            android:id = "@+id/some_data"
-            android:layout_width = "match_parent"
+        <TextView
+            android:id = "@+id/tv_home_rv_recipe_time"
+            style = "@style/TextViewSmall"
+            android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:layout_marginHorizontal = "50dp"
-            android:layout_marginBottom = "20dp"
-            app:layout_constraintBottom_toBottomOf = "parent"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent">
+            android:layout_weight = "1"
+            android:drawablePadding = "6dp"
+            android:gravity = "center|start"
+            android:text = "56 min"
+            android:textColor = "?appSecondaryFontColor"
+            app:drawableStartCompat = "@drawable/ic_time_20" />
 
-            <TextView
-                android:id = "@+id/tv_home_rv_recipe_servings"
-                style = "@style/TextViewSmall"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:layout_weight = "1"
-                android:drawablePadding = "6dp"
-                android:gravity = "center|start"
-                android:text = "34"
-                android:textColor = "?appSecondaryFontColor"
-                app:drawableStartCompat = "@drawable/ic_peoples_20" />
+        <TextView
+            android:id = "@+id/tv_home_rv_recipe_calories"
+            style = "@style/TextViewSmall"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "0"
+            android:drawablePadding = "6dp"
+            android:gravity = "center|start"
+            android:text = "1200g"
+            android:textColor = "?appSecondaryFontColor"
+            app:drawableStartCompat = "@drawable/ic_scale_20" />
 
-            <TextView
-                android:id = "@+id/tv_home_rv_recipe_time"
-                style = "@style/TextViewSmall"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:layout_weight = "1"
-                android:drawablePadding = "6dp"
-                android:gravity = "center|start"
-                android:text = "56 min"
-                android:textColor = "?appSecondaryFontColor"
-                app:drawableStartCompat = "@drawable/ic_time_20" />
-
-            <TextView
-                android:id = "@+id/tv_home_rv_recipe_calories"
-                style = "@style/TextViewSmall"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:layout_weight = "0"
-                android:drawablePadding = "6dp"
-                android:gravity = "center|start"
-                android:text = "1200g"
-                android:textColor = "?appSecondaryFontColor"
-                app:drawableStartCompat = "@drawable/ic_scale_20" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id = "@+id/pfc_data"
         android:layout_width = "0dp"
         android:layout_height = "wrap_content"
-        android:layout_marginHorizontal = "24dp"
-        app:layout_constraintBottom_toBottomOf = "parent"
+        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
+        app:layout_constraintBottom_toBottomOf = "@id/calories_data"
         app:layout_constraintEnd_toStartOf = "@+id/calories_data"
         app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/main_info">
-
+        app:layout_constraintTop_toTopOf = "@id/calories_data">
 
         <TextView
             android:id = "@+id/protein_title"
@@ -214,10 +211,9 @@
         android:id = "@+id/calories_data"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:layout_marginEnd = "24dp"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/main_info">
+        app:layout_constraintTop_toBottomOf = "@+id/some_data">
 
         <TextView
             android:id = "@+id/calories_title"

@@ -110,6 +110,14 @@
         <item name = "android:padding">@dimen/dp_18</item>
     </style>
 
+    <style name = "ButtonStroke">
+        <item name = "tint">?appMainFontColor</item>
+        <item name = "android:layout_width">@dimen/dp_44</item>
+        <item name = "android:layout_height">@dimen/dp_44</item>
+        <item name = "android:background">@drawable/button_background</item>
+        <item name = "android:padding">@dimen/dp_8</item>
+    </style>
+
     <style name = "ButtonLikeBig">
         <item name = "android:layout_width">@dimen/dp_54</item>
         <item name = "android:layout_height">@dimen/dp_54</item>

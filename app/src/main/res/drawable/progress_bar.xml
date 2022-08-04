@@ -5,9 +5,7 @@
             <solid android:color = "@color/secondary_background" />
         </shape>
     </item>
-
     <item android:id = "@android:id/progress">
-
         <scale android:scaleWidth = "100%">
             <shape>
                 <corners android:radius = "@dimen/dp_8" />
