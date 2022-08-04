@@ -35,15 +35,18 @@ data class DietType(
         const val LABEL = "label"
     }
 
+    enum class Labels(val label: String, val icon: String) {
+        LOW_FAT("low-fat", "ic_cat_diet_low_fat"),
+        BALANCED("balanced", "ic_cat_diet_balanced"),
+        LOW_CARB("low-carb", "ic_cat_diet_low_carb"),
+        HIGH_FIBER("high-fiber", "ic_cat_diet_high_fiber"),
+        LOW_SODIUM("low-sodium", "ic_cat_diet_low_sodium"),
+        HIGH_PROTEIN("high-protein", "ic_cat_diet_high_protein"),
+    }
+
     companion object {
         const val TABLE_NAME = "diet_type"
-        val validLabels = arrayListOf(
-            "balanced",
-            "high-protein",
-            "high-fiber",
-            "low-fat",
-            "low-carb",
-            "low-sodium"
-        )
+        val LABELS = Labels.values().map { it.label } as ArrayList
+        val ICONS = Labels.values().map { it.icon } as ArrayList
     }
 }

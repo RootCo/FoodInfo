@@ -35,14 +35,17 @@ data class MealType(
         const val LABEL = "label"
     }
 
+    enum class Labels(val label: String, val icon: String) {
+        LUNCH("lunch", "ic_cat_meal_lunch"),
+        SNACK("snack", "ic_cat_meal_snack"),
+        DINNER("dinner", "ic_cat_meal_dinner"),
+        TEATIME("teatime", "ic_cat_meal_teatime"),
+        BREAKFAST("breakfast", "ic_cat_meal_breakfast"),
+    }
+
     companion object {
         const val TABLE_NAME = "meal_type"
-        val validLabels = arrayListOf(
-            "breakfast",
-            "dinner",
-            "lunch",
-            "snack",
-            "teatime"
-        )
+        val LABELS = Labels.values().map { it.label } as ArrayList
+        val ICONS = Labels.values().map { it.icon } as ArrayList
     }
 }

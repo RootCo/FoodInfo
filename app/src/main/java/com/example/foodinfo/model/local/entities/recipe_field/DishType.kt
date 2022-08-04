@@ -35,26 +35,28 @@ data class DishType(
         const val LABEL = "label"
     }
 
+    enum class Labels(val label: String, val icon: String) {
+        SOUP("soup", "ic_cat_dish_soup"),
+        PREPS("preps", "ic_cat_dish_preps"),
+        SALAD("salad", "ic_cat_dish_salad"),
+        BREAD("bread", "ic_cat_dish_bread"),
+        DRINKS("drinks", "ic_cat_dish_drinks"),
+        OMELET("omelet", "ic_cat_dish_omelet"),
+        PANCAKE("pancake", "ic_cat_dish_pancake"),
+        STARTER("starter", "ic_cat_dish_starter"),
+        CEREALS("cereals", "ic_cat_dish_cereals"),
+        PRESERVE("preserve", "ic_cat_dish_preserve"),
+        DESSERTS("desserts", "ic_cat_dish_desserts"),
+        ALCOHOL("alcohol-cocktail", "ic_cat_dish_alcohol"),
+        SANDWICHES("sandwiches", "ic_cat_dish_sandwiches"),
+        MAIN_COURSE("main course", "ic_cat_dish_main_course"),
+        BISCUITS("biscuits and cookies", "ic_cat_dish_biscuits"),
+        CONDIMENTS("condiments and sauces", "ic_cat_dish_condiments"),
+    }
+
     companion object {
         const val TABLE_NAME = "dish_type"
-        val validLabels = arrayListOf(
-            "alcohol-cocktail",
-            "biscuits and cookies",
-            "bread",
-            "cereals",
-            "condiments and sauces",
-            "drinks",
-            "desserts",
-            "egg",
-            "main course",
-            "omelet",
-            "pancake",
-            "preps",
-            "preserve",
-            "salad",
-            "sandwiches",
-            "soup",
-            "starter"
-        )
+        val LABELS = Labels.values().map { it.label } as ArrayList
+        val ICONS = Labels.values().map { it.icon } as ArrayList
     }
 }

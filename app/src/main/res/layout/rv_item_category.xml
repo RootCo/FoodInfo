@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:id = "@+id/cl_background"
+    style = "@style/BackgroundItemSmall"
+    android:layout_width = "match_parent"
+    android:layout_height = "@dimen/dp_100">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id = "@+id/ic_preview"
+        android:layout_width = "0dp"
+        android:layout_height = "0dp"
+        android:layout_margin = "@dimen/dp_12"
+        android:background = "@color/main_background"
+        android:scaleType = "fitXY"
+        android:tint = "?appMainFontColor"
+        app:contentPadding = "@dimen/dp_12"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintDimensionRatio = "W,1:1"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:shapeAppearanceOverlay = "@style/ShapeAppearanceNormal"
+        tools:src = "@drawable/ic_cat_cuisine_asian" />
+
+    <TextView
+        android:id = "@+id/tv_title"
+        style = "@style/TextViewBig"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginStart = "@dimen/dp_20"
+        android:ellipsize = "end"
+        android:maxLines = "1"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toStartOf = "@+id/btn_forward"
+        app:layout_constraintStart_toEndOf = "@+id/ic_preview"
+        app:layout_constraintTop_toTopOf = "parent"
+        tools:text = "condiments and cookies" />
+
+    <ImageView
+        android:id = "@+id/btn_forward"
+        style = "@style/ButtonTransparent"
+        android:src = "@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:tint = "?appPrimaryColor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
