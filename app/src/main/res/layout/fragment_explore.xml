@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-    xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
@@ -16,22 +15,20 @@
         android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
         android:paddingHorizontal = "@dimen/screen_horizontal_margin" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id = "@+id/tl_category"
-        style = "@style/TabLayout"
-        android:layout_marginVertical = "@dimen/dp_24"
-        android:paddingHorizontal = "@dimen/dp_16"
-        app:tabMode = "scrollable">
-
-    </com.google.android.material.tabs.TabLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id = "@+id/rv_explore_outer"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
-        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
         android:clipToPadding = "false"
         android:descendantFocusability = "blocksDescendants"
-        android:paddingBottom = "@dimen/dp_30" />
+        android:paddingBottom = "@dimen/dp_30"
+        tools:listitem = "@layout/rv_item_explore_outer" />
+
+    <ProgressBar
+        android:id = "@+id/explore_progress"
+        android:layout_width = "@dimen/progress_size"
+        android:layout_height = "match_parent"
+        android:layout_gravity = "center"
+        android:visibility = "gone" />
 
 </LinearLayout>

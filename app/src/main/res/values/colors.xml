@@ -6,7 +6,7 @@
     <color name = "primary_variant">#282828</color>
     <color name = "primary_variant_dark">#F08C46</color>
 
-    <color name = "main_background">#FFFFFFFF</color>
+    <color name = "main_background">#FFFFFF</color>
     <color name = "main_background_dark">#0C0F14</color>
 
     <color name = "secondary_background">#F5F5F5</color>

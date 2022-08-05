@@ -11,7 +11,7 @@ class DecorationUtils(context: Context) {
     init {
         with(context.resources) {
             val screenWidth = displayMetrics.widthPixels
-            val exploreItemSpace = getDimension(R.dimen.search_recipes_space)
+            val exploreItemSpace = getDimension(R.dimen.explore_item_inner_space)
             val exploreItemMargin = getDimension(R.dimen.screen_horizontal_margin)
             val aspectRatio =
                 getDimension(R.dimen.home_recipes_height) / getDimension(R.dimen.home_recipes_width)

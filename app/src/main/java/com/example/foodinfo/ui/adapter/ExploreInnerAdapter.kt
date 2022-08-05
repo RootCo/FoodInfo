@@ -5,29 +5,29 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.model.local.CategoryItem
-import com.example.foodinfo.ui.view_holder.ExploreViewHolder
+import com.example.foodinfo.model.local.LabelItem
+import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
 
 
-class ExploreCategoryAdapter(
+class ExploreInnerAdapter(
     context: Context,
     private val onItemClickListener: (String, String) -> Unit
-) : ListAdapter<CategoryItem, ViewHolder>(CategoryItem.ItemCallBack) {
+) : ListAdapter<LabelItem, ViewHolder>(LabelItem.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ExploreViewHolder(
-            ExploreViewHolder.createView(layoutInflater, parent),
+        return ExploreInnerViewHolder(
+            ExploreInnerViewHolder.createView(layoutInflater, parent),
             onItemClickListener
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { recipes ->
-            holder as ExploreViewHolder
-            holder.bind(recipes)
+        getItem(position)?.let { label ->
+            holder as ExploreInnerViewHolder
+            holder.bind(label)
         }
     }
 }

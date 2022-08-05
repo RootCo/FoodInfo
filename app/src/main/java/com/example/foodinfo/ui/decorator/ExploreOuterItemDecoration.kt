@@ -4,7 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ExploreItemDecoration(
+class ExploreOuterItemDecoration(
     private val space: Int, private val margin: Int
 ) : RecyclerView.ItemDecoration() {
 

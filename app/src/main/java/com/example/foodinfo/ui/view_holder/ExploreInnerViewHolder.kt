@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.foodinfo.R
-import com.example.foodinfo.model.local.CategoryItem
+import com.example.foodinfo.model.local.LabelItem
 import com.google.android.material.imageview.ShapeableImageView
 
 
-class ExploreViewHolder(
+class ExploreInnerViewHolder(
     itemView: View,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<CategoryItem>(itemView) {
+) : BaseViewHolder<LabelItem>(itemView) {
 
     private val title: TextView = itemView.findViewById(
         R.id.tv_title
@@ -22,7 +22,7 @@ class ExploreViewHolder(
         R.id.ic_preview
     )
     private val background: ConstraintLayout = itemView.findViewById(
-        R.id.cl_background
+        R.id.cl_explore_inner_item
     )
 
 
@@ -33,7 +33,7 @@ class ExploreViewHolder(
     }
 
 
-    override fun bind(item: CategoryItem) {
+    override fun bind(item: LabelItem) {
         super.bind(item)
         with(this.item) {
             title.text = label
@@ -44,7 +44,7 @@ class ExploreViewHolder(
     companion object {
         fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
             return layoutInflater.inflate(
-                R.layout.rv_item_explore, parent, false
+                R.layout.rv_item_explore_inner, parent, false
             )
         }
     }

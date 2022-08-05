@@ -5,11 +5,11 @@
     </style>
 
     <style name = "BackgroundItemBig">
-        <item name = "android:background">@drawable/rv_item_background_big</item>
+        <item name = "android:background">@drawable/rv_item_background_home</item>
     </style>
 
     <style name = "BackgroundItemSmall">
-        <item name = "android:background">@drawable/rv_item_background_small</item>
+        <item name = "android:background">@drawable/rv_item_background_explore</item>
     </style>
 
     <style name = "ShapeAppearanceBig">
