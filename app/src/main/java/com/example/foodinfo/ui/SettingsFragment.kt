@@ -1,38 +1,24 @@
 package com.example.foodinfo.ui
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.foodinfo.databinding.FragmentSettingsBinding
+import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.SettingsViewModel
 
-class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
+    FragmentSettingsBinding::inflate
+) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this)[SettingsViewModel::class.java]
-
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.lel1
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    private val viewModel: SettingsViewModel by viewModels {
+        activity!!.applicationComponent.viewModelsFactory()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun initUI() {
+
+    }
+
+    override fun releaseUI() {
+
     }
 }

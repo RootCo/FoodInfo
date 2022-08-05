@@ -24,10 +24,17 @@ abstract class BaseFragment<VB : ViewBinding>(
      */
     abstract fun initUI()
 
+    /**
+     * Calls in onPause().
+     *
+     * Function to release all references to Views and cancel coroutine Jobs
+     */
+    abstract fun releaseUI()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
         _binding = bindingInflater.invoke(inflater, container, false)
         return binding.root
     }
@@ -35,6 +42,11 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        releaseUI()
     }
 
     override fun onDestroyView() {

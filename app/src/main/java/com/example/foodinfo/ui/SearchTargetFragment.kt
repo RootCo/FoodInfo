@@ -10,32 +10,45 @@ import com.example.foodinfo.databinding.FragmentSearchTargetBinding
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.SearchTargetViewModel
 
-class SearchTargetFragment : BaseDataFragment<FragmentSearchTargetBinding>(
+class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
     FragmentSearchTargetBinding::inflate
 ) {
 
     private val args: SearchTargetFragmentArgs by navArgs()
 
-
     private val viewModel: SearchTargetViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    override fun updateViewModelData() {
-        viewModel.updateRecipes(args.category, args.label)
+    private val onBackClickListener: () -> Unit = {
+        findNavController().navigateUp()
     }
 
+    private val onSearchClickListener: () -> Unit = {
+        findNavController().navigate(
+            SearchResultFragmentDirections.actionFSearchResultToFSearchInput()
+        )
+    }
+
+
     override fun initUI() {
-        binding.root.findViewById<TextView>(R.id.tv_header).text = args.label
+        val textViewHeader: TextView
+        val buttonSearch: ImageView
+        val buttonBack: ImageView
 
-        binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
-            findNavController().navigateUp()
+        with(binding.root) {
+            textViewHeader = findViewById(R.id.tv_header)
+            buttonSearch = findViewById(R.id.btn_search)
+            buttonBack = findViewById(R.id.btn_back)
         }
 
-        binding.root.findViewById<ImageView>(R.id.btn_search).setOnClickListener {
-            findNavController().navigate(
-                SearchTargetFragmentDirections.actionFSearchTargetToFSearchInput()
-            )
-        }
+        textViewHeader.text = args.label
+
+        buttonSearch.setOnClickListener { onSearchClickListener() }
+        buttonBack.setOnClickListener { onBackClickListener() }
+    }
+
+    override fun releaseUI() {
+
     }
 }

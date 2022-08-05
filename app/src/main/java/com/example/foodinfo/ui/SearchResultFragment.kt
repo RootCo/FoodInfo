@@ -10,34 +10,47 @@ import com.example.foodinfo.databinding.FragmentSearchResultBinding
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.SearchResultViewModel
 
-class SearchResultFragment : BaseDataFragment<FragmentSearchResultBinding>(
+class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
     FragmentSearchResultBinding::inflate
 ) {
 
     private val args: SearchResultFragmentArgs by navArgs()
 
-
     private val viewModel: SearchResultViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    override fun updateViewModelData() {
-        viewModel.updateRecipes(args.inputText)
+    // возвращаемся на предыдущий экран минуя экран с вводом поиска
+    private val onBackClickListener: () -> Unit = {
+        findNavController().popBackStack(R.id.f_search_input, true)
     }
 
+    private val onSearchClickListener: () -> Unit = {
+        findNavController().navigate(
+            SearchResultFragmentDirections.actionFSearchResultToFSearchInput()
+        )
+    }
+
+
     override fun initUI() {
-        binding.root.findViewById<TextView>(R.id.tv_header).text = args.inputText
+        val textViewHeader: TextView
+        val buttonSearch: ImageView
+        val buttonBack: ImageView
 
-        // возвращаемся на предыдущий экран минуя экран с вводом поиска
-        binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
-            findNavController().popBackStack(R.id.f_search_input, true)
+        with(binding.root) {
+            textViewHeader = findViewById(R.id.tv_header)
+            buttonSearch = findViewById(R.id.btn_search)
+            buttonBack = findViewById(R.id.btn_back)
         }
 
-        binding.root.findViewById<ImageView>(R.id.btn_search).setOnClickListener {
-            findNavController().navigate(
-                SearchResultFragmentDirections.actionFSearchResultToFSearchInput()
-            )
-        }
+        textViewHeader.text = args.inputText
+
+        buttonSearch.setOnClickListener { onSearchClickListener() }
+        buttonBack.setOnClickListener { onBackClickListener() }
+    }
+
+    override fun releaseUI() {
+
     }
 
 }

@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
+class HomeFragment : BaseFragment<FragmentHomeBinding>(
     FragmentHomeBinding::inflate
 ) {
 
@@ -28,33 +28,37 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    private var popularRecipesJob: Job? = null
+    private var submitDataJob: Job? = null
 
-    override fun updateViewModelData() {
+    private val onItemClickListener: (String) -> Unit = { id ->
+        findNavController().navigate(
+            HomeFragmentDirections.actionFHomeToFRecipeExtended(id)
+        )
     }
 
+
     override fun initUI() {
-        val recipesProgress: ProgressBar
-        val recipesRecycler: RecyclerView
-        val recipesAdapter: HomeRecipesAdapter
-        val layoutManager: LinearLayoutManager
+        val progressBar: ProgressBar
+        val recyclerView: RecyclerView
+        val recyclerAdapter: HomeRecipesAdapter
+
 
         with(binding.root) {
-            layoutManager = LinearLayoutManager(context)
-            recipesProgress = findViewById(R.id.home_progress)
-            recipesRecycler = findViewById(R.id.rv_home_recipes)
-            recipesAdapter = HomeRecipesAdapter(context, onItemClickListener)
+            progressBar = findViewById(R.id.home_progress)
+            recyclerView = findViewById(R.id.rv_home_recipes)
+            recyclerAdapter = HomeRecipesAdapter(context, onItemClickListener)
         }
 
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recipesAdapter.addLoadStateListener { state: CombinedLoadStates ->
-            recipesRecycler.isVisible = state.refresh != LoadState.Loading
-            recipesProgress.isVisible = state.refresh == LoadState.Loading
+        recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
+            recyclerView.isVisible = state.refresh != LoadState.Loading
+            progressBar.isVisible = state.refresh == LoadState.Loading
         }
 
-        with(recipesRecycler)
-        {
-            this.layoutManager = layoutManager
+        with(recyclerView) {
+            layoutManager = LinearLayoutManager(context).also {
+                it.orientation = LinearLayoutManager.HORIZONTAL
+            }
+            adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
                 HomeItemDecoration(
@@ -62,19 +66,15 @@ class HomeFragment : BaseDataFragment<FragmentHomeBinding>(
                     resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
                 )
             )
-            adapter = recipesAdapter
         }
 
-        popularRecipesJob?.cancel()
-        popularRecipesJob = lifecycleScope.launch {
-            viewModel.recipes.collectLatest(recipesAdapter::submitData)
+        submitDataJob = lifecycleScope.launch {
+            viewModel.recipes.collectLatest(recyclerAdapter::submitData)
         }
     }
 
-
-    private val onItemClickListener: (String) -> Unit = { id ->
-        findNavController().navigate(
-            HomeFragmentDirections.actionFHomeToFRecipeExtended(id)
-        )
+    override fun releaseUI() {
+        submitDataJob?.cancel()
+        submitDataJob = null
     }
 }

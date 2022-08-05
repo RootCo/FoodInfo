@@ -3,6 +3,7 @@ package com.example.foodinfo.ui
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +13,11 @@ import com.example.foodinfo.ui.adapter.ExploreOuterAdapter
 import com.example.foodinfo.ui.decorator.ExploreOuterItemDecoration
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.ExploreViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
-class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
+class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     FragmentExploreBinding::inflate
 ) {
 
@@ -22,20 +25,39 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    override fun updateViewModelData() {
+    private var submitDataJob: Job? = null
+
+    private val onInnerItemClickListener: (String, String) -> Unit = { category, label ->
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFSearchTarget(category, label)
+        )
     }
 
-    override fun initUI() {
-        val recyclerAdapter = ExploreOuterAdapter(
-            context!!,
-            onInnerItemClickListener
+    private val onSearchClickListener: () -> Unit = {
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFSearchInput()
         )
+    }
 
-        val recyclerView = binding.root.findViewById<RecyclerView>(R.id.rv_explore_outer)
-        val progressBar = binding.root.findViewById<ProgressBar>(R.id.explore_progress)
+
+    override fun initUI() {
+        val recyclerAdapter: ExploreOuterAdapter
+        val recyclerView: RecyclerView
+        val progressBar: ProgressBar
+        val searchView: TextView
+
+        with(binding.root) {
+            recyclerAdapter = ExploreOuterAdapter(context, onInnerItemClickListener)
+            recyclerView = findViewById(R.id.rv_explore_outer)
+            progressBar = findViewById(R.id.explore_progress)
+            searchView = findViewById(R.id.tv_search)
+        }
+
+        searchView.setOnClickListener { onSearchClickListener() }
 
         with(recyclerView) {
             layoutManager = LinearLayoutManager(context)
+            adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
                 ExploreOuterItemDecoration(
@@ -43,21 +65,15 @@ class ExploreFragment : BaseDataFragment<FragmentExploreBinding>(
                     resources.getDimensionPixelSize(R.dimen.explore_item_outer_margin)
                 )
             )
-            adapter = recyclerAdapter
         }
 
-        recyclerAdapter.submitList(viewModel.categories)
-
-        binding.root.findViewById<TextView>(R.id.tv_search).setOnClickListener {
-            findNavController().navigate(
-                ExploreFragmentDirections.actionFExploreToFSearchInput()
-            )
+        submitDataJob = lifecycleScope.launch {
+            recyclerAdapter.submitList(viewModel.categories)
         }
     }
 
-    private val onInnerItemClickListener: (String, String) -> Unit = { category, label ->
-        findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFSearchTarget(category, label)
-        )
+    override fun releaseUI() {
+        submitDataJob?.cancel()
+        submitDataJob = null
     }
 }

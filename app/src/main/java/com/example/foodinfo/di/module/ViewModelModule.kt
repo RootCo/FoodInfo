@@ -56,4 +56,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchTargetViewModel::class)
     abstract fun bindsSearchTargetViewModel(viewModel: SearchTargetViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    abstract fun bindsSettingsViewModel(viewModel: SettingsViewModel): ViewModel
 }

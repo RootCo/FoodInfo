@@ -16,9 +16,22 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
+    private val onBackClickListener: () -> Unit = {
+        findNavController().navigateUp()
+    }
+
+
     override fun initUI() {
-        binding.root.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
-            findNavController().navigateUp()
+        val buttonBack: ImageView
+
+        with(binding.root) {
+            buttonBack = findViewById(R.id.btn_back)
         }
+
+        buttonBack.setOnClickListener { onBackClickListener() }
+    }
+
+    override fun releaseUI() {
+
     }
 }

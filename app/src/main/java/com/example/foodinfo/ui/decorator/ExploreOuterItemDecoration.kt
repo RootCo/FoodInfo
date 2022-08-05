@@ -14,7 +14,6 @@ class ExploreOuterItemDecoration(
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
                 bottom = space
-                top = margin
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
                 top = space
                 bottom = margin

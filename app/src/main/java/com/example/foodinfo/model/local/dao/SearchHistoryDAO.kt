@@ -12,7 +12,8 @@ interface SearchHistoryDAO {
     @Query(
         "${SearchInput.SELECTOR} " +
                 "WHERE ${SearchInput.Columns.INPUT_TEXT} " +
-                "LIKE '%' || :inputText || '%' ORDER BY ${SearchInput.Columns.DATE} DESC " +
+                "LIKE '%' || :inputText || '%' " +
+                "ORDER BY ${SearchInput.Columns.DATE} DESC " +
                 "LIMIT ${SearchInput.LIMIT}"
     )
     fun getHistoryLatest(inputText: String): List<SearchInput>
