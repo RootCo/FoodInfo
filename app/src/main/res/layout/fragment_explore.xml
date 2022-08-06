@@ -9,7 +9,7 @@
     tools:context = ".ui.ExploreFragment">
 
     <TextView
-        android:id = "@+id/tv_explore_search"
+        android:id = "@+id/tv_search"
         style = "@style/SearchInput"
         android:layout_width = "match_parent"
         android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
@@ -17,7 +17,7 @@
         android:paddingHorizontal = "@dimen/screen_horizontal_margin" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/rv_explore_categories"
+        android:id = "@+id/rv_categories"
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
         android:clipToPadding = "false"
@@ -26,7 +26,7 @@
         tools:listitem = "@layout/rv_item_explore_outer" />
 
     <ProgressBar
-        android:id = "@+id/pb_explore_categories"
+        android:id = "@+id/pb_categories"
         android:layout_width = "@dimen/progress_size"
         android:layout_height = "match_parent"
         android:layout_gravity = "center"

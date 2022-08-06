@@ -110,9 +110,11 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
 
-    override fun onResume(): Unit = with(binding) {
+    override fun onResume() {
         super.onResume()
-        showKeyboard(etSearchInput)
+        with(binding) {
+            showKeyboard(etSearchInput)
+        }
     }
 
     override fun onPause() {

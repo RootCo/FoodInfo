@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:id = "@+id/tv_home_header"
+        android:id = "@+id/tv_logo"
         android:layout_width = "0dp"
         android:layout_height = "@dimen/dp_140"
         android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintHeight_max = "450dp"
         app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@id/tv_home_header">
+        app:layout_constraintTop_toBottomOf = "@id/tv_logo">
 
         <TextView
-            android:id = "@+id/tv_home_recipes_header"
+            android:id = "@+id/tv_recipes_header"
             style = "@style/TextViewVeryBig"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
@@ -48,7 +48,7 @@
             android:textAlignment = "textStart" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id = "@+id/rv_home_recipes"
+            android:id = "@+id/rv_recipes"
             android:layout_width = "match_parent"
             android:layout_height = "match_parent"
             android:clipToPadding = "true"
@@ -57,7 +57,7 @@
             tools:listitem = "@layout/rv_item_home" />
 
         <ProgressBar
-            android:id = "@+id/pb_home_recipes"
+            android:id = "@+id/pb_recipes"
             android:layout_width = "@dimen/progress_size"
             android:layout_height = "match_parent"
             android:layout_gravity = "center"

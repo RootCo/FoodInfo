@@ -40,8 +40,8 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 
     override fun initUI(): Unit = with(binding) {
         recyclerAdapter = ExploreOuterAdapter(context!!, onInnerItemClickListener)
-        tvExploreSearch.setOnClickListener { onSearchClickListener() }
-        with(rvExploreCategories) {
+        tvSearch.setOnClickListener { onSearchClickListener() }
+        with(rvCategories) {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
             setHasFixedSize(true)

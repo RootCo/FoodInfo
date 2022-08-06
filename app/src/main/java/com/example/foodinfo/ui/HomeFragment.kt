@@ -39,12 +39,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun initUI(): Unit = with(binding) {
         recyclerAdapter = HomeRecipesAdapter(context!!, onItemClickListener).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
-                rvHomeRecipes.isVisible = state.refresh != LoadState.Loading
-                pbHomeRecipes.isVisible = state.refresh == LoadState.Loading
+                rvRecipes.isVisible = state.refresh != LoadState.Loading
+                pbRecipes.isVisible = state.refresh == LoadState.Loading
             }
         }
 
-        with(rvHomeRecipes) {
+        with(rvRecipes) {
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }

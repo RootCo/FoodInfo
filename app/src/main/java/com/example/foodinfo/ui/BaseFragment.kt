@@ -27,7 +27,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     /**
      * Calls in onResume().
      *
-     * Function to launch all coroutines
+     * Function to launch all coroutines and subscribe all necessary Views to ViewModel data
      */
     open fun subscribeUI() {}
 
