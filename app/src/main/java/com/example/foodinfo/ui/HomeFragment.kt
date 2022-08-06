@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
 import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
@@ -29,6 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     private var submitDataJob: Job? = null
+    private lateinit var recyclerAdapter: HomeRecipesAdapter
 
     private val onItemClickListener: (String) -> Unit = { id ->
         findNavController().navigate(
@@ -37,24 +36,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
 
-    override fun initUI() {
-        val progressBar: ProgressBar
-        val recyclerView: RecyclerView
-        val recyclerAdapter: HomeRecipesAdapter
-
-
-        with(binding.root) {
-            progressBar = findViewById(R.id.home_progress)
-            recyclerView = findViewById(R.id.rv_home_recipes)
-            recyclerAdapter = HomeRecipesAdapter(context, onItemClickListener)
+    override fun initUI(): Unit = with(binding) {
+        recyclerAdapter = HomeRecipesAdapter(context!!, onItemClickListener).also {
+            it.addLoadStateListener { state: CombinedLoadStates ->
+                rvHomeRecipes.isVisible = state.refresh != LoadState.Loading
+                pbHomeRecipes.isVisible = state.refresh == LoadState.Loading
+            }
         }
 
-        recyclerAdapter.addLoadStateListener { state: CombinedLoadStates ->
-            recyclerView.isVisible = state.refresh != LoadState.Loading
-            progressBar.isVisible = state.refresh == LoadState.Loading
-        }
-
-        with(recyclerView) {
+        with(rvHomeRecipes) {
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }
@@ -67,13 +57,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 )
             )
         }
+    }
 
+    override fun subscribeUI() {
+        super.subscribeUI()
         submitDataJob = lifecycleScope.launch {
             viewModel.recipes.collectLatest(recyclerAdapter::submitData)
         }
     }
 
-    override fun releaseUI() {
+    override fun unsubscribeUI() {
         submitDataJob?.cancel()
         submitDataJob = null
     }

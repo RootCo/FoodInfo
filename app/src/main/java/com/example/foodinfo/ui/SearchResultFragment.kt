@@ -1,7 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,25 +30,9 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
     }
 
 
-    override fun initUI() {
-        val textViewHeader: TextView
-        val buttonSearch: ImageView
-        val buttonBack: ImageView
-
-        with(binding.root) {
-            textViewHeader = findViewById(R.id.tv_header)
-            buttonSearch = findViewById(R.id.btn_search)
-            buttonBack = findViewById(R.id.btn_back)
-        }
-
-        textViewHeader.text = args.inputText
-
-        buttonSearch.setOnClickListener { onSearchClickListener() }
-        buttonBack.setOnClickListener { onBackClickListener() }
+    override fun initUI(): Unit = with(binding) {
+        tvHeader.text = args.inputText
+        btnBack.setOnClickListener { onBackClickListener() }
+        btnSearch.setOnClickListener { onSearchClickListener() }
     }
-
-    override fun releaseUI() {
-
-    }
-
 }

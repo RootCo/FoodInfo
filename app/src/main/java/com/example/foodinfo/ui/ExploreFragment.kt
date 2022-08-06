@@ -1,12 +1,9 @@
 package com.example.foodinfo.ui
 
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
 import com.example.foodinfo.ui.adapter.ExploreOuterAdapter
@@ -26,6 +23,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     }
 
     private var submitDataJob: Job? = null
+    private lateinit var recyclerAdapter: ExploreOuterAdapter
 
     private val onInnerItemClickListener: (String, String) -> Unit = { category, label ->
         findNavController().navigate(
@@ -40,22 +38,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     }
 
 
-    override fun initUI() {
-        val recyclerAdapter: ExploreOuterAdapter
-        val recyclerView: RecyclerView
-        val progressBar: ProgressBar
-        val searchView: TextView
-
-        with(binding.root) {
-            recyclerAdapter = ExploreOuterAdapter(context, onInnerItemClickListener)
-            recyclerView = findViewById(R.id.rv_explore_outer)
-            progressBar = findViewById(R.id.explore_progress)
-            searchView = findViewById(R.id.tv_search)
-        }
-
-        searchView.setOnClickListener { onSearchClickListener() }
-
-        with(recyclerView) {
+    override fun initUI(): Unit = with(binding) {
+        recyclerAdapter = ExploreOuterAdapter(context!!, onInnerItemClickListener)
+        tvExploreSearch.setOnClickListener { onSearchClickListener() }
+        with(rvExploreCategories) {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
             setHasFixedSize(true)
@@ -66,13 +52,16 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
                 )
             )
         }
+    }
 
+    override fun subscribeUI() {
+        super.subscribeUI()
         submitDataJob = lifecycleScope.launch {
             recyclerAdapter.submitList(viewModel.categories)
         }
     }
 
-    override fun releaseUI() {
+    override fun unsubscribeUI() {
         submitDataJob?.cancel()
         submitDataJob = null
     }

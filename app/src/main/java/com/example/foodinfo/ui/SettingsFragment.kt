@@ -13,12 +13,4 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
     private val viewModel: SettingsViewModel by viewModels {
         activity!!.applicationComponent.viewModelsFactory()
     }
-
-    override fun initUI() {
-
-    }
-
-    override fun releaseUI() {
-
-    }
 }

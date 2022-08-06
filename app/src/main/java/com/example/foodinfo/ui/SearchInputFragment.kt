@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.widget.ImageView
 import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -8,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchInputBinding
 import com.example.foodinfo.ui.adapter.SearchInputAdapter
 import com.example.foodinfo.utils.applicationComponent
@@ -29,12 +27,12 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
     private var submitDataJob: Job? = null
-    private var searchView: SearchView? = null
+    private lateinit var recyclerAdapter: SearchInputAdapter
 
     private val onArrowClickListener: (String) -> Unit = { text ->
-        searchView?.let { searchView ->
-            searchView.setQuery(text, false)
-            showKeyboard(searchView)
+        with(binding) {
+            etSearchInput.setQuery(text, false)
+            showKeyboard(etSearchInput)
         }
     }
 
@@ -80,51 +78,41 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
 
-    override fun initUI() {
-        val buttonBack: ImageView
-        val buttonFilter: ImageView
-        val recyclerView: RecyclerView
-        val recyclerAdapter: SearchInputAdapter
+    override fun initUI(): Unit = with(binding) {
+        recyclerAdapter = SearchInputAdapter(
+            context!!,
+            onArrowClickListener,
+            onItemClickListener
+        )
 
-        with(binding.root) {
-            recyclerAdapter = SearchInputAdapter(
-                context,
-                onArrowClickListener,
-                onItemClickListener
-            )
-            searchView = findViewById(R.id.et_search_input)
-            buttonBack = findViewById(R.id.btn_back)
-            buttonFilter = findViewById(R.id.btn_search_filter)
-            recyclerView = findViewById(R.id.rv_search_input)
-        }
+        btnBack.setOnClickListener { onBackClickListener() }
+        btnSearchFilter.setOnClickListener { onFilterClickListener() }
 
-        buttonBack.setOnClickListener { onBackClickListener() }
-        buttonFilter.setOnClickListener { onFilterClickListener }
-
-        with(recyclerView) {
+        with(rvSearchInput) {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addOnScrollListener(onScrollStateListener)
         }
+        etSearchInput.setOnQueryTextListener(onQueryChangedListener)
+    }
 
-        searchView!!.setOnQueryTextListener(onQueryChangedListener)
-
+    override fun subscribeUI() {
+        super.subscribeUI()
         submitDataJob = lifecycleScope.launch {
             viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
         }
     }
 
-    override fun releaseUI() {
+    override fun unsubscribeUI() {
         submitDataJob?.cancel()
         submitDataJob = null
-        searchView = null
     }
 
 
-    override fun onResume() {
+    override fun onResume(): Unit = with(binding) {
         super.onResume()
-        showKeyboard(searchView!!)
+        showKeyboard(etSearchInput)
     }
 
     override fun onPause() {
