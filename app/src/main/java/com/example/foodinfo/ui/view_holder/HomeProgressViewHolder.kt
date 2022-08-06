@@ -1,18 +1,18 @@
 package com.example.foodinfo.ui.view_holder
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.example.foodinfo.R
+import com.example.foodinfo.databinding.RvItemHomePlaceholderBinding
 
 
-class HomeProgressViewHolder(itemView: View) : BaseViewHolder<Any>(itemView) {
-
+class HomeProgressViewHolder(binding: RvItemHomePlaceholderBinding) :
+    BaseViewHolder<RvItemHomePlaceholderBinding, Any>(binding) {
     companion object {
-        fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
-            return layoutInflater.inflate(
-                R.layout.rv_item_home_placeholder, parent, false
-            )
+        fun createView(
+            layoutInflater: LayoutInflater,
+            parent: ViewGroup
+        ): RvItemHomePlaceholderBinding {
+            return RvItemHomePlaceholderBinding.inflate(layoutInflater, parent, false)
         }
     }
 }

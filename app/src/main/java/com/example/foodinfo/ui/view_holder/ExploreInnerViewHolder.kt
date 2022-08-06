@@ -1,51 +1,35 @@
 package com.example.foodinfo.ui.view_holder
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.foodinfo.R
+import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.model.local.LabelItem
-import com.google.android.material.imageview.ShapeableImageView
 
 
 class ExploreInnerViewHolder(
-    itemView: View,
+    private val binding: RvItemExploreInnerBinding,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<LabelItem>(itemView) {
-
-    private val title: TextView = itemView.findViewById(
-        R.id.tv_title
-    )
-    private val preview: ShapeableImageView = itemView.findViewById(
-        R.id.ic_preview
-    )
-    private val background: ConstraintLayout = itemView.findViewById(
-        R.id.cl_explore_inner_item
-    )
-
+) : BaseViewHolder<RvItemExploreInnerBinding, LabelItem>(binding) {
 
     init {
-        background.setOnClickListener {
+        binding.clExploreInnerItem.setOnClickListener {
             onItemClickListener(item.category, item.label)
         }
     }
 
 
-    override fun bind(item: LabelItem) {
-        super.bind(item)
-        with(this.item) {
-            title.text = label
-            preview.setImageDrawable(icon)
-        }
+    override fun bind(newItem: LabelItem): Unit = with(binding) {
+        super.bind(newItem)
+        tvTitle.text = item.label
+        icPreview.setImageDrawable(item.icon)
     }
 
     companion object {
-        fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
-            return layoutInflater.inflate(
-                R.layout.rv_item_explore_inner, parent, false
-            )
+        fun createView(
+            layoutInflater: LayoutInflater,
+            parent: ViewGroup
+        ): RvItemExploreInnerBinding {
+            return RvItemExploreInnerBinding.inflate(layoutInflater, parent, false)
         }
     }
 }

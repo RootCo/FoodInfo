@@ -1,18 +1,18 @@
 package com.example.foodinfo.ui.view_holder
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
 /**
  * Base ViewHolder class that allows to set clickListeners once during onCreateViewHolder
  * and don't doing that every time at onBindViewHolder.
  */
-abstract class BaseViewHolder<I : Any>(itemView: View) :
-    RecyclerView.ViewHolder(itemView) {
+abstract class BaseViewHolder<out V : ViewBinding, I : Any>(binding: V) :
+    RecyclerView.ViewHolder(binding.root) {
 
     lateinit var item: I
 
-    open fun bind(item: I) {
-        this.item = item
+    open fun bind(newItem: I) {
+        item = newItem
     }
 }

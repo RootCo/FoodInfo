@@ -2,12 +2,11 @@ package com.example.foodinfo.ui.view_holder
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
+import com.example.foodinfo.databinding.RvItemExploreOuterBinding
 import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.ui.adapter.ExploreInnerAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
@@ -15,17 +14,10 @@ import com.example.foodinfo.utils.restoreState
 
 
 class ExploreOuterViewHolder(
-    itemView: View,
+    private val binding: RvItemExploreOuterBinding,
     context: Context,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<CategoryItem>(itemView) {
-
-    private val title: TextView = itemView.findViewById(
-        R.id.tv_title
-    )
-    private val recyclerView: RecyclerView = itemView.findViewById(
-        R.id.rv_explore_outer_item
-    )
+) : BaseViewHolder<RvItemExploreOuterBinding, CategoryItem>(binding) {
 
     private val recyclerAdapter: ExploreInnerAdapter
 
@@ -52,7 +44,7 @@ class ExploreOuterViewHolder(
     init {
         recyclerAdapter = ExploreInnerAdapter(context, onItemClickListener)
 
-        with(recyclerView) {
+        with(binding.rvExploreOuterItem) {
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }
@@ -68,27 +60,26 @@ class ExploreOuterViewHolder(
         }
     }
 
-    override fun bind(item: CategoryItem) {
-        super.bind(item)
-        with(this.item) {
-            title.text = category
-        }
+    override fun bind(newItem: CategoryItem): Unit = with(binding) {
+        super.bind(newItem)
+        tvTitle.text = item.category
     }
 
-    fun subscribe() {
+    fun subscribe(): Unit = with(binding) {
         recyclerAdapter.submitList(item.labels)
-        recyclerView.restoreState(item.state)
+        rvExploreOuterItem.restoreState(item.state)
     }
 
-    fun saveState() {
-        item.state = recyclerView.layoutManager?.onSaveInstanceState() ?: return
+    fun saveState(): Unit = with(binding) {
+        item.state = rvExploreOuterItem.layoutManager?.onSaveInstanceState() ?: return
     }
 
     companion object {
-        fun createView(layoutInflater: LayoutInflater, parent: ViewGroup): View {
-            return layoutInflater.inflate(
-                R.layout.rv_item_explore_outer, parent, false
-            )
+        fun createView(
+            layoutInflater: LayoutInflater,
+            parent: ViewGroup
+        ): RvItemExploreOuterBinding {
+            return RvItemExploreOuterBinding.inflate(layoutInflater, parent, false)
         }
     }
 }
