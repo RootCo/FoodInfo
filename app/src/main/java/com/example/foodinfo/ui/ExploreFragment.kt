@@ -1,17 +1,22 @@
 package com.example.foodinfo.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
 import com.example.foodinfo.ui.adapter.ExploreOuterAdapter
 import com.example.foodinfo.ui.decorator.ExploreOuterItemDecoration
 import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.restoreState
 import com.example.foodinfo.view_model.ExploreViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ExploreFragment : BaseFragment<FragmentExploreBinding>(
@@ -37,6 +42,17 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         )
     }
 
+    private val onScrollStateListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                with(binding) {
+                    viewModel.scrollState =
+                        rvCategories.layoutManager?.onSaveInstanceState() ?: return
+                }
+            }
+        }
+    }
 
     override fun initUI(): Unit = with(binding) {
         recyclerAdapter = ExploreOuterAdapter(context!!, onInnerItemClickListener)
@@ -51,14 +67,22 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
                     resources.getDimensionPixelSize(R.dimen.explore_item_outer_margin)
                 )
             )
+            addOnScrollListener(onScrollStateListener)
         }
     }
 
-    override fun subscribeUI() {
+    override fun subscribeUI(): Unit = with(binding) {
         super.subscribeUI()
         submitDataJob = lifecycleScope.launch {
-            recyclerAdapter.submitList(viewModel.categories)
+            rvCategories.isVisible = false
+            pbCategories.isVisible = true
+            withContext(Dispatchers.IO) {
+                recyclerAdapter.submitList(viewModel.categories)
+            }
+            rvCategories.isVisible = true
+            pbCategories.isVisible = false
         }
+        rvCategories.restoreState(viewModel.scrollState)
     }
 
     override fun unsubscribeUI() {

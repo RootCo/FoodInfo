@@ -1,5 +1,6 @@
 package com.example.foodinfo.view_model
 
+import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.local.CategoryItem
 import com.example.foodinfo.model.local.LabelItem
@@ -13,6 +14,7 @@ class ExploreViewModel @Inject constructor(
 ) : ViewModel() {
 
     val categories = initCategories()
+    var scrollState: Parcelable? = null
 
     private fun initCategories(): List<CategoryItem> {
         return CategoryField.Fields.values().map { category ->
