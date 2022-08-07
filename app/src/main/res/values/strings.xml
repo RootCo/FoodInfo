@@ -13,4 +13,11 @@
     <string name = "calories_header">Calories</string>
     <string name = "see_all_text">see all</string>
     <string name = "logo_text">no logo <b><u>yet</u></b> <font color = "#D27842"> :(</font></string>
+    <string name = "dish_text">dish</string>
+    <string name = "diet_text">diet</string>
+    <string name = "health_text">health</string>
+    <string name = "cuisine_text">cuisine</string>
+    <string name = "content_description_text">content description</string>
+    <string name = "meal_text">meal</string>
+    <string name = "base_nutrients_text">Base nutrients</string>
 </resources>

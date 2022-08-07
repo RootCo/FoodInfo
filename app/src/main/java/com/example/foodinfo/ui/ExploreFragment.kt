@@ -2,7 +2,9 @@ package com.example.foodinfo.ui
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +16,6 @@ import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.utils.restoreState
 import com.example.foodinfo.view_model.ExploreViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -27,7 +28,6 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    private var submitDataJob: Job? = null
     private lateinit var recyclerAdapter: ExploreOuterAdapter
 
     private val onInnerItemClickListener: (String, String) -> Unit = { category, label ->
@@ -72,21 +72,17 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     }
 
     override fun subscribeUI(): Unit = with(binding) {
-        super.subscribeUI()
-        submitDataJob = lifecycleScope.launch {
-            rvCategories.isVisible = false
-            pbCategories.isVisible = true
-            withContext(Dispatchers.IO) {
-                recyclerAdapter.submitList(viewModel.categories)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                rvCategories.isVisible = false
+                pbCategories.isVisible = true
+                withContext(Dispatchers.IO) {
+                    recyclerAdapter.submitList(viewModel.categories)
+                    rvCategories.restoreState(viewModel.scrollState)
+                }
+                rvCategories.isVisible = true
+                pbCategories.isVisible = false
             }
-            rvCategories.isVisible = true
-            pbCategories.isVisible = false
         }
-        rvCategories.restoreState(viewModel.scrollState)
-    }
-
-    override fun unsubscribeUI() {
-        submitDataJob?.cancel()
-        submitDataJob = null
     }
 }

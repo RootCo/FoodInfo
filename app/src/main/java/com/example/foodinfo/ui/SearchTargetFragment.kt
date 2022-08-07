@@ -29,7 +29,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
 
 
     override fun initUI(): Unit = with(binding) {
-        tvHeader.text = args.label
+        tvRecipeName.text = args.label
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
     }

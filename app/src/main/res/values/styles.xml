@@ -104,6 +104,15 @@
         <item name = "android:background">?appDivider</item>
     </style>
 
+
+    <style name = "Chip">
+        <item name = "android:clickable">false</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+        <item name = "android:backgroundTint">?appSecondaryBackgroundColor</item>
+        <item name = "android:textAppearance">@style/TextViewVerySmall</item>
+    </style>
+
     <style name = "ButtonTransparent">
         <item name = "android:layout_width">@dimen/dp_60</item>
         <item name = "android:layout_height">@dimen/dp_60</item>

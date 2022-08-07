@@ -17,20 +17,12 @@ interface RecipesDAO {
         "SELECT * FROM ${Recipe.TABLE_NAME} " +
                 "WHERE ${Recipe.Columns.ID} " +
                 "IN (SELECT ${Recipe.Columns.ID} " +
-                "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM() LIMIT 1)"
-    )
-    fun getDaily(): Flow<RecipeExplore>
-
-    @Query(
-        "SELECT * FROM ${Recipe.TABLE_NAME} " +
-                "WHERE ${Recipe.Columns.ID} " +
-                "IN (SELECT ${Recipe.Columns.ID} " +
                 "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM())"
     )
     fun getPopular(): PagingSource<Int, RecipeExplore>
 
-    @Query("${RecipeExtended.SELECTOR} WHERE ${Recipe.Columns.ID} == :id")
-    fun getById(id: String): RecipeExtended
+    @Query("${RecipeExtended.SELECTOR} WHERE ${Recipe.Columns.ID} LIKE '%' || :id || '%'")
+    fun getById(id: String): Flow<RecipeExtended>
 
     @RawQuery
     fun getByFilterResult(query: SupportSQLiteQuery): List<RecipeResult>

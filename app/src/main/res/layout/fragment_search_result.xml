@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf = "parent" />
 
     <TextView
-        android:id = "@+id/tv_header"
+        android:id = "@+id/tv_recipe_name"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
         android:ellipsize = "end"

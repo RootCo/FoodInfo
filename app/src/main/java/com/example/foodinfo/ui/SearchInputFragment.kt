@@ -3,7 +3,9 @@ package com.example.foodinfo.ui
 import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +15,6 @@ import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.utils.hideKeyboard
 import com.example.foodinfo.utils.showKeyboard
 import com.example.foodinfo.view_model.SearchInputViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -26,7 +27,6 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    private var submitDataJob: Job? = null
     private lateinit var recyclerAdapter: SearchInputAdapter
 
     private val onArrowClickListener: (String) -> Unit = { text ->
@@ -98,15 +98,11 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
     override fun subscribeUI() {
-        super.subscribeUI()
-        submitDataJob = lifecycleScope.launch {
-            viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
+            }
         }
-    }
-
-    override fun unsubscribeUI() {
-        submitDataJob?.cancel()
-        submitDataJob = null
     }
 
 

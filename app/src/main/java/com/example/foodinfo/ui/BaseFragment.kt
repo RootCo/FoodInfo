@@ -20,23 +20,16 @@ abstract class BaseFragment<VB : ViewBinding>(
     /**
      * Calls in onViewCreated().
      *
-     * Function to initialize Views  add clickListeners to them.
+     * Function to initialize Views and add clickListeners to them.
      */
     open fun initUI() {}
 
     /**
-     * Calls in onResume().
+     * Calls in onViewCreated() after [initUI]
      *
-     * Function to launch all coroutines and subscribe all necessary Views to ViewModel data
+     * Function to launch all necessary coroutines.
      */
     open fun subscribeUI() {}
-
-    /**
-     * Calls in onStop().
-     *
-     * Function to cancel all unnecessary coroutines
-     */
-    open fun unsubscribeUI() {}
 
 
     override fun onCreateView(
@@ -49,16 +42,7 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-    }
-
-    override fun onResume() {
-        super.onResume()
         subscribeUI()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unsubscribeUI()
     }
 
     override fun onDestroyView() {

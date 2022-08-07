@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf = "parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id = "@+id/iv_home_rv_recipe_preview"
+            android:id = "@+id/iv_recipe_preview"
             android:layout_width = "0dp"
             android:layout_height = "0dp"
             android:layout_margin = "@dimen/dp_20"
@@ -34,7 +34,7 @@
             tools:src = "@sample/recipes.json/short/preview" />
 
         <TextView
-            android:id = "@+id/tv_home_rv_recipe_name"
+            android:id = "@+id/tv_recipe_name"
             style = "@style/TextViewVeryBig"
             android:layout_width = "0dp"
             android:layout_height = "wrap_content"
@@ -47,11 +47,11 @@
             android:textAlignment = "textStart"
             app:layout_constraintEnd_toEndOf = "parent"
             app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@id/iv_home_rv_recipe_preview"
+            app:layout_constraintTop_toBottomOf = "@id/iv_recipe_preview"
             tools:text = "@sample/recipes.json/short/name" />
 
         <TextView
-            android:id = "@+id/tv_home_rv_recipe_servings"
+            android:id = "@+id/tv_servings_value"
             style = "@style/TextViewMedium"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
@@ -63,10 +63,10 @@
             android:textColor = "?appSecondaryFontColor"
             app:drawableEndCompat = "@drawable/ic_peoples_20"
             app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/tv_home_rv_recipe_name" />
+            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name" />
 
         <TextView
-            android:id = "@+id/tv_home_rv_recipe_time"
+            android:id = "@+id/tv_time_value"
             style = "@style/TextViewMedium"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
@@ -77,11 +77,11 @@
             android:text = "56 min"
             android:textColor = "?appSecondaryFontColor"
             app:drawableEndCompat = "@drawable/ic_time_20"
-            app:layout_constraintStart_toEndOf = "@+id/tv_home_rv_recipe_servings"
-            app:layout_constraintTop_toBottomOf = "@+id/tv_home_rv_recipe_name" />
+            app:layout_constraintStart_toEndOf = "@+id/tv_servings_value"
+            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name" />
 
         <TextView
-            android:id = "@+id/tv_home_rv_recipe_calories"
+            android:id = "@+id/tv_calories_value"
             style = "@style/TextViewVeryBig"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"

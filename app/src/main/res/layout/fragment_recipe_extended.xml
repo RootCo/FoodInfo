@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
     android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
@@ -30,239 +31,348 @@
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id = "@+id/img"
-        android:layout_width = "match_parent"
+    <ScrollView
+        android:layout_width = "0dp"
         android:layout_height = "0dp"
         android:layout_marginTop = "@dimen/dp_16"
-        android:scaleType = "centerCrop"
-        android:src = "@drawable/im_lagman"
-        app:layout_constraintDimensionRatio = "1"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/btn_back"
-        app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig" />
-
-    <TextView
-        android:id = "@+id/tv_header"
-        style = "@style/TextViewBig"
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:layout_marginTop = "@dimen/dp_12"
-        android:fontFamily = "@font/product_sans_medium"
-        android:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/img" />
-
-    <LinearLayout
-        android:id = "@+id/some_data"
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:layout_marginTop = "@dimen/dp_12"
-        app:layout_constraintEnd_toEndOf = "@+id/pfc_data"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/tv_header">
-
-        <TextView
-            android:id = "@+id/tv_home_rv_recipe_servings"
-            style = "@style/TextViewSmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_weight = "1"
-            android:drawablePadding = "6dp"
-            android:gravity = "center|start"
-            android:text = "34"
-            android:textColor = "?appSecondaryFontColor"
-            app:drawableStartCompat = "@drawable/ic_peoples_20" />
-
-        <TextView
-            android:id = "@+id/tv_home_rv_recipe_time"
-            style = "@style/TextViewSmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_weight = "1"
-            android:drawablePadding = "6dp"
-            android:gravity = "center|start"
-            android:text = "56 min"
-            android:textColor = "?appSecondaryFontColor"
-            app:drawableStartCompat = "@drawable/ic_time_20" />
-
-        <TextView
-            android:id = "@+id/tv_home_rv_recipe_calories"
-            style = "@style/TextViewSmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_weight = "0"
-            android:drawablePadding = "6dp"
-            android:gravity = "center|start"
-            android:text = "1200g"
-            android:textColor = "?appSecondaryFontColor"
-            app:drawableStartCompat = "@drawable/ic_scale_20" />
-
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/pfc_data"
-        android:layout_width = "0dp"
-        android:layout_height = "wrap_content"
-        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
-        app:layout_constraintBottom_toBottomOf = "@id/calories_data"
-        app:layout_constraintEnd_toStartOf = "@+id/calories_data"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "@id/calories_data">
-
-        <TextView
-            android:id = "@+id/protein_title"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "@string/protein_header"
-            android:textColor = "?appSecondaryFontColor"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "parent" />
-
-        <ProgressBar
-            android:id = "@+id/protein_progress"
-            style = "@style/ProgressBarLine"
-            android:layout_width = "0dp"
-            android:layout_marginTop = "@dimen/dp_6"
-            android:progress = "44"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/protein_title" />
-
-        <TextView
-            android:id = "@+id/protein_value"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "9g"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintTop_toTopOf = "parent" />
-
-
-        <TextView
-            android:id = "@+id/fat_title"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_12"
-            android:text = "@string/fat_header"
-            android:textColor = "?appSecondaryFontColor"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/protein_progress" />
-
-        <ProgressBar
-            android:id = "@+id/fat_progress"
-            style = "@style/ProgressBarLine"
-            android:layout_width = "0dp"
-            android:layout_marginTop = "@dimen/dp_6"
-            android:progress = "72"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/fat_title" />
-
-        <TextView
-            android:id = "@+id/fat_value"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_12"
-            android:text = "19g"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/protein_progress" />
-
-
-        <TextView
-            android:id = "@+id/carb_title"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_12"
-            android:text = "@string/carb_header"
-            android:textColor = "?appSecondaryFontColor"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/fat_progress" />
-
-        <ProgressBar
-            android:id = "@+id/carb_progress"
-            style = "@style/ProgressBarLine"
-            android:layout_width = "0dp"
-            android:layout_marginTop = "@dimen/dp_6"
-            android:progress = "23"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/carb_title" />
-
-        <TextView
-            android:id = "@+id/carb_value"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_12"
-            android:text = "5g"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/fat_progress" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id = "@+id/calories_data"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
+        android:fadingEdgeLength = "@dimen/dp_30"
+        android:requiresFadingEdge = "vertical"
+        android:scrollbars = "none"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/some_data">
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/btn_back">
 
-        <TextView
-            android:id = "@+id/calories_title"
-            style = "@style/TextViewVerySmall"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "@string/calories_header"
-            android:textColor = "?appSecondaryFontColor"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id = "@+id/iv_recipe_preview"
+                android:layout_width = "match_parent"
+                android:layout_height = "0dp"
+                android:scaleType = "centerCrop"
+                app:layout_constraintDimensionRatio = "1"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent"
+                app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig"
+                tools:src = "@drawable/im_lagman" />
+
+            <TextView
+                android:id = "@+id/tv_recipe_name"
+                style = "@style/TextViewVeryBig"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_10"
+                android:fontFamily = "@font/product_sans_medium"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/iv_recipe_preview"
+                tools:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe" />
+
+            <LinearLayout
+                android:id = "@+id/some_data"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf = "@+id/pfc_data"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name">
+
+                <TextView
+                    android:id = "@+id/tv_servings_value"
+                    style = "@style/TextViewSmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_weight = "1"
+                    android:drawablePadding = "6dp"
+                    android:gravity = "center|start"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:drawableStartCompat = "@drawable/ic_peoples_20"
+                    tools:text = "34" />
+
+                <TextView
+                    android:id = "@+id/tv_time_value"
+                    style = "@style/TextViewSmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_weight = "1"
+                    android:drawablePadding = "6dp"
+                    android:gravity = "center|start"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:drawableStartCompat = "@drawable/ic_time_20"
+                    tools:text = "56 min" />
+
+                <TextView
+                    android:id = "@+id/tv_weight_value"
+                    style = "@style/TextViewSmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_weight = "0"
+                    android:drawablePadding = "6dp"
+                    android:gravity = "center|start"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:drawableStartCompat = "@drawable/ic_scale_20"
+                    tools:text = "1200g" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id = "@+id/tv_nutrients_header"
+                style = "@style/TextViewVeryBig"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_40"
+                android:text = "@string/base_nutrients_text"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/some_data" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/pfc_data"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginEnd = "@dimen/screen_horizontal_margin"
+                app:layout_constraintBottom_toBottomOf = "@id/calories_data"
+                app:layout_constraintEnd_toStartOf = "@+id/calories_data"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "@id/calories_data">
+
+                <TextView
+                    android:id = "@+id/tv_protein_title"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:text = "@string/protein_header"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+                <ProgressBar
+                    android:id = "@+id/pb_protein"
+                    style = "@style/ProgressBarLine"
+                    android:layout_width = "0dp"
+                    android:layout_marginTop = "@dimen/dp_6"
+                    android:progress = "44"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/tv_protein_title" />
+
+                <TextView
+                    android:id = "@+id/tv_protein_value"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent"
+                    tools:text = "9g" />
 
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id = "@+id/calories_progress"
-            style = "@style/ProgressBarCircle"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_10"
-            android:progress = "30"
-            app:indicatorSize = "70dp"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/calories_title" />
+                <TextView
+                    android:id = "@+id/tv_fat_title"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_12"
+                    android:text = "@string/fat_header"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/pb_protein" />
 
-        <TextView
-            style = "@style/TextViewBig"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "32%"
-            android:textColor = "?appSecondaryFontColor"
-            app:layout_constraintBottom_toBottomOf = "@+id/calories_progress"
-            app:layout_constraintEnd_toEndOf = "@+id/calories_progress"
-            app:layout_constraintStart_toStartOf = "@+id/calories_progress"
-            app:layout_constraintTop_toTopOf = "@+id/calories_progress" />
+                <ProgressBar
+                    android:id = "@+id/pb_fat"
+                    style = "@style/ProgressBarLine"
+                    android:layout_width = "0dp"
+                    android:layout_marginTop = "@dimen/dp_6"
+                    android:progress = "72"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/tv_fat_title" />
 
-        <TextView
-            android:id = "@+id/calories_value"
-            style = "@style/TextViewBig"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_10"
-            android:fontFamily = "@font/product_sans_medium"
-            android:text = "1234"
-            app:layout_constraintBottom_toBottomOf = "parent"
-            app:layout_constraintEnd_toEndOf = "parent"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/calories_progress" />
+                <TextView
+                    android:id = "@+id/tv_fat_value"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_12"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/pb_protein"
+                    tools:text = "19g" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id = "@+id/tv_carb_title"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_12"
+                    android:text = "@string/carb_header"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/pb_fat" />
+
+                <ProgressBar
+                    android:id = "@+id/pb_carb"
+                    style = "@style/ProgressBarLine"
+                    android:layout_width = "0dp"
+                    android:layout_marginTop = "@dimen/dp_6"
+                    android:progress = "23"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/tv_carb_title" />
+
+                <TextView
+                    android:id = "@+id/tv_carb_value"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_12"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/pb_fat"
+                    tools:text = "5g" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id = "@+id/calories_data"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_10"
+                android:layout_marginBottom = "@dimen/dp_60"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_nutrients_header">
+
+                <TextView
+                    android:id = "@+id/tv_calories_title"
+                    style = "@style/TextViewVerySmall"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:text = "@string/calories_header"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id = "@+id/pb_calories"
+                    style = "@style/ProgressBarCircle"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_10"
+                    android:progress = "30"
+                    app:indicatorSize = "70dp"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/tv_calories_title" />
+
+                <TextView
+                    android:id = "@+id/tv_calories_percent"
+                    style = "@style/TextViewBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:textColor = "?appSecondaryFontColor"
+                    app:layout_constraintBottom_toBottomOf = "@+id/pb_calories"
+                    app:layout_constraintEnd_toEndOf = "@+id/pb_calories"
+                    app:layout_constraintStart_toStartOf = "@+id/pb_calories"
+                    app:layout_constraintTop_toTopOf = "@+id/pb_calories"
+                    tools:text = "32%" />
+
+                <TextView
+                    android:id = "@+id/tv_calories_value"
+                    style = "@style/TextViewBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_marginTop = "@dimen/dp_10"
+                    android:fontFamily = "@font/product_sans_medium"
+                    app:layout_constraintBottom_toBottomOf = "parent"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toBottomOf = "@+id/pb_calories"
+                    tools:text = "1234" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_40"
+                android:orientation = "vertical"
+                android:paddingBottom = "@dimen/dp_40"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@id/calories_data">
+
+                <TextView
+                    style = "@style/TextViewVeryBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_10"
+                    android:text = "@string/meal_text" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id = "@+id/cg_meal"
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_20" />
+
+                <TextView
+                    style = "@style/TextViewVeryBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_10"
+                    android:text = "@string/dish_text" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id = "@+id/cg_dish"
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_20" />
+
+                <TextView
+                    style = "@style/TextViewVeryBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_10"
+                    android:text = "@string/diet_text" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id = "@+id/cg_diet"
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_20" />
+
+                <TextView
+                    style = "@style/TextViewVeryBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_10"
+                    android:text = "@string/health_text" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id = "@+id/cg_health"
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_20" />
+
+                <TextView
+                    style = "@style/TextViewVeryBig"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_10"
+                    android:text = "@string/cuisine_text" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id = "@+id/cg_cuisine"
+                    android:layout_width = "match_parent"
+                    android:layout_height = "wrap_content"
+                    android:paddingBottom = "@dimen/dp_20" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

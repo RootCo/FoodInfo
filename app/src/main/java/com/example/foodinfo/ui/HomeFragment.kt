@@ -2,7 +2,9 @@ package com.example.foodinfo.ui
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -13,7 +15,6 @@ import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.HomeViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -26,7 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         activity!!.applicationComponent.viewModelsFactory()
     }
 
-    private var submitDataJob: Job? = null
     private lateinit var recyclerAdapter: HomeRecipesAdapter
 
     private val onItemClickListener: (String) -> Unit = { id ->
@@ -60,14 +60,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun subscribeUI() {
-        super.subscribeUI()
-        submitDataJob = lifecycleScope.launch {
-            viewModel.recipes.collectLatest(recyclerAdapter::submitData)
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.recipes.collectLatest(recyclerAdapter::submitData)
+            }
         }
-    }
-
-    override fun unsubscribeUI() {
-        submitDataJob?.cancel()
-        submitDataJob = null
     }
 }

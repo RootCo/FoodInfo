@@ -13,7 +13,7 @@ class HomeViewHolder(
 ) : BaseViewHolder<RvItemHomeBinding, RecipeExplore>(binding) {
 
     init {
-        binding.ivHomeRvRecipePreview.setOnClickListener {
+        binding.ivRecipePreview.setOnClickListener {
             onItemClickListener(item.id)
         }
     }
@@ -21,11 +21,11 @@ class HomeViewHolder(
 
     override fun bind(newItem: RecipeExplore): Unit = with(binding) {
         super.bind(newItem)
-        tvHomeRvRecipeName.text = item.name
-        tvHomeRvRecipeCalories.text = item.calories.toString()
-        Glide.with(ivHomeRvRecipePreview.context)
+        tvRecipeName.text = item.name
+        tvCaloriesValue.text = item.calories.toString()
+        Glide.with(ivRecipePreview.context)
             .load(item.preview)
-            .into(ivHomeRvRecipePreview)
+            .into(ivRecipePreview)
     }
 
 

@@ -22,16 +22,9 @@ class RepositoryRecipesImpl @Inject constructor(
     private val resourcesProvider: ResourcesProvider, private val recipesDAO: RecipesDAO
 ) : RepositoryRecipes {
 
-    override fun getDaily(): Flow<RecipeExplore> {
-        return recipesDAO.getDaily().map { recipe ->
-            recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-            recipe
-        }
-    }
-
     override fun getPopular(): Flow<PagingData<RecipeExplore>> {
         return Pager(
-            config = DB_TRENDING_PAGER,
+            config = DB_POPULAR_PAGER,
             pagingSourceFactory = {
                 recipesDAO.getPopular()
             }
@@ -44,7 +37,6 @@ class RepositoryRecipesImpl @Inject constructor(
         }
     }
 
-
     override fun getByFilterResult(filter: SearchFilter): List<RecipeResult> {
         return recipesDAO.getByFilterResult(SimpleSQLiteQuery(filter.query))
             .map { recipe ->
@@ -55,7 +47,7 @@ class RepositoryRecipesImpl @Inject constructor(
 
     override fun getByFilterExplore(filter: SearchFilter): Flow<PagingData<RecipeExplore>> {
         return Pager(
-            config = DB_EXPLORE_INNER_PAGER,
+            config = DB_EXPLORE_PAGER,
             pagingSourceFactory = {
                 recipesDAO.getByFilterExplore(SimpleSQLiteQuery(filter.query))
             }
@@ -76,29 +68,26 @@ class RepositoryRecipesImpl @Inject constructor(
             }
     }
 
-    override fun getById(id: String): RecipeExtended {
-        val recipe = recipesDAO.getById(id)
-        recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-        return recipe
+    override fun getById(id: String): Flow<RecipeExtended> {
+        return recipesDAO.getById(id).map { recipe ->
+            recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
+            recipe
+        }
     }
 
 
     companion object {
-        val DB_TRENDING_PAGER = PagingConfig(
+        val DB_POPULAR_PAGER = PagingConfig(
             pageSize = 10,
             initialLoadSize = 20,
             jumpThreshold = 40,
             maxSize = 40
         )
-        val DB_EXPLORE_INNER_PAGER = PagingConfig(
+        val DB_EXPLORE_PAGER = PagingConfig(
             pageSize = 5,
             initialLoadSize = 5,
             jumpThreshold = 15,
             maxSize = 15
-        )
-        val DB_EXPLORE_OUTER_PAGER = PagingConfig(
-            pageSize = 3,
-            maxSize = 20
         )
     }
 }

@@ -8,8 +8,6 @@ import com.example.foodinfo.model.local.entities.SearchFilter
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryRecipes {
-    fun getDaily(): Flow<RecipeExplore>
-
     fun getPopular(): Flow<PagingData<RecipeExplore>>
 
     fun getByFilterResult(filter: SearchFilter): List<RecipeResult>
@@ -18,5 +16,5 @@ interface RepositoryRecipes {
 
     fun getByFilterExtended(filter: SearchFilter): List<RecipeExtended>
 
-    fun getById(id: String): RecipeExtended
+    fun getById(id: String): Flow<RecipeExtended>
 }
