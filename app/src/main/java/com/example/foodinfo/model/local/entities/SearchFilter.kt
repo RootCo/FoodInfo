@@ -1,9 +1,8 @@
 package com.example.foodinfo.model.local.entities
 
 import androidx.room.*
-import com.example.foodinfo.model.local.RecipeExplore
-import com.example.foodinfo.model.local.RecipeExtended
-import com.example.foodinfo.model.local.RecipeResult
+import com.example.foodinfo.model.local.RecipeExtendedDTO
+import com.example.foodinfo.model.local.RecipeShortDTO
 import com.example.foodinfo.model.local.dao.filter_field.*
 import com.example.foodinfo.model.local.dao.type_converter.CategoryFieldTypeConverter
 import com.example.foodinfo.model.local.dao.type_converter.NutrientFieldTypeConverter
@@ -58,7 +57,7 @@ data class SearchFilter(
     private var _query: String = ""
 
     @Ignore
-    private var selector: String = RecipeExplore.SELECTOR
+    private var selector: String = RecipeShortDTO.SELECTOR
 
     @Ignore
     private val separator: String = " AND "
@@ -130,9 +129,8 @@ data class SearchFilter(
 
     fun setSelector(id: Int) {
         when (id) {
-            RECIPE_SELECTOR_RESULT   -> selector = RecipeResult.SELECTOR
-            RECIPE_SELECTOR_EXPLORE  -> selector = RecipeExplore.SELECTOR
-            RECIPE_SELECTOR_EXTENDED -> selector = RecipeExtended.SELECTOR
+            RECIPE_SELECTOR_SHORT    -> selector = RecipeShortDTO.SELECTOR
+            RECIPE_SELECTOR_EXTENDED -> selector = RecipeExtendedDTO.SELECTOR
         }
     }
 
@@ -182,9 +180,8 @@ data class SearchFilter(
 
     companion object {
         const val TABLE_NAME = "filter_search"
-        const val RECIPE_SELECTOR_RESULT = 0
-        const val RECIPE_SELECTOR_EXPLORE = 1
-        const val RECIPE_SELECTOR_EXTENDED = 2
+        const val RECIPE_SELECTOR_SHORT = 0
+        const val RECIPE_SELECTOR_EXTENDED = 1
         const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

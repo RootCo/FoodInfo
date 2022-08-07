@@ -17,7 +17,7 @@ class RecipeExtendedViewModel @Inject constructor(repositoryRecipes: RepositoryR
     var recipeId: String = ""
 
     val recipe: SharedFlow<RecipeExtended> by lazy {
-        repositoryRecipes.getById(recipeId).flowOn(Dispatchers.IO)
+        repositoryRecipes.getByIdExtended(recipeId).flowOn(Dispatchers.IO)
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
     }
 }

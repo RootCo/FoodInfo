@@ -59,11 +59,11 @@
             android:layout_marginTop = "@dimen/dp_6"
             android:drawablePadding = "@dimen/dp_6"
             android:gravity = "bottom|start"
-            android:text = "34"
             android:textColor = "?appSecondaryFontColor"
             app:drawableEndCompat = "@drawable/ic_peoples_20"
             app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name" />
+            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name"
+            tools:text = "12" />
 
         <TextView
             android:id = "@+id/tv_time_value"
@@ -74,11 +74,11 @@
             android:layout_marginTop = "@dimen/dp_6"
             android:drawablePadding = "@dimen/dp_6"
             android:gravity = "bottom|start"
-            android:text = "56 min"
             android:textColor = "?appSecondaryFontColor"
             app:drawableEndCompat = "@drawable/ic_time_20"
             app:layout_constraintStart_toEndOf = "@+id/tv_servings_value"
-            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name" />
+            app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name"
+            tools:text = "180 min" />
 
         <TextView
             android:id = "@+id/tv_calories_value"

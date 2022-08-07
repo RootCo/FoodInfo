@@ -1,99 +1,70 @@
 package com.example.foodinfo.model.local
 
 import android.graphics.drawable.Drawable
-import androidx.room.ColumnInfo
-import androidx.room.Ignore
-import androidx.room.Relation
-import com.example.foodinfo.model.local.entities.Recipe
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.recipe_field.Ingredient
+import com.example.foodinfo.model.local.entities.recipe_field.Nutrient
+import com.example.foodinfo.utils.ResourcesProvider
 
 
 data class RecipeExtended(
-    @ColumnInfo(name = Recipe.Columns.ID)
     val id: String,
-
-    @ColumnInfo(name = Recipe.Columns.NAME)
     val name: String,
-
-    @ColumnInfo(name = Recipe.Columns.PREVIEW_URL)
-    val previewURL: String,
-
-    @ColumnInfo(name = Recipe.Columns.CALORIES)
-    val calories: Int,
-
-    @ColumnInfo(name = Recipe.Columns.PROTEIN)
-    val protein: Int,
-
-    @ColumnInfo(name = Recipe.Columns.FAT)
-    val fat: Int,
-
-    @ColumnInfo(name = Recipe.Columns.CARB)
-    val carb: Int,
-
-    @ColumnInfo(name = Recipe.Columns.SOURCE)
+    val calories: String,
+    val caloriesDaily: Int,
+    val protein: String,
+    val proteinDaily: Int,
+    val fat: String,
+    val fatDaily: Int,
+    val carb: String,
+    val carbDaily: Int,
     val source: String,
-
-    @ColumnInfo(name = Recipe.Columns.TOTAL_WEIGHT)
-    val totalWeight: Int,
-
-    @ColumnInfo(name = Recipe.Columns.TOTAL_TIME)
-    val totalTime: Int,
-
-    @ColumnInfo(name = Recipe.Columns.SERVINGS)
-    val servings: Int,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = MealType.Columns.RECIPE_ID
-    )
-    val mealType: List<MealType>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = DishType.Columns.RECIPE_ID
-    )
-    val dishType: List<DishType>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = DietType.Columns.RECIPE_ID
-    )
-    val dietType: List<DietType>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = HealthType.Columns.RECIPE_ID
-    )
-    val healthType: List<HealthType>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = CuisineType.Columns.RECIPE_ID
-    )
-    val cuisineType: List<CuisineType>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = Ingredient.Columns.RECIPE_ID
-    )
+    val totalWeight: String,
+    val totalTime: String,
+    val servings: String,
+    val mealType: List<String>,
+    val dishType: List<String>,
+    val dietType: List<String>,
+    val healthType: List<String>,
+    val cuisineType: List<String>,
     val ingredients: List<Ingredient>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = Nutrient.Columns.RECIPE_ID
-    )
-    val totalNutrients: List<Nutrient>,
-
-    @Relation(
-        parentColumn = Recipe.Columns.ID,
-        entityColumn = Nutrient.Columns.RECIPE_ID
-    )
-    val totalDaily: List<Nutrient>
+    val nutrients: List<Nutrient>,
+    val preview: Drawable?
 ) {
-    @Ignore
-    var preview: Drawable? = null
 
     companion object {
-        const val SELECTOR = "SELECT * FROM ${Recipe.TABLE_NAME}"
+        private const val CALORIES_CAP = 2500
+        private const val PROTEIN_CAP = 100
+        private const val CARB_CAP = 100
+        private const val FAT_CAP = 100
+
+        fun fromDTO(
+            recipe: RecipeExtendedDTO,
+            resourcesProvider: ResourcesProvider
+        ): RecipeExtended {
+            return RecipeExtended(
+                id = recipe.id,
+                name = recipe.name,
+                calories = recipe.calories.toString(),
+                caloriesDaily = recipe.calories * 100 / CALORIES_CAP,
+                protein = recipe.protein.toString() + "g",
+                proteinDaily = recipe.protein * 100 / PROTEIN_CAP,
+                carb = recipe.carb.toString() + "g",
+                carbDaily = recipe.carb * 100 / CARB_CAP,
+                fat = recipe.fat.toString() + "g",
+                fatDaily = recipe.fat * 100 / FAT_CAP,
+                source = recipe.source,
+                totalWeight = recipe.totalWeight.toString() + "g",
+                totalTime = recipe.totalTime.toString() + " min",
+                servings = recipe.servings.toString(),
+                mealType = recipe.mealType.map { it.label },
+                dishType = recipe.dishType.map { it.label },
+                dietType = recipe.dietType.map { it.label },
+                healthType = recipe.healthType.map { it.label },
+                cuisineType = recipe.cuisineType.map { it.label },
+                ingredients = recipe.ingredients,
+                nutrients = recipe.totalNutrients,
+                preview = resourcesProvider.getDrawableByName(recipe.previewURL),
+            )
+        }
     }
 }

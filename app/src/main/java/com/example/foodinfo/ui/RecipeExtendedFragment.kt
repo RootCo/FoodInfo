@@ -47,39 +47,37 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                         .load(recipe.preview)
                         .into(ivRecipePreview)
 
-                    tvServingsValue.text = recipe.servings.toString()
-                    tvWeightValue.text = recipe.totalWeight.toString() + "g"
-                    tvTimeValue.text = recipe.totalTime.toString() + " min"
+                    tvServingsValue.text = recipe.servings
+                    tvWeightValue.text = recipe.totalWeight
+                    tvTimeValue.text = recipe.totalTime
 
-                    tvProteinValue.text = recipe.protein.toString() + "g"
-                    tvCarbValue.text = recipe.carb.toString() + "g"
-                    tvFatValue.text = recipe.fat.toString() + "g"
+                    tvProteinValue.text = recipe.protein
+                    tvCarbValue.text = recipe.carb
+                    tvFatValue.text = recipe.fat
 
-                    pbProtein.progress = recipe.protein
-                    pbCarb.progress = recipe.carb
-                    pbFat.progress = recipe.fat
+                    pbProtein.progress = recipe.proteinDaily
+                    pbCarb.progress = recipe.carbDaily
+                    pbFat.progress = recipe.fatDaily
 
-                    tvCaloriesValue.text = recipe.calories.toString()
-                    pbCalories.progress = recipe.calories * 100 / 2500
-                    tvCaloriesPercent.text =
-                        (recipe.calories * 100 / 2500).toString() + "%"
-
+                    tvCaloriesValue.text = recipe.calories
+                    pbCalories.progress = recipe.caloriesDaily
+                    tvCaloriesPercent.text = recipe.caloriesDaily.toString() + "%"
 
                     // this is totally garbage
-                    for (mealType in recipe.mealType) {
-                        cgMeal.addView(createChip(mealType.label))
+                    for (label in recipe.mealType) {
+                        cgMeal.addView(createChip(label))
                     }
-                    for (dishType in recipe.dishType) {
-                        cgDish.addView(createChip(dishType.label))
+                    for (label in recipe.dishType) {
+                        cgDish.addView(createChip(label))
                     }
-                    for (dietType in recipe.dietType) {
-                        cgDiet.addView(createChip(dietType.label))
+                    for (label in recipe.dietType) {
+                        cgDiet.addView(createChip(label))
                     }
-                    for (healthType in recipe.healthType) {
-                        cgHealth.addView(createChip(healthType.label))
+                    for (label in recipe.healthType) {
+                        cgHealth.addView(createChip(label))
                     }
-                    for (cuisineType in recipe.cuisineType) {
-                        cgCuisine.addView(createChip(cuisineType.label))
+                    for (label in recipe.cuisineType) {
+                        cgCuisine.addView(createChip(label))
                     }
                 }
             }

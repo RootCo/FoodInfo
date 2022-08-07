@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.model.local.RecipeExplore
+import com.example.foodinfo.model.local.RecipeShort
 import com.example.foodinfo.ui.view_holder.HomeProgressViewHolder
 import com.example.foodinfo.ui.view_holder.HomeViewHolder
 
@@ -13,8 +13,8 @@ import com.example.foodinfo.ui.view_holder.HomeViewHolder
 class HomeRecipesAdapter(
     context: Context,
     private val onItemClickListener: (String) -> Unit
-) : PagingDataAdapter<RecipeExplore, ViewHolder>(
-    RecipeExplore.ItemCallBack
+) : PagingDataAdapter<RecipeShort, ViewHolder>(
+    RecipeShort.ItemCallBack
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)

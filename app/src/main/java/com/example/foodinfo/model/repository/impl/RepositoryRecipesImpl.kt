@@ -5,9 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
-import com.example.foodinfo.model.local.RecipeExplore
 import com.example.foodinfo.model.local.RecipeExtended
-import com.example.foodinfo.model.local.RecipeResult
+import com.example.foodinfo.model.local.RecipeShort
 import com.example.foodinfo.model.local.dao.RecipesDAO
 import com.example.foodinfo.model.local.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
@@ -22,7 +21,7 @@ class RepositoryRecipesImpl @Inject constructor(
     private val resourcesProvider: ResourcesProvider, private val recipesDAO: RecipesDAO
 ) : RepositoryRecipes {
 
-    override fun getPopular(): Flow<PagingData<RecipeExplore>> {
+    override fun getPopular(): Flow<PagingData<RecipeShort>> {
         return Pager(
             config = DB_POPULAR_PAGER,
             pagingSourceFactory = {
@@ -31,47 +30,28 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData ->
             pagingData.map { recipe ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-                recipe
+                RecipeShort.fromDTO(recipe, resourcesProvider)
             }
         }
     }
 
-    override fun getByFilterResult(filter: SearchFilter): List<RecipeResult> {
-        return recipesDAO.getByFilterResult(SimpleSQLiteQuery(filter.query))
-            .map { recipe ->
-                recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-                recipe
-            }
-    }
-
-    override fun getByFilterExplore(filter: SearchFilter): Flow<PagingData<RecipeExplore>> {
+    override fun getByFilterShort(filter: SearchFilter): Flow<PagingData<RecipeShort>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
             pagingSourceFactory = {
-                recipesDAO.getByFilterExplore(SimpleSQLiteQuery(filter.query))
+                recipesDAO.getByFilterShort(SimpleSQLiteQuery(filter.query))
             }
         ).flow.map { pagingData ->
             pagingData.map { recipe ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-                recipe
+                RecipeShort.fromDTO(recipe, resourcesProvider)
             }
         }
     }
 
-    override fun getByFilterExtended(filter: SearchFilter): List<RecipeExtended> {
-        return recipesDAO.getByFilterExtended(SimpleSQLiteQuery(filter.query))
-            .map { recipe ->
-                recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-                recipe
-            }
-    }
-
-    override fun getById(id: String): Flow<RecipeExtended> {
-        return recipesDAO.getById(id).map { recipe ->
-            recipe.preview = resourcesProvider.getDrawableByName(recipe.previewURL)
-            recipe
+    override fun getByIdExtended(id: String): Flow<RecipeExtended> {
+        return recipesDAO.getByIdExtended(id).map { recipe ->
+            RecipeExtended.fromDTO(recipe, resourcesProvider)
         }
     }
 

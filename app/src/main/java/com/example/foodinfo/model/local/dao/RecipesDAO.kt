@@ -3,9 +3,8 @@ package com.example.foodinfo.model.local.dao
 import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.example.foodinfo.model.local.RecipeExplore
-import com.example.foodinfo.model.local.RecipeExtended
-import com.example.foodinfo.model.local.RecipeResult
+import com.example.foodinfo.model.local.RecipeExtendedDTO
+import com.example.foodinfo.model.local.RecipeShortDTO
 import com.example.foodinfo.model.local.entities.Recipe
 import com.example.foodinfo.model.local.entities.recipe_field.*
 import kotlinx.coroutines.flow.Flow
@@ -19,13 +18,7 @@ interface RecipesDAO {
                 "IN (SELECT ${Recipe.Columns.ID} " +
                 "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM())"
     )
-    fun getPopular(): PagingSource<Int, RecipeExplore>
-
-    @Query("${RecipeExtended.SELECTOR} WHERE ${Recipe.Columns.ID} LIKE '%' || :id || '%'")
-    fun getById(id: String): Flow<RecipeExtended>
-
-    @RawQuery
-    fun getByFilterResult(query: SupportSQLiteQuery): List<RecipeResult>
+    fun getPopular(): PagingSource<Int, RecipeShortDTO>
 
     @RawQuery(
         observedEntities = [
@@ -40,11 +33,14 @@ interface RecipesDAO {
             CuisineType::class,
         ]
     )
-    fun getByFilterExplore(query: SupportSQLiteQuery): PagingSource<Int, RecipeExplore>
+    fun getByFilterShort(query: SupportSQLiteQuery): PagingSource<Int, RecipeShortDTO>
 
-    @Transaction
-    @RawQuery
-    fun getByFilterExtended(query: SupportSQLiteQuery): List<RecipeExtended>
+    @Query(
+        "${RecipeExtendedDTO.SELECTOR} " +
+                "WHERE ${Recipe.Columns.ID} " +
+                "LIKE '%' || :id || '%'"
+    )
+    fun getByIdExtended(id: String): Flow<RecipeExtendedDTO>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -53,12 +49,7 @@ interface RecipesDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRecipes(recipes: List<Recipe>)
 
-    /*
-        эти методы не относятся к таблице рецептов и по хорошему должны быть
-        в отдельных Dao, но это будет просто лишние 7 классов с 1 методом т.к.
-        эти таблицы не являются самостоятельными и чтение/запись в них будет
-        происходить ТОЛЬКО при чтении/записи рецепта
-     */
+
     @Insert
     fun addNutrients(nutrients: List<Nutrient>)
 
