@@ -2,8 +2,7 @@ package com.example.foodinfo.model.local
 
 import android.graphics.drawable.Drawable
 import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
-import com.example.foodinfo.model.local.entities.recipe_field.RecipeIngredientEntity
-import com.example.foodinfo.model.local.entities.recipe_field.RecipeNutrientEntity
+import com.example.foodinfo.model.local.entities.recipe_field.*
 import com.example.foodinfo.utils.ResourcesProvider
 
 
@@ -22,13 +21,9 @@ data class RecipeExtended(
     val totalWeight: String,
     val totalTime: String,
     val servings: String,
-    val mealType: List<String>,
-    val dishType: List<String>,
-    val dietType: List<String>,
-    val healthType: List<String>,
-    val cuisineType: List<String>,
-    val ingredients: List<RecipeIngredientEntity>,
-    val nutrients: List<RecipeNutrientEntity>,
+    val categories: Map<String, List<String>>,
+    val ingredients: List<RecipeIngredient>,
+    val nutrients: List<RecipeNutrient>,
     val preview: Drawable?
 ) {
 
@@ -57,13 +52,34 @@ data class RecipeExtended(
                 totalWeight = "${entity.totalWeight}g",
                 totalTime = "${entity.totalTime} min",
                 servings = entity.servings.toString(),
-                mealType = entity.mealLabels.map { it.label },
-                dishType = entity.dishLabels.map { it.label },
-                dietType = entity.dietLabels.map { it.label },
-                healthType = entity.healthLabels.map { it.label },
-                cuisineType = entity.cuisineType.map { it.label },
-                ingredients = entity.ingredients,
-                nutrients = entity.totalNutrients,
+                categories = hashMapOf(
+                    Pair(
+                        RecipeMealLabelEntity.DISPLAY_NAME,
+                        entity.mealLabels.map { it.label }
+                    ),
+                    Pair(
+                        RecipeDishLabelEntity.DISPLAY_NAME,
+                        entity.dishLabels.map { it.label }
+                    ),
+                    Pair(
+                        RecipeDietLabelEntity.DISPLAY_NAME,
+                        entity.dietLabels.map { it.label }
+                    ),
+                    Pair(
+                        RecipeHealthLabelEntity.DISPLAY_NAME,
+                        entity.healthLabels.map { it.label }
+                    ),
+                    Pair(
+                        RecipeCuisineLabelEntity.DISPLAY_NAME,
+                        entity.cuisineType.map { it.label }
+                    )
+                ),
+                ingredients = entity.ingredients.map {
+                    RecipeIngredient.fromEntity(it, resourcesProvider)
+                },
+                nutrients = entity.totalNutrients.map {
+                    RecipeNutrient.fromEntity(it)
+                },
                 preview = resourcesProvider.getDrawableByName(entity.previewURL),
             )
         }

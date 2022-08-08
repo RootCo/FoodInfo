@@ -1,6 +1,9 @@
 package com.example.foodinfo.ui
 
 import android.view.ContextThemeWrapper
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +16,7 @@ import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
 import com.example.foodinfo.utils.applicationComponent
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -37,7 +41,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         btnBack.setOnClickListener { onBackClickListener() }
     }
 
-    // this is garbage
     override fun subscribeUI(): Unit = with(binding) {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -61,30 +64,36 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
                     tvCaloriesValue.text = recipe.calories
                     pbCalories.progress = recipe.caloriesDaily
-                    tvCaloriesPercent.text = recipe.caloriesDaily.toString() + "%"
+                    tvCaloriesPercent.text = "${recipe.caloriesDaily}%"
 
-                    // this is totally garbage
-                    for (label in recipe.mealType) {
-                        cgMeal.addView(createChip(label))
-                    }
-                    for (label in recipe.dishType) {
-                        cgDish.addView(createChip(label))
-                    }
-                    for (label in recipe.dietType) {
-                        cgDiet.addView(createChip(label))
-                    }
-                    for (label in recipe.healthType) {
-                        cgHealth.addView(createChip(label))
-                    }
-                    for (label in recipe.cuisineType) {
-                        cgCuisine.addView(createChip(label))
+                    llCategories.removeAllViews()
+                    with(LayoutInflater.from(context)) {
+                        for (category in recipe.categories.entries) {
+                            llCategories.addView(createCategory(category, this))
+                        }
                     }
                 }
             }
         }
     }
 
-    private fun createChip(text: String): Chip {
-        return Chip(ContextThemeWrapper(context, R.style.Chip)).also { it.text = text }
+    private fun createCategory(
+        category: Map.Entry<String, List<String>>,
+        inflater: LayoutInflater
+    ): View {
+        val categoryView = inflater.inflate(R.layout.item_extended_category, null, false)
+        val categoryTitle = categoryView.findViewById<TextView>(R.id.tv_title)
+        val categoryLabels = categoryView.findViewById<ChipGroup>(R.id.cg_labels)
+
+        categoryTitle.text = category.key
+        for (label in category.value) {
+            categoryLabels.addView(createLabel(label))
+        }
+
+        return categoryView
+    }
+
+    private fun createLabel(label: String): Chip {
+        return Chip(ContextThemeWrapper(context, R.style.Chip)).also { it.text = label }
     }
 }

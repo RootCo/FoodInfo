@@ -37,7 +37,7 @@ data class RecipeNutrient(
                 id = entity.id,
                 label = entity.label,
                 totalValue = "${entity.totalValue} ${entity.unit}",
-                dailyValue = entity.dailyValue.toInt(),
+                dailyValue = entity.dailyValue.toInt()
             )
         }
     }
