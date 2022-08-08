@@ -3,29 +3,20 @@ package com.example.foodinfo.view_model
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.local.CategoryItem
-import com.example.foodinfo.model.local.LabelItem
-import com.example.foodinfo.model.local.dao.filter_field.CategoryField
-import com.example.foodinfo.utils.ResourcesProvider
+import com.example.foodinfo.model.repository.RepositoryCategoryLabels
 import javax.inject.Inject
 
 
 class ExploreViewModel @Inject constructor(
-    private val resourcesProvider: ResourcesProvider
+    private val repositoryCategoryLabels: RepositoryCategoryLabels
 ) : ViewModel() {
 
     val categories = initCategories()
     var scrollState: Parcelable? = null
 
     private fun initCategories(): List<CategoryItem> {
-        return CategoryField.Fields.values().map { category ->
-            val labels = category.labels.zip(category.icons) { label, icon ->
-                LabelItem(
-                    category.displayName,
-                    label,
-                    resourcesProvider.getDrawableByName(icon)!!
-                )
-            }
-            CategoryItem(category.displayName, labels)
+        return repositoryCategoryLabels.getAll().map {
+            CategoryItem(it.key, it.value)
         }
     }
 }

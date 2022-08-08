@@ -7,8 +7,8 @@ import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.model.local.RecipeExtended
 import com.example.foodinfo.model.local.RecipeShort
+import com.example.foodinfo.model.local.SearchFilter
 import com.example.foodinfo.model.local.dao.RecipesDAO
-import com.example.foodinfo.model.local.entities.SearchFilter
 import com.example.foodinfo.model.repository.RepositoryRecipes
 import com.example.foodinfo.utils.ResourcesProvider
 import kotlinx.coroutines.delay
@@ -28,9 +28,9 @@ class RepositoryRecipesImpl @Inject constructor(
                 recipesDAO.getPopular()
             }
         ).flow.map { pagingData ->
-            pagingData.map { recipe ->
+            pagingData.map { entity ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                RecipeShort.fromDTO(recipe, resourcesProvider)
+                RecipeShort.fromEntity(entity, resourcesProvider)
             }
         }
     }
@@ -42,16 +42,16 @@ class RepositoryRecipesImpl @Inject constructor(
                 recipesDAO.getByFilterShort(SimpleSQLiteQuery(filter.query))
             }
         ).flow.map { pagingData ->
-            pagingData.map { recipe ->
+            pagingData.map { entity ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                RecipeShort.fromDTO(recipe, resourcesProvider)
+                RecipeShort.fromEntity(entity, resourcesProvider)
             }
         }
     }
 
     override fun getByIdExtended(id: String): Flow<RecipeExtended> {
-        return recipesDAO.getByIdExtended(id).map { recipe ->
-            RecipeExtended.fromDTO(recipe, resourcesProvider)
+        return recipesDAO.getByIdExtended(id).map { entity ->
+            RecipeExtended.fromEntity(entity, resourcesProvider)
         }
     }
 

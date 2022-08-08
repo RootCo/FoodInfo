@@ -1,8 +1,9 @@
 package com.example.foodinfo.model.local
 
 import android.graphics.drawable.Drawable
-import com.example.foodinfo.model.local.entities.recipe_field.Ingredient
-import com.example.foodinfo.model.local.entities.recipe_field.Nutrient
+import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
+import com.example.foodinfo.model.local.entities.recipe_field.RecipeIngredientEntity
+import com.example.foodinfo.model.local.entities.recipe_field.RecipeNutrientEntity
 import com.example.foodinfo.utils.ResourcesProvider
 
 
@@ -26,8 +27,8 @@ data class RecipeExtended(
     val dietType: List<String>,
     val healthType: List<String>,
     val cuisineType: List<String>,
-    val ingredients: List<Ingredient>,
-    val nutrients: List<Nutrient>,
+    val ingredients: List<RecipeIngredientEntity>,
+    val nutrients: List<RecipeNutrientEntity>,
     val preview: Drawable?
 ) {
 
@@ -37,33 +38,33 @@ data class RecipeExtended(
         private const val CARB_CAP = 100
         private const val FAT_CAP = 100
 
-        fun fromDTO(
-            recipe: RecipeExtendedDTO,
+        fun fromEntity(
+            entity: RecipeExtendedEntity,
             resourcesProvider: ResourcesProvider
         ): RecipeExtended {
             return RecipeExtended(
-                id = recipe.id,
-                name = recipe.name,
-                calories = recipe.calories.toString(),
-                caloriesDaily = recipe.calories * 100 / CALORIES_CAP,
-                protein = recipe.protein.toString() + "g",
-                proteinDaily = recipe.protein * 100 / PROTEIN_CAP,
-                carb = recipe.carb.toString() + "g",
-                carbDaily = recipe.carb * 100 / CARB_CAP,
-                fat = recipe.fat.toString() + "g",
-                fatDaily = recipe.fat * 100 / FAT_CAP,
-                source = recipe.source,
-                totalWeight = recipe.totalWeight.toString() + "g",
-                totalTime = recipe.totalTime.toString() + " min",
-                servings = recipe.servings.toString(),
-                mealType = recipe.mealType.map { it.label },
-                dishType = recipe.dishType.map { it.label },
-                dietType = recipe.dietType.map { it.label },
-                healthType = recipe.healthType.map { it.label },
-                cuisineType = recipe.cuisineType.map { it.label },
-                ingredients = recipe.ingredients,
-                nutrients = recipe.totalNutrients,
-                preview = resourcesProvider.getDrawableByName(recipe.previewURL),
+                id = entity.id,
+                name = entity.name,
+                calories = entity.calories.toString(),
+                caloriesDaily = entity.calories * 100 / CALORIES_CAP,
+                protein = "${entity.protein}g",
+                proteinDaily = entity.protein * 100 / PROTEIN_CAP,
+                carb = "${entity.carb}g",
+                carbDaily = entity.carb * 100 / CARB_CAP,
+                fat = "${entity.fat}g",
+                fatDaily = entity.fat * 100 / FAT_CAP,
+                source = entity.source,
+                totalWeight = "${entity.totalWeight}g",
+                totalTime = "${entity.totalTime} min",
+                servings = entity.servings.toString(),
+                mealType = entity.mealLabels.map { it.label },
+                dishType = entity.dishLabels.map { it.label },
+                dietType = entity.dietLabels.map { it.label },
+                healthType = entity.healthLabels.map { it.label },
+                cuisineType = entity.cuisineType.map { it.label },
+                ingredients = entity.ingredients,
+                nutrients = entity.totalNutrients,
+                preview = resourcesProvider.getDrawableByName(entity.previewURL),
             )
         }
     }

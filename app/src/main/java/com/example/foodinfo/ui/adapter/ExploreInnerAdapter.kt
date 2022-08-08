@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.model.local.LabelItem
+import com.example.foodinfo.model.local.CategoryLabel
 import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
 
 
 class ExploreInnerAdapter(
     context: Context,
     private val onItemClickListener: (String, String) -> Unit
-) : ListAdapter<LabelItem, ViewHolder>(LabelItem.ItemCallBack) {
+) : ListAdapter<CategoryLabel, ViewHolder>(CategoryLabel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

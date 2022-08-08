@@ -12,70 +12,53 @@ import com.example.foodinfo.model.local.entities.recipe_field.*
 data class CategoryField(
     val value: Fields,
     val labels: List<String>
-) : BaseField {
+) {
+
     /**
-     * @param displayName database table column name that will be presented to user
+     * @param label database table column name that will be presented to user
      * @param tableName database table name for specific category
      * @param childKey foreign key that references to recipe this category belongs
      * @param column database table column name that will be used in query
-     * @param icons list of all icon names from drawable resources
-     * @param labels list of all available labels that can be used in query
      */
     enum class Fields(
-        val displayName: String,
+        val label: String,
         val tableName: String,
         val childKey: String,
-        val column: String,
-        val icons: ArrayList<String>,
-        val labels: ArrayList<String>
+        val column: String
     ) {
         MEAL_TYPE(
-            "meal",
-            MealType.TABLE_NAME,
-            MealType.Columns.RECIPE_ID,
-            MealType.Columns.LABEL,
-            MealType.ICONS,
-            MealType.LABELS
+            RecipeMealLabelEntity.DISPLAY_NAME,
+            RecipeMealLabelEntity.TABLE_NAME,
+            RecipeMealLabelEntity.Columns.RECIPE_ID,
+            RecipeMealLabelEntity.Columns.LABEL
         ),
         DISH_TYPE(
-            "dish",
-            DishType.TABLE_NAME,
-            DishType.Columns.RECIPE_ID,
-            DishType.Columns.LABEL,
-            DishType.ICONS,
-            DishType.LABELS
+            RecipeDishLabelEntity.DISPLAY_NAME,
+            RecipeDishLabelEntity.TABLE_NAME,
+            RecipeDishLabelEntity.Columns.RECIPE_ID,
+            RecipeDishLabelEntity.Columns.LABEL
         ),
         DIET_TYPE(
-            "diet",
-            DietType.TABLE_NAME,
-            DietType.Columns.RECIPE_ID,
-            DietType.Columns.LABEL,
-            DietType.ICONS,
-            DietType.LABELS
+            RecipeDietLabelEntity.DISPLAY_NAME,
+            RecipeDietLabelEntity.TABLE_NAME,
+            RecipeDietLabelEntity.Columns.RECIPE_ID,
+            RecipeDietLabelEntity.Columns.LABEL
         ),
         HEALTH_TYPE(
-            "health",
-            HealthType.TABLE_NAME,
-            HealthType.Columns.RECIPE_ID,
-            HealthType.Columns.LABEL,
-            HealthType.ICONS,
-            HealthType.LABELS
+            RecipeHealthLabelEntity.DISPLAY_NAME,
+            RecipeHealthLabelEntity.TABLE_NAME,
+            RecipeHealthLabelEntity.Columns.RECIPE_ID,
+            RecipeHealthLabelEntity.Columns.LABEL
         ),
         CUISINE_TYPE(
-            "cuisine",
-            CuisineType.TABLE_NAME,
-            CuisineType.Columns.RECIPE_ID,
-            CuisineType.Columns.LABEL,
-            CuisineType.ICONS,
-            CuisineType.LABELS
+            RecipeCuisineLabelEntity.DISPLAY_NAME,
+            RecipeCuisineLabelEntity.TABLE_NAME,
+            RecipeCuisineLabelEntity.Columns.RECIPE_ID,
+            RecipeCuisineLabelEntity.Columns.LABEL
         )
     }
 
     companion object {
-        fun fromLabel(label: String) =
-            Fields.values().first { it.displayName == label }
+        fun fromLabel(label: String) = Fields.values().first { it.label == label }
     }
 }
-
-class CategoryFields(_data: MutableSet<CategoryField> = mutableSetOf()) :
-    BaseFieldSet<CategoryField>(_data)

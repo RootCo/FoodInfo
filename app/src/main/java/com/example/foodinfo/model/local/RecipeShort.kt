@@ -2,6 +2,7 @@ package com.example.foodinfo.model.local
 
 import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.DiffUtil
+import com.example.foodinfo.model.local.entities.RecipeShortEntity
 import com.example.foodinfo.utils.ResourcesProvider
 
 
@@ -35,18 +36,18 @@ data class RecipeShort(
     }
 
     companion object {
-        fun fromDTO(
-            recipe: RecipeShortDTO,
+        fun fromEntity(
+            entity: RecipeShortEntity,
             resourcesProvider: ResourcesProvider
         ): RecipeShort {
             return RecipeShort(
-                id = recipe.id,
-                name = recipe.name,
-                calories = recipe.calories.toString(),
-                servings = recipe.servings.toString(),
-                totalTime = recipe.totalTime.toString() + " min",
-                totalIngredients = recipe.totalIngredients.toString(),
-                preview = resourcesProvider.getDrawableByName(recipe.previewURL),
+                id = entity.id,
+                name = entity.name,
+                calories = entity.calories.toString(),
+                servings = entity.servings.toString(),
+                totalTime = "${entity.totalTime} min",
+                totalIngredients = entity.totalIngredients.toString(),
+                preview = resourcesProvider.getDrawableByName(entity.previewURL),
             )
         }
     }

@@ -3,7 +3,7 @@ package com.example.foodinfo.model.repository
 import androidx.paging.PagingData
 import com.example.foodinfo.model.local.RecipeExtended
 import com.example.foodinfo.model.local.RecipeShort
-import com.example.foodinfo.model.local.entities.SearchFilter
+import com.example.foodinfo.model.local.SearchFilter
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryRecipes {

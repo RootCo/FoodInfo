@@ -2,9 +2,7 @@ package com.example.foodinfo.di.module
 
 import android.content.Context
 import com.example.foodinfo.model.local.DataBase
-import com.example.foodinfo.model.local.dao.RecipesDAO
-import com.example.foodinfo.model.local.dao.SearchFilterDAO
-import com.example.foodinfo.model.local.dao.SearchHistoryDAO
+import com.example.foodinfo.model.local.dao.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,11 +16,11 @@ class RoomModule {
         return DataBase.getDatabase(context)
     }
 
+
     @Provides
     fun provideRecipeDAO(database: DataBase): RecipesDAO {
         return database.recipesDAO
     }
-
 
     @Provides
     fun provideSearchFilterDAO(database: DataBase): SearchFilterDAO {
@@ -32,5 +30,15 @@ class RoomModule {
     @Provides
     fun provideSearchInputHistoryDAO(database: DataBase): SearchHistoryDAO {
         return database.searchHistoryDAO
+    }
+
+    @Provides
+    fun provideCategoryLabelsDAO(database: DataBase): CategoryLabelsDAO {
+        return database.categoryLabelsDAO
+    }
+
+    @Provides
+    fun provideNutrientsDAO(database: DataBase): NutrientsDAO {
+        return database.nutrientsDAO
     }
 }

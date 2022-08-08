@@ -7,8 +7,10 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.foodinfo.databinding.ActivityMainBinding
-import com.example.foodinfo.model.local.entities.Recipe
-import com.example.foodinfo.model.local.entities.SearchInput
+import com.example.foodinfo.model.local.entities.CategoryLabelEntity
+import com.example.foodinfo.model.local.entities.NutrientEntity
+import com.example.foodinfo.model.local.entities.RecipeEntity
+import com.example.foodinfo.model.local.entities.SearchInputEntity
 import com.example.foodinfo.model.local.entities.recipe_field.*
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
@@ -55,45 +57,91 @@ class MainActivity : AppCompatActivity() {
         val jsonLoader = JSONLoader()
         val gson = GsonBuilder().create()
 
-        val predefinedDB = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.PREDEFINED_DB_100)
-        )
-        val recipesString = predefinedDB.get(AssetsKeyWords.RECIPES).toString()
-        val nutrientsString = predefinedDB.get(AssetsKeyWords.NUTRIENTS).toString()
-        val ingredientsString =
-            predefinedDB.get(AssetsKeyWords.INGREDIENTS).toString()
-        val dishTypesString = predefinedDB.get(AssetsKeyWords.DISH_TYPES).toString()
-        val mealTypesString = predefinedDB.get(AssetsKeyWords.MEAL_TYPES).toString()
-        val dietTypesString = predefinedDB.get(AssetsKeyWords.DIET_TYPES).toString()
-        val healthTypesString =
-            predefinedDB.get(AssetsKeyWords.HEALTH_TYPES).toString()
-        val cuisineTypesString =
-            predefinedDB.get(AssetsKeyWords.CUISINE_TYPES).toString()
-        val searchHistoryString =
-            predefinedDB.get(AssetsKeyWords.SEARCH_HISTORY).toString()
+        dataBase.clearAllTables()
 
-        val typeRecipes = object : TypeToken<List<Recipe>>() {}.type
-        val typeNutrients = object : TypeToken<List<Nutrient>>() {}.type
-        val typeIngredients = object : TypeToken<List<Ingredient>>() {}.type
-        val typeDishTypes = object : TypeToken<List<DishType>>() {}.type
-        val typeMealTypes = object : TypeToken<List<MealType>>() {}.type
-        val typeDietTypes = object : TypeToken<List<DietType>>() {}.type
-        val typeHealthType = object : TypeToken<List<HealthType>>() {}.type
-        val typeCuisineTypes = object : TypeToken<List<CuisineType>>() {}.type
-        val typeSearchInput = object : TypeToken<List<SearchInput>>() {}.type
+        val dbRecipes = jsonLoader.load(
+            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_RECIPES_100)
+        )
 
         dataBase.recipesDAO.addAll(
-            gson.fromJson(recipesString, typeRecipes),
-            gson.fromJson(nutrientsString, typeNutrients),
-            gson.fromJson(ingredientsString, typeIngredients),
-            gson.fromJson(dietTypesString, typeDietTypes),
-            gson.fromJson(dishTypesString, typeDishTypes),
-            gson.fromJson(mealTypesString, typeMealTypes),
-            gson.fromJson(healthTypesString, typeHealthType),
-            gson.fromJson(cuisineTypesString, typeCuisineTypes)
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.RECIPES).toString(),
+                object : TypeToken<List<RecipeEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.NUTRIENTS).toString(),
+                object : TypeToken<List<RecipeNutrientEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.INGREDIENTS).toString(),
+                object : TypeToken<List<RecipeIngredientEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.DIET_TYPES).toString(),
+                object : TypeToken<List<RecipeDietLabelEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.DISH_TYPES).toString(),
+                object : TypeToken<List<RecipeDishLabelEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.MEAL_TYPES).toString(),
+                object : TypeToken<List<RecipeMealLabelEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.HEALTH_TYPES).toString(),
+                object : TypeToken<List<RecipeHealthLabelEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.CUISINE_TYPES).toString(),
+                object : TypeToken<List<RecipeCuisineLabelEntity>>() {}.type
+            )
         )
+
         dataBase.searchHistoryDAO.addHistory(
-            gson.fromJson(searchHistoryString, typeSearchInput)
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.SEARCH_HISTORY).toString(),
+                object : TypeToken<List<SearchInputEntity>>() {}.type
+            )
+        )
+
+        val dbCategory = jsonLoader.load(
+            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY)
+        )
+
+        val mealString = dbCategory.get(AssetsKeyWords.CATEGORY_MEAL).toString()
+        val dishString = dbCategory.get(AssetsKeyWords.CATEGORY_DISH).toString()
+        val dietString = dbCategory.get(AssetsKeyWords.CATEGORY_DIET).toString()
+        val healthString = dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString()
+        val cuisineString = dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString()
+
+        val typeCategoryLabel = object : TypeToken<List<CategoryLabelEntity>>() {}.type
+
+        dataBase.categoryLabelsDAO.addCategory(
+            gson.fromJson(mealString, typeCategoryLabel)
+        )
+        dataBase.categoryLabelsDAO.addCategory(
+            gson.fromJson(dishString, typeCategoryLabel)
+        )
+        dataBase.categoryLabelsDAO.addCategory(
+            gson.fromJson(dietString, typeCategoryLabel)
+        )
+        dataBase.categoryLabelsDAO.addCategory(
+            gson.fromJson(healthString, typeCategoryLabel)
+        )
+        dataBase.categoryLabelsDAO.addCategory(
+            gson.fromJson(cuisineString, typeCategoryLabel)
+        )
+
+        val dbNutrients = jsonLoader.load(
+            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT)
+        )
+
+        dataBase.nutrientsDAO.addAll(
+            gson.fromJson(
+                dbNutrients.get(AssetsKeyWords.CONTENT).toString(),
+                object : TypeToken<List<NutrientEntity>>() {}.type
+            )
         )
     }
 }

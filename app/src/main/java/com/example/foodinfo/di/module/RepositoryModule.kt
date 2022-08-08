@@ -1,14 +1,8 @@
 package com.example.foodinfo.di.module
 
-import com.example.foodinfo.model.local.dao.RecipesDAO
-import com.example.foodinfo.model.local.dao.SearchFilterDAO
-import com.example.foodinfo.model.local.dao.SearchHistoryDAO
-import com.example.foodinfo.model.repository.RepositoryRecipes
-import com.example.foodinfo.model.repository.RepositorySearchFilter
-import com.example.foodinfo.model.repository.RepositorySearchHistory
-import com.example.foodinfo.model.repository.impl.RepositoryRecipesImpl
-import com.example.foodinfo.model.repository.impl.RepositorySearchFilterImpl
-import com.example.foodinfo.model.repository.impl.RepositorySearchHistoryImpl
+import com.example.foodinfo.model.local.dao.*
+import com.example.foodinfo.model.repository.*
+import com.example.foodinfo.model.repository.impl.*
 import com.example.foodinfo.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
@@ -28,13 +22,33 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepositorySearchFilter(searchFilterDAO: SearchFilterDAO): RepositorySearchFilter {
+    fun provideRepositorySearchFilter(
+        searchFilterDAO: SearchFilterDAO
+    ): RepositorySearchFilter {
         return RepositorySearchFilterImpl(searchFilterDAO)
     }
 
     @Provides
     @Singleton
-    fun provideRepositorySearchInput(searchHistoryDAO: SearchHistoryDAO): RepositorySearchHistory {
+    fun provideRepositorySearchInput(
+        searchHistoryDAO: SearchHistoryDAO
+    ): RepositorySearchHistory {
         return RepositorySearchHistoryImpl(searchHistoryDAO)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoryCategoryLabels(
+        categoryLabelsDAO: CategoryLabelsDAO, resourcesProvider: ResourcesProvider
+    ): RepositoryCategoryLabels {
+        return RepositoryCategoryLabelsImpl(resourcesProvider, categoryLabelsDAO)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoryNutrients(
+        nutrientsDAO: NutrientsDAO, resourcesProvider: ResourcesProvider
+    ): RepositoryNutrients {
+        return RepositoryNutrientsImpl(resourcesProvider, nutrientsDAO)
     }
 }

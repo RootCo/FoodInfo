@@ -4,43 +4,34 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.example.foodinfo.model.local.dao.RecipesDAO
-import com.example.foodinfo.model.local.dao.SearchFilterDAO
-import com.example.foodinfo.model.local.dao.SearchHistoryDAO
-import com.example.foodinfo.model.local.dao.type_converter.CategoryFieldTypeConverter
-import com.example.foodinfo.model.local.dao.type_converter.NutrientFieldTypeConverter
-import com.example.foodinfo.model.local.dao.type_converter.RangeFieldTypeConverter
-import com.example.foodinfo.model.local.entities.Recipe
-import com.example.foodinfo.model.local.entities.SearchFilter
-import com.example.foodinfo.model.local.entities.SearchInput
+import com.example.foodinfo.model.local.dao.*
+import com.example.foodinfo.model.local.entities.*
 import com.example.foodinfo.model.local.entities.recipe_field.*
 
 
 @Database(
     version = 1,
     entities = [
-        Recipe::class,
-        SearchFilter::class,
-        SearchInput::class,
-        CuisineType::class,
-        HealthType::class,
-        DietType::class,
-        DishType::class,
-        MealType::class,
-        Ingredient::class,
-        Nutrient::class,
+        RecipeEntity::class,
+        SearchFilterEntity::class,
+        SearchInputEntity::class,
+        RecipeCuisineLabelEntity::class,
+        RecipeHealthLabelEntity::class,
+        RecipeDietLabelEntity::class,
+        RecipeDishLabelEntity::class,
+        RecipeMealLabelEntity::class,
+        RecipeIngredientEntity::class,
+        RecipeNutrientEntity::class,
+        CategoryLabelEntity::class,
+        NutrientEntity::class,
     ]
-)
-@TypeConverters(
-    RangeFieldTypeConverter::class,
-    CategoryFieldTypeConverter::class,
-    NutrientFieldTypeConverter::class,
 )
 abstract class DataBase : RoomDatabase() {
     abstract val recipesDAO: RecipesDAO
     abstract val searchFilterDAO: SearchFilterDAO
     abstract val searchHistoryDAO: SearchHistoryDAO
+    abstract val categoryLabelsDAO: CategoryLabelsDAO
+    abstract val nutrientsDAO: NutrientsDAO
 
     companion object {
         private const val DB_NAME = "data_base"

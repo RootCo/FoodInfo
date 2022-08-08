@@ -3,9 +3,9 @@ package com.example.foodinfo.model.local.dao
 import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.example.foodinfo.model.local.RecipeExtendedDTO
-import com.example.foodinfo.model.local.RecipeShortDTO
-import com.example.foodinfo.model.local.entities.Recipe
+import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
+import com.example.foodinfo.model.local.entities.RecipeShortEntity
+import com.example.foodinfo.model.local.entities.RecipeEntity
 import com.example.foodinfo.model.local.entities.recipe_field.*
 import kotlinx.coroutines.flow.Flow
 
@@ -13,82 +13,82 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface RecipesDAO {
     @Query(
-        "SELECT * FROM ${Recipe.TABLE_NAME} " +
-                "WHERE ${Recipe.Columns.ID} " +
-                "IN (SELECT ${Recipe.Columns.ID} " +
-                "FROM ${Recipe.TABLE_NAME} ORDER BY RANDOM())"
+        "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
+                "WHERE ${RecipeEntity.Columns.ID} " +
+                "IN (SELECT ${RecipeEntity.Columns.ID} " +
+                "FROM ${RecipeEntity.TABLE_NAME} ORDER BY RANDOM())"
     )
-    fun getPopular(): PagingSource<Int, RecipeShortDTO>
+    fun getPopular(): PagingSource<Int, RecipeShortEntity>
 
     @RawQuery(
         observedEntities = [
-            Recipe::class,
-            Nutrient::class,
-            Ingredient::class,
-            DietType::class,
-            DishType::class,
-            MealType::class,
-            HealthType::class,
-            CuisineType::class,
-            CuisineType::class,
+            RecipeEntity::class,
+            RecipeNutrientEntity::class,
+            RecipeIngredientEntity::class,
+            RecipeDietLabelEntity::class,
+            RecipeDishLabelEntity::class,
+            RecipeMealLabelEntity::class,
+            RecipeHealthLabelEntity::class,
+            RecipeCuisineLabelEntity::class,
+            RecipeCuisineLabelEntity::class,
         ]
     )
-    fun getByFilterShort(query: SupportSQLiteQuery): PagingSource<Int, RecipeShortDTO>
+    fun getByFilterShort(query: SupportSQLiteQuery): PagingSource<Int, RecipeShortEntity>
 
     @Query(
-        "${RecipeExtendedDTO.SELECTOR} " +
-                "WHERE ${Recipe.Columns.ID} " +
+        "${RecipeExtendedEntity.SELECTOR} " +
+                "WHERE ${RecipeEntity.Columns.ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getByIdExtended(id: String): Flow<RecipeExtendedDTO>
+    fun getByIdExtended(id: String): Flow<RecipeExtendedEntity>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRecipe(recipe: Recipe)
+    fun addRecipe(recipe: RecipeEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRecipes(recipes: List<Recipe>)
+    fun addRecipes(recipes: List<RecipeEntity>)
 
 
     @Insert
-    fun addNutrients(nutrients: List<Nutrient>)
+    fun addNutrients(nutrients: List<RecipeNutrientEntity>)
 
     @Insert
-    fun addIngredients(nutrients: List<Ingredient>)
+    fun addIngredients(nutrients: List<RecipeIngredientEntity>)
 
     @Insert
-    fun addDietTypes(dietTypes: List<DietType>)
+    fun addDietTypes(dietLabels: List<RecipeDietLabelEntity>)
 
     @Insert
-    fun addDishTypes(dishTypes: List<DishType>)
+    fun addDishTypes(dishLabels: List<RecipeDishLabelEntity>)
 
     @Insert
-    fun addMealTypes(mealTypes: List<MealType>)
+    fun addMealTypes(mealLabels: List<RecipeMealLabelEntity>)
 
     @Insert
-    fun addHealthTypes(healthTypes: List<HealthType>)
+    fun addHealthTypes(healthLabels: List<RecipeHealthLabelEntity>)
 
     @Insert
-    fun addCuisineTypes(cuisineTypes: List<CuisineType>)
+    fun addCuisineTypes(cuisineTypes: List<RecipeCuisineLabelEntity>)
 
     @Transaction
     fun addAll(
-        recipes: List<Recipe>,
-        nutrients: List<Nutrient>,
-        ingredients: List<Ingredient>,
-        dietTypes: List<DietType>,
-        dishTypes: List<DishType>,
-        mealTypes: List<MealType>,
-        healthTypes: List<HealthType>,
-        cuisineTypes: List<CuisineType>,
+        recipes: List<RecipeEntity>,
+        nutrients: List<RecipeNutrientEntity>,
+        ingredients: List<RecipeIngredientEntity>,
+        dietLabels: List<RecipeDietLabelEntity>,
+        dishLabels: List<RecipeDishLabelEntity>,
+        mealLabels: List<RecipeMealLabelEntity>,
+        healthLabels: List<RecipeHealthLabelEntity>,
+        cuisineTypes: List<RecipeCuisineLabelEntity>,
     ) {
         addRecipes(recipes)
         addNutrients(nutrients)
         addIngredients(ingredients)
-        addDietTypes(dietTypes)
-        addDishTypes(dishTypes)
-        addMealTypes(mealTypes)
-        addHealthTypes(healthTypes)
+        addDietTypes(dietLabels)
+        addDishTypes(dishLabels)
+        addMealTypes(mealLabels)
+        addHealthTypes(healthLabels)
         addCuisineTypes(cuisineTypes)
     }
 }

@@ -1,0 +1,366 @@
+{
+  "cuisine": [
+    {
+      "category": "cuisine",
+      "label": "Asian",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_asian"
+    },
+    {
+      "category": "cuisine",
+      "label": "French",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_french"
+    },
+    {
+      "category": "cuisine",
+      "label": "Indian",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_indian"
+    },
+    {
+      "category": "cuisine",
+      "label": "Kosher",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_kosher"
+    },
+    {
+      "category": "cuisine",
+      "label": "Nordic",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_nordic"
+    },
+    {
+      "category": "cuisine",
+      "label": "Italian",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_italian"
+    },
+    {
+      "category": "cuisine",
+      "label": "British",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_british"
+    },
+    {
+      "category": "cuisine",
+      "label": "Chinese",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_chinese"
+    },
+    {
+      "category": "cuisine",
+      "label": "Mexican",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_mexican"
+    },
+    {
+      "category": "cuisine",
+      "label": "Japanese",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_japanese"
+    },
+    {
+      "category": "cuisine",
+      "label": "American",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_american"
+    },
+    {
+      "category": "cuisine",
+      "label": "Caribbean",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_caribbean"
+    },
+    {
+      "category": "cuisine",
+      "label": "Mediterranean",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_mediterranean"
+    },
+    {
+      "category": "cuisine",
+      "label": "Central Europe",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_central_europe"
+    },
+    {
+      "category": "cuisine",
+      "label": "Eastern Europe",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_eastern_europe"
+    },
+    {
+      "category": "cuisine",
+      "label": "Middle Eastern",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_middle_eastern"
+    },
+    {
+      "category": "cuisine",
+      "label": "South American",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_south_american"
+    },
+    {
+      "category": "cuisine",
+      "label": "South East Asian",
+      "description": "TBD",
+      "previewURL": "ic_cat_cuisine_south_east_asian"
+    }
+  ],
+  "diet": [
+    {
+      "category": "diet",
+      "label": "low-fat",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_low_fat"
+    },
+    {
+      "category": "diet",
+      "label": "balanced",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_balanced"
+    },
+    {
+      "category": "diet",
+      "label": "low-carb",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_low_carb"
+    },
+    {
+      "category": "diet",
+      "label": "high-fiber",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_high_fiber"
+    },
+    {
+      "category": "diet",
+      "label": "low-sodium",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_low_sodium"
+    },
+    {
+      "category": "diet",
+      "label": "high-protein",
+      "description": "TBD",
+      "previewURL": "ic_cat_diet_high_protein"
+    }
+  ],
+  "dish": [
+    {
+      "category": "dish",
+      "label": "soup",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_soup"
+    },
+    {
+      "category": "dish",
+      "label": "preps",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_preps"
+    },
+    {
+      "category": "dish",
+      "label": "salad",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_salad"
+    },
+    {
+      "category": "dish",
+      "label": "bread",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_bread"
+    },
+    {
+      "category": "dish",
+      "label": "drinks",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_drinks"
+    },
+    {
+      "category": "dish",
+      "label": "omelet",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_omelet"
+    },
+    {
+      "category": "dish",
+      "label": "pancake",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_pancake"
+    },
+    {
+      "category": "dish",
+      "label": "starter",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_starter"
+    },
+    {
+      "category": "dish",
+      "label": "cereals",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_cereals"
+    },
+    {
+      "category": "dish",
+      "label": "preserve",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_preserve"
+    },
+    {
+      "category": "dish",
+      "label": "desserts",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_desserts"
+    },
+    {
+      "category": "dish",
+      "label": "alcohol-cocktail",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_alcohol"
+    },
+    {
+      "category": "dish",
+      "label": "sandwiches",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_sandwiches"
+    },
+    {
+      "category": "dish",
+      "label": "main course",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_main_course"
+    },
+    {
+      "category": "dish",
+      "label": "biscuits and cookies",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_biscuits"
+    },
+    {
+      "category": "dish",
+      "label": "condiments and sauces",
+      "description": "TBD",
+      "previewURL": "ic_cat_dish_condiments"
+    }
+  ],
+  "health": [
+    {
+      "category": "health",
+      "label": "vegan",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_vegan"
+    },
+    {
+      "category": "health",
+      "label": "paleo",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_paleo"
+    },
+    {
+      "category": "health",
+      "label": "fat-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_fat_free"
+    },
+    {
+      "category": "health",
+      "label": "egg-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_egg_free"
+    },
+    {
+      "category": "health",
+      "label": "soy-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_soy_free"
+    },
+    {
+      "category": "health",
+      "label": "fish-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_fish_free"
+    },
+    {
+      "category": "health",
+      "label": "low-sugar",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_low_sugar"
+    },
+    {
+      "category": "health",
+      "label": "dairy-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_dairy_free"
+    },
+    {
+      "category": "health",
+      "label": "wheat-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_wheat_free"
+    },
+    {
+      "category": "health",
+      "label": "vegetarian",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_vegetarian"
+    },
+    {
+      "category": "health",
+      "label": "peanut-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_peanut_free"
+    },
+    {
+      "category": "health",
+      "label": "gluten-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_gluten_free"
+    },
+    {
+      "category": "health",
+      "label": "tree-nut-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_tree_nut_free"
+    },
+    {
+      "category": "health",
+      "label": "shellfish-free",
+      "description": "TBD",
+      "previewURL": "ic_cat_health_shellfish_free"
+    }
+  ],
+  "meal": [
+    {
+      "category": "meal",
+      "label": "lunch",
+      "description": "TBD",
+      "previewURL": "ic_cat_meal_lunch"
+    },
+    {
+      "category": "meal",
+      "label": "snack",
+      "description": "TBD",
+      "previewURL": "ic_cat_meal_snack"
+    },
+    {
+      "category": "meal",
+      "label": "dinner",
+      "description": "TBD",
+      "previewURL": "ic_cat_meal_dinner"
+    },
+    {
+      "category": "meal",
+      "label": "teatime",
+      "description": "TBD",
+      "previewURL": "ic_cat_meal_teatime"
+    },
+    {
+      "category": "meal",
+      "label": "breakfast",
+      "description": "TBD",
+      "previewURL": "ic_cat_meal_breakfast"
+    }
+  ]
+}

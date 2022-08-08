@@ -3,13 +3,13 @@ package com.example.foodinfo.ui.view_holder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
-import com.example.foodinfo.model.local.LabelItem
+import com.example.foodinfo.model.local.CategoryLabel
 
 
 class ExploreInnerViewHolder(
     private val binding: RvItemExploreInnerBinding,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<RvItemExploreInnerBinding, LabelItem>(binding) {
+) : BaseViewHolder<RvItemExploreInnerBinding, CategoryLabel>(binding) {
 
     init {
         binding.clExploreInnerItem.setOnClickListener {
@@ -18,7 +18,7 @@ class ExploreInnerViewHolder(
     }
 
 
-    override fun bind(newItem: LabelItem): Unit = with(binding) {
+    override fun bind(newItem: CategoryLabel): Unit = with(binding) {
         super.bind(newItem)
         tvTitle.text = item.label
         icPreview.setImageDrawable(item.icon)

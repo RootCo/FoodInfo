@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 
 data class CategoryItem(
     val category: String,
-    var labels: List<LabelItem>,
+    val labels: List<CategoryLabel>,
     var state: Parcelable? = null
 ) {
     object ItemCallBack :
