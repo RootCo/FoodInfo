@@ -1,9 +1,7 @@
 package com.example.foodinfo.model.local
 
-import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.DiffUtil
 import com.example.foodinfo.model.local.entities.CategoryLabelEntity
-import com.example.foodinfo.utils.ResourcesProvider
 
 
 data class CategoryLabel(
@@ -11,7 +9,7 @@ data class CategoryLabel(
     val category: String,
     val label: String,
     val description: String,
-    val icon: Drawable
+    val previewURL: String
 ) {
 
     object ItemCallBack :
@@ -33,16 +31,13 @@ data class CategoryLabel(
     }
 
     companion object {
-        fun fromEntity(
-            entity: CategoryLabelEntity,
-            resourcesProvider: ResourcesProvider
-        ): CategoryLabel {
+        fun fromEntity(entity: CategoryLabelEntity): CategoryLabel {
             return CategoryLabel(
                 id = entity.id,
                 category = entity.category,
                 label = entity.label,
                 description = entity.description,
-                icon = resourcesProvider.getDrawableByName(entity.previewURL)!!
+                previewURL = entity.previewURL
             )
         }
     }

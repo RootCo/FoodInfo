@@ -1,9 +1,7 @@
 package com.example.foodinfo.model.local
 
-import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.DiffUtil
 import com.example.foodinfo.model.local.entities.recipe_field.RecipeIngredientEntity
-import com.example.foodinfo.utils.ResourcesProvider
 
 
 data class RecipeIngredient(
@@ -14,7 +12,7 @@ data class RecipeIngredient(
     val food: String,
     val foodCategory: String,
     val foodId: String,
-    val preview: Drawable? = null
+    val previewURL: String
 ) {
 
     object ItemCallBack :
@@ -36,15 +34,13 @@ data class RecipeIngredient(
                     oldItem.weight == oldItem.weight &&
                     oldItem.food == oldItem.food &&
                     oldItem.foodCategory == oldItem.foodCategory &&
-                    oldItem.foodId == oldItem.foodId
+                    oldItem.foodId == oldItem.foodId &&
+                    oldItem.previewURL == newItem.previewURL
         }
     }
 
     companion object {
-        fun fromEntity(
-            entity: RecipeIngredientEntity,
-            resourcesProvider: ResourcesProvider,
-        ): RecipeIngredient {
+        fun fromEntity(entity: RecipeIngredientEntity): RecipeIngredient {
             return RecipeIngredient(
                 id = entity.id,
                 text = entity.text,
@@ -53,7 +49,7 @@ data class RecipeIngredient(
                 food = entity.food,
                 foodId = entity.foodId,
                 foodCategory = entity.foodCategory,
-                preview = resourcesProvider.getDrawableByName(entity.previewURL)
+                previewURL = entity.previewURL
             )
         }
     }

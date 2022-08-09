@@ -1,9 +1,7 @@
 package com.example.foodinfo.model.local
 
-import android.graphics.drawable.Drawable
 import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
 import com.example.foodinfo.model.local.entities.recipe_field.*
-import com.example.foodinfo.utils.ResourcesProvider
 
 
 data class RecipeExtended(
@@ -24,7 +22,7 @@ data class RecipeExtended(
     val categories: Map<String, List<String>>,
     val ingredients: List<RecipeIngredient>,
     val nutrients: List<RecipeNutrient>,
-    val preview: Drawable?
+    val previewURL: String
 ) {
 
     companion object {
@@ -33,10 +31,7 @@ data class RecipeExtended(
         private const val CARB_CAP = 100
         private const val FAT_CAP = 100
 
-        fun fromEntity(
-            entity: RecipeExtendedEntity,
-            resourcesProvider: ResourcesProvider
-        ): RecipeExtended {
+        fun fromEntity(entity: RecipeExtendedEntity): RecipeExtended {
             return RecipeExtended(
                 id = entity.id,
                 name = entity.name,
@@ -75,12 +70,12 @@ data class RecipeExtended(
                     )
                 ),
                 ingredients = entity.ingredients.map {
-                    RecipeIngredient.fromEntity(it, resourcesProvider)
+                    RecipeIngredient.fromEntity(it)
                 },
                 nutrients = entity.totalNutrients.map {
                     RecipeNutrient.fromEntity(it)
                 },
-                preview = resourcesProvider.getDrawableByName(entity.previewURL),
+                previewURL = entity.previewURL
             )
         }
     }

@@ -10,7 +10,6 @@ import com.example.foodinfo.model.local.RecipeShort
 import com.example.foodinfo.model.local.SearchFilter
 import com.example.foodinfo.model.local.dao.RecipesDAO
 import com.example.foodinfo.model.repository.RepositoryRecipes
-import com.example.foodinfo.utils.ResourcesProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 
 class RepositoryRecipesImpl @Inject constructor(
-    private val resourcesProvider: ResourcesProvider, private val recipesDAO: RecipesDAO
+    private val recipesDAO: RecipesDAO
 ) : RepositoryRecipes {
 
     override fun getPopular(): Flow<PagingData<RecipeShort>> {
@@ -30,7 +29,7 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData ->
             pagingData.map { entity ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                RecipeShort.fromEntity(entity, resourcesProvider)
+                RecipeShort.fromEntity(entity)
             }
         }
     }
@@ -44,14 +43,14 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData ->
             pagingData.map { entity ->
                 delay(100L) // для теста плейсхолдеров и прогресс бара
-                RecipeShort.fromEntity(entity, resourcesProvider)
+                RecipeShort.fromEntity(entity)
             }
         }
     }
 
     override fun getByIdExtended(id: String): Flow<RecipeExtended> {
         return recipesDAO.getByIdExtended(id).map { entity ->
-            RecipeExtended.fromEntity(entity, resourcesProvider)
+            RecipeExtended.fromEntity(entity)
         }
     }
 

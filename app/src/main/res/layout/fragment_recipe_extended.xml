@@ -58,7 +58,7 @@
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toTopOf = "parent"
                 app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig"
-                tools:src = "@drawable/im_lagman" />
+                tools:src = "@drawable/ic_image_placeholder" />
 
             <TextView
                 android:id = "@+id/tv_recipe_name"

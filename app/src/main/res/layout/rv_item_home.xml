@@ -23,7 +23,7 @@
             android:layout_width = "0dp"
             android:layout_height = "0dp"
             android:layout_margin = "@dimen/dp_20"
-            android:background = "@color/secondary_background"
+            android:background = "@color/main_background"
             android:elevation = "3dp"
             android:scaleType = "centerCrop"
             app:layout_constraintDimensionRatio = "W,1:1"
@@ -31,7 +31,7 @@
             app:layout_constraintStart_toStartOf = "parent"
             app:layout_constraintTop_toTopOf = "parent"
             app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig"
-            tools:src = "@sample/recipes.json/short/preview" />
+            tools:src = "@drawable/ic_image_placeholder" />
 
         <TextView
             android:id = "@+id/tv_recipe_name"

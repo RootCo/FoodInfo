@@ -2,8 +2,10 @@ package com.example.foodinfo.ui.view_holder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.model.local.CategoryLabel
+import com.example.foodinfo.utils.getDrawableByName
 
 
 class ExploreInnerViewHolder(
@@ -21,7 +23,9 @@ class ExploreInnerViewHolder(
     override fun bind(newItem: CategoryLabel): Unit = with(binding) {
         super.bind(newItem)
         tvTitle.text = item.label
-        icPreview.setImageDrawable(item.icon)
+        Glide.with(icPreview.context)
+            .load(icPreview.getDrawableByName(item.previewURL))
+            .into(icPreview)
     }
 
     companion object {

@@ -3,7 +3,6 @@ package com.example.foodinfo.di.module
 import com.example.foodinfo.model.local.dao.*
 import com.example.foodinfo.model.repository.*
 import com.example.foodinfo.model.repository.impl.*
-import com.example.foodinfo.utils.ResourcesProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,9 +14,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepositoryRecipes(
-        recipesDAO: RecipesDAO, resourcesProvider: ResourcesProvider
+        recipesDAO: RecipesDAO
     ): RepositoryRecipes {
-        return RepositoryRecipesImpl(resourcesProvider, recipesDAO)
+        return RepositoryRecipesImpl(recipesDAO)
     }
 
     @Provides
@@ -39,16 +38,16 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepositoryCategoryLabels(
-        categoryLabelsDAO: CategoryLabelsDAO, resourcesProvider: ResourcesProvider
+        categoryLabelsDAO: CategoryLabelsDAO
     ): RepositoryCategoryLabels {
-        return RepositoryCategoryLabelsImpl(resourcesProvider, categoryLabelsDAO)
+        return RepositoryCategoryLabelsImpl(categoryLabelsDAO)
     }
 
     @Provides
     @Singleton
     fun provideRepositoryNutrients(
-        nutrientsDAO: NutrientsDAO, resourcesProvider: ResourcesProvider
+        nutrientsDAO: NutrientsDAO
     ): RepositoryNutrients {
-        return RepositoryNutrientsImpl(resourcesProvider, nutrientsDAO)
+        return RepositoryNutrientsImpl(nutrientsDAO)
     }
 }

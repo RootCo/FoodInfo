@@ -47,7 +47,8 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 viewModel.recipe.collectLatest { recipe ->
                     tvRecipeName.text = recipe.name
                     Glide.with(ivRecipePreview.context)
-                        .load(recipe.preview)
+                        .load(recipe.previewURL)
+                        .placeholder(R.drawable.ic_image_placeholder)
                         .into(ivRecipePreview)
 
                     tvServingsValue.text = recipe.servings

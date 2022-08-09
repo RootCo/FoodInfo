@@ -3,6 +3,7 @@ package com.example.foodinfo.ui.view_holder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemHomeBinding
 import com.example.foodinfo.model.local.RecipeShort
 
@@ -26,7 +27,8 @@ class HomeViewHolder(
         tvServingsValue.text = item.servings
         tvCaloriesValue.text = item.calories
         Glide.with(ivRecipePreview.context)
-            .load(item.preview)
+            .load(item.previewURL)
+            .placeholder(R.drawable.ic_image_placeholder)
             .into(ivRecipePreview)
     }
 

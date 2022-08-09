@@ -3,6 +3,8 @@
     xmlns:tools = "http://schemas.android.com/tools"
     package = "com.example.foodinfo">
 
+    <uses-permission android:name = "android.permission.INTERNET" />
+
     <application
         android:name = ".di.BaseApplication"
         android:allowBackup = "true"

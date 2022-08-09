@@ -1,9 +1,7 @@
 package com.example.foodinfo.model.local
 
-import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.DiffUtil
 import com.example.foodinfo.model.local.entities.RecipeShortEntity
-import com.example.foodinfo.utils.ResourcesProvider
 
 
 data class RecipeShort(
@@ -13,7 +11,7 @@ data class RecipeShort(
     val servings: String,
     val totalTime: String,
     val totalIngredients: String,
-    val preview: Drawable? = null
+    val previewURL: String
 ) {
 
     object ItemCallBack : DiffUtil.ItemCallback<RecipeShort>() {
@@ -30,16 +28,14 @@ data class RecipeShort(
                     oldItem.calories == newItem.calories &&
                     oldItem.servings == newItem.servings &&
                     oldItem.totalTime == newItem.totalTime &&
-                    oldItem.totalIngredients == newItem.totalIngredients
+                    oldItem.totalIngredients == newItem.totalIngredients &&
+                    oldItem.previewURL == newItem.previewURL
 
         }
     }
 
     companion object {
-        fun fromEntity(
-            entity: RecipeShortEntity,
-            resourcesProvider: ResourcesProvider
-        ): RecipeShort {
+        fun fromEntity(entity: RecipeShortEntity): RecipeShort {
             return RecipeShort(
                 id = entity.id,
                 name = entity.name,
@@ -47,7 +43,7 @@ data class RecipeShort(
                 servings = entity.servings.toString(),
                 totalTime = "${entity.totalTime} min",
                 totalIngredients = entity.totalIngredients.toString(),
-                preview = resourcesProvider.getDrawableByName(entity.previewURL),
+                previewURL = entity.previewURL
             )
         }
     }

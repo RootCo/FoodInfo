@@ -306,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_forward/baseline_arrow_forward_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/hide_image/baseline_hide_image_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -316,8 +316,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_cat_meal_teatime" />
+                            <entry key="outputName" value="ic_image_placeholder" />
                             <entry key="sourceFile" value="C:\Users\Vlad\Desktop\this_cord\categories\meal\ic_cat_meal_teatime.svg" />
                           </map>
                         </option>
