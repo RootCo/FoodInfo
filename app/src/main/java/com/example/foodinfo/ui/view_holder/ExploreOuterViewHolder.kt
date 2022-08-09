@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemExploreOuterBinding
-import com.example.foodinfo.model.local.CategoryItem
+import com.example.foodinfo.model.local.Category
 import com.example.foodinfo.ui.adapter.ExploreInnerAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
 import com.example.foodinfo.utils.restoreState
@@ -17,7 +17,7 @@ class ExploreOuterViewHolder(
     private val binding: RvItemExploreOuterBinding,
     context: Context,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<RvItemExploreOuterBinding, CategoryItem>(binding) {
+) : BaseViewHolder<RvItemExploreOuterBinding, Category>(binding) {
 
     private val recyclerAdapter: ExploreInnerAdapter
 
@@ -60,7 +60,7 @@ class ExploreOuterViewHolder(
         }
     }
 
-    override fun bind(newItem: CategoryItem): Unit = with(binding) {
+    override fun bind(newItem: Category): Unit = with(binding) {
         super.bind(newItem)
         tvTitle.text = item.category
     }

@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = CategoryLabelEntity.TABLE_NAME)
-data class CategoryLabelEntity(
+@Entity(tableName = LabelEntity.TABLE_NAME)
+data class LabelEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)
     val id: Long = 0,

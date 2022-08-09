@@ -8,11 +8,7 @@ object AssetsKeyWords {
     const val RECIPES = "recipes"
     const val INGREDIENTS = "ingredients"
     const val NUTRIENTS = "nutrients"
-    const val DISH_TYPES = "dish"
-    const val DIET_TYPES = "diet"
-    const val MEAL_TYPES = "meal"
-    const val HEALTH_TYPES = "health"
-    const val CUISINE_TYPES = "cuisine"
+    const val LABELS = "labels"
 
     const val DB_CATEGORY = "db_category.json"
     const val CATEGORY_DISH = "dish"

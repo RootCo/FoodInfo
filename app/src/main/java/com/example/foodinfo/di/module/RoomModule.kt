@@ -33,8 +33,8 @@ class RoomModule {
     }
 
     @Provides
-    fun provideCategoryLabelsDAO(database: DataBase): CategoryLabelsDAO {
-        return database.categoryLabelsDAO
+    fun provideCategoryLabelsDAO(database: DataBase): LabelsDAO {
+        return database.labelsDAO
     }
 
     @Provides

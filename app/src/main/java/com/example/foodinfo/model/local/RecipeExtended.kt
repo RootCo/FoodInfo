@@ -1,7 +1,6 @@
 package com.example.foodinfo.model.local
 
-import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.recipe.RecipeExtendedEntity
 
 
 data class RecipeExtended(
@@ -47,32 +46,15 @@ data class RecipeExtended(
                 totalWeight = "${entity.totalWeight}g",
                 totalTime = "${entity.totalTime} min",
                 servings = entity.servings.toString(),
-                categories = hashMapOf(
-                    Pair(
-                        RecipeMealLabelEntity.DISPLAY_NAME,
-                        entity.mealLabels.map { it.label }
-                    ),
-                    Pair(
-                        RecipeDishLabelEntity.DISPLAY_NAME,
-                        entity.dishLabels.map { it.label }
-                    ),
-                    Pair(
-                        RecipeDietLabelEntity.DISPLAY_NAME,
-                        entity.dietLabels.map { it.label }
-                    ),
-                    Pair(
-                        RecipeHealthLabelEntity.DISPLAY_NAME,
-                        entity.healthLabels.map { it.label }
-                    ),
-                    Pair(
-                        RecipeCuisineLabelEntity.DISPLAY_NAME,
-                        entity.cuisineType.map { it.label }
-                    )
-                ),
+                categories = entity.labels.groupBy { labelEntity ->
+                    labelEntity.category
+                }.entries.associate { category ->
+                    category.key to category.value.map { it.label }
+                },
                 ingredients = entity.ingredients.map {
                     RecipeIngredient.fromEntity(it)
                 },
-                nutrients = entity.totalNutrients.map {
+                nutrients = entity.nutrients.map {
                     RecipeNutrient.fromEntity(it)
                 },
                 previewURL = entity.previewURL

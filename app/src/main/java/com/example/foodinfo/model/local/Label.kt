@@ -1,10 +1,10 @@
 package com.example.foodinfo.model.local
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.foodinfo.model.local.entities.CategoryLabelEntity
+import com.example.foodinfo.model.local.entities.LabelEntity
 
 
-data class CategoryLabel(
+data class Label(
     val id: Long,
     val category: String,
     val label: String,
@@ -13,26 +13,26 @@ data class CategoryLabel(
 ) {
 
     object ItemCallBack :
-        DiffUtil.ItemCallback<CategoryLabel>() {
+        DiffUtil.ItemCallback<Label>() {
 
         override fun areItemsTheSame(
-            oldItem: CategoryLabel,
-            newItem: CategoryLabel
+            oldItem: Label,
+            newItem: Label
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: CategoryLabel,
-            newItem: CategoryLabel
+            oldItem: Label,
+            newItem: Label
         ): Boolean {
             return oldItem.label == newItem.label
         }
     }
 
     companion object {
-        fun fromEntity(entity: CategoryLabelEntity): CategoryLabel {
-            return CategoryLabel(
+        fun fromEntity(entity: LabelEntity): Label {
+            return Label(
                 id = entity.id,
                 category = entity.category,
                 label = entity.label,

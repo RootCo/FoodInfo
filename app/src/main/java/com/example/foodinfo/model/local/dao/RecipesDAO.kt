@@ -3,10 +3,12 @@ package com.example.foodinfo.model.local.dao
 import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
-import com.example.foodinfo.model.local.entities.RecipeShortEntity
-import com.example.foodinfo.model.local.entities.RecipeEntity
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeExtendedEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeShortEntity
+import com.example.foodinfo.model.local.entities.RecipeIngredientEntity
+import com.example.foodinfo.model.local.entities.RecipeLabelEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 import kotlinx.coroutines.flow.Flow
 
 
@@ -25,12 +27,7 @@ interface RecipesDAO {
             RecipeEntity::class,
             RecipeNutrientEntity::class,
             RecipeIngredientEntity::class,
-            RecipeDietLabelEntity::class,
-            RecipeDishLabelEntity::class,
-            RecipeMealLabelEntity::class,
-            RecipeHealthLabelEntity::class,
-            RecipeCuisineLabelEntity::class,
-            RecipeCuisineLabelEntity::class,
+            RecipeLabelEntity::class
         ]
     )
     fun getByFilterShort(query: SupportSQLiteQuery): PagingSource<Int, RecipeShortEntity>
@@ -57,38 +54,18 @@ interface RecipesDAO {
     fun addIngredients(nutrients: List<RecipeIngredientEntity>)
 
     @Insert
-    fun addDietTypes(dietLabels: List<RecipeDietLabelEntity>)
-
-    @Insert
-    fun addDishTypes(dishLabels: List<RecipeDishLabelEntity>)
-
-    @Insert
-    fun addMealTypes(mealLabels: List<RecipeMealLabelEntity>)
-
-    @Insert
-    fun addHealthTypes(healthLabels: List<RecipeHealthLabelEntity>)
-
-    @Insert
-    fun addCuisineTypes(cuisineTypes: List<RecipeCuisineLabelEntity>)
+    fun addLabels(dietLabels: List<RecipeLabelEntity>)
 
     @Transaction
     fun addAll(
         recipes: List<RecipeEntity>,
         nutrients: List<RecipeNutrientEntity>,
         ingredients: List<RecipeIngredientEntity>,
-        dietLabels: List<RecipeDietLabelEntity>,
-        dishLabels: List<RecipeDishLabelEntity>,
-        mealLabels: List<RecipeMealLabelEntity>,
-        healthLabels: List<RecipeHealthLabelEntity>,
-        cuisineTypes: List<RecipeCuisineLabelEntity>,
+        labels: List<RecipeLabelEntity>
     ) {
         addRecipes(recipes)
         addNutrients(nutrients)
         addIngredients(ingredients)
-        addDietTypes(dietLabels)
-        addDishTypes(dishLabels)
-        addMealTypes(mealLabels)
-        addHealthTypes(healthLabels)
-        addCuisineTypes(cuisineTypes)
+        addLabels(labels)
     }
 }

@@ -8,51 +8,59 @@ import com.example.foodinfo.model.local.dao.filter_field.RangeField
 
 fun queryExample() {
     val filter = SearchFilter()
+    filter.setSelector(SearchFilter.RECIPE_SELECTOR_EXTENDED)
     filter.categoryFields.add(
-        CategoryField(CategoryField.fromLabel("diet"), listOf("low-fat", "low-carb"))
+        CategoryField("cuisine", listOf("Japanese"))
     )
     filter.categoryFields.add(
-        CategoryField(CategoryField.fromLabel("cuisine"), listOf("Japanese", "Chinese"))
+        CategoryField("dish", listOf("omelet", "egg"))
+    )
+    filter.categoryFields.add(
+        CategoryField("meal", listOf("breakfast", "dinner"))
     )
 
     filter.rangeFields.add(
-        RangeField(RangeField.fromLabel("calories"), 200, 600)
+        RangeField(RangeField.fromLabel("calories"), 1343, 1345)
     )
     filter.rangeFields.add(
-        RangeField(RangeField.Fields.TOTAL_TIME, maxValue = 30)
+        RangeField(RangeField.fromLabel("time"), minValue = 30)
     )
     filter.rangeFields.add(
-        RangeField(RangeField.Fields.TOTAL_INGREDIENTS, minValue = 5)
+        RangeField(RangeField.fromLabel("servings"), maxValue = 4)
     )
 
     filter.nutrientFields.add(
-        NutrientField("Protein", minValue = 3f)
+        NutrientField("Protein", minValue = 18f)
     )
     filter.nutrientFields.add(
-        NutrientField("Carbs", maxValue = 2f)
+        NutrientField("Carbs", maxValue = 18f)
     )
     filter.nutrientFields.add(
-        NutrientField("Fat", 1f, 2f)
+        NutrientField("Fat", 16f, 16.5f)
     )
     filter.buildQuery()
-
 
     /*
     >>>filter.query
         SELECT * FROM recipe WHERE
-        calories BETWEEN 200 AND 600
-        AND total_time <= 30
-        AND ingredients >= 5
-        AND id IN (SELECT  nutrient_recipe_id FROM nutrient WHERE CASE
-                WHEN label = 'Protein' THEN quantity >= 3
-                WHEN label = 'Carbs' THEN quantity <= 2
-                WHEN label = 'Fat' THEN quantity BETWEEN 1 AND
-                ELSE NULL END
-            GROUP BY nutrient_recipe_id
-            HAVING count(nutrient_recipe_id) = 3)
-        AND id IN (SELECT diet_recipe_id FROM diet_type WHERE label IN
-            ('low-fat', 'low-carb'))
-        AND id IN (SELECT cuisine_recipe_id FROM cuisine_type WHERE label IN
-            ('Japanese', 'Chinese'))
+            total_time >= 40
+            AND servings <= 4
+            AND calories BETWEEN 1343 AND 1345
+            AND id IN (SELECT nutrient_recipe_id FROM recipe_nutrients WHERE CASE
+                    WHEN label = 'Fat' THEN total_value BETWEEN 16.0 AND 16.5
+                    WHEN label = 'Carbs' THEN total_value <= 18.0
+                    WHEN label = 'Protein' THEN total_value >= 20.0
+                    ELSE NULL END
+                GROUP BY nutrient_recipe_id
+                HAVING  count(nutrient_recipe_id) = 3)
+            AND id IN (SELECT label_recipe_id FROM recipe_labels WHERE CASE
+                    WHEN category = 'cuisine' THEN label IN ('Japanese')
+                    WHEN category = 'dish' THEN label IN ('omelet', 'egg')
+                    WHEN category = 'meal' THEN label IN ('breakfast', 'dinner')
+                    ELSE NULL END
+                GROUP BY label_recipe_id
+                HAVING  count(label_recipe_id) = 5)
+
+    // will return recipe with ID: 1MMVGIN7W58TZAXUI8C8
      */
 }

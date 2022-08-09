@@ -1,7 +1,7 @@
 package com.example.foodinfo.model.local.dao.filter_field
 
 import com.example.foodinfo.model.local.dao.filter_field.RangeField.Fields
-import com.example.foodinfo.model.local.entities.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
 
 
 /**

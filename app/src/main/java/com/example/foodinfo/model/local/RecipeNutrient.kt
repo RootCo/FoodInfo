@@ -1,7 +1,7 @@
 package com.example.foodinfo.model.local
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.foodinfo.model.local.entities.recipe_field.RecipeNutrientEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 
 
 data class RecipeNutrient(

@@ -1,23 +1,23 @@
-package com.example.foodinfo.model.local.entities.recipe_field
+package com.example.foodinfo.model.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.example.foodinfo.model.local.entities.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
 
 
 @Entity(
-    tableName = RecipeDietLabelEntity.TABLE_NAME,
+    tableName = RecipeLabelEntity.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = RecipeEntity::class,
         parentColumns = arrayOf(RecipeEntity.Columns.ID),
-        childColumns = arrayOf(RecipeDietLabelEntity.Columns.RECIPE_ID),
+        childColumns = arrayOf(RecipeLabelEntity.Columns.RECIPE_ID),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
 )
-data class RecipeDietLabelEntity(
+data class RecipeLabelEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)
     val id: Long,
@@ -25,18 +25,21 @@ data class RecipeDietLabelEntity(
     @ColumnInfo(name = Columns.RECIPE_ID)
     val recipeId: String,
 
+    @ColumnInfo(name = Columns.CATEGORY)
+    val category: String,
+
     @ColumnInfo(name = Columns.LABEL)
     val label: String
 
 ) {
     object Columns {
         const val ID = "id"
-        const val RECIPE_ID = "diet_recipe_id"
+        const val RECIPE_ID = "label_recipe_id"
+        const val CATEGORY = "category"
         const val LABEL = "label"
     }
 
     companion object {
-        const val TABLE_NAME = "recipe_diet_labels"
-        const val DISPLAY_NAME = "diet"
+        const val TABLE_NAME = "recipe_labels"
     }
 }

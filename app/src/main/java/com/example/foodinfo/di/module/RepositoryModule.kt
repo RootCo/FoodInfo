@@ -38,9 +38,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepositoryCategoryLabels(
-        categoryLabelsDAO: CategoryLabelsDAO
-    ): RepositoryCategoryLabels {
-        return RepositoryCategoryLabelsImpl(categoryLabelsDAO)
+        labelsDAO: LabelsDAO
+    ): RepositoryLabels {
+        return RepositoryLabelsImpl(labelsDAO)
     }
 
     @Provides

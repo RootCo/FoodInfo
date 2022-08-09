@@ -1,8 +1,10 @@
-package com.example.foodinfo.model.local.entities
+package com.example.foodinfo.model.local.entities.recipe
 
 import androidx.room.ColumnInfo
 import androidx.room.Relation
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.RecipeIngredientEntity
+import com.example.foodinfo.model.local.entities.RecipeLabelEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 
 
 data class RecipeExtendedEntity(
@@ -41,36 +43,6 @@ data class RecipeExtendedEntity(
 
     @Relation(
         parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeMealLabelEntity.Columns.RECIPE_ID
-    )
-    val mealLabels: List<RecipeMealLabelEntity>,
-
-    @Relation(
-        parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeDishLabelEntity.Columns.RECIPE_ID
-    )
-    val dishLabels: List<RecipeDishLabelEntity>,
-
-    @Relation(
-        parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeDietLabelEntity.Columns.RECIPE_ID
-    )
-    val dietLabels: List<RecipeDietLabelEntity>,
-
-    @Relation(
-        parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeHealthLabelEntity.Columns.RECIPE_ID
-    )
-    val healthLabels: List<RecipeHealthLabelEntity>,
-
-    @Relation(
-        parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeCuisineLabelEntity.Columns.RECIPE_ID
-    )
-    val cuisineType: List<RecipeCuisineLabelEntity>,
-
-    @Relation(
-        parentColumn = RecipeEntity.Columns.ID,
         entityColumn = RecipeIngredientEntity.Columns.RECIPE_ID
     )
     val ingredients: List<RecipeIngredientEntity>,
@@ -79,13 +51,14 @@ data class RecipeExtendedEntity(
         parentColumn = RecipeEntity.Columns.ID,
         entityColumn = RecipeNutrientEntity.Columns.RECIPE_ID
     )
-    val totalNutrients: List<RecipeNutrientEntity>,
+    val nutrients: List<RecipeNutrientEntity>,
 
     @Relation(
         parentColumn = RecipeEntity.Columns.ID,
-        entityColumn = RecipeNutrientEntity.Columns.RECIPE_ID
+        entityColumn = RecipeLabelEntity.Columns.RECIPE_ID
     )
-    val totalDaily: List<RecipeNutrientEntity>
+    val labels: List<RecipeLabelEntity>
+
 ) {
 
     companion object {

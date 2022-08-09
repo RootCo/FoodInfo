@@ -1,4 +1,4 @@
-package com.example.foodinfo.model.local.entities
+package com.example.foodinfo.model.local.entities.recipe
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,10 +1,10 @@
-package com.example.foodinfo.model.local.entities.recipe_field
+package com.example.foodinfo.model.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.example.foodinfo.model.local.entities.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
 
 
 @Entity(

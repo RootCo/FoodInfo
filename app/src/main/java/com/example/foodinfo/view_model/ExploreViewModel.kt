@@ -2,21 +2,21 @@ package com.example.foodinfo.view_model
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
-import com.example.foodinfo.model.local.CategoryItem
-import com.example.foodinfo.model.repository.RepositoryCategoryLabels
+import com.example.foodinfo.model.local.Category
+import com.example.foodinfo.model.repository.RepositoryLabels
 import javax.inject.Inject
 
 
 class ExploreViewModel @Inject constructor(
-    private val repositoryCategoryLabels: RepositoryCategoryLabels
+    private val repositoryLabels: RepositoryLabels
 ) : ViewModel() {
 
     val categories = initCategories()
     var scrollState: Parcelable? = null
 
-    private fun initCategories(): List<CategoryItem> {
-        return repositoryCategoryLabels.getAll().map {
-            CategoryItem(it.key, it.value)
+    private fun initCategories(): List<Category> {
+        return repositoryLabels.getAll().map {
+            Category(it.key, it.value)
         }
     }
 }

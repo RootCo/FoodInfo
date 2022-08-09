@@ -4,24 +4,24 @@ import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 
 
-data class CategoryItem(
+data class Category(
     val category: String,
-    val labels: List<CategoryLabel>,
+    val labels: List<Label>,
     var state: Parcelable? = null
 ) {
     object ItemCallBack :
-        DiffUtil.ItemCallback<CategoryItem>() {
+        DiffUtil.ItemCallback<Category>() {
 
         override fun areItemsTheSame(
-            oldItem: CategoryItem,
-            newItem: CategoryItem
+            oldItem: Category,
+            newItem: Category
         ): Boolean {
             return oldItem.category == newItem.category
         }
 
         override fun areContentsTheSame(
-            oldItem: CategoryItem,
-            newItem: CategoryItem
+            oldItem: Category,
+            newItem: Category
         ): Boolean {
             return oldItem.category == newItem.category &&
                     oldItem.labels == newItem.labels

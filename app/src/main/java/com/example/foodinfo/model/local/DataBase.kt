@@ -6,7 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.foodinfo.model.local.dao.*
 import com.example.foodinfo.model.local.entities.*
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
+import com.example.foodinfo.model.local.entities.RecipeIngredientEntity
+import com.example.foodinfo.model.local.entities.RecipeLabelEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 
 
 @Database(
@@ -15,14 +18,10 @@ import com.example.foodinfo.model.local.entities.recipe_field.*
         RecipeEntity::class,
         SearchFilterEntity::class,
         SearchInputEntity::class,
-        RecipeCuisineLabelEntity::class,
-        RecipeHealthLabelEntity::class,
-        RecipeDietLabelEntity::class,
-        RecipeDishLabelEntity::class,
-        RecipeMealLabelEntity::class,
         RecipeIngredientEntity::class,
         RecipeNutrientEntity::class,
-        CategoryLabelEntity::class,
+        RecipeLabelEntity::class,
+        LabelEntity::class,
         NutrientEntity::class,
     ]
 )
@@ -30,7 +29,7 @@ abstract class DataBase : RoomDatabase() {
     abstract val recipesDAO: RecipesDAO
     abstract val searchFilterDAO: SearchFilterDAO
     abstract val searchHistoryDAO: SearchHistoryDAO
-    abstract val categoryLabelsDAO: CategoryLabelsDAO
+    abstract val labelsDAO: LabelsDAO
     abstract val nutrientsDAO: NutrientsDAO
 
     companion object {

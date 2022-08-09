@@ -7,14 +7,17 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.foodinfo.databinding.ActivityMainBinding
-import com.example.foodinfo.model.local.entities.CategoryLabelEntity
+import com.example.foodinfo.model.local.entities.LabelEntity
 import com.example.foodinfo.model.local.entities.NutrientEntity
-import com.example.foodinfo.model.local.entities.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
 import com.example.foodinfo.model.local.entities.SearchInputEntity
-import com.example.foodinfo.model.local.entities.recipe_field.*
+import com.example.foodinfo.model.local.entities.RecipeIngredientEntity
+import com.example.foodinfo.model.local.entities.RecipeLabelEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
 import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.queryExample
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -77,24 +80,8 @@ class MainActivity : AppCompatActivity() {
                 object : TypeToken<List<RecipeIngredientEntity>>() {}.type
             ),
             gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.DIET_TYPES).toString(),
-                object : TypeToken<List<RecipeDietLabelEntity>>() {}.type
-            ),
-            gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.DISH_TYPES).toString(),
-                object : TypeToken<List<RecipeDishLabelEntity>>() {}.type
-            ),
-            gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.MEAL_TYPES).toString(),
-                object : TypeToken<List<RecipeMealLabelEntity>>() {}.type
-            ),
-            gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.HEALTH_TYPES).toString(),
-                object : TypeToken<List<RecipeHealthLabelEntity>>() {}.type
-            ),
-            gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.CUISINE_TYPES).toString(),
-                object : TypeToken<List<RecipeCuisineLabelEntity>>() {}.type
+                dbRecipes.get(AssetsKeyWords.LABELS).toString(),
+                object : TypeToken<List<RecipeLabelEntity>>() {}.type
             )
         )
 
@@ -115,21 +102,21 @@ class MainActivity : AppCompatActivity() {
         val healthString = dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString()
         val cuisineString = dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString()
 
-        val typeCategoryLabel = object : TypeToken<List<CategoryLabelEntity>>() {}.type
+        val typeCategoryLabel = object : TypeToken<List<LabelEntity>>() {}.type
 
-        dataBase.categoryLabelsDAO.addCategory(
+        dataBase.labelsDAO.addCategory(
             gson.fromJson(mealString, typeCategoryLabel)
         )
-        dataBase.categoryLabelsDAO.addCategory(
+        dataBase.labelsDAO.addCategory(
             gson.fromJson(dishString, typeCategoryLabel)
         )
-        dataBase.categoryLabelsDAO.addCategory(
+        dataBase.labelsDAO.addCategory(
             gson.fromJson(dietString, typeCategoryLabel)
         )
-        dataBase.categoryLabelsDAO.addCategory(
+        dataBase.labelsDAO.addCategory(
             gson.fromJson(healthString, typeCategoryLabel)
         )
-        dataBase.categoryLabelsDAO.addCategory(
+        dataBase.labelsDAO.addCategory(
             gson.fromJson(cuisineString, typeCategoryLabel)
         )
 

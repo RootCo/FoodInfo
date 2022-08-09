@@ -3,11 +3,12 @@ package com.example.foodinfo.model.local
 import com.example.foodinfo.model.local.dao.filter_field.CategoryField
 import com.example.foodinfo.model.local.dao.filter_field.NutrientField
 import com.example.foodinfo.model.local.dao.filter_field.RangeField
-import com.example.foodinfo.model.local.entities.RecipeEntity
-import com.example.foodinfo.model.local.entities.RecipeExtendedEntity
-import com.example.foodinfo.model.local.entities.RecipeShortEntity
+import com.example.foodinfo.model.local.entities.RecipeLabelEntity
+import com.example.foodinfo.model.local.entities.RecipeNutrientEntity
 import com.example.foodinfo.model.local.entities.SearchFilterEntity
-import com.example.foodinfo.model.local.entities.recipe_field.RecipeNutrientEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeExtendedEntity
+import com.example.foodinfo.model.local.entities.recipe.RecipeShortEntity
 import com.example.foodinfo.utils.queryExample
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -43,8 +44,15 @@ data class SearchFilter(
     val query: String
         get() = _query
 
-    private fun nutrientFieldsToQuery(nutrientQueryList: List<String>): String {
-        if (nutrientQueryList.isEmpty()) return ""
+    private fun nutrientFieldsToQuery(): String {
+        if (nutrientFields.isEmpty()) return ""
+        val nutrientQueryList = nutrientFields.map { field ->
+            nutrientFieldToQuery(
+                field.value,
+                field.minValue,
+                field.maxValue
+            )
+        }
         var query = "${RecipeEntity.Columns.ID} IN "
         query += "("
         query += "SELECT ${RecipeNutrientEntity.Columns.RECIPE_ID} "
@@ -52,7 +60,8 @@ data class SearchFilter(
         query += nutrientQueryList.joinToString(" ")
         query += " ELSE NULL END "
         query += "GROUP BY ${RecipeNutrientEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${RecipeNutrientEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size})"
+        query += "HAVING  count(${RecipeNutrientEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size}"
+        query += ")"
         return query
     }
 
@@ -85,14 +94,33 @@ data class SearchFilter(
         }
     }
 
-    private fun categoryFieldToQuery(
-        tableName: String, childKey: String, column: String, labels: List<String>
-    ): String {
+    private fun categoryFieldsToQuery(): String {
+        if (categoryFields.isEmpty()) return ""
         var query = "${RecipeEntity.Columns.ID} IN "
+        val categoryQueryList = categoryFields.map { field ->
+            categoryFieldToQuery(
+                field.value,
+                field.labels
+            )
+        }
         query += "("
-        query += "SELECT $childKey FROM $tableName "
-        query += "WHERE $column IN ('${labels.joinToString("', '")}')"
+        query += "SELECT ${RecipeLabelEntity.Columns.RECIPE_ID} "
+        query += "FROM ${RecipeLabelEntity.TABLE_NAME} WHERE CASE "
+        query += categoryQueryList.joinToString(" ")
+        query += " ELSE NULL END "
+        query += "GROUP BY ${RecipeLabelEntity.Columns.RECIPE_ID} "
+        query += "HAVING  count(${RecipeLabelEntity.Columns.RECIPE_ID}) = "
+        query += "${categoryFields.sumOf { it.labels.size }}"
         query += ")"
+        return query
+    }
+
+    private fun categoryFieldToQuery(
+        column: String, labels: List<String>
+    ): String {
+        var query = ""
+        query += "WHEN ${RecipeLabelEntity.Columns.CATEGORY} = '$column' THEN "
+        query += "${RecipeLabelEntity.Columns.LABEL} IN ('${labels.joinToString("', '")}')"
         return query
     }
 
@@ -119,22 +147,8 @@ data class SearchFilter(
                 field.maxValue
             )
         })
-        val nutrientQueryList = nutrientFields.map { field ->
-            nutrientFieldToQuery(
-                field.value,
-                field.minValue,
-                field.maxValue
-            )
-        }
-        subQueryList.addAll(categoryFields.map { field ->
-            categoryFieldToQuery(
-                field.value.tableName,
-                field.value.childKey,
-                field.value.column,
-                field.labels
-            )
-        })
-        subQueryList.add(nutrientFieldsToQuery(nutrientQueryList))
+        subQueryList.add(nutrientFieldsToQuery())
+        subQueryList.add(categoryFieldsToQuery())
         subQueryList.add(inputTextToQuery())
         subQueryList.removeAll(setOf(""))
         _query += selector
