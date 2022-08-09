@@ -3,7 +3,7 @@ package com.example.foodinfo.ui.view_holder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.foodinfo.databinding.RvItemSearchInputBinding
-import com.example.foodinfo.model.local.SearchInput
+import com.example.foodinfo.local.model.SearchInput
 
 
 class SearchInputViewHolder(

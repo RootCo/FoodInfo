@@ -1,8 +1,8 @@
 package com.example.foodinfo.di.module
 
 import android.content.Context
-import com.example.foodinfo.model.local.DataBase
-import com.example.foodinfo.model.local.dao.*
+import com.example.foodinfo.local.DataBase
+import com.example.foodinfo.local.dao.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

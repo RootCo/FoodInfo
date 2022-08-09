@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemExploreOuterBinding
-import com.example.foodinfo.model.local.Category
+import com.example.foodinfo.local.model.Category
 import com.example.foodinfo.ui.adapter.ExploreInnerAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
 import com.example.foodinfo.utils.restoreState

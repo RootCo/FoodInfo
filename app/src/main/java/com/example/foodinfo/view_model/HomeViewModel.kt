@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.foodinfo.model.local.RecipeShort
-import com.example.foodinfo.model.repository.RepositoryRecipes
+import com.example.foodinfo.local.model.RecipeShort
+import com.example.foodinfo.repository.RepositoryRecipes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

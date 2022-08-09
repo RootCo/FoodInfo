@@ -1,8 +1,8 @@
 package com.example.foodinfo.di.module
 
-import com.example.foodinfo.model.local.dao.*
-import com.example.foodinfo.model.repository.*
-import com.example.foodinfo.model.repository.impl.*
+import com.example.foodinfo.local.dao.*
+import com.example.foodinfo.repository.*
+import com.example.foodinfo.repository.impl.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

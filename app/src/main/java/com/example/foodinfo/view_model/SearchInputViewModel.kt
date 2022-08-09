@@ -2,8 +2,8 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.model.local.SearchInput
-import com.example.foodinfo.model.repository.RepositorySearchHistory
+import com.example.foodinfo.local.model.SearchInput
+import com.example.foodinfo.repository.RepositorySearchHistory
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 

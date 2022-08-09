@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
-import com.example.foodinfo.model.local.Label
+import com.example.foodinfo.local.model.Label
 import com.example.foodinfo.utils.getDrawableByName
 
 

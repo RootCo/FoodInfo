@@ -2,7 +2,7 @@ package com.example.foodinfo.di
 
 import android.app.Application
 import com.example.foodinfo.di.module.BaseApplicationModule
-import com.example.foodinfo.model.local.DataBase
+import com.example.foodinfo.local.DataBase
 import com.example.foodinfo.utils.AssetProvider
 import com.example.foodinfo.utils.DecorationUtils
 import dagger.BindsInstance

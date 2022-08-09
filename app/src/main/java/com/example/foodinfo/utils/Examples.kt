@@ -1,9 +1,9 @@
 package com.example.foodinfo.utils
 
-import com.example.foodinfo.model.local.SearchFilter
-import com.example.foodinfo.model.local.dao.filter_field.CategoryField
-import com.example.foodinfo.model.local.dao.filter_field.NutrientField
-import com.example.foodinfo.model.local.dao.filter_field.RangeField
+import com.example.foodinfo.local.model.SearchFilter
+import com.example.foodinfo.local.model.filter_field.CategoryField
+import com.example.foodinfo.local.model.filter_field.NutrientField
+import com.example.foodinfo.local.model.filter_field.RangeField
 
 
 fun queryExample() {
