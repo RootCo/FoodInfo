@@ -60,7 +60,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun subscribeUI() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.recipes.collectLatest(recyclerAdapter::submitData)
             }

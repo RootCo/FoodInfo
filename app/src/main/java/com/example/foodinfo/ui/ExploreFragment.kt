@@ -72,7 +72,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     }
 
     override fun subscribeUI(): Unit = with(binding) {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 rvCategories.isVisible = false
                 pbCategories.isVisible = true

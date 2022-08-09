@@ -42,7 +42,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     override fun subscribeUI(): Unit = with(binding) {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.recipe.collectLatest { recipe ->
                     tvRecipeName.text = recipe.name
