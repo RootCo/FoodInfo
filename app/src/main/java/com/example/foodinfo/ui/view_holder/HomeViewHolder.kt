@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemHomeBinding
-import com.example.foodinfo.local.model.RecipeShort
+import com.example.foodinfo.local.model.RecipeShortModel
 
 
 class HomeViewHolder(
     private val binding: RvItemHomeBinding,
     onItemClickListener: (String) -> Unit
-) : BaseViewHolder<RvItemHomeBinding, RecipeShort>(binding) {
+) : BaseViewHolder<RvItemHomeBinding, RecipeShortModel>(binding) {
 
     init {
         binding.ivRecipePreview.setOnClickListener {
@@ -20,7 +20,7 @@ class HomeViewHolder(
     }
 
 
-    override fun bind(newItem: RecipeShort): Unit = with(binding) {
+    override fun bind(newItem: RecipeShortModel): Unit = with(binding) {
         super.bind(newItem)
         tvRecipeName.text = item.name
         tvTimeValue.text = item.totalTime

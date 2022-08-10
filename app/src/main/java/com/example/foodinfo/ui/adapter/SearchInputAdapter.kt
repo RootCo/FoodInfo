@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.local.model.SearchInput
+import com.example.foodinfo.local.model.SearchInputModel
 import com.example.foodinfo.ui.view_holder.SearchInputViewHolder
 
 
@@ -13,7 +13,7 @@ class SearchInputAdapter(
     context: Context,
     private val onArrowClickListener: (String) -> Unit,
     private val onItemClickListener: (String) -> Unit
-) : ListAdapter<SearchInput, ViewHolder>(SearchInput.ItemCallBack) {
+) : ListAdapter<SearchInputModel, ViewHolder>(SearchInputModel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

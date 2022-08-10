@@ -1,10 +1,9 @@
 package com.example.foodinfo.local.model
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.foodinfo.local.entity.RecipeIngredientEntity
 
 
-data class RecipeIngredient(
+data class RecipeIngredientModel(
     val id: Long,
     val text: String,
     val quantity: String,
@@ -16,18 +15,18 @@ data class RecipeIngredient(
 ) {
 
     object ItemCallBack :
-        DiffUtil.ItemCallback<RecipeIngredient>() {
+        DiffUtil.ItemCallback<RecipeIngredientModel>() {
 
         override fun areItemsTheSame(
-            oldItem: RecipeIngredient,
-            newItem: RecipeIngredient
+            oldItem: RecipeIngredientModel,
+            newItem: RecipeIngredientModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: RecipeIngredient,
-            newItem: RecipeIngredient
+            oldItem: RecipeIngredientModel,
+            newItem: RecipeIngredientModel
         ): Boolean {
             return oldItem.text == newItem.text &&
                     oldItem.quantity == oldItem.quantity &&
@@ -36,21 +35,6 @@ data class RecipeIngredient(
                     oldItem.foodCategory == oldItem.foodCategory &&
                     oldItem.foodId == oldItem.foodId &&
                     oldItem.previewURL == newItem.previewURL
-        }
-    }
-
-    companion object {
-        fun fromEntity(entity: RecipeIngredientEntity): RecipeIngredient {
-            return RecipeIngredient(
-                id = entity.id,
-                text = entity.text,
-                quantity = "${entity.quantity} ${entity.measure}",
-                weight = "${entity.weight}g",
-                food = entity.food,
-                foodId = entity.foodId,
-                foodCategory = entity.foodCategory,
-                previewURL = entity.previewURL
-            )
         }
     }
 }

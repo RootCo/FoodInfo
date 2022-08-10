@@ -2,7 +2,7 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.local.model.RecipeExtended
+import com.example.foodinfo.local.model.RecipeExtendedModel
 import com.example.foodinfo.repository.RepositoryRecipes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,7 +16,7 @@ class RecipeExtendedViewModel @Inject constructor(repositoryRecipes: RepositoryR
 
     var recipeId: String = ""
 
-    val recipe: SharedFlow<RecipeExtended> by lazy {
+    val recipe: SharedFlow<RecipeExtendedModel> by lazy {
         repositoryRecipes.getByIdExtended(recipeId).flowOn(Dispatchers.IO)
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
     }

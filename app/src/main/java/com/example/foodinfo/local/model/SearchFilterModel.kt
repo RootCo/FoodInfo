@@ -1,17 +1,14 @@
 package com.example.foodinfo.local.model
 
-import com.example.foodinfo.local.model.filter_field.CategoryField
-import com.example.foodinfo.local.model.filter_field.NutrientField
-import com.example.foodinfo.local.model.filter_field.RangeField
 import com.example.foodinfo.local.entity.RecipeLabelEntity
 import com.example.foodinfo.local.entity.RecipeNutrientEntity
-import com.example.foodinfo.local.entity.SearchFilterEntity
 import com.example.foodinfo.local.entity.recipe.RecipeEntity
 import com.example.foodinfo.local.entity.recipe.RecipeExtendedEntity
 import com.example.foodinfo.local.entity.recipe.RecipeShortEntity
+import com.example.foodinfo.local.model.filter_field.CategoryField
+import com.example.foodinfo.local.model.filter_field.NutrientField
+import com.example.foodinfo.local.model.filter_field.RangeField
 import com.example.foodinfo.utils.queryExample
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 
 /**
@@ -30,7 +27,7 @@ import com.google.gson.reflect.TypeToken
  *
  * @sample queryExample
  */
-data class SearchFilter(
+data class SearchFilterModel(
     val id: Long = 0,
     val name: String = "target",
     val rangeFields: HashSet<RangeField> = hashSetOf(),
@@ -160,35 +157,5 @@ data class SearchFilter(
     companion object {
         const val RECIPE_SELECTOR_SHORT = 0
         const val RECIPE_SELECTOR_EXTENDED = 1
-
-        fun fromEntity(entity: SearchFilterEntity): SearchFilter {
-            return SearchFilter(
-                id = entity.id,
-                name = entity.name,
-                inputText = entity.inputText,
-                rangeFields = Gson().fromJson(
-                    entity.rangeFields,
-                    object : TypeToken<List<RangeField>>() {}.type
-                ),
-                nutrientFields = Gson().fromJson(
-                    entity.nutrientFields,
-                    object : TypeToken<List<NutrientField>>() {}.type
-                ),
-                categoryFields = Gson().fromJson(
-                    entity.categoryFields,
-                    object : TypeToken<List<CategoryField>>() {}.type
-                )
-            )
-        }
-
-        fun toEntity(filter: SearchFilter): SearchFilterEntity {
-            return SearchFilterEntity(
-                name = filter.name,
-                inputText = filter.inputText,
-                rangeFields = Gson().toJson(filter.rangeFields),
-                nutrientFields = Gson().toJson(filter.nutrientFields),
-                categoryFields = Gson().toJson(filter.categoryFields)
-            )
-        }
     }
 }

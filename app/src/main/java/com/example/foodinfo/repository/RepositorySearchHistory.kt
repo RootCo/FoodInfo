@@ -1,14 +1,14 @@
 package com.example.foodinfo.repository
 
-import com.example.foodinfo.local.model.SearchInput
+import com.example.foodinfo.local.model.SearchInputModel
 
 
 interface RepositorySearchHistory {
-    fun getHistoryLatest(inputText: String): List<SearchInput>
+    fun getHistoryLatest(inputText: String): List<SearchInputModel>
 
-    fun getHistoryAll(): List<SearchInput>
+    fun getHistoryAll(): List<SearchInputModel>
 
-    fun addHistory(searchHistory: List<SearchInput>)
+    fun addHistory(searchHistory: List<SearchInputModel>)
 
-    fun addInput(searchInput: SearchInput)
+    fun addInput(searchInput: SearchInputModel)
 }

@@ -1,10 +1,10 @@
 package com.example.foodinfo.repository
 
-import com.example.foodinfo.local.model.Nutrient
+import com.example.foodinfo.local.model.NutrientModel
 
 
 interface RepositoryNutrients {
-    fun getByLabel(label: String): Nutrient
+    fun getByLabel(label: String): NutrientModel
 
-    fun getAll(): List<Nutrient>
+    fun getAll(): List<NutrientModel>
 }

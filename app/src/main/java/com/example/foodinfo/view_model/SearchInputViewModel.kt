@@ -2,7 +2,7 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.local.model.SearchInput
+import com.example.foodinfo.local.model.SearchInputModel
 import com.example.foodinfo.repository.RepositorySearchHistory
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -14,7 +14,7 @@ class SearchInputViewModel @Inject constructor(
     private val _searchHistory = MutableStateFlow(
         repositorySearchHistory.getHistoryLatest("")
     )
-    val searchHistory: StateFlow<List<SearchInput>> = _searchHistory.asStateFlow()
+    val searchHistory: StateFlow<List<SearchInputModel>> = _searchHistory.asStateFlow()
         .stateIn(viewModelScope, SharingStarted.Lazily, listOf())
 
     fun updateSearchHistory(inputText: String = "") {
@@ -22,6 +22,6 @@ class SearchInputViewModel @Inject constructor(
     }
 
     fun addToHistory(inputText: String) {
-        repositorySearchHistory.addInput(SearchInput(inputText = inputText))
+        repositorySearchHistory.addInput(SearchInputModel(inputText = inputText))
     }
 }

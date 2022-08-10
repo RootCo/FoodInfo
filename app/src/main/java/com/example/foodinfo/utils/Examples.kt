@@ -1,14 +1,14 @@
 package com.example.foodinfo.utils
 
-import com.example.foodinfo.local.model.SearchFilter
+import com.example.foodinfo.local.model.SearchFilterModel
 import com.example.foodinfo.local.model.filter_field.CategoryField
 import com.example.foodinfo.local.model.filter_field.NutrientField
 import com.example.foodinfo.local.model.filter_field.RangeField
 
 
 fun queryExample() {
-    val filter = SearchFilter()
-    filter.setSelector(SearchFilter.RECIPE_SELECTOR_EXTENDED)
+    val filter = SearchFilterModel()
+    filter.setSelector(SearchFilterModel.RECIPE_SELECTOR_EXTENDED)
     filter.categoryFields.add(
         CategoryField("cuisine", listOf("Japanese"))
     )

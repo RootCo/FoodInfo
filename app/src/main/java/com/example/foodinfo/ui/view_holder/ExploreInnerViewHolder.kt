@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
-import com.example.foodinfo.local.model.Label
+import com.example.foodinfo.local.model.LabelModel
 import com.example.foodinfo.utils.getDrawableByName
 
 
 class ExploreInnerViewHolder(
     private val binding: RvItemExploreInnerBinding,
     onItemClickListener: (String, String) -> Unit
-) : BaseViewHolder<RvItemExploreInnerBinding, Label>(binding) {
+) : BaseViewHolder<RvItemExploreInnerBinding, LabelModel>(binding) {
 
     init {
         binding.clExploreInnerItem.setOnClickListener {
@@ -20,7 +20,7 @@ class ExploreInnerViewHolder(
     }
 
 
-    override fun bind(newItem: Label): Unit = with(binding) {
+    override fun bind(newItem: LabelModel): Unit = with(binding) {
         super.bind(newItem)
         tvTitle.text = item.label
         Glide.with(icPreview.context)

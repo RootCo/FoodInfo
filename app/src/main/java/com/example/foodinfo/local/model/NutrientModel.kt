@@ -1,10 +1,9 @@
 package com.example.foodinfo.local.model
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.foodinfo.local.entity.NutrientEntity
 
 
-data class Nutrient(
+data class NutrientModel(
     val id: Long,
     val tag: String,
     val label: String,
@@ -13,35 +12,23 @@ data class Nutrient(
 ) {
 
     object ItemCallBack :
-        DiffUtil.ItemCallback<Nutrient>() {
+        DiffUtil.ItemCallback<NutrientModel>() {
 
         override fun areItemsTheSame(
-            oldItem: Nutrient,
-            newItem: Nutrient
+            oldItem: NutrientModel,
+            newItem: NutrientModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: Nutrient,
-            newItem: Nutrient
+            oldItem: NutrientModel,
+            newItem: NutrientModel
         ): Boolean {
             return oldItem.label == newItem.label &&
                     oldItem.tag == oldItem.tag &&
                     oldItem.description == oldItem.description &&
                     oldItem.previewURL == newItem.previewURL
-        }
-    }
-
-    companion object {
-        fun fromEntity(entity: NutrientEntity): Nutrient {
-            return Nutrient(
-                id = entity.id,
-                tag = entity.tag,
-                label = entity.label,
-                description = entity.description,
-                previewURL = entity.previewURL
-            )
         }
     }
 }

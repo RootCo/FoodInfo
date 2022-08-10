@@ -3,14 +3,14 @@ package com.example.foodinfo.ui.view_holder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.foodinfo.databinding.RvItemSearchInputBinding
-import com.example.foodinfo.local.model.SearchInput
+import com.example.foodinfo.local.model.SearchInputModel
 
 
 class SearchInputViewHolder(
     private val binding: RvItemSearchInputBinding,
     onArrowClickListener: (String) -> Unit,
     onItemClickListener: (String) -> Unit
-) : BaseViewHolder<RvItemSearchInputBinding, SearchInput>(binding) {
+) : BaseViewHolder<RvItemSearchInputBinding, SearchInputModel>(binding) {
 
     init {
         with(binding) {
@@ -21,7 +21,7 @@ class SearchInputViewHolder(
     }
 
 
-    override fun bind(newItem: SearchInput): Unit = with(binding) {
+    override fun bind(newItem: SearchInputModel): Unit = with(binding) {
         super.bind(newItem)
         tvSearchInput.text = item.inputText
     }
