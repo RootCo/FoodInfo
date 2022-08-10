@@ -25,11 +25,4 @@
         android:paddingBottom = "@dimen/dp_30"
         tools:listitem = "@layout/rv_item_explore_outer" />
 
-    <ProgressBar
-        android:id = "@+id/pb_categories"
-        android:layout_width = "@dimen/progress_size"
-        android:layout_height = "match_parent"
-        android:layout_gravity = "center"
-        android:visibility = "gone" />
-
 </LinearLayout>

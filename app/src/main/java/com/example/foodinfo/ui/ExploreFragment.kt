@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -74,14 +73,12 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     override fun subscribeUI(): Unit = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                rvCategories.isVisible = false
-                pbCategories.isVisible = true
                 withContext(Dispatchers.IO) {
                     recyclerAdapter.submitList(viewModel.categories)
+                }
+                withContext(Dispatchers.Main) {
                     rvCategories.restoreState(viewModel.scrollState)
                 }
-                rvCategories.isVisible = true
-                pbCategories.isVisible = false
             }
         }
     }
