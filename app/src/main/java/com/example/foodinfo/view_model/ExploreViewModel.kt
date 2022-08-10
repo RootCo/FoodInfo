@@ -2,7 +2,7 @@ package com.example.foodinfo.view_model
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
-import com.example.foodinfo.local.model.Category
+import com.example.foodinfo.repository.model.Category
 import com.example.foodinfo.repository.RepositoryLabels
 import javax.inject.Inject
 

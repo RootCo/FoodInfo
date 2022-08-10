@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.LabelEntity
-import com.example.foodinfo.local.model.LabelModel
+import com.example.foodinfo.repository.model.LabelModel
 
 
 fun LabelEntity.toModel(): LabelModel {

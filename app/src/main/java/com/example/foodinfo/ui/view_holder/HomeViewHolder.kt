@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemHomeBinding
-import com.example.foodinfo.local.model.RecipeShortModel
+import com.example.foodinfo.repository.model.RecipeShortModel
 
 
 class HomeViewHolder(

@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.SearchInputEntity
-import com.example.foodinfo.local.model.SearchInputModel
+import com.example.foodinfo.repository.model.SearchInputModel
 
 
 fun SearchInputEntity.toModel(): SearchInputModel {

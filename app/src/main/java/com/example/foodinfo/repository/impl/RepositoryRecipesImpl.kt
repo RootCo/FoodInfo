@@ -6,9 +6,9 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.local.dao.RecipesDAO
-import com.example.foodinfo.local.model.RecipeExtendedModel
-import com.example.foodinfo.local.model.RecipeShortModel
-import com.example.foodinfo.local.model.SearchFilterModel
+import com.example.foodinfo.repository.model.RecipeExtendedModel
+import com.example.foodinfo.repository.model.RecipeShortModel
+import com.example.foodinfo.repository.model.SearchFilterModel
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.mapper.toModel
 import kotlinx.coroutines.flow.Flow

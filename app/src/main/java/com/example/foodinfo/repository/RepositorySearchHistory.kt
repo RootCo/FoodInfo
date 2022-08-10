@@ -1,6 +1,6 @@
 package com.example.foodinfo.repository
 
-import com.example.foodinfo.local.model.SearchInputModel
+import com.example.foodinfo.repository.model.SearchInputModel
 
 
 interface RepositorySearchHistory {

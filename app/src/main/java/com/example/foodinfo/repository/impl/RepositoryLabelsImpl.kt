@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.impl
 
 import com.example.foodinfo.local.dao.LabelsDAO
-import com.example.foodinfo.local.model.LabelModel
+import com.example.foodinfo.repository.model.LabelModel
 import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.mapper.toModel
 import javax.inject.Inject

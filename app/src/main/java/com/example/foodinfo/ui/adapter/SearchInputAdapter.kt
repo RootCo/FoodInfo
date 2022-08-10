@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.local.model.SearchInputModel
+import com.example.foodinfo.repository.model.SearchInputModel
 import com.example.foodinfo.ui.view_holder.SearchInputViewHolder
 
 

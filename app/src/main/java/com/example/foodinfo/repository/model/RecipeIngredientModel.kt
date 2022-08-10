@@ -1,4 +1,4 @@
-package com.example.foodinfo.local.model
+package com.example.foodinfo.repository.model
 
 import androidx.recyclerview.widget.DiffUtil
 

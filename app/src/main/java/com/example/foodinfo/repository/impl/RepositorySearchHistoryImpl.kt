@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.impl
 
 import com.example.foodinfo.local.dao.SearchHistoryDAO
-import com.example.foodinfo.local.model.SearchInputModel
+import com.example.foodinfo.repository.model.SearchInputModel
 import com.example.foodinfo.repository.RepositorySearchHistory
 import com.example.foodinfo.repository.mapper.toEntity
 import com.example.foodinfo.repository.mapper.toModel

@@ -1,4 +1,4 @@
-package com.example.foodinfo.local.model.filter_field
+package com.example.foodinfo.repository.model.filter_field
 
 
 /**

@@ -1,10 +1,10 @@
 package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.SearchFilterEntity
-import com.example.foodinfo.local.model.SearchFilterModel
-import com.example.foodinfo.local.model.filter_field.CategoryField
-import com.example.foodinfo.local.model.filter_field.NutrientField
-import com.example.foodinfo.local.model.filter_field.RangeField
+import com.example.foodinfo.repository.model.SearchFilterModel
+import com.example.foodinfo.repository.model.filter_field.CategoryField
+import com.example.foodinfo.repository.model.filter_field.NutrientField
+import com.example.foodinfo.repository.model.filter_field.RangeField
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

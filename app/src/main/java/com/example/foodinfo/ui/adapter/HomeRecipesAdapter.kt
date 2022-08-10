@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.local.model.RecipeShortModel
+import com.example.foodinfo.repository.model.RecipeShortModel
 import com.example.foodinfo.ui.view_holder.HomeProgressViewHolder
 import com.example.foodinfo.ui.view_holder.HomeViewHolder
 

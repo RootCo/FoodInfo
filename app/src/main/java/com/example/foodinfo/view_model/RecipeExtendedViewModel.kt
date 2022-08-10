@@ -2,7 +2,7 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.local.model.RecipeExtendedModel
+import com.example.foodinfo.repository.model.RecipeExtendedModel
 import com.example.foodinfo.repository.RepositoryRecipes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharedFlow

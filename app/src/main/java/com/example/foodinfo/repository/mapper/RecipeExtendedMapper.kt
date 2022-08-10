@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.recipe.RecipeExtendedEntity
-import com.example.foodinfo.local.model.RecipeExtendedModel
+import com.example.foodinfo.repository.model.RecipeExtendedModel
 
 
 fun RecipeExtendedEntity.toModel(): RecipeExtendedModel {
