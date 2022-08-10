@@ -3,5 +3,5 @@
     <corners
         android:bottomRightRadius = "@dimen/background_corner_item_small"
         android:topLeftRadius = "@dimen/background_corner_item_small" />
-    <solid android:color = "?appPrimaryVariantColor" />
+    <solid android:color = "?appMainFontColor" />
 </shape>

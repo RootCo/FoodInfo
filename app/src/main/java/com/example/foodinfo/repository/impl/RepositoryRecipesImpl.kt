@@ -5,12 +5,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
+import com.example.foodinfo.local.dao.RecipesDAO
 import com.example.foodinfo.local.model.RecipeExtended
 import com.example.foodinfo.local.model.RecipeShort
 import com.example.foodinfo.local.model.SearchFilter
-import com.example.foodinfo.local.dao.RecipesDAO
 import com.example.foodinfo.repository.RepositoryRecipes
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -28,7 +27,6 @@ class RepositoryRecipesImpl @Inject constructor(
             }
         ).flow.map { pagingData ->
             pagingData.map { entity ->
-                delay(100L) // для теста плейсхолдеров и прогресс бара
                 RecipeShort.fromEntity(entity)
             }
         }
@@ -42,7 +40,6 @@ class RepositoryRecipesImpl @Inject constructor(
             }
         ).flow.map { pagingData ->
             pagingData.map { entity ->
-                delay(100L) // для теста плейсхолдеров и прогресс бара
                 RecipeShort.fromEntity(entity)
             }
         }

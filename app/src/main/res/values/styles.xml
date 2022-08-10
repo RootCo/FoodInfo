@@ -104,6 +104,13 @@
         <item name = "android:background">?appDivider</item>
     </style>
 
+    <style name = "HintCard">
+        <item name = "android:layout_width">@dimen/dp_60</item>
+        <item name = "android:layout_height">@dimen/dp_60</item>
+        <item name = "contentPadding">@dimen/dp_16</item>
+        <item name = "android:background">?appSecondaryBackgroundColor</item>
+        <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
+    </style>
 
     <style name = "Chip">
         <item name = "android:clickable">false</item>

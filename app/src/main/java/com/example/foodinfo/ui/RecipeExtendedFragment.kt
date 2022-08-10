@@ -4,6 +4,7 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,6 +45,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     override fun subscribeUI(): Unit = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                pbContent.isVisible = true
+                svContent.isVisible = false
+
                 viewModel.recipe.collectLatest { recipe ->
                     tvRecipeName.text = recipe.name
                     Glide.with(ivRecipePreview.context)
@@ -73,6 +77,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                             llCategories.addView(createCategory(category, this))
                         }
                     }
+
+                    pbContent.isVisible = false
+                    svContent.isVisible = true
                 }
             }
         }

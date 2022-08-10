@@ -67,68 +67,87 @@
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_10"
                 android:fontFamily = "@font/product_sans_medium"
+                android:textAlignment = "center"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/iv_recipe_preview"
                 tools:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe" />
 
-            <LinearLayout
-                android:id = "@+id/some_data"
-                android:layout_width = "0dp"
-                android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf = "@+id/pfc_data"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id = "@+id/iv_servings_icon"
+                style = "@style/HintCard"
+                android:layout_width = "@dimen/dp_60"
+                android:layout_height = "@dimen/dp_60"
+                android:layout_marginStart = "@dimen/dp_30"
+                android:layout_marginTop = "@dimen/dp_30"
+                android:src = "@drawable/ic_peoples_20"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/tv_recipe_name">
+                app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
 
-                <TextView
-                    android:id = "@+id/tv_servings_value"
-                    style = "@style/TextViewSmall"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:layout_weight = "1"
-                    android:drawablePadding = "6dp"
-                    android:gravity = "center|start"
-                    android:textColor = "?appSecondaryFontColor"
-                    app:drawableStartCompat = "@drawable/ic_peoples_20"
-                    tools:text = "34" />
+            <TextView
+                android:id = "@+id/tv_servings_value"
+                style = "@style/TextViewSmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf = "@+id/iv_servings_icon"
+                app:layout_constraintStart_toStartOf = "@+id/iv_servings_icon"
+                app:layout_constraintTop_toBottomOf = "@+id/iv_servings_icon"
+                tools:text = "34" />
 
-                <TextView
-                    android:id = "@+id/tv_time_value"
-                    style = "@style/TextViewSmall"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:layout_weight = "1"
-                    android:drawablePadding = "6dp"
-                    android:gravity = "center|start"
-                    android:textColor = "?appSecondaryFontColor"
-                    app:drawableStartCompat = "@drawable/ic_time_20"
-                    tools:text = "56 min" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id = "@+id/iv_time_icon"
+                style = "@style/HintCard"
+                android:layout_width = "@dimen/dp_60"
+                android:layout_height = "@dimen/dp_60"
+                android:layout_marginTop = "@dimen/dp_30"
+                android:src = "@drawable/ic_time_20"
+                app:layout_constraintEnd_toEndOf = "@+id/iv_weight_icon"
+                app:layout_constraintStart_toStartOf = "@id/iv_servings_icon"
+                app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
 
-                <TextView
-                    android:id = "@+id/tv_weight_value"
-                    style = "@style/TextViewSmall"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:layout_weight = "0"
-                    android:drawablePadding = "6dp"
-                    android:gravity = "center|start"
-                    android:textColor = "?appSecondaryFontColor"
-                    app:drawableStartCompat = "@drawable/ic_scale_20"
-                    tools:text = "1200g" />
+            <TextView
+                android:id = "@+id/tv_time_value"
+                style = "@style/TextViewSmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf = "@+id/iv_time_icon"
+                app:layout_constraintStart_toStartOf = "@+id/iv_time_icon"
+                app:layout_constraintTop_toBottomOf = "@+id/iv_time_icon"
+                tools:text = "110 min" />
 
-            </LinearLayout>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id = "@+id/iv_weight_icon"
+                style = "@style/HintCard"
+                android:layout_width = "@dimen/dp_60"
+                android:layout_height = "@dimen/dp_60"
+                android:layout_marginTop = "@dimen/dp_30"
+                android:layout_marginEnd = "@dimen/dp_30"
+                android:src = "@drawable/ic_scale_20"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
+
+            <TextView
+                android:id = "@+id/tv_weight_value"
+                style = "@style/TextViewSmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_6"
+                app:layout_constraintEnd_toEndOf = "@+id/iv_weight_icon"
+                app:layout_constraintStart_toStartOf = "@+id/iv_weight_icon"
+                app:layout_constraintTop_toBottomOf = "@+id/iv_weight_icon"
+                tools:text = "1200g" />
 
             <TextView
                 android:id = "@+id/tv_nutrients_header"
                 style = "@style/TextViewVeryBig"
-                android:layout_width = "0dp"
+                android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_40"
+                android:layout_marginTop = "@dimen/dp_30"
                 android:text = "@string/base_nutrients_text"
-                app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/some_data" />
+                app:layout_constraintTop_toBottomOf = "@+id/tv_servings_value" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id = "@+id/pfc_data"

@@ -10,12 +10,12 @@
         style = "@style/TextViewVeryBig"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:paddingBottom = "@dimen/dp_10"
+        android:paddingBottom = "@dimen/dp_6"
         android:text = "@string/meal_text" />
 
     <com.google.android.material.chip.ChipGroup
         android:id = "@+id/cg_labels"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
-        android:paddingBottom = "@dimen/dp_20" />
+        android:paddingBottom = "@dimen/dp_30" />
 </LinearLayout>
