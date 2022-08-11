@@ -12,6 +12,10 @@ fun RecyclerView.restoreState(parcelable: Parcelable?) {
     layoutManager?.onRestoreInstanceState(parcelable)
 }
 
+fun RecyclerView.getState(): Parcelable? {
+    return this.layoutManager?.onSaveInstanceState()
+}
+
 fun View.getDrawableByName(name: String): Drawable? {
     val resourceId = context.resources.getIdentifier(
         name, "drawable", context.packageName

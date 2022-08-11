@@ -3,6 +3,7 @@ package com.example.foodinfo.ui.view_holder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.repository.model.LabelModel
 import com.example.foodinfo.utils.getDrawableByName
@@ -25,6 +26,8 @@ class ExploreInnerViewHolder(
         tvTitle.text = item.label
         Glide.with(icPreview.context)
             .load(icPreview.getDrawableByName(item.previewURL))
+            .placeholder(null)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(icPreview)
     }
 

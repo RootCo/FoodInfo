@@ -37,6 +37,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
     private val onItemClickListener: (String) -> Unit = { text ->
+        viewModel.addToHistory(text)
         findNavController().navigate(
             SearchInputFragmentDirections.actionFSearchInputToFSearchResult(text)
         )

@@ -10,6 +10,7 @@ import com.example.foodinfo.databinding.RvItemExploreOuterBinding
 import com.example.foodinfo.repository.model.Category
 import com.example.foodinfo.ui.adapter.ExploreInnerAdapter
 import com.example.foodinfo.ui.decorator.ExploreInnerItemDecoration
+import com.example.foodinfo.utils.getState
 import com.example.foodinfo.utils.restoreState
 
 
@@ -71,7 +72,7 @@ class ExploreOuterViewHolder(
     }
 
     fun saveState(): Unit = with(binding) {
-        item.state = rvExploreOuterItem.layoutManager?.onSaveInstanceState() ?: return
+        item.state = rvExploreOuterItem.getState()
     }
 
     companion object {

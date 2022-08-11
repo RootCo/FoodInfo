@@ -12,6 +12,7 @@ import com.example.foodinfo.databinding.FragmentExploreBinding
 import com.example.foodinfo.ui.adapter.ExploreOuterAdapter
 import com.example.foodinfo.ui.decorator.ExploreOuterItemDecoration
 import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.getState
 import com.example.foodinfo.utils.restoreState
 import com.example.foodinfo.view_model.ExploreViewModel
 import kotlinx.coroutines.Dispatchers
@@ -46,8 +47,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
             super.onScrollStateChanged(recyclerView, newState)
             if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                 with(binding) {
-                    viewModel.scrollState =
-                        rvCategories.layoutManager?.onSaveInstanceState() ?: return
+                    viewModel.scrollState = rvCategories.getState()
                 }
             }
         }
