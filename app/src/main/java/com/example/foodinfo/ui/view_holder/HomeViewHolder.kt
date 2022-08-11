@@ -1,12 +1,10 @@
 package com.example.foodinfo.ui.view_holder
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemHomeBinding
 import com.example.foodinfo.repository.model.RecipeShortModel
+import com.example.foodinfo.utils.GlideApp
 
 
 class HomeViewHolder(
@@ -33,7 +31,7 @@ class HomeViewHolder(
         tvTimeValue.text = item.totalTime
         tvServingsValue.text = item.servings
         tvCaloriesValue.text = item.calories
-        Glide.with(ivRecipePreview.context)
+        GlideApp.with(ivRecipePreview.context)
             .load(item.previewURL)
             .error(R.drawable.ic_image_placeholder)
             .placeholder(null)

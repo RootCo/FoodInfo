@@ -4,7 +4,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.repository.model.LabelModel
-import com.example.foodinfo.utils.getDrawableByName
 
 
 class ExploreInnerViewHolder(
@@ -23,7 +22,7 @@ class ExploreInnerViewHolder(
         super.bind(newItem)
         tvTitle.text = item.label
         Glide.with(icPreview.context)
-            .load(icPreview.getDrawableByName(item.previewURL))
+            .load(item.previewURL)
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(icPreview)
