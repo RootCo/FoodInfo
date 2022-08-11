@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.foodinfo.databinding.RvItemSearchInputBinding
 import com.example.foodinfo.repository.model.SearchInputModel
 import com.example.foodinfo.ui.view_holder.SearchInputViewHolder
 
@@ -20,7 +21,7 @@ class SearchInputAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return SearchInputViewHolder(
-            SearchInputViewHolder.createView(layoutInflater, parent),
+            RvItemSearchInputBinding.inflate(layoutInflater, parent, false),
             onArrowClickListener,
             onItemClickListener
         )

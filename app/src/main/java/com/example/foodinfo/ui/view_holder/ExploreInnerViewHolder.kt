@@ -1,7 +1,5 @@
 package com.example.foodinfo.ui.view_holder
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
@@ -29,14 +27,5 @@ class ExploreInnerViewHolder(
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(icPreview)
-    }
-
-    companion object {
-        fun createView(
-            layoutInflater: LayoutInflater,
-            parent: ViewGroup
-        ): RvItemExploreInnerBinding {
-            return RvItemExploreInnerBinding.inflate(layoutInflater, parent, false)
-        }
     }
 }

@@ -1,7 +1,5 @@
 package com.example.foodinfo.ui.view_holder
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.example.foodinfo.databinding.RvItemSearchInputBinding
 import com.example.foodinfo.repository.model.SearchInputModel
 
@@ -24,15 +22,5 @@ class SearchInputViewHolder(
     override fun bind(newItem: SearchInputModel): Unit = with(binding) {
         super.bind(newItem)
         tvSearchInput.text = item.inputText
-    }
-
-
-    companion object {
-        fun createView(
-            layoutInflater: LayoutInflater,
-            parent: ViewGroup
-        ): RvItemSearchInputBinding {
-            return RvItemSearchInputBinding.inflate(layoutInflater, parent, false)
-        }
     }
 }

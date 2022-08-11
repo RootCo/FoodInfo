@@ -1,8 +1,6 @@
 package com.example.foodinfo.ui.view_holder
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
@@ -73,14 +71,5 @@ class ExploreOuterViewHolder(
 
     fun saveState(): Unit = with(binding) {
         item.state = rvExploreOuterItem.getState()
-    }
-
-    companion object {
-        fun createView(
-            layoutInflater: LayoutInflater,
-            parent: ViewGroup
-        ): RvItemExploreOuterBinding {
-            return RvItemExploreOuterBinding.inflate(layoutInflater, parent, false)
-        }
     }
 }

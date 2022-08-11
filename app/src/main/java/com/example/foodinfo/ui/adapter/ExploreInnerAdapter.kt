@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.repository.model.LabelModel
 import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
 
@@ -19,7 +20,7 @@ class ExploreInnerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ExploreInnerViewHolder(
-            ExploreInnerViewHolder.createView(layoutInflater, parent),
+            RvItemExploreInnerBinding.inflate(layoutInflater, parent, false),
             onItemClickListener
         )
     }

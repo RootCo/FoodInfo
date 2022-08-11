@@ -21,6 +21,12 @@ class HomeViewHolder(
     }
 
 
+    /*
+        sometimes glide cant load image from internet so maybe it's good to have some
+        parameter for item that will store image state (e.g. loaded/failed) and add
+        swipe to refresh for home screen to retry whole binding (or just image loading)
+        for attached to window views
+     */
     override fun bind(newItem: RecipeShortModel): Unit = with(binding) {
         super.bind(newItem)
         tvRecipeName.text = item.name
@@ -33,15 +39,5 @@ class HomeViewHolder(
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivRecipePreview)
-    }
-
-
-    companion object {
-        fun createView(
-            layoutInflater: LayoutInflater,
-            parent: ViewGroup
-        ): RvItemHomeBinding {
-            return RvItemHomeBinding.inflate(layoutInflater, parent, false)
-        }
     }
 }
