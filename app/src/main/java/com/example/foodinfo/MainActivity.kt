@@ -7,17 +7,11 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.foodinfo.databinding.ActivityMainBinding
-import com.example.foodinfo.local.entity.LabelEntity
-import com.example.foodinfo.local.entity.NutrientEntity
+import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.local.entity.recipe.RecipeEntity
-import com.example.foodinfo.local.entity.SearchInputEntity
-import com.example.foodinfo.local.entity.RecipeIngredientEntity
-import com.example.foodinfo.local.entity.RecipeLabelEntity
-import com.example.foodinfo.local.entity.RecipeNutrientEntity
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
 import com.example.foodinfo.utils.applicationComponent
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 
@@ -36,18 +30,15 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_recipes) as NavHostFragment
         val navController = navigationHost.navController
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
-        NavigationUI.setupWithNavController(
-            bottomNavigationView, navController
-        )
 
-        // не долго думая сделал так как ты и рассказывал
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             when (destination.id) {
                 R.id.f_home,
                 R.id.f_explore,
-                R.id.f_settings -> bottomNavigationView.isVisible = true
-                else            -> bottomNavigationView.isVisible = false
+                R.id.f_settings -> binding.navView.isVisible = true
+                else            -> binding.navView.isVisible = false
             }
         }
 
@@ -92,35 +83,47 @@ class MainActivity : AppCompatActivity() {
         )
 
         val dbCategory = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY)
+            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY_LOCAL)
         )
 
-        val mealString = dbCategory.get(AssetsKeyWords.CATEGORY_MEAL).toString()
-        val dishString = dbCategory.get(AssetsKeyWords.CATEGORY_DISH).toString()
-        val dietString = dbCategory.get(AssetsKeyWords.CATEGORY_DIET).toString()
-        val healthString = dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString()
-        val cuisineString = dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString()
 
         val typeCategoryLabel = object : TypeToken<List<LabelEntity>>() {}.type
 
         dataBase.labelsDAO.addCategory(
-            gson.fromJson(mealString, typeCategoryLabel)
+            gson.fromJson
+                (
+                dbCategory.get(AssetsKeyWords.CATEGORY_MEAL).toString(),
+                typeCategoryLabel
+            )
         )
         dataBase.labelsDAO.addCategory(
-            gson.fromJson(dishString, typeCategoryLabel)
+            gson.fromJson(
+                dbCategory.get(AssetsKeyWords.CATEGORY_DISH).toString(),
+                typeCategoryLabel
+            )
         )
         dataBase.labelsDAO.addCategory(
-            gson.fromJson(dietString, typeCategoryLabel)
+            gson.fromJson
+                (
+                dbCategory.get(AssetsKeyWords.CATEGORY_DIET).toString(),
+                typeCategoryLabel
+            )
         )
         dataBase.labelsDAO.addCategory(
-            gson.fromJson(healthString, typeCategoryLabel)
+            gson.fromJson(
+                dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString(),
+                typeCategoryLabel
+            )
         )
         dataBase.labelsDAO.addCategory(
-            gson.fromJson(cuisineString, typeCategoryLabel)
+            gson.fromJson(
+                dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString(),
+                typeCategoryLabel
+            )
         )
 
         val dbNutrients = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT)
+            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT_LOCAL)
         )
 
         dataBase.nutrientsDAO.addAll(

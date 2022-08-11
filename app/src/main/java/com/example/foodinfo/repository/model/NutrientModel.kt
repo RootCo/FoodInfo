@@ -8,7 +8,7 @@ data class NutrientModel(
     val tag: String,
     val label: String,
     val description: String,
-    val previewURL: String
+    val preview: SVGModel
 ) {
 
     object ItemCallBack :
@@ -28,7 +28,7 @@ data class NutrientModel(
             return oldItem.label == newItem.label &&
                     oldItem.tag == oldItem.tag &&
                     oldItem.description == oldItem.description &&
-                    oldItem.previewURL == newItem.previewURL
+                    oldItem.preview.content == newItem.preview.content
         }
     }
 }

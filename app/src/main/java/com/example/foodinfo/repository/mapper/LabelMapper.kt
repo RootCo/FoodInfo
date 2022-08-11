@@ -2,6 +2,7 @@ package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.LabelEntity
 import com.example.foodinfo.repository.model.LabelModel
+import com.example.foodinfo.repository.model.SVGModel
 
 
 fun LabelEntity.toModel(): LabelModel {
@@ -10,6 +11,6 @@ fun LabelEntity.toModel(): LabelModel {
         category = this.category,
         label = this.label,
         description = this.description,
-        previewURL = this.previewURL
+        preview = SVGModel(this.previewURL)
     )
 }

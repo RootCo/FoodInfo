@@ -8,7 +8,7 @@ data class LabelModel(
     val category: String,
     val label: String,
     val description: String,
-    val previewURL: String
+    val preview: SVGModel
 ) {
 
     object ItemCallBack :
@@ -25,7 +25,10 @@ data class LabelModel(
             oldItem: LabelModel,
             newItem: LabelModel
         ): Boolean {
-            return oldItem.label == newItem.label
+            return oldItem.category == newItem.category &&
+                    oldItem.label == newItem.label &&
+                    oldItem.description == newItem.description &&
+                    oldItem.preview.content == newItem.preview.content
         }
     }
 }

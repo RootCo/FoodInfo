@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemExploreOuterBinding
-import com.example.foodinfo.repository.model.Category
+import com.example.foodinfo.repository.model.CategoryModel
 import com.example.foodinfo.ui.view_holder.ExploreOuterViewHolder
 
 
 class ExploreOuterAdapter(
     private val context: Context,
     private val onItemClickListener: (String, String) -> Unit
-) : ListAdapter<Category, ViewHolder>(Category.ItemCallBack) {
+) : ListAdapter<CategoryModel, ViewHolder>(CategoryModel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

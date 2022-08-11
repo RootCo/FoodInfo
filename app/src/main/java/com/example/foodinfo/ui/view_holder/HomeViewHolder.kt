@@ -4,7 +4,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemHomeBinding
 import com.example.foodinfo.repository.model.RecipeShortModel
-import com.example.foodinfo.utils.GlideApp
+import com.example.foodinfo.utils.glide.GlideApp
 
 
 class HomeViewHolder(

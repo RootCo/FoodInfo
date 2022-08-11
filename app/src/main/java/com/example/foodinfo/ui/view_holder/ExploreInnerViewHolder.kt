@@ -1,9 +1,10 @@
 package com.example.foodinfo.ui.view_holder
 
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemExploreInnerBinding
 import com.example.foodinfo.repository.model.LabelModel
+import com.example.foodinfo.utils.glide.GlideApp
 
 
 class ExploreInnerViewHolder(
@@ -21,10 +22,10 @@ class ExploreInnerViewHolder(
     override fun bind(newItem: LabelModel): Unit = with(binding) {
         super.bind(newItem)
         tvTitle.text = item.label
-        Glide.with(icPreview.context)
-            .load(item.previewURL)
-            .placeholder(null)
-            .transition(DrawableTransitionOptions.withCrossFade())
+        GlideApp.with(icPreview.context)
+            .load(item.preview)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .error(R.drawable.ic_image_placeholder)
             .into(icPreview)
     }
 }
