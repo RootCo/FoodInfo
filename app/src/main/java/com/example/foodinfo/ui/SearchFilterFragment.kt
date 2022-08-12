@@ -11,7 +11,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 ) {
 
     private val viewModel: SearchFilterViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private val onBackClickListener: () -> Unit = {

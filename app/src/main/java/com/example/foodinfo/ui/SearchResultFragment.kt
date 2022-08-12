@@ -15,7 +15,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
     private val args: SearchResultFragmentArgs by navArgs()
 
     private val viewModel: SearchResultViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     // возвращаемся на предыдущий экран минуя экран с вводом поиска

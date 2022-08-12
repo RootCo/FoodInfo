@@ -20,4 +20,6 @@
     <string name = "content_description_text">content description</string>
     <string name = "meal_text">meal</string>
     <string name = "base_nutrients_text">Base nutrients</string>
+    <string name = "percent_value">%1$d%%</string>
+    <string name = "default_content_description">this is image</string>
 </resources>

@@ -10,6 +10,7 @@
     <ImageView
         android:id = "@+id/btn_back"
         style = "@style/ButtonStroke"
+        android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -18,6 +19,7 @@
         android:id = "@+id/btn_like"
         style = "@style/ButtonStroke"
         android:layout_marginEnd = "@dimen/dp_16"
+        android:contentDescription = "@string/default_content_description"
         android:elevation = "1dp"
         android:src = "@drawable/ic_like_20"
         app:layout_constraintEnd_toStartOf = "@+id/btn_share"
@@ -26,6 +28,7 @@
     <ImageView
         android:id = "@+id/btn_share"
         style = "@style/ButtonStroke"
+        android:contentDescription = "@string/default_content_description"
         android:elevation = "1dp"
         android:src = "@drawable/ic_share_20"
         app:layout_constraintEnd_toEndOf = "parent"

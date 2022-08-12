@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
 import com.example.foodinfo.utils.applicationComponent
@@ -29,7 +30,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     private val args: RecipeExtendedFragmentArgs by navArgs()
 
     private val viewModel: RecipeExtendedViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private val onBackClickListener: () -> Unit = {
@@ -44,7 +45,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     override fun subscribeUI(): Unit = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 pbContent.isVisible = true
                 svContent.isVisible = false
 
@@ -52,7 +53,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                     tvRecipeName.text = recipe.name
                     Glide.with(ivRecipePreview.context)
                         .load(recipe.previewURL)
-                        .placeholder(R.drawable.ic_image_placeholder)
+                        .error(R.drawable.ic_image_placeholder)
+                        .placeholder(null)
+                        .transition(DrawableTransitionOptions.withCrossFade())
                         .into(ivRecipePreview)
 
                     tvServingsValue.text = recipe.servings
@@ -69,7 +72,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
                     tvCaloriesValue.text = recipe.calories
                     pbCalories.progress = recipe.caloriesDaily
-                    tvCaloriesPercent.text = "${recipe.caloriesDaily}%"
+                    tvCaloriesPercent.text = getString(R.string.percent_value, recipe.caloriesDaily)
 
                     llCategories.removeAllViews()
                     with(LayoutInflater.from(context)) {
@@ -80,6 +83,13 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
                     pbContent.isVisible = false
                     svContent.isVisible = true
+                    svContent.apply {
+                        alpha = 0f
+                        animate()
+                            .alpha(1f)
+                            .setDuration(100)
+                            .setListener(null)
+                    }
                 }
             }
         }

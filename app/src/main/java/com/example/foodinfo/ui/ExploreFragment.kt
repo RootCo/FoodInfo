@@ -25,7 +25,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 ) {
 
     private val viewModel: ExploreViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: ExploreOuterAdapter
@@ -54,7 +54,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
     }
 
     override fun initUI(): Unit = with(binding) {
-        recyclerAdapter = ExploreOuterAdapter(context!!, onInnerItemClickListener)
+        recyclerAdapter = ExploreOuterAdapter(requireContext(), onInnerItemClickListener)
         tvSearch.setOnClickListener { onSearchClickListener() }
         with(rvCategories) {
             layoutManager = LinearLayoutManager(context)
@@ -72,7 +72,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 
     override fun subscribeUI(): Unit = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 withContext(Dispatchers.IO) {
                     recyclerAdapter.submitList(viewModel.categories)
                 }

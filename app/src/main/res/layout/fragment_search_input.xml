@@ -10,6 +10,7 @@
     <ImageView
         android:id = "@+id/btn_back"
         style = "@style/ButtonTransparent"
+        android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -17,6 +18,7 @@
     <ImageView
         android:id = "@+id/btn_search_filter"
         style = "@style/ButtonTransparent"
+        android:contentDescription = "@string/default_content_description"
         android:padding = "@dimen/dp_20"
         android:src = "@drawable/ic_search_filter"
         app:layout_constraintEnd_toEndOf = "parent"

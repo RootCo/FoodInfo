@@ -14,7 +14,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
     private val args: SearchTargetFragmentArgs by navArgs()
 
     private val viewModel: SearchTargetViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private val onBackClickListener: () -> Unit = {

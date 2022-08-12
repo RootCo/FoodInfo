@@ -24,7 +24,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
 ) {
 
     private val viewModel: SearchInputViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: SearchInputAdapter
@@ -81,7 +81,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
 
     override fun initUI(): Unit = with(binding) {
         recyclerAdapter = SearchInputAdapter(
-            context!!,
+            requireContext(),
             onArrowClickListener,
             onItemClickListener
         )
@@ -100,7 +100,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
 
     override fun subscribeUI() {
         viewLifecycleOwner.lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
             }
         }

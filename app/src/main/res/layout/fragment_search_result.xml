@@ -10,6 +10,7 @@
     <ImageView
         android:id = "@+id/btn_back"
         style = "@style/ButtonTransparent"
+        android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -17,6 +18,7 @@
     <ImageView
         android:id = "@+id/btn_search"
         style = "@style/ButtonTransparent"
+        android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_search"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -25,10 +27,10 @@
         android:id = "@+id/tv_recipe_name"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
+        android:layout_marginStart = "@dimen/dp_24"
         android:ellipsize = "end"
         android:gravity = "center|start"
         android:maxLines = "1"
-        android:paddingStart = "@dimen/screen_horizontal_margin"
         android:theme = "@style/TextViewBig"
         app:layout_constraintBottom_toBottomOf = "@id/btn_back"
         app:layout_constraintEnd_toStartOf = "@id/btn_search"

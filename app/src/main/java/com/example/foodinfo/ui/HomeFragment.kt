@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 ) {
 
     private val viewModel: HomeViewModel by viewModels {
-        activity!!.applicationComponent.viewModelsFactory()
+        requireActivity().applicationComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: HomeRecipesAdapter
@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
 
     override fun initUI(): Unit = with(binding) {
-        recyclerAdapter = HomeRecipesAdapter(context!!, onItemClickListener).also {
+        recyclerAdapter = HomeRecipesAdapter(requireContext(), onItemClickListener).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
                 rvRecipes.isVisible = state.refresh != LoadState.Loading
                 pbRecipes.isVisible = state.refresh == LoadState.Loading
@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun subscribeUI() {
         viewLifecycleOwner.lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.recipes.collectLatest(recyclerAdapter::submitData)
             }
         }

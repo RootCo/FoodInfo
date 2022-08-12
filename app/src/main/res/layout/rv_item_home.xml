@@ -94,6 +94,7 @@
         <ImageView
             android:id = "@+id/btn_like"
             style = "@style/ButtonLikeBig"
+            android:contentDescription = "@string/default_content_description"
             app:layout_constraintBottom_toBottomOf = "parent"
             app:layout_constraintEnd_toEndOf = "parent" />
 
