@@ -33,7 +33,7 @@ class HomeViewHolder(
         tvCaloriesValue.text = item.calories
         GlideApp.with(ivRecipePreview.context)
             .load(item.previewURL)
-            .error(R.drawable.ic_image_placeholder)
+            .error(R.drawable.ic_no_image)
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivRecipePreview)

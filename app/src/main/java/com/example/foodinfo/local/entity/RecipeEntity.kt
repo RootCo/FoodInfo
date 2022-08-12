@@ -1,4 +1,4 @@
-package com.example.foodinfo.local.entity.recipe
+package com.example.foodinfo.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -27,15 +27,6 @@ data class RecipeEntity(
     @ColumnInfo(name = Columns.CALORIES)
     val calories: Int,
 
-    @ColumnInfo(name = Columns.PROTEIN)
-    val protein: Int,
-
-    @ColumnInfo(name = Columns.CARB)
-    val carb: Int,
-
-    @ColumnInfo(name = Columns.FAT)
-    val fat: Int,
-
     @ColumnInfo(name = Columns.TOTAL_INGREDIENTS)
     val totalIngredients: Int,
 
@@ -55,9 +46,6 @@ data class RecipeEntity(
         const val NAME = "name"
         const val PREVIEW_URL = "preview_url"
         const val CALORIES = "calories"
-        const val PROTEIN = "protein"
-        const val CARB = "carb"
-        const val FAT = "fat"
         const val TOTAL_INGREDIENTS = "total_ingredient"
         const val TOTAL_WEIGHT = "total_weight"
         const val TOTAL_TIME = "total_time"
@@ -66,6 +54,5 @@ data class RecipeEntity(
 
     companion object {
         const val TABLE_NAME = "recipe"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

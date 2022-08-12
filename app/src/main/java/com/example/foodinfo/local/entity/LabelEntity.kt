@@ -34,6 +34,5 @@ data class LabelEntity(
 
     companion object {
         const val TABLE_NAME = "category_labels"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

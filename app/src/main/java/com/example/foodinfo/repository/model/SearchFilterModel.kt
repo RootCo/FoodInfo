@@ -2,9 +2,7 @@ package com.example.foodinfo.repository.model
 
 import com.example.foodinfo.local.entity.RecipeLabelEntity
 import com.example.foodinfo.local.entity.RecipeNutrientEntity
-import com.example.foodinfo.local.entity.recipe.RecipeEntity
-import com.example.foodinfo.local.entity.recipe.RecipeExtendedEntity
-import com.example.foodinfo.local.entity.recipe.RecipeShortEntity
+import com.example.foodinfo.local.entity.RecipeEntity
 import com.example.foodinfo.repository.model.filter_field.CategoryField
 import com.example.foodinfo.repository.model.filter_field.NutrientField
 import com.example.foodinfo.repository.model.filter_field.RangeField
@@ -35,7 +33,6 @@ data class SearchFilterModel(
     val nutrientFields: HashSet<NutrientField> = hashSetOf(),
     var inputText: String = "",
     private val separator: String = " AND ",
-    private var selector: String = RecipeShortEntity.SELECTOR,
     private var _query: String = "",
 ) {
     val query: String
@@ -126,14 +123,6 @@ data class SearchFilterModel(
         return "${RecipeEntity.Columns.NAME} LIKE '$inputText'"
     }
 
-
-    fun setSelector(id: Int) {
-        when (id) {
-            RECIPE_SELECTOR_SHORT    -> selector = RecipeShortEntity.SELECTOR
-            RECIPE_SELECTOR_EXTENDED -> selector = RecipeExtendedEntity.SELECTOR
-        }
-    }
-
     fun buildQuery() {
         _query = ""
         val subQueryList = arrayListOf<String>()
@@ -148,14 +137,9 @@ data class SearchFilterModel(
         subQueryList.add(categoryFieldsToQuery())
         subQueryList.add(inputTextToQuery())
         subQueryList.removeAll(setOf(""))
-        _query += selector
+        _query += "SELECT * FROM ${RecipeEntity.TABLE_NAME}"
         if (subQueryList.size > 0) {
             _query += " WHERE " + subQueryList.joinToString(separator)
         }
-    }
-
-    companion object {
-        const val RECIPE_SELECTOR_SHORT = 0
-        const val RECIPE_SELECTOR_EXTENDED = 1
     }
 }

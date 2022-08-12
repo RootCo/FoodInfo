@@ -126,6 +126,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_f_search_result_to_f_search_input">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -164,6 +169,18 @@
                           <Point>
                             <option name="x" value="-1981" />
                             <option name="y" value="-1471" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="recipeExtendedFragmentP2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1387" />
+                            <option name="y" value="-1648" />
                           </Point>
                         </option>
                       </LayoutPositions>

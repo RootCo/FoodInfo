@@ -34,6 +34,5 @@ data class NutrientEntity(
 
     companion object {
         const val TABLE_NAME = "nutrients"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

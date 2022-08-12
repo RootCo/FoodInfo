@@ -3,12 +3,10 @@ package com.example.foodinfo.local.dao
 import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
-import com.example.foodinfo.local.entity.recipe.RecipeEntity
-import com.example.foodinfo.local.entity.recipe.RecipeExtendedEntity
-import com.example.foodinfo.local.entity.recipe.RecipeShortEntity
 import com.example.foodinfo.local.entity.RecipeIngredientEntity
 import com.example.foodinfo.local.entity.RecipeLabelEntity
 import com.example.foodinfo.local.entity.RecipeNutrientEntity
+import com.example.foodinfo.local.entity.RecipeEntity
 import kotlinx.coroutines.flow.Flow
 
 
@@ -20,7 +18,7 @@ interface RecipesDAO {
                 "IN (SELECT ${RecipeEntity.Columns.ID} " +
                 "FROM ${RecipeEntity.TABLE_NAME} ORDER BY RANDOM())"
     )
-    fun getPopular(): PagingSource<Int, RecipeShortEntity>
+    fun getPopular(): PagingSource<Int, RecipeEntity>
 
     @RawQuery(
         observedEntities = [
@@ -30,14 +28,35 @@ interface RecipesDAO {
             RecipeLabelEntity::class
         ]
     )
-    fun getByFilterShort(query: SupportSQLiteQuery): PagingSource<Int, RecipeShortEntity>
+    fun getByFilter(query: SupportSQLiteQuery): PagingSource<Int, RecipeEntity>
 
     @Query(
-        "${RecipeExtendedEntity.SELECTOR} " +
+        "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
                 "WHERE ${RecipeEntity.Columns.ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getByIdExtended(id: String): Flow<RecipeExtendedEntity>
+    fun getById(id: String): Flow<RecipeEntity>
+
+    @Query(
+        "SELECT * FROM ${RecipeIngredientEntity.TABLE_NAME} " +
+                "WHERE ${RecipeIngredientEntity.Columns.RECIPE_ID} " +
+                "LIKE '%' || :id || '%'"
+    )
+    fun getByIdIngredients(id: String): Flow<List<RecipeIngredientEntity>>
+
+    @Query(
+        "SELECT * FROM ${RecipeNutrientEntity.TABLE_NAME} " +
+                "WHERE ${RecipeNutrientEntity.Columns.RECIPE_ID} " +
+                "LIKE '%' || :id || '%'"
+    )
+    fun getByIdNutrients(id: String): Flow<List<RecipeNutrientEntity>>
+
+    @Query(
+        "SELECT * FROM ${RecipeLabelEntity.TABLE_NAME} " +
+                "WHERE ${RecipeLabelEntity.Columns.RECIPE_ID} " +
+                "LIKE '%' || :id || '%'"
+    )
+    fun getByIdLabels(id: String): Flow<List<RecipeLabelEntity>>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

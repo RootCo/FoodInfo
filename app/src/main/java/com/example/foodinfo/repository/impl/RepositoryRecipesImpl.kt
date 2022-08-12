@@ -6,11 +6,10 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.local.dao.RecipesDAO
-import com.example.foodinfo.repository.model.RecipeExtendedModel
-import com.example.foodinfo.repository.model.RecipeShortModel
-import com.example.foodinfo.repository.model.SearchFilterModel
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.mapper.toModel
+import com.example.foodinfo.repository.mapper.toModelShort
+import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -26,20 +25,32 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getPopular()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModel() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
     }
 
-    override fun getByFilterShort(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
+    override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
             pagingSourceFactory = {
-                recipesDAO.getByFilterShort(SimpleSQLiteQuery(filter.query))
+                recipesDAO.getByFilter(SimpleSQLiteQuery(filter.query))
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModel() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
     }
 
-    override fun getByIdExtended(id: String): Flow<RecipeExtendedModel> {
-        return recipesDAO.getByIdExtended(id).map { it.toModel() }
+    override fun getById(id: String): Flow<RecipeModel> {
+        return recipesDAO.getById(id).map { it.toModel() }
+    }
+
+    override fun getByIdIngredients(id: String): Flow<List<RecipeIngredientModel>> {
+        return recipesDAO.getByIdIngredients(id).map { list -> list.map { it.toModel() } }
+    }
+
+    override fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>> {
+        return recipesDAO.getByIdNutrients(id).map { list -> list.map { it.toModel() } }
+    }
+
+    override fun getByIdLabels(id: String): Flow<RecipeLabelsModel> {
+        return recipesDAO.getByIdLabels(id).map { it.toModel() }
     }
 
 

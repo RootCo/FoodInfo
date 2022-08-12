@@ -1,15 +1,19 @@
 package com.example.foodinfo.repository
 
 import androidx.paging.PagingData
-import com.example.foodinfo.repository.model.RecipeExtendedModel
-import com.example.foodinfo.repository.model.RecipeShortModel
-import com.example.foodinfo.repository.model.SearchFilterModel
+import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryRecipes {
     fun getPopular(): Flow<PagingData<RecipeShortModel>>
 
-    fun getByFilterShort(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
+    fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
 
-    fun getByIdExtended(id: String): Flow<RecipeExtendedModel>
+    fun getById(id: String): Flow<RecipeModel>
+
+    fun getByIdIngredients(id: String): Flow<List<RecipeIngredientModel>>
+
+    fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>>
+
+    fun getByIdLabels(id: String): Flow<RecipeLabelsModel>
 }

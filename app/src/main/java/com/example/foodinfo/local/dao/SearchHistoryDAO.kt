@@ -10,7 +10,7 @@ import com.example.foodinfo.local.entity.SearchInputEntity
 @Dao
 interface SearchHistoryDAO {
     @Query(
-        "${SearchInputEntity.SELECTOR} " +
+        "SELECT * FROM ${SearchInputEntity.TABLE_NAME} " +
                 "WHERE ${SearchInputEntity.Columns.INPUT_TEXT} " +
                 "LIKE '%' || :inputText || '%' " +
                 "ORDER BY ${SearchInputEntity.Columns.DATE} DESC " +
@@ -18,7 +18,10 @@ interface SearchHistoryDAO {
     )
     fun getHistoryLatest(inputText: String): List<SearchInputEntity>
 
-    @Query("${SearchInputEntity.SELECTOR} ORDER BY ${SearchInputEntity.Columns.DATE}")
+    @Query(
+        "SELECT * FROM ${SearchInputEntity.TABLE_NAME} " +
+                "ORDER BY ${SearchInputEntity.Columns.DATE}"
+    )
     fun getHistoryAll(): List<SearchInputEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -41,6 +41,5 @@ data class SearchFilterEntity(
 
     companion object {
         const val TABLE_NAME = "filter_search"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

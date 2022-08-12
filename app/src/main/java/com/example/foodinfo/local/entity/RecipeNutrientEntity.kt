@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.example.foodinfo.local.entity.recipe.RecipeEntity
 
 
 @Entity(
@@ -48,6 +47,5 @@ data class RecipeNutrientEntity(
 
     companion object {
         const val TABLE_NAME = "recipe_nutrients"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
     }
 }

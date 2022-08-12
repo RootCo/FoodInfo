@@ -1,7 +1,7 @@
 package com.example.foodinfo.repository.model.filter_field
 
+import com.example.foodinfo.local.entity.RecipeEntity
 import com.example.foodinfo.repository.model.filter_field.RangeField.Fields
-import com.example.foodinfo.local.entity.recipe.RecipeEntity
 
 
 /**
@@ -26,10 +26,7 @@ data class RangeField(
      * @param label database table column name that will be presented to user
      */
     enum class Fields(val column: String, val label: String) {
-        FAT(RecipeEntity.Columns.FAT, "fat"),
-        CARB(RecipeEntity.Columns.CARB, "carb"),
         SOURCE(RecipeEntity.Columns.SOURCE, "source"),
-        PROTEIN(RecipeEntity.Columns.PROTEIN, "protein"),
         SERVINGS(RecipeEntity.Columns.SERVINGS, "servings"),
         CALORIES(RecipeEntity.Columns.CALORIES, "calories"),
         TOTAL_TIME(RecipeEntity.Columns.TOTAL_TIME, "time"),

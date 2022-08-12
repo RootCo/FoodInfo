@@ -10,13 +10,13 @@ import com.example.foodinfo.local.entity.NutrientEntity
 interface NutrientsDAO {
 
     @Query(
-        "${NutrientEntity.SELECTOR} " +
+        "SELECT * FROM ${NutrientEntity.TABLE_NAME} " +
                 "WHERE ${NutrientEntity.Columns.LABEL} " +
                 "LIKE '%' || :label || '%'"
     )
     fun getByLabel(label: String): NutrientEntity
 
-    @Query(NutrientEntity.SELECTOR)
+    @Query("SELECT * FROM ${NutrientEntity.TABLE_NAME}")
     fun getAll(): List<NutrientEntity>
 
     @Insert

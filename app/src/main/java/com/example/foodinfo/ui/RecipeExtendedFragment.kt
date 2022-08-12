@@ -4,7 +4,6 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -38,22 +37,19 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
+    override fun initUI() {
         viewModel.recipeId = args.recipeId
-        btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnBack.setOnClickListener { onBackClickListener() }
     }
 
     override fun subscribeUI(): Unit = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                pbContent.isVisible = true
-                svContent.isVisible = false
-
                 viewModel.recipe.collectLatest { recipe ->
                     tvRecipeName.text = recipe.name
                     Glide.with(ivRecipePreview.context)
                         .load(recipe.previewURL)
-                        .error(R.drawable.ic_image_placeholder)
+                        .error(R.drawable.ic_no_image)
                         .placeholder(null)
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .into(ivRecipePreview)
@@ -62,33 +58,40 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                     tvWeightValue.text = recipe.totalWeight
                     tvTimeValue.text = recipe.totalTime
 
-                    tvProteinValue.text = recipe.protein
-                    tvCarbValue.text = recipe.carb
-                    tvFatValue.text = recipe.fat
-
-                    pbProtein.progress = recipe.proteinDaily
-                    pbCarb.progress = recipe.carbDaily
-                    pbFat.progress = recipe.fatDaily
-
                     tvCaloriesValue.text = recipe.calories
                     pbCalories.progress = recipe.caloriesDaily
-                    tvCaloriesPercent.text = getString(R.string.percent_value, recipe.caloriesDaily)
+                    tvCaloriesPercent.text =
+                        getString(R.string.percent_value, recipe.caloriesDaily)
+                }
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.nutrients.collectLatest { nutrients ->
+                    val protein = nutrients.findLast { it.label == tvProteinTitle.text }!!
+                    val carb = nutrients.findLast { it.label == tvCarbTitle.text }!!
+                    val fat = nutrients.findLast { it.label == tvFatTitle.text }!!
+
+                    tvProteinValue.text = protein.totalValue
+                    tvCarbValue.text = carb.totalValue
+                    tvFatValue.text = fat.totalValue
+
+                    pbProtein.progress = protein.dailyValue
+                    pbCarb.progress = carb.dailyValue
+                    pbFat.progress = fat.dailyValue
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.labels.collectLatest { labels ->
                     llCategories.removeAllViews()
                     with(LayoutInflater.from(context)) {
-                        for (category in recipe.categories.entries) {
+                        for (category in labels.content.entries) {
                             llCategories.addView(createCategory(category, this))
                         }
-                    }
-
-                    pbContent.isVisible = false
-                    svContent.isVisible = true
-                    svContent.apply {
-                        alpha = 0f
-                        animate()
-                            .alpha(1f)
-                            .setDuration(100)
-                            .setListener(null)
                     }
                 }
             }

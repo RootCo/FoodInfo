@@ -33,7 +33,6 @@ data class SearchInputEntity(
 
     companion object {
         const val TABLE_NAME = "search_input"
-        const val SELECTOR = "SELECT * FROM $TABLE_NAME"
         const val LIMIT = 7
     }
 }

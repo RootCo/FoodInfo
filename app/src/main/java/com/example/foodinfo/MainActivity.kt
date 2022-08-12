@@ -8,7 +8,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.foodinfo.databinding.ActivityMainBinding
 import com.example.foodinfo.local.entity.*
-import com.example.foodinfo.local.entity.recipe.RecipeEntity
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
 import com.example.foodinfo.utils.applicationComponent

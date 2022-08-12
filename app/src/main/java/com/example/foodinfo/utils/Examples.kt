@@ -8,7 +8,6 @@ import com.example.foodinfo.repository.model.filter_field.RangeField
 
 fun queryExample() {
     val filter = SearchFilterModel()
-    filter.setSelector(SearchFilterModel.RECIPE_SELECTOR_EXTENDED)
     filter.categoryFields.add(
         CategoryField("cuisine", listOf("Japanese"))
     )

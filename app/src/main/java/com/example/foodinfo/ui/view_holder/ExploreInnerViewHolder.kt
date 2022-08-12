@@ -25,7 +25,7 @@ class ExploreInnerViewHolder(
         GlideApp.with(icPreview.context)
             .load(item.preview)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .error(R.drawable.ic_image_placeholder)
+            .error(R.drawable.ic_no_image)
             .into(icPreview)
     }
 }

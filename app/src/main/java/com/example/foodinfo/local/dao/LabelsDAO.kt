@@ -10,7 +10,7 @@ import com.example.foodinfo.local.entity.LabelEntity
 interface LabelsDAO {
 
     @Query(
-        "${LabelEntity.SELECTOR} " +
+        "SELECT * FROM ${LabelEntity.TABLE_NAME} " +
                 "WHERE ${LabelEntity.Columns.LABEL} " +
                 "LIKE '%' || :label || '%' " +
                 "AND ${LabelEntity.Columns.CATEGORY} " +
@@ -18,11 +18,11 @@ interface LabelsDAO {
     )
     fun getByLabel(category: String, label: String): LabelEntity
 
-    @Query(LabelEntity.SELECTOR)
+    @Query("SELECT * FROM ${LabelEntity.TABLE_NAME}")
     fun getAll(): List<LabelEntity>
 
     @Query(
-        "${LabelEntity.SELECTOR} " +
+        "SELECT * FROM ${LabelEntity.TABLE_NAME} " +
                 "WHERE ${LabelEntity.Columns.CATEGORY} " +
                 "LIKE '%' || :category || '%'"
     )
