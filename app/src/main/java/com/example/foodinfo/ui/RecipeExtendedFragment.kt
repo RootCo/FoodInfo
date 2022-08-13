@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.get
@@ -28,7 +27,6 @@ import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
-import kotlin.system.measureTimeMillis
 
 
 class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
@@ -85,21 +83,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                     viewModel.ingredients,
                 ) { recipe, labels, nutrients, ingredients ->
 
-                    Log.d("tag", "recipe ${measureTimeMillis { initRecipe(recipe) }}")
-                    Log.d("tag", "labels ${measureTimeMillis { initLabels(labels) }}")
-                    Log.d(
-                        "tag",
-                        "nutrients ${measureTimeMillis { initNutrients(nutrients) }}"
-                    )
-                    Log.d(
-                        "tag",
-                        "ingredients ${measureTimeMillis { initIngredients(ingredients) }}"
-                    )
-
-                    //                    initRecipe(recipe)
-                    //                    initLabels(labels)
-                    //                    initNutrients(nutrients)
-                    //                    initIngredients(ingredients)
+                    initRecipe(recipe)
+                    initLabels(labels)
+                    initNutrients(nutrients)
+                    initIngredients(ingredients)
 
                     binding.pbContent.isVisible = false
                     binding.svContent.isVisible = true
@@ -138,8 +125,8 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     private fun initLabels(labels: RecipeLabelsModel) {
         binding.llCategories.removeAllViews()
         with(LayoutInflater.from(context)) {
-            for (category in labels.content.entries) {
-                binding.llCategories.addView(createCategory(category, this))
+            labels.content.forEach { (name, labels) ->
+                binding.llCategories.addView(createCategory(name, labels, this))
             }
         }
     }
@@ -174,15 +161,16 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
 
     private fun createCategory(
-        category: Map.Entry<String, List<String>>,
+        name: String,
+        labels: List<String>,
         inflater: LayoutInflater
     ): View {
-        val categoryView = ItemExtendedCategoryBinding.inflate(inflater, null, false)
-        categoryView.tvTitle.text = category.key
-        for (label in category.value) {
-            categoryView.cgLabels.addView(createLabel(label))
-        }
-        return categoryView.root
+        return ItemExtendedCategoryBinding.inflate(inflater, null, false).apply {
+            tvTitle.text = name
+            for (label in labels) {
+                cgLabels.addView(createLabel(label))
+            }
+        }.root
     }
 
     private fun createLabel(label: String): Chip {
