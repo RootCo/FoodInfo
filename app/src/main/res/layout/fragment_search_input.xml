@@ -28,7 +28,6 @@
         android:id = "@+id/et_search_input"
         android:layout_width = "0dp"
         android:layout_height = "@dimen/dp_60"
-        android:hint = "@string/et_search_hint"
         android:imeOptions = "actionSearch"
         android:singleLine = "true"
         android:theme = "@style/SearchView"

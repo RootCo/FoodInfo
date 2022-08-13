@@ -34,7 +34,7 @@
     </style>
 
     <style name = "SearchView">
-        <item name = "android:textSize">@dimen/text_18</item>
+        <item name = "android:textSize">@dimen/text_20</item>
         <item name = "android:textColor">?appMainFontColor</item>
         <item name = "android:textColorHint">?appSecondaryFontColor</item>
         <item name = "android:fontFamily">@font/product_sans_regular</item>
