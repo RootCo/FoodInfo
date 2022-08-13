@@ -119,12 +119,11 @@
         <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
     </style>
 
-    <style name = "Chip">
-        <item name = "android:clickable">false</item>
+    <style name = "Chip" parent = "Widget.MaterialComponents.Chip.Action">
         <item name = "android:layout_width">wrap_content</item>
         <item name = "android:layout_height">wrap_content</item>
-        <item name = "android:backgroundTint">?appSecondaryBackgroundColor</item>
-        <item name = "android:textAppearance">@style/TextViewVerySmall</item>
+        <item name = "chipBackgroundColor">?appSecondaryBackgroundColor</item>
+        <item name = "android:textAppearance">@style/TextViewSmall</item>
     </style>
 
     <style name = "ButtonTransparent">

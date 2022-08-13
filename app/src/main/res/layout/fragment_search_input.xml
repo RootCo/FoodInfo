@@ -4,8 +4,7 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginTop = "@dimen/screen_vertical_margin"
-    tools:context = ".ui.SearchInputFragment">
+    android:layout_marginTop = "@dimen/screen_vertical_margin">
 
     <ImageView
         android:id = "@+id/btn_back"
@@ -50,7 +49,7 @@
         android:id = "@+id/rv_search_input"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:paddingHorizontal = "12dp"
+        android:paddingHorizontal = "@dimen/dp_12"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"

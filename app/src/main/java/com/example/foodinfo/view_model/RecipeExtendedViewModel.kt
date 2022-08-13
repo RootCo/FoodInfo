@@ -22,21 +22,21 @@ class RecipeExtendedViewModel @Inject constructor(repositoryRecipes: RepositoryR
 
     val recipe: SharedFlow<RecipeModel> by lazy {
         repositoryRecipes.getById(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 
     val ingredients: SharedFlow<List<RecipeIngredientModel>> by lazy {
         repositoryRecipes.getByIdIngredients(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 
     val nutrients: SharedFlow<List<RecipeNutrientModel>> by lazy {
         repositoryRecipes.getByIdNutrients(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 
     val labels: SharedFlow<RecipeLabelsModel> by lazy {
         repositoryRecipes.getByIdLabels(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 1)
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 }

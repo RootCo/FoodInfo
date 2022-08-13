@@ -39,6 +39,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(RecipeIngredientsViewModel::class)
+    abstract fun bindsRecipeIngredientsViewModel(viewModel: RecipeIngredientsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(SearchFilterViewModel::class)
     abstract fun bindsSearchFilterViewModel(viewModel: SearchFilterViewModel): ViewModel
 

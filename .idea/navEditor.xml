@@ -69,6 +69,27 @@
                             <option name="y" value="-1682" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_f_recipe_extended_to_f_recipe_ingredients">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="f_recipe_ingredients">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1745" />
+                            <option name="y" value="-1382" />
+                          </Point>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
