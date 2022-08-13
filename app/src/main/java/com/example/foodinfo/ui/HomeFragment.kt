@@ -13,7 +13,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
 import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.HomeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 ) {
 
     private val viewModel: HomeViewModel by viewModels {
-        requireActivity().applicationComponent.viewModelsFactory()
+        requireActivity().appComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: HomeRecipesAdapter

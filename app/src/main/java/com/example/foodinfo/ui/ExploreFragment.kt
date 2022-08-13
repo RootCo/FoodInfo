@@ -11,7 +11,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
 import com.example.foodinfo.ui.adapter.ExploreOuterAdapter
 import com.example.foodinfo.ui.decorator.ExploreOuterItemDecoration
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.getState
 import com.example.foodinfo.utils.restoreState
 import com.example.foodinfo.view_model.ExploreViewModel
@@ -25,7 +25,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 ) {
 
     private val viewModel: ExploreViewModel by viewModels {
-        requireActivity().applicationComponent.viewModelsFactory()
+        requireActivity().appComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: ExploreOuterAdapter

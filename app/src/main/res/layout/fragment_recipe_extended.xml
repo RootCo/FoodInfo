@@ -147,7 +147,7 @@
                 app:layout_constraintTop_toBottomOf = "@+id/tv_servings_value" />
 
             <TextView
-                android:id = "@+id/tv_nutrients_see_all"
+                android:id = "@+id/tv_nutrients_view_all"
                 style = "@style/TextViewSmall"
                 android:layout_width = "0dp"
                 android:layout_height = "@dimen/dp_50"
@@ -332,7 +332,7 @@
                 app:layout_constraintTop_toBottomOf = "@+id/calories_data" />
 
             <TextView
-                android:id = "@+id/tv_ingredients_see_all"
+                android:id = "@+id/tv_ingredients_view_all"
                 style = "@style/TextViewSmall"
                 android:layout_width = "0dp"
                 android:layout_height = "@dimen/dp_50"
@@ -346,13 +346,51 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id = "@+id/cl_ingredients"
-                android:layout_width = "0dp"
+                android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_20"
                 android:orientation = "horizontal"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@id/tv_ingredients_header" />
+                app:layout_constraintTop_toBottomOf = "@id/tv_ingredients_header">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id = "@+id/iv_ingredient_1"
+                    style = "@style/MiniIngredient"
+                    app:layout_constraintEnd_toStartOf = "@+id/iv_ingredient_2"
+                    app:layout_constraintHorizontal_chainStyle = "spread_inside"
+                    app:layout_constraintStart_toStartOf = "parent"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id = "@+id/iv_ingredient_2"
+                    style = "@style/MiniIngredient"
+                    app:layout_constraintEnd_toStartOf = "@+id/iv_ingredient_3"
+                    app:layout_constraintStart_toEndOf = "@+id/iv_ingredient_1"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id = "@+id/iv_ingredient_3"
+                    style = "@style/MiniIngredient"
+                    app:layout_constraintEnd_toStartOf = "@+id/iv_ingredient_4"
+                    app:layout_constraintStart_toEndOf = "@+id/iv_ingredient_2"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id = "@+id/iv_ingredient_4"
+                    style = "@style/MiniIngredient"
+                    app:layout_constraintEnd_toStartOf = "@+id/iv_ingredient_5"
+                    app:layout_constraintStart_toEndOf = "@+id/iv_ingredient_3"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id = "@+id/iv_ingredient_5"
+                    style = "@style/MiniIngredient"
+                    app:layout_constraintEnd_toEndOf = "parent"
+                    app:layout_constraintStart_toEndOf = "@+id/iv_ingredient_4"
+                    app:layout_constraintTop_toTopOf = "parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id = "@+id/ll_categories"
@@ -368,5 +406,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id = "@+id/pb_content"
+        android:layout_width = "@dimen/progress_size"
+        android:layout_height = "@dimen/progress_size"
+        android:layout_gravity = "center"
+        android:visibility = "gone"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/btn_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

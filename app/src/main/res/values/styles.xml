@@ -112,9 +112,10 @@
         <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
     </style>
 
-    <style name = "HintCardTest">
-        <item name = "android:layout_width">@dimen/dp_60</item>
-        <item name = "android:layout_height">@dimen/dp_60</item>
+    <style name = "MiniIngredient">
+        <item name = "android:layout_width">@dimen/dp_54</item>
+        <item name = "android:layout_height">@dimen/dp_54</item>
+        <item name = "android:scaleType">centerCrop</item>
         <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
     </style>
 

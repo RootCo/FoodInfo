@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.databinding.FragmentSearchTargetBinding
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.SearchTargetViewModel
 
 class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
@@ -14,7 +14,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
     private val args: SearchTargetFragmentArgs by navArgs()
 
     private val viewModel: SearchTargetViewModel by viewModels {
-        requireActivity().applicationComponent.viewModelsFactory()
+        requireActivity().appComponent.viewModelsFactory()
     }
 
     private val onBackClickListener: () -> Unit = {

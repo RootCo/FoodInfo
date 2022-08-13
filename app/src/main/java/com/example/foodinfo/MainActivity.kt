@@ -10,7 +10,7 @@ import com.example.foodinfo.databinding.ActivityMainBinding
 import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.utils.AssetsKeyWords
 import com.example.foodinfo.utils.JSONLoader
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 
@@ -45,14 +45,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepopulateDB() {
-        val dataBase = applicationComponent.dataBase
+        val dataBase = appComponent.dataBase
         val jsonLoader = JSONLoader()
         val gson = GsonBuilder().create()
 
         dataBase.clearAllTables()
 
         val dbRecipes = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_RECIPES_100)
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RECIPES_100)
         )
 
         dataBase.recipesDAO.addAll(
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val dbCategory = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY_LOCAL)
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY_LOCAL)
         )
 
 
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val dbNutrients = jsonLoader.load(
-            applicationComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT_LOCAL)
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT_LOCAL)
         )
 
         dataBase.nutrientsDAO.addAll(

@@ -5,7 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchResultBinding
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.SearchResultViewModel
 
 class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
@@ -15,7 +15,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
     private val args: SearchResultFragmentArgs by navArgs()
 
     private val viewModel: SearchResultViewModel by viewModels {
-        requireActivity().applicationComponent.viewModelsFactory()
+        requireActivity().appComponent.viewModelsFactory()
     }
 
     // возвращаемся на предыдущий экран минуя экран с вводом поиска

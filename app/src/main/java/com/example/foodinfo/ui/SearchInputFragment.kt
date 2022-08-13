@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.databinding.FragmentSearchInputBinding
 import com.example.foodinfo.ui.adapter.SearchInputAdapter
-import com.example.foodinfo.utils.applicationComponent
+import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.hideKeyboard
 import com.example.foodinfo.utils.showKeyboard
 import com.example.foodinfo.view_model.SearchInputViewModel
@@ -24,7 +24,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
 ) {
 
     private val viewModel: SearchInputViewModel by viewModels {
-        requireActivity().applicationComponent.viewModelsFactory()
+        requireActivity().appComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: SearchInputAdapter

@@ -6,8 +6,8 @@ import com.example.foodinfo.di.BaseApplicationComponent
 
 
 // подсмотрел этот код у Android Broadcast
-val Context.applicationComponent: BaseApplicationComponent
+val Context.appComponent: BaseApplicationComponent
     get() = when (this) {
         is BaseApplication -> applicationComponent
-        else               -> this.applicationContext.applicationComponent
+        else               -> this.applicationContext.appComponent
     }
