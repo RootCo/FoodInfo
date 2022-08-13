@@ -1,9 +1,8 @@
 package com.example.foodinfo.ui
 
-import android.view.ContextThemeWrapper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -16,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
+import com.example.foodinfo.databinding.ItemExtendedCategoryBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.repository.model.RecipeLabelsModel
 import com.example.foodinfo.repository.model.RecipeModel
@@ -24,11 +24,11 @@ import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import kotlin.system.measureTimeMillis
 
 
 class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
@@ -53,7 +53,13 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     private val onNutrientsViewAllClickListener: () -> Unit = { }
 
-    private val onIngredientsViewAllClickListener: () -> Unit = { }
+    private val onIngredientsViewAllClickListener: () -> Unit = {
+        findNavController().navigate(
+            RecipeExtendedFragmentDirections.actionFRecipeExtendedToFRecipeIngredients(
+                args.recipeId
+            )
+        )
+    }
 
 
     override fun initUI() {
@@ -79,10 +85,21 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                     viewModel.ingredients,
                 ) { recipe, labels, nutrients, ingredients ->
 
-                    initRecipe(recipe)
-                    initLabels(labels)
-                    initNutrients(nutrients)
-                    initIngredients(ingredients)
+                    Log.d("tag", "recipe ${measureTimeMillis { initRecipe(recipe) }}")
+                    Log.d("tag", "labels ${measureTimeMillis { initLabels(labels) }}")
+                    Log.d(
+                        "tag",
+                        "nutrients ${measureTimeMillis { initNutrients(nutrients) }}"
+                    )
+                    Log.d(
+                        "tag",
+                        "ingredients ${measureTimeMillis { initIngredients(ingredients) }}"
+                    )
+
+                    //                    initRecipe(recipe)
+                    //                    initLabels(labels)
+                    //                    initNutrients(nutrients)
+                    //                    initIngredients(ingredients)
 
                     binding.pbContent.isVisible = false
                     binding.svContent.isVisible = true
@@ -160,20 +177,16 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         category: Map.Entry<String, List<String>>,
         inflater: LayoutInflater
     ): View {
-        val categoryView = inflater.inflate(R.layout.item_extended_category, null, false)
-        val categoryTitle = categoryView.findViewById<TextView>(R.id.tv_title)
-        val categoryLabels = categoryView.findViewById<ChipGroup>(R.id.cg_labels)
-
-        categoryTitle.text = category.key
+        val categoryView = ItemExtendedCategoryBinding.inflate(inflater, null, false)
+        categoryView.tvTitle.text = category.key
         for (label in category.value) {
-            categoryLabels.addView(createLabel(label))
+            categoryView.cgLabels.addView(createLabel(label))
         }
-
-        return categoryView
+        return categoryView.root
     }
 
     private fun createLabel(label: String): Chip {
-        return Chip(ContextThemeWrapper(context, R.style.Chip)).apply {
+        return Chip(context, null, R.attr.appChipStyle).apply {
             text = label
             setOnClickListener { onLabelClickListener(label) }
         }
