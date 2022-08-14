@@ -69,6 +69,7 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_item_big_dark.xml" value="0.222" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_item_small.xml" value="0.2225" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_item_small_dark.xml" value="0.219" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_kek.xml" value="0.2295" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_rv_item_big.xml" value="0.2225" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/background_rv_item_big_dark.xml" value="0.218" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/button_background.xml" value="0.258" />
@@ -131,6 +132,7 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/ic_tab_settings.xml" value="0.219" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/ic_time_20.xml" value="0.2315" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/image_placeholder.xml" value="0.209" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/item_background_nutrient.xml" value="0.1995" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/nav_state_color.xml" value="0.219" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/nav_state_color_dark.xml" value="0.2215" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/navigation_selector_color.xml" value="0.219" />
@@ -168,6 +170,7 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/drawable/tbd_screen_hint.xml" value="0.2295" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/activity_main.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/activity_recipes.xml" value="0.3116883116883117" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/calories.xml" value="1.0" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/chip_recipe_label.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/explore_rv_inner_item.xml" value="0.33" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/explore_rv_inner_item_placeholder.xml" value="1.0" />
@@ -181,7 +184,8 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_planner.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended.xml" value="0.3246753246753247" />
-        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_2.xml" value="0.3246753246753247" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_2.xml" value="0.32314814814814813" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_dump.xml" value="0.32314814814814813" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_p1.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_extended_p2.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/fragment_recipe_ingredients.xml" value="0.3246753246753247" />
@@ -198,6 +202,7 @@
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/home_rv_item_placeholder.xml" value="0.3424657534246575" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/item_extended_category.xml" value="0.3246753246753247" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/item_extended_ingredient.xml" value="0.3246753246753247" />
+        <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/item_extended_nutrient_2.xml" value="0.32314814814814813" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_category.xml" value="0.5" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_e.xml" value="0.33" />
         <entry key="..\:/vlad/android/FoodInfo/app/src/main/res/layout/rv_item_explore.xml" value="0.32894736842105265" />

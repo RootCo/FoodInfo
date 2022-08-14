@@ -126,12 +126,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             recipe.totalTime
         )
 
-        binding.tvCaloriesValue.text = recipe.calories
-        binding.pbCalories.progress = recipe.caloriesDaily
-        binding.tvCaloriesPercent.text = getString(
-            R.string.percent_value,
-            recipe.caloriesDaily
-        )
+        binding.iEnergy.tvTitle.text = resources.getString(R.string.calories_header)
+        binding.iEnergy.tvValue.text = recipe.calories
+        binding.iEnergy.progressBar.progress = recipe.caloriesDaily
     }
 
     private fun initLabels(labels: RecipeLabelsModel) {
@@ -144,39 +141,33 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     private fun initNutrients(nutrients: List<RecipeNutrientModel>) {
-        val protein = nutrients.findLast { nutrient ->
-            nutrient.label == binding.tvProteinTitle.text
-        }!!
-        val carb = nutrients.findLast { nutrient ->
-            nutrient.label == binding.tvCarbTitle.text
-        }!!
-        val fat = nutrients.findLast { nutrient ->
-            nutrient.label == binding.tvFatTitle.text
-        }!!
+        nutrients.findLast { nutrient ->
+            nutrient.label == resources.getString(R.string.protein_header)
+        }!!.apply {
+            binding.iProtein.tvTitle.text = label
+            binding.iProtein.tvValue.text = getString(R.string.float_value, totalWeight)
+            binding.iProtein.progressBar.progress = dailyPercent
+        }
 
-        binding.tvProteinValue.text = getString(
-            R.string.recipe_extended_nutrient_value,
-            protein.totalWeight,
-            protein.measure
-        )
-        binding.tvCarbValue.text = getString(
-            R.string.recipe_extended_nutrient_value,
-            carb.totalWeight,
-            carb.measure
-        )
-        binding.tvFatValue.text = getString(
-            R.string.recipe_extended_nutrient_value,
-            fat.totalWeight,
-            fat.measure
-        )
+        nutrients.findLast { nutrient ->
+            nutrient.label == resources.getString(R.string.carbs_header)
+        }!!.apply {
+            binding.iCarbs.tvTitle.text = label
+            binding.iCarbs.tvValue.text = getString(R.string.float_value, totalWeight)
+            binding.iCarbs.progressBar.progress = dailyPercent
+        }
 
-        binding.pbProtein.progress = protein.dailyPercent
-        binding.pbCarb.progress = carb.dailyPercent
-        binding.pbFat.progress = fat.dailyPercent
+        nutrients.findLast { nutrient ->
+            nutrient.label == resources.getString(R.string.fat_header)
+        }!!.apply {
+            binding.iFat.tvTitle.text = label
+            binding.iFat.tvValue.text = getString(R.string.float_value, totalWeight)
+            binding.iFat.progressBar.progress = dailyPercent
+        }
     }
 
     private fun initIngredients(ingredients: List<RecipeIngredientModel>) {
-        for (index in 0..4) {
+        for (index in 0..3) {
             GlideApp.with(requireContext())
                 .load(ingredients.getOrNull(index)?.previewURL)
                 .into(binding.clIngredients[index] as ShapeableImageView)

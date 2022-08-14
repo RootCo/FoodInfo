@@ -27,6 +27,7 @@
 
     <string name = "time_value">%1$d min</string>
     <string name = "percent_value">%1$d%%</string>
+    <string name = "float_value">%1$.1f</string>
     <string name = "gram_int_value">%1$dg</string>
     <string name = "gram_float_value">%1$.1fg</string>
     <string name = "int_measure_value">%1$d%2$s%3$s</string>
