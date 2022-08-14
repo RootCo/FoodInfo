@@ -8,14 +8,16 @@ import com.example.foodinfo.utils.glide.GlideApp
 
 
 class IngredientsViewHolder(
-    private val binding: RvItemIngredientBinding
+    private val binding: RvItemIngredientBinding,
+    private val onGetWeight: (Double) -> String,
+    private val onGetQuantity: (Double, String) -> String,
 ) : BaseViewHolder<RvItemIngredientBinding, RecipeIngredientModel>(binding) {
 
     override fun bind(newItem: RecipeIngredientModel): Unit = with(binding) {
         super.bind(newItem)
         tvIngredientName.text = item.text
-        tvIngredientValue.text = item.quantity
-        tvIngredientWeight.text = item.weight
+        tvIngredientValue.text = onGetQuantity.invoke(item.quantity, item.measure)
+        tvIngredientWeight.text = onGetWeight.invoke(item.weight)
         GlideApp.with(ivIngredientPreview.context)
             .load(item.previewURL)
             .error(R.drawable.ic_no_image)

@@ -76,6 +76,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_f_recipe_extended_to_f_recipe_nutrients">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -88,6 +93,18 @@
                           <Point>
                             <option name="x" value="-1745" />
                             <option name="y" value="-1382" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="f_recipe_nutrients">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1573" />
+                            <option name="y" value="-1381" />
                           </Point>
                         </option>
                       </LayoutPositions>

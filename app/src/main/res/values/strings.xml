@@ -20,7 +20,15 @@
     <string name = "content_description_text">content description</string>
     <string name = "meal_text">meal</string>
     <string name = "nutrients_text">nutrients</string>
-    <string name = "percent_value">%1$d%%</string>
     <string name = "default_content_description">this is image</string>
     <string name = "ingredients_text">ingredients</string>
+
+    <string name = "time_value">%1$d min</string>
+    <string name = "percent_value">%1$d%%</string>
+    <string name = "gram_int_value">%1$dg</string>
+    <string name = "gram_float_value">%1$.1fg</string>
+    <string name = "int_measure_value">%1$d%2$s%3$s</string>
+    <string name = "float_measure_value">%1$.1f%2$s%3$s</string>
+    <string name = "recipe_extended_nutrient_value">%1$.1f%2$s</string>
+    <string name = "rv_item_nutrient_value">%1$.1f / %2$.1f%3$s</string>
 </resources>

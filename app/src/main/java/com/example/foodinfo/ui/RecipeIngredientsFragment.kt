@@ -12,6 +12,7 @@ import com.example.foodinfo.databinding.FragmentRecipeIngredientsBinding
 import com.example.foodinfo.ui.adapter.RecipeIngredientsAdapter
 import com.example.foodinfo.ui.decorator.IngredientsItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.getMeasureSpacer
 import com.example.foodinfo.view_model.RecipeIngredientsViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,11 +34,29 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
         findNavController().navigateUp()
     }
 
+    private val onGetWeight: (Double) -> String = { weight ->
+        getString(R.string.gram_float_value, weight)
+    }
+
+    private val onGetQuantity: (Double, String) -> String = { quantity, measure ->
+        getString(
+            R.string.float_measure_value,
+            quantity,
+            getMeasureSpacer(measure),
+            measure
+        )
+    }
+
+
     override fun initUI() {
         viewModel.recipeId = args.recipeId
         binding.btnBack.setOnClickListener { onBackClickListener() }
 
-        recyclerAdapter = RecipeIngredientsAdapter(requireContext())
+        recyclerAdapter = RecipeIngredientsAdapter(
+            requireContext(),
+            onGetWeight,
+            onGetQuantity
+        )
 
         with(binding.rvIngredients) {
             layoutManager = LinearLayoutManager(context)

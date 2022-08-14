@@ -11,7 +11,9 @@ import com.example.foodinfo.ui.view_holder.IngredientsViewHolder
 
 
 class RecipeIngredientsAdapter(
-    context: Context
+    context: Context,
+    private val onGetWeight: (Double) -> String,
+    private val onGetQuantity: (Double, String) -> String,
 ) : ListAdapter<RecipeIngredientModel, ViewHolder>(
     RecipeIngredientModel.ItemCallBack
 ) {
@@ -21,14 +23,16 @@ class RecipeIngredientsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return IngredientsViewHolder(
-            RvItemIngredientBinding.inflate(layoutInflater, parent, false)
+            RvItemIngredientBinding.inflate(layoutInflater, parent, false),
+            onGetWeight,
+            onGetQuantity
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { recipe ->
+        getItem(position)?.let { ingredient ->
             holder as IngredientsViewHolder
-            holder.bind(recipe)
+            holder.bind(ingredient)
         }
     }
 }

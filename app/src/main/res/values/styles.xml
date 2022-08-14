@@ -4,6 +4,10 @@
         <item name = "android:background">@drawable/background_big</item>
     </style>
 
+    <style name = "BackgroundBigOutline">
+        <item name = "android:background">@drawable/background_big_outline</item>
+    </style>
+
     <style name = "BackgroundItemBig">
         <item name = "android:background">@drawable/rv_item_background_home</item>
     </style>

@@ -49,7 +49,13 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     private val onLabelClickListener: (label: String) -> Unit = { }
 
-    private val onNutrientsViewAllClickListener: () -> Unit = { }
+    private val onNutrientsViewAllClickListener: () -> Unit = {
+        findNavController().navigate(
+            RecipeExtendedFragmentDirections.actionFRecipeExtendedToFRecipeNutrients(
+                args.recipeId
+            )
+        )
+    }
 
     private val onIngredientsViewAllClickListener: () -> Unit = {
         findNavController().navigate(
@@ -111,8 +117,14 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             .into(binding.ivRecipePreview)
 
         binding.tvServingsValue.text = recipe.servings
-        binding.tvWeightValue.text = recipe.totalWeight
-        binding.tvTimeValue.text = recipe.totalTime
+        binding.tvWeightValue.text = getString(
+            R.string.gram_int_value,
+            recipe.totalWeight
+        )
+        binding.tvTimeValue.text = getString(
+            R.string.time_value,
+            recipe.totalTime
+        )
 
         binding.tvCaloriesValue.text = recipe.calories
         binding.pbCalories.progress = recipe.caloriesDaily
@@ -142,13 +154,25 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             nutrient.label == binding.tvFatTitle.text
         }!!
 
-        binding.tvProteinValue.text = protein.totalValue
-        binding.tvCarbValue.text = carb.totalValue
-        binding.tvFatValue.text = fat.totalValue
+        binding.tvProteinValue.text = getString(
+            R.string.recipe_extended_nutrient_value,
+            protein.totalWeight,
+            protein.measure
+        )
+        binding.tvCarbValue.text = getString(
+            R.string.recipe_extended_nutrient_value,
+            carb.totalWeight,
+            carb.measure
+        )
+        binding.tvFatValue.text = getString(
+            R.string.recipe_extended_nutrient_value,
+            fat.totalWeight,
+            fat.measure
+        )
 
-        binding.pbProtein.progress = protein.dailyValue
-        binding.pbCarb.progress = carb.dailyValue
-        binding.pbFat.progress = fat.dailyValue
+        binding.pbProtein.progress = protein.dailyPercent
+        binding.pbCarb.progress = carb.dailyPercent
+        binding.pbFat.progress = fat.dailyPercent
     }
 
     private fun initIngredients(ingredients: List<RecipeIngredientModel>) {

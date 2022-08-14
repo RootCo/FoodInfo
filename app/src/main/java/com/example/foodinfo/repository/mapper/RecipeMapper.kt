@@ -12,8 +12,8 @@ fun RecipeEntity.toModel(): RecipeModel {
         calories = this.calories.toString(),
         caloriesDaily = this.calories * 100 / RecipeModel.CALORIES_CAP,
         source = this.source,
-        totalWeight = "${this.totalWeight}g",
-        totalTime = "${this.totalTime} min",
+        totalWeight = this.totalWeight,
+        totalTime = this.totalTime,
         servings = this.servings.toString(),
         previewURL = this.previewURL
     )
@@ -25,7 +25,7 @@ fun RecipeEntity.toModelShort(): RecipeShortModel {
         name = this.name,
         calories = this.calories.toString(),
         servings = this.servings.toString(),
-        totalTime = "${this.totalTime} min",
+        totalTime = this.totalTime,
         totalIngredients = this.totalIngredients.toString(),
         previewURL = this.previewURL
     )

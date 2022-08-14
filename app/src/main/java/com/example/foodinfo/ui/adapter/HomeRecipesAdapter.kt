@@ -14,6 +14,7 @@ import com.example.foodinfo.ui.view_holder.HomeViewHolder
 
 class HomeRecipesAdapter(
     context: Context,
+    private val onGetTime: (Int) -> String,
     private val onItemClickListener: (String) -> Unit
 ) : PagingDataAdapter<RecipeShortModel, ViewHolder>(
     RecipeShortModel.ItemCallBack
@@ -27,6 +28,7 @@ class HomeRecipesAdapter(
             ViewTypes.LOADED_VIEW.ordinal -> {
                 HomeViewHolder(
                     RvItemHomeBinding.inflate(layoutInflater, parent, false),
+                    onGetTime,
                     onItemClickListener
                 )
             }

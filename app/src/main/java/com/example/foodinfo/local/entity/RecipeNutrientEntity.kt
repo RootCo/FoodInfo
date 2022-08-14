@@ -28,10 +28,10 @@ data class RecipeNutrientEntity(
     val label: String,
 
     @ColumnInfo(name = Columns.TOTAL_VALUE)
-    val totalValue: Float,
+    val totalValue: Double,
 
     @ColumnInfo(name = Columns.DAILY_VALUE)
-    val dailyValue: Float,
+    val dailyValue: Double,
 
     @ColumnInfo(name = Columns.UNIT)
     val unit: String

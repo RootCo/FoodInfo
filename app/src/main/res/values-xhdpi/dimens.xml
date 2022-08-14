@@ -16,6 +16,7 @@
     <dimen name = "dp_54">48dp</dimen>
     <dimen name = "dp_60">52dp</dimen>
     <dimen name = "dp_100">86dp</dimen>
+    <dimen name = "dp_120">104dp</dimen>
     <dimen name = "dp_140">120dp</dimen>
 
     <!--Typography-->

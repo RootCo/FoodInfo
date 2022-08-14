@@ -23,4 +23,7 @@
 
     <color name = "divider">#C8C8C8</color>
     <color name = "divider_dark">#1E232D</color>
+
+    <color name = "outline">#E6E6E6</color>
+    <color name = "outline_dark">#242629</color>
 </resources>

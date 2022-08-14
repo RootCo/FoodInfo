@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 data class RecipeIngredientModel(
     val id: Long,
     val text: String,
-    val quantity: String,
-    val weight: String,
+    val measure: String,
+    val quantity: Double,
+    val weight: Double,
     val food: String,
     val foodCategory: String,
     val foodId: String,
@@ -29,6 +30,7 @@ data class RecipeIngredientModel(
             newItem: RecipeIngredientModel
         ): Boolean {
             return oldItem.text == newItem.text &&
+                    oldItem.measure == oldItem.measure &&
                     oldItem.quantity == oldItem.quantity &&
                     oldItem.weight == oldItem.weight &&
                     oldItem.food == oldItem.food &&

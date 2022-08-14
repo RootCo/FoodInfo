@@ -28,13 +28,13 @@ data class RecipeIngredientEntity(
     val text: String,
 
     @ColumnInfo(name = Columns.QUANTITY)
-    val quantity: Float,
+    val quantity: Double,
 
     @ColumnInfo(name = Columns.MEASURE)
     val measure: String,
 
     @ColumnInfo(name = Columns.WEIGHT)
-    val weight: Float,
+    val weight: Double,
 
     @ColumnInfo(name = Columns.FOOD)
     val food: String,

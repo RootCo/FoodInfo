@@ -7,8 +7,8 @@ data class RecipeModel(
     val calories: String,
     val caloriesDaily: Int,
     val source: String,
-    val totalWeight: String,
-    val totalTime: String,
+    val totalWeight: Int,
+    val totalTime: Int,
     val servings: String,
     val previewURL: String
 ) {

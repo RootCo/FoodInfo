@@ -35,9 +35,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         )
     }
 
+    private val onGetTime: (Int) -> String = { time ->
+        getString(R.string.time_value, time)
+    }
+
 
     override fun initUI(): Unit = with(binding) {
-        recyclerAdapter = HomeRecipesAdapter(requireContext(), onItemClickListener).also {
+        recyclerAdapter = HomeRecipesAdapter(
+            requireContext(),
+            onGetTime,
+            onItemClickListener
+        ).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
                 rvRecipes.isVisible = state.refresh != LoadState.Loading
                 pbRecipes.isVisible = state.refresh == LoadState.Loading

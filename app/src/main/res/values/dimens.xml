@@ -14,9 +14,10 @@
     <dimen name = "explore_item_outer_margin">@dimen/dp_24</dimen>
     <dimen name = "explore_item_inner_space">@dimen/dp_12</dimen>
     <dimen name = "explore_item_inner_margin">@dimen/dp_24</dimen>
-
     <dimen name = "ingredients_item_space">@dimen/dp_16</dimen>
     <dimen name = "ingredients_item_margin">@dimen/dp_30</dimen>
+    <dimen name = "nutrients_item_space">@dimen/dp_16</dimen>
+    <dimen name = "nutrients_item_margin">@dimen/dp_30</dimen>
 
     <dimen name = "screen_bottom_margin">56dp</dimen>
 

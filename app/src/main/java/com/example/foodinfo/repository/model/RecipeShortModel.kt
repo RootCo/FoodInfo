@@ -8,7 +8,7 @@ data class RecipeShortModel(
     val name: String,
     val calories: String,
     val servings: String,
-    val totalTime: String,
+    val totalTime: Int,
     val totalIngredients: String,
     val previewURL: String
 ) {

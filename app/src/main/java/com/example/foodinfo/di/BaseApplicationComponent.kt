@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.foodinfo.di.module.BaseApplicationModule
 import com.example.foodinfo.local.DataBase
 import com.example.foodinfo.utils.AssetProvider
-import com.example.foodinfo.utils.DecorationUtils
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -31,6 +30,4 @@ interface BaseApplicationComponent {
     val dataBase: DataBase
 
     val assetProvider: AssetProvider
-
-    val decorationUtils: DecorationUtils
 }
