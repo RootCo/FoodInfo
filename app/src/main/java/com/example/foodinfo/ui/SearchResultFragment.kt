@@ -34,5 +34,10 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
         tvRecipeName.text = args.inputText
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
+
+        binding.hint.textView.text = getString(
+            R.string.TBD_screen,
+            viewModel.featureName
+        )
     }
 }

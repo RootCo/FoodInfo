@@ -24,4 +24,8 @@
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
 
+    <include
+        android:id = "@+id/hint"
+        layout = "@layout/tbd_screen_hint" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

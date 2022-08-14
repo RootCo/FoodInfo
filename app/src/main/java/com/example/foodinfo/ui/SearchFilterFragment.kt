@@ -2,6 +2,7 @@ package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterBinding
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.SearchFilterViewModel
@@ -21,5 +22,10 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 
     override fun initUI(): Unit = with(binding) {
         btnBack.setOnClickListener { onBackClickListener() }
+
+        binding.hint.textView.text = getString(
+            R.string.TBD_screen,
+            viewModel.featureName
+        )
     }
 }

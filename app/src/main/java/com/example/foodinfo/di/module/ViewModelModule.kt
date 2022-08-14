@@ -71,4 +71,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     abstract fun bindsSettingsViewModel(viewModel: SettingsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlannerViewModel::class)
+    abstract fun bindsPlannerViewModel(viewModel: PlannerViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BookMarkViewModel::class)
+    abstract fun bindsBookMarkViewModel(viewModel: BookMarkViewModel): ViewModel
 }

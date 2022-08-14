@@ -2,16 +2,16 @@ package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
 import com.example.foodinfo.R
-import com.example.foodinfo.databinding.FragmentSettingsBinding
+import com.example.foodinfo.databinding.FragmentPlannerBinding
 import com.example.foodinfo.utils.appComponent
-import com.example.foodinfo.view_model.SettingsViewModel
+import com.example.foodinfo.view_model.PlannerViewModel
 
 
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>(
-    FragmentSettingsBinding::inflate
+class PlannerFragment : BaseFragment<FragmentPlannerBinding>(
+    FragmentPlannerBinding::inflate
 ) {
 
-    private val viewModel: SettingsViewModel by viewModels {
+    private val viewModel: PlannerViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 

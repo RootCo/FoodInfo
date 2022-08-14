@@ -148,7 +148,7 @@
         <item name = "android:layout_width">@dimen/dp_54</item>
         <item name = "android:layout_height">@dimen/dp_54</item>
         <item name = "android:padding">@dimen/dp_10</item>
-        <item name = "android:src">@drawable/ic_like_20</item>
+        <item name = "android:src">@drawable/ic_bookmark</item>
         <item name = "android:background">@drawable/button_like_big</item>
     </style>
 
@@ -156,7 +156,7 @@
         <item name = "android:layout_width">@dimen/dp_40</item>
         <item name = "android:layout_height">@dimen/dp_40</item>
         <item name = "android:padding">@dimen/dp_8</item>
-        <item name = "android:src">@drawable/ic_like_20</item>
+        <item name = "android:src">@drawable/ic_bookmark</item>
         <item name = "android:background">@drawable/button_like_small</item>
     </style>
 </resources>

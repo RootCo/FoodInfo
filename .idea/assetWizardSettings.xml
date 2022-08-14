@@ -316,8 +316,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_image_placeholder" />
-                            <entry key="sourceFile" value="C:\Users\Vlad\Desktop\this_cord\categories\meal\ic_cat_meal_teatime.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_bookmark" />
+                            <entry key="sourceFile" value="C:\Users\Vlad\Downloads\ic_bookmark.svg" />
                           </map>
                         </option>
                       </PersistentState>

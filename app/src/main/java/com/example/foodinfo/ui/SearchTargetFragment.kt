@@ -3,6 +3,7 @@ package com.example.foodinfo.ui
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchTargetBinding
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.SearchTargetViewModel
@@ -32,5 +33,10 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         tvRecipeName.text = args.label
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
+
+        binding.hint.textView.text = getString(
+            R.string.TBD_screen,
+            viewModel.featureName
+        )
     }
 }

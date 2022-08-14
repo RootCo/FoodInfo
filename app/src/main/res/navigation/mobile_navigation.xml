@@ -119,4 +119,14 @@
             android:name = "recipeId"
             app:argType = "string" />
     </fragment>
+    <fragment
+        android:id = "@+id/f_planner"
+        android:name = "com.example.foodinfo.ui.PlannerFragment"
+        android:label = "@string/title_planner"
+        tools:layout = "@layout/fragment_planner" />
+    <fragment
+        android:id = "@+id/f_bookmark"
+        android:name = "com.example.foodinfo.ui.BookMarkFragment"
+        android:label = "@string/title_bookmark"
+        tools:layout = "@layout/fragment_bookmark" />
 </navigation>

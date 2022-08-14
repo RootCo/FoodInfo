@@ -21,7 +21,7 @@
         android:layout_marginEnd = "@dimen/dp_16"
         android:contentDescription = "@string/default_content_description"
         android:elevation = "1dp"
-        android:src = "@drawable/ic_like_20"
+        android:src = "@drawable/ic_bookmark"
         app:layout_constraintEnd_toStartOf = "@+id/btn_share"
         app:layout_constraintTop_toTopOf = "parent" />
 
