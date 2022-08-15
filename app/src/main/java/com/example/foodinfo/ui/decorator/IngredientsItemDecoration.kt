@@ -13,7 +13,6 @@ class IngredientsItemDecoration(
     ) {
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
-                top = margin
                 bottom = space
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
                 top = space

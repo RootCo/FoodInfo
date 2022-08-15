@@ -76,64 +76,80 @@
                 app:layout_constraintTop_toBottomOf = "@+id/iv_recipe_preview"
                 tools:text = "Skillet Lamb Chops With Harissa, Spinach, and Chickpeas Recipe" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id = "@+id/iv_servings_icon"
-                style = "@style/HintCard"
-                android:layout_marginStart = "@dimen/dp_30"
+            <TextView
+                android:id = "@+id/tv_servings_header"
+                style = "@style/TextViewVerySmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_40"
-                android:src = "@drawable/ic_peoples_20"
-                app:layout_constraintStart_toStartOf = "parent"
+                android:text = "@string/servings_text"
+                android:textColor = "?appSecondaryFontColor"
+                app:layout_constraintStart_toStartOf = "@id/tv_servings_value"
                 app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
 
             <TextView
                 android:id = "@+id/tv_servings_value"
-                style = "@style/TextViewSmall"
+                style = "@style/TextViewMedium"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_6"
-                app:layout_constraintEnd_toEndOf = "@+id/iv_servings_icon"
-                app:layout_constraintStart_toStartOf = "@+id/iv_servings_icon"
-                app:layout_constraintTop_toBottomOf = "@+id/iv_servings_icon"
-                tools:text = "34" />
+                android:drawablePadding = "@dimen/dp_6"
+                android:fontFamily = "@font/product_sans_medium"
+                app:drawableStartCompat = "@drawable/ic_peoples_20"
+                app:drawableTint = "?appPrimaryColor"
+                app:layout_constraintEnd_toStartOf = "@+id/tv_time_value"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_servings_header"
+                tools:text = "34 ppl" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id = "@+id/iv_time_icon"
-                style = "@style/HintCard"
+            <TextView
+                android:id = "@+id/tv_time_header"
+                style = "@style/TextViewVerySmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_40"
-                android:src = "@drawable/ic_time_20"
-                app:layout_constraintEnd_toEndOf = "@+id/iv_weight_icon"
-                app:layout_constraintStart_toStartOf = "@id/iv_servings_icon"
+                android:text = "@string/cooking_text"
+                android:textColor = "?appSecondaryFontColor"
+                app:layout_constraintStart_toStartOf = "@id/tv_time_value"
                 app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
 
             <TextView
                 android:id = "@+id/tv_time_value"
-                style = "@style/TextViewSmall"
+                style = "@style/TextViewMedium"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_6"
-                app:layout_constraintEnd_toEndOf = "@+id/iv_time_icon"
-                app:layout_constraintStart_toStartOf = "@+id/iv_time_icon"
-                app:layout_constraintTop_toBottomOf = "@+id/iv_time_icon"
+                android:drawablePadding = "@dimen/dp_6"
+                android:fontFamily = "@font/product_sans_medium"
+                app:drawableStartCompat = "@drawable/ic_time_20"
+                app:drawableTint = "?appPrimaryColor"
+                app:layout_constraintEnd_toStartOf = "@+id/tv_weight_value"
+                app:layout_constraintStart_toEndOf = "@+id/tv_servings_value"
+                app:layout_constraintTop_toTopOf = "@id/tv_servings_value"
                 tools:text = "110 min" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id = "@+id/iv_weight_icon"
-                style = "@style/HintCard"
+            <TextView
+                android:id = "@+id/tv_weight_header"
+                style = "@style/TextViewVerySmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_40"
-                android:layout_marginEnd = "@dimen/dp_30"
-                android:src = "@drawable/ic_scale_20"
-                app:layout_constraintEnd_toEndOf = "parent"
+                android:text = "@string/weight_text"
+                android:textColor = "?appSecondaryFontColor"
+                app:layout_constraintStart_toStartOf = "@id/tv_weight_value"
                 app:layout_constraintTop_toBottomOf = "@id/tv_recipe_name" />
 
             <TextView
                 android:id = "@+id/tv_weight_value"
-                style = "@style/TextViewSmall"
+                style = "@style/TextViewMedium"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_6"
-                app:layout_constraintEnd_toEndOf = "@+id/iv_weight_icon"
-                app:layout_constraintStart_toStartOf = "@+id/iv_weight_icon"
-                app:layout_constraintTop_toBottomOf = "@+id/iv_weight_icon"
+                android:drawablePadding = "@dimen/dp_6"
+                android:fontFamily = "@font/product_sans_medium"
+                app:drawableStartCompat = "@drawable/ic_scale_20"
+                app:drawableTint = "?appPrimaryColor"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toEndOf = "@+id/tv_time_value"
+                app:layout_constraintTop_toTopOf = "@id/tv_time_value"
                 tools:text = "1200g" />
 
             <TextView

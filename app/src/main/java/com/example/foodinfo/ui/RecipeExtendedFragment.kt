@@ -116,7 +116,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.ivRecipePreview)
 
-        binding.tvServingsValue.text = recipe.servings
+        binding.tvServingsValue.text = getString(
+            R.string.serving_value,
+            recipe.servings
+        )
         binding.tvWeightValue.text = getString(
             R.string.gram_int_value,
             recipe.totalWeight

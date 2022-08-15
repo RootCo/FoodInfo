@@ -14,7 +14,7 @@ fun RecipeEntity.toModel(): RecipeModel {
         source = this.source,
         totalWeight = this.totalWeight,
         totalTime = this.totalTime,
-        servings = this.servings.toString(),
+        servings = this.servings,
         previewURL = this.previewURL
     )
 }

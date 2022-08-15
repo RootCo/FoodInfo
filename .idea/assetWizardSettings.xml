@@ -317,8 +317,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_bookmark" />
-                            <entry key="sourceFile" value="C:\Users\Vlad\Downloads\ic_bookmark.svg" />
+                            <entry key="outputName" value="ic_question_mark" />
+                            <entry key="sourceFile" value="C:\Users\Vlad\Downloads\question_mark.svg" />
                           </map>
                         </option>
                       </PersistentState>

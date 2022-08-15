@@ -24,8 +24,10 @@
     <string name = "nutrients_text">nutrients</string>
     <string name = "default_content_description">this is image</string>
     <string name = "ingredients_text">ingredients</string>
+    <string name = "category_description_placeholder">No one shall be subjected to arbitrary arrest, detention or exile. Everyone is entitled in full equality to a fair and public hearing by an independent and impartial tribunal, in the determination of his rights and obligations and of any criminal charge against him. No one shall be subjected to arbitrary interference with his privacy, family, home or correspondence, nor to attacks upon his honour and reputation. Everyone has the right to the protection of the law against such interference or attacks.</string>
 
     <string name = "time_value">%1$d min</string>
+    <string name = "serving_value">%1$d ppl</string>
     <string name = "percent_value">%1$d%%</string>
     <string name = "float_value">%1$.1f</string>
     <string name = "gram_int_value">%1$dg</string>
@@ -35,4 +37,8 @@
     <string name = "recipe_extended_nutrient_value">%1$.1f%2$s</string>
     <string name = "rv_item_nutrient_value">%1$.1f / %2$.1f%3$s</string>
     <string name = "TBD_screen">Feature %1$s is temporary unavailable</string>
+    <string name = "read_more_text">Read more</string>
+    <string name = "servings_text">Servings</string>
+    <string name = "cooking_text">Cooking</string>
+    <string name = "weight_text">Weight</string>
 </resources>

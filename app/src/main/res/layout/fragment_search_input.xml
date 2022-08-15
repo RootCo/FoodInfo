@@ -8,7 +8,8 @@
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ButtonTransparent"
+        style = "@style/ButtonStroke"
+        android:layout_marginStart = "@dimen/screen_horizontal_margin"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
@@ -16,9 +17,9 @@
 
     <ImageView
         android:id = "@+id/btn_search_filter"
-        style = "@style/ButtonTransparent"
+        style = "@style/ButtonStroke"
+        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
         android:contentDescription = "@string/default_content_description"
-        android:padding = "@dimen/dp_20"
         android:src = "@drawable/ic_search_filter"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -26,12 +27,13 @@
     <androidx.appcompat.widget.SearchView
         android:id = "@+id/et_search_input"
         android:layout_width = "0dp"
-        android:layout_height = "@dimen/dp_60"
+        android:layout_height = "0dp"
         android:imeOptions = "actionSearch"
         android:singleLine = "true"
         android:theme = "@style/SearchView"
         app:defaultQueryHint = "@string/et_search_hint"
         app:iconifiedByDefault = "false"
+        app:layout_constraintBottom_toBottomOf = "@+id/btn_back"
         app:layout_constraintEnd_toStartOf = "@id/btn_search_filter"
         app:layout_constraintStart_toEndOf = "@id/btn_back"
         app:layout_constraintTop_toTopOf = "parent"
@@ -41,6 +43,7 @@
     <View
         android:id = "@+id/divider"
         style = "@style/Divider"
+        android:layout_marginTop = "@dimen/screen_vertical_margin"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@id/et_search_input" />
@@ -49,7 +52,7 @@
         android:id = "@+id/rv_search_input"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:paddingHorizontal = "@dimen/dp_12"
+        android:layout_marginHorizontal = "@dimen/dp_20"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"

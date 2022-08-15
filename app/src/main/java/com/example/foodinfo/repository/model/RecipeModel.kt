@@ -9,7 +9,7 @@ data class RecipeModel(
     val source: String,
     val totalWeight: Int,
     val totalTime: Int,
-    val servings: String,
+    val servings: Int,
     val previewURL: String
 ) {
 

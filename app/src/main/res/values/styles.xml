@@ -140,7 +140,6 @@
         <item name = "tint">?appMainFontColor</item>
         <item name = "android:layout_width">@dimen/dp_44</item>
         <item name = "android:layout_height">@dimen/dp_44</item>
-        <item name = "android:background">@drawable/button_background</item>
         <item name = "android:padding">@dimen/dp_8</item>
     </style>
 

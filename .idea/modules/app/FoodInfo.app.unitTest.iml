@@ -15,7 +15,6 @@
             <stringArg name="classpath">
               <args>
                 <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
-                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_app_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/dcb97f26b3677d76d9115e9a593428ea/transformed/viewbinding-7.2.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2384e03496ea22ca2fee1dbd287fb384/transformed/room-ktx-2.4.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2de852a189d66446e6f68590e6255bb8/transformed/paging-runtime-ktx-3.1.1-api.jar</arg>
@@ -48,7 +47,6 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/6e99c48e300029768ba1be40201784d9/transformed/lifecycle-viewmodel-savedstate-2.5.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.3/d9fd39e22656fd44437d763b0fed86595cab3be8/kotlinx-coroutines-android-1.6.3.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.7.0/362da0b4951ed79a6591743a7fddcfb8c73809f6/kotlin-stdlib-jdk8-1.7.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/2c6211a2e6a9e23a1e226e05b62fcd33/transformed/leakcanary-android-2.9.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8d5a2071d4aff83ce5f7a8843b0fc0da/transformed/legacy-support-core-ui-1.0.0-api.jar</arg>
@@ -98,21 +96,9 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/c62eea31b98d620bbcdf6ee4cdfbfa04/transformed/print-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.7.0/fbeaa8fa63cbab09c547083a449097be6660a9a/kotlin-stdlib-jdk7-1.7.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/81b38a45378a8f9befc8448f03208eca/transformed/leakcanary-object-watcher-android-2.9.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.7.0/a5f42c684ad9003160ef0d0f693ecf0ba7b13549/kotlin-stdlib-1.7.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.7.0/51736992f422993a1e741051bdf3c12801bc1ca1/kotlin-stdlib-common-1.7.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/c52e05256be0c763342fe44661dfaea4/transformed/leakcanary-android-core-2.9.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/shark-android/2.9.1/c4b06cf2ee48838b19a41371d4fe141d066cf4c0/shark-android-2.9.1.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/shark/2.9.1/4cb99ca9c9321f061e69eb212637be55ca053c4a/shark-2.9.1.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/shark-graph/2.9.1/c8f7bec5646aa1ef7110cee11688f657c9c61a4a/shark-graph-2.9.1.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/shark-hprof/2.9.1/c78054d84488aab120935412c95bb722f7b57572/shark-hprof-2.9.1.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/0a68729b0e16dbbd6b2e109aab06186f/transformed/leakcanary-object-watcher-android-androidx-2.9.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3bad6d0d66b1ce9050e73ee5cdf465cf/transformed/leakcanary-object-watcher-android-support-fragments-2.9.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/1a7872d97e6e008858016bc294bba002/transformed/leakcanary-object-watcher-android-core-2.9.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/leakcanary-object-watcher/2.9.1/5e7421956e02a470e95adaa2a232309b1ee08664/leakcanary-object-watcher-2.9.1.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/9cf1bac92400bd2e21aa812c9ac60b73/transformed/leakcanary-android-utils-2.9.1-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/shark-log/2.9.1/a81e795f69c84082904b408cfd0b72f7065a5fab/shark-log-2.9.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/90f8891fdc7b329c2ab6dfb3c88bb116/transformed/annotation-experimental-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.11.0/ed93d2e20549ad85f692d964788ec77520d78a8b/disklrucache-4.11.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.11.0/c57bae5a18147f8ae22f4da49baac875c6b6f84f/annotations-4.11.0.jar</arg>
@@ -194,12 +180,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:shark-android:2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:shark:2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:shark-graph:2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:shark-hprof:2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:shark-log:2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-object-watcher:2.9.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.lifecycle:lifecycle-common:2.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
@@ -218,13 +198,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:viewbinding:7.2.2@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-android:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-android-core:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-object-watcher-android-core:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-android-utils:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-object-watcher-android-androidx:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-object-watcher-android-support-fragments:2.9.1@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.squareup.leakcanary:leakcanary-object-watcher-android:2.9.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core:1.8.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
