@@ -14,7 +14,7 @@
         android:layout_height = "60dp"
         android:layout_gravity = "bottom|start"
         android:layout_marginStart = "@dimen/screen_horizontal_margin"
-        android:fontFamily = "@font/product_sans_medium"
+        android:fontFamily = "@font/app_font_bold"
         android:gravity = "center|start"
         android:maxLength = "25"
         android:text = "@string/tv_loading_text" />

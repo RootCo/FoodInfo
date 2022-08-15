@@ -47,12 +47,6 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         findNavController().navigateUp()
     }
 
-    private val onFilterClickListener: () -> Unit = {
-        findNavController().navigate(
-            SearchInputFragmentDirections.actionFSearchInputToFSearchFilter()
-        )
-    }
-
     private val onScrollStateListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
@@ -87,7 +81,6 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         )
 
         btnBack.setOnClickListener { onBackClickListener() }
-        btnSearchFilter.setOnClickListener { onFilterClickListener() }
 
         with(rvSearchInput) {
             layoutManager = LinearLayoutManager(binding.root.context)

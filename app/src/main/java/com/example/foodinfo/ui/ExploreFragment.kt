@@ -42,6 +42,12 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         )
     }
 
+    private val onFilterClickListener: () -> Unit = {
+        findNavController().navigate(
+            ExploreFragmentDirections.actionFExploreToFSearchFilter()
+        )
+    }
+
     private val onScrollStateListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
@@ -55,7 +61,8 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 
     override fun initUI(): Unit = with(binding) {
         recyclerAdapter = ExploreOuterAdapter(requireContext(), onInnerItemClickListener)
-        tvSearch.setOnClickListener { onSearchClickListener() }
+        llSearch.setOnClickListener { onSearchClickListener() }
+        btnFilter.setOnClickListener { onFilterClickListener() }
         with(rvCategories) {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
