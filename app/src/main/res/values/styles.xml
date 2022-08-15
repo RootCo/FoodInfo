@@ -1,9 +1,4 @@
 <resources>
-
-    <style name = "BackgroundBig">
-        <item name = "android:background">@drawable/background_big</item>
-    </style>
-
     <style name = "BackgroundBigOutline">
         <item name = "android:background">@drawable/background_big_outline</item>
     </style>
@@ -24,17 +19,6 @@
     <style name = "ShapeAppearanceNormal">
         <item name = "cornerFamily">rounded</item>
         <item name = "cornerSize">@dimen/dp_18</item>
-    </style>
-
-    <style name = "SearchInput">
-        <item name = "android:textColor">?appSecondaryFontColor</item>
-        <item name = "android:textSize">@dimen/text_16</item>
-        <item name = "android:fontFamily">@font/app_font_regular</item>
-        <item name = "android:background">@drawable/search_view_background</item>
-        <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">@dimen/dp_50</item>
-        <item name = "android:gravity">center|start</item>
-        <item name = "android:text">@string/et_search_hint</item>
     </style>
 
     <style name = "SearchView">
@@ -79,17 +63,6 @@
         <item name = "android:background">?appMainBackgroundColor</item>
     </style>
 
-    <style name = "TabLayout">
-        <item name = "android:layout_width">match_parent</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "android:clipToPadding">false</item>
-        <item name = "android:background">?appMainBackgroundColor</item>
-        <item name = "tabIndicator">@null</item>
-        <item name = "tabRippleColor">@null</item>
-        <item name = "tabPaddingEnd">@dimen/dp_8</item>
-        <item name = "tabPaddingStart">@dimen/dp_8</item>
-    </style>
-
     <style name = "ProgressBarLine" parent = "Widget.AppCompat.ProgressBar.Horizontal">
         <item name = "android:layout_height">@dimen/dp_8</item>
         <item name = "android:progressDrawable">@drawable/progress_bar</item>
@@ -108,14 +81,6 @@
         <item name = "android:background">?appDivider</item>
     </style>
 
-    <style name = "HintCard">
-        <item name = "android:layout_width">@dimen/dp_60</item>
-        <item name = "android:layout_height">@dimen/dp_60</item>
-        <item name = "contentPadding">@dimen/dp_16</item>
-        <item name = "android:background">?appSecondaryBackgroundColor</item>
-        <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
-    </style>
-
     <style name = "MiniIngredient">
         <item name = "android:layout_width">@dimen/dp_66</item>
         <item name = "android:layout_height">@dimen/dp_66</item>
@@ -128,12 +93,6 @@
         <item name = "android:layout_height">wrap_content</item>
         <item name = "chipBackgroundColor">?appSecondaryBackgroundColor</item>
         <item name = "android:textAppearance">@style/TextViewSmall</item>
-    </style>
-
-    <style name = "ButtonTransparent">
-        <item name = "android:layout_width">@dimen/dp_60</item>
-        <item name = "android:layout_height">@dimen/dp_60</item>
-        <item name = "android:padding">@dimen/dp_18</item>
     </style>
 
     <style name = "ButtonStroke">
@@ -149,13 +108,5 @@
         <item name = "android:padding">@dimen/dp_10</item>
         <item name = "android:src">@drawable/ic_bookmark</item>
         <item name = "android:background">@drawable/button_like_big</item>
-    </style>
-
-    <style name = "ButtonLikeSmall">
-        <item name = "android:layout_width">@dimen/dp_40</item>
-        <item name = "android:layout_height">@dimen/dp_40</item>
-        <item name = "android:padding">@dimen/dp_8</item>
-        <item name = "android:src">@drawable/ic_bookmark</item>
-        <item name = "android:background">@drawable/button_like_small</item>
     </style>
 </resources>
