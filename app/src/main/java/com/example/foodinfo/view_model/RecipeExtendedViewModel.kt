@@ -2,11 +2,9 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.RepositoryRecipes
-import com.example.foodinfo.repository.model.RecipeIngredientModel
-import com.example.foodinfo.repository.model.RecipeLabelsModel
-import com.example.foodinfo.repository.model.RecipeModel
-import com.example.foodinfo.repository.model.RecipeNutrientModel
+import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,7 +13,10 @@ import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 
 
-class RecipeExtendedViewModel @Inject constructor(repositoryRecipes: RepositoryRecipes) :
+class RecipeExtendedViewModel @Inject constructor(
+    repositoryRecipes: RepositoryRecipes,
+    private val repositoryLabels: RepositoryLabels
+) :
     ViewModel() {
 
     var recipeId: String = ""
@@ -38,5 +39,9 @@ class RecipeExtendedViewModel @Inject constructor(repositoryRecipes: RepositoryR
     val labels: SharedFlow<RecipeLabelsModel> by lazy {
         repositoryRecipes.getByIdLabels(recipeId).flowOn(Dispatchers.IO)
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    }
+
+    fun getLabel(category: String, label: String): LabelModel {
+        return repositoryLabels.getByLabel(category, label)
     }
 }

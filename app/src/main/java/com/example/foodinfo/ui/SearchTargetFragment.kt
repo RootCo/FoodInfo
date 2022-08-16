@@ -1,12 +1,17 @@
 package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchTargetBinding
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchTargetViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
     FragmentSearchTargetBinding::inflate
@@ -28,9 +33,23 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         )
     }
 
+    private val onLabelClickListener: () -> Unit = {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val labelItem = viewModel.getLabel(args.category, args.label)
+            withContext(Dispatchers.Main) {
+                showDescriptionDialog(
+                    labelItem.label,
+                    labelItem.description,
+                    labelItem.preview
+                )
+            }
+        }
+    }
+
 
     override fun initUI(): Unit = with(binding) {
-        tvRecipeName.text = args.label
+        tvLabel.text = args.label
+        tvLabel.setOnClickListener { onLabelClickListener() }
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
 

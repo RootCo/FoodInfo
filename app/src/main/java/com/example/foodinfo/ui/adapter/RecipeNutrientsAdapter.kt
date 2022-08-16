@@ -14,6 +14,7 @@ class RecipeNutrientsAdapter(
     context: Context,
     private val onGetNutrientWeight: (Double, Double, String) -> String,
     private val onGetNutrientPercent: (Int) -> String,
+    private val onNutrientClickListener: (String) -> Unit,
 ) : ListAdapter<RecipeNutrientModel, ViewHolder>(
     RecipeNutrientModel.ItemCallBack
 ) {
@@ -25,7 +26,8 @@ class RecipeNutrientsAdapter(
         return NutrientsViewHolder(
             RvItemNutrientBinding.inflate(layoutInflater, parent, false),
             onGetNutrientWeight,
-            onGetNutrientPercent
+            onGetNutrientPercent,
+            onNutrientClickListener
         )
     }
 

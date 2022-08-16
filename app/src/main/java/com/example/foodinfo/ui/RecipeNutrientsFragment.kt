@@ -12,9 +12,12 @@ import com.example.foodinfo.databinding.FragmentRecipeNutrientsBinding
 import com.example.foodinfo.ui.adapter.RecipeNutrientsAdapter
 import com.example.foodinfo.ui.decorator.NutrientsItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeNutrientsViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
@@ -51,6 +54,19 @@ class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
         )
     }
 
+    private val onNutrientClickListener: (String) -> Unit = { label ->
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val nutrientItem = viewModel.getNutrient(label)
+            withContext(Dispatchers.Main) {
+                showDescriptionDialog(
+                    nutrientItem.label,
+                    nutrientItem.description,
+                    nutrientItem.preview
+                )
+            }
+        }
+    }
+
 
     override fun initUI() {
         viewModel.recipeId = args.recipeId
@@ -59,7 +75,8 @@ class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
         recyclerAdapter = RecipeNutrientsAdapter(
             requireContext(),
             onGetNutrientWeight,
-            onGetNutrientPercent
+            onGetNutrientPercent,
+            onNutrientClickListener
         )
 
         with(binding.rvIngredients) {

@@ -21,12 +21,15 @@ import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
+import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.imageview.ShapeableImageView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
@@ -47,7 +50,18 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     private val onShareClickListener: () -> Unit = { }
 
-    private val onLabelClickListener: (label: String) -> Unit = { }
+    private val onLabelClickListener: (String, String) -> Unit = { category, label ->
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val labelItem = viewModel.getLabel(category, label)
+            withContext(Dispatchers.Main) {
+                showDescriptionDialog(
+                    labelItem.label,
+                    labelItem.description,
+                    labelItem.preview
+                )
+            }
+        }
+    }
 
     private val onNutrientsViewAllClickListener: () -> Unit = {
         findNavController().navigate(
@@ -186,15 +200,15 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         return ItemExtendedCategoryBinding.inflate(inflater, null, false).apply {
             tvTitle.text = name
             for (label in labels) {
-                cgLabels.addView(createLabel(label))
+                cgLabels.addView(createLabel(name, label))
             }
         }.root
     }
 
-    private fun createLabel(label: String): Chip {
+    private fun createLabel(name: String, label: String): Chip {
         return Chip(context, null, R.attr.appChipStyle).apply {
             text = label
-            setOnClickListener { onLabelClickListener(label) }
+            setOnClickListener { onLabelClickListener(name, label) }
         }
     }
 }

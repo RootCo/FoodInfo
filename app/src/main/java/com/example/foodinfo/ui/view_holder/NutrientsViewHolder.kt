@@ -8,7 +8,13 @@ class NutrientsViewHolder(
     private val binding: RvItemNutrientBinding,
     private val onGetNutrientWeight: (Double, Double, String) -> String,
     private val onGetNutrientPercent: (Int) -> String,
+    private val onNutrientClickListener: (String) -> Unit,
 ) : BaseViewHolder<RvItemNutrientBinding, RecipeNutrientModel>(binding) {
+
+    init {
+        binding.clNutrient.setOnClickListener { onNutrientClickListener(item.label) }
+    }
+
 
     override fun bind(newItem: RecipeNutrientModel): Unit = with(binding) {
         super.bind(newItem)

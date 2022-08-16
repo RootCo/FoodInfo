@@ -21,6 +21,8 @@
     <string name = "default_content_description">this is image</string>
     <string name = "ingredients_text">ingredients</string>
 
+    <string name = "description_placeholder">Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.</string>
+
     <string name = "time_value">%1$d min</string>
     <string name = "serving_value">%1$d ppl</string>
     <string name = "percent_value">%1$d%%</string>

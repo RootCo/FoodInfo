@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:gravity = "center"
+    android:orientation = "vertical">
+
+    <ImageView
+        android:id = "@+id/iv_preview"
+        android:layout_width = "@dimen/dp_100"
+        android:layout_height = "@dimen/dp_100"
+        android:layout_marginTop = "@dimen/dp_30"
+        android:contentDescription = "@string/default_content_description"
+        app:tint = "?appMainFontColor"
+        tools:src = "@drawable/ic_no_image" />
+
+    <TextView
+        android:id = "@+id/tv_header"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "@dimen/dp_30"
+        android:fontFamily = "@font/app_font_medium"
+        tools:text = "condiments and sauces" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_margin = "@dimen/dp_30">
+
+        <TextView
+            android:id = "@+id/tv_description"
+            style = "@style/TextViewSmall"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:scrollbars = "none"
+            android:textAlignment = "center"
+            android:textColor = "?appSecondaryFontColor"
+            tools:text = "@string/description_placeholder" />
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

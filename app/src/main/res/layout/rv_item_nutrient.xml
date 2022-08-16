@@ -5,6 +5,7 @@
     xmlns:tools = "http://schemas.android.com/tools"
     style = "@style/BackgroundBigOutline"
     android:layout_width = "match_parent"
+    android:id="@+id/cl_nutrient"
     android:layout_height = "@dimen/dp_100">
 
     <TextView
@@ -15,9 +16,11 @@
         android:layout_marginStart = "@dimen/dp_20"
         android:layout_marginTop = "@dimen/dp_20"
         android:layout_marginEnd = "@dimen/dp_20"
+        android:drawablePadding = "@dimen/dp_6"
         android:ellipsize = "end"
         android:maxLines = "1"
         android:textColor = "?appSecondaryFontColor"
+        app:drawableStartCompat = "@drawable/ic_question_mark"
         app:layout_constraintEnd_toStartOf = "@+id/tv_weight"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent"
