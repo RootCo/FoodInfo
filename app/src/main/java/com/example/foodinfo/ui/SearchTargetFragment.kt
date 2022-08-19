@@ -68,6 +68,8 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
 
 
     override fun initUI(): Unit = with(binding) {
+        viewModel.setFilter(args.category, args.label)
+
         tvLabel.text = args.label
         tvLabel.setOnClickListener { onLabelClickListener() }
         btnBack.setOnClickListener { onBackClickListener() }
@@ -94,8 +96,8 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
             setHasFixedSize(true)
             addItemDecoration(
                 SearchTargetItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.home_recipes_space),
-                    resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
+                    resources.getDimensionPixelSize(R.dimen.search_target_item_horizontal),
+                    resources.getDimensionPixelSize(R.dimen.search_target_item_vertical)
                 )
             )
         }

@@ -62,10 +62,10 @@ class RepositoryRecipesImpl @Inject constructor(
             maxSize = 40
         )
         val DB_EXPLORE_PAGER = PagingConfig(
-            pageSize = 5,
-            initialLoadSize = 5,
-            jumpThreshold = 15,
-            maxSize = 15
+            pageSize = 10,
+            initialLoadSize = 20,
+            jumpThreshold = 40,
+            maxSize = 40
         )
     }
 }

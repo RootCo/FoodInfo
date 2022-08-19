@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class SearchTargetItemDecoration(
-    private val space: Int, private val margin: Int
+    private val horizontal: Int, private val vertical: Int
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State
     ) {
         with(outRect) {
-            top = space
-            bottom = space
-            right = space
-            left = space
+            top = vertical
+            bottom = vertical
+            right = horizontal
+            left = horizontal
         }
     }
 }
