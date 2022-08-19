@@ -8,7 +8,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id = "@+id/ic_preview"
-        style = "@style/BackgroundItemSmall"
+        android:background="@drawable/background_secondary_bg_40"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
         android:scaleType = "centerCrop"

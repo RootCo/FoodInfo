@@ -3,10 +3,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
-    style = "@style/BackgroundBigOutline"
+    android:id = "@+id/cl_nutrient"
     android:layout_width = "match_parent"
-    android:id="@+id/cl_nutrient"
-    android:layout_height = "@dimen/dp_100">
+    android:layout_height = "@dimen/dp_100"
+    android:background = "@drawable/background_outline_24">
 
     <TextView
         android:id = "@+id/tv_name"

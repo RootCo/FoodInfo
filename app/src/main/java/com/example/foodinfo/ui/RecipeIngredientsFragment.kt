@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeIngredientsBinding
 import com.example.foodinfo.ui.adapter.RecipeIngredientsAdapter
@@ -59,7 +58,6 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
         )
 
         with(binding.rvIngredients) {
-            layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(

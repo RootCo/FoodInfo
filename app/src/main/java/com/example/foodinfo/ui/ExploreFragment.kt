@@ -5,7 +5,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentExploreBinding
@@ -64,7 +63,6 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         llSearch.setOnClickListener { onSearchClickListener() }
         btnFilter.setOnClickListener { onFilterClickListener() }
         with(rvCategories) {
-            layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(

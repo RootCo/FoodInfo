@@ -1,0 +1,16 @@
+<vector xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:width = "100dp"
+    android:height = "100dp"
+    android:viewportWidth = "120"
+    android:viewportHeight = "120">
+    <group
+        android:translateX = "10"
+        android:translateY = "10">
+        <path
+            android:fillColor = "?appSecondaryFontColor"
+            android:pathData = "M29.17,100h41.67A29.2,29.2 0,0 0,100 70.83V29.17A29.2,29.2 0,0 0,70.83 0H29.17A29.2,29.2 0,0 0,0 29.17v41.67A29.2,29.2 0,0 0,29.17 100zM8.33,29.17A20.86,20.86 0,0 1,29.17 8.33h41.67a20.86,20.86 0,0 1,20.83 20.83v41.67a20.86,20.86 0,0 1,-20.83 20.83H29.17A20.86,20.86 0,0 1,8.33 70.83z" />
+        <path
+            android:fillColor = "?appSecondaryFontColor"
+            android:pathData = "M30.39,69.61a4.16,4.16 0,0 0,5.89 0L50,55.89l13.72,13.72c1.06,1.02 2.58,1.41 4,1.02a4.17,4.17 0,0 0,1.89 -6.91L55.89,50l13.72,-13.72c1.02,-1.06 1.41,-2.58 1.02,-4a4.17,4.17 0,0 0,-6.91 -1.89L50,44.11l-13.72,-13.72a4.17,4.17 0,0 0,-4 -1.02,4.17 4.17,0 0,0 -1.89,6.91L44.11,50l-13.72,13.72a4.16,4.16 0,0 0,0 5.89z" />
+    </group>
+</vector>

@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchTargetBinding
 import com.example.foodinfo.ui.adapter.SearchTargetAdapter
@@ -91,7 +90,6 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         }
 
         with(rvRecipes) {
-            layoutManager = GridLayoutManager(context, 2)
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(

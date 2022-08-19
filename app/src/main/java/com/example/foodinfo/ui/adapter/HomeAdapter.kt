@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemHomeBinding
 import com.example.foodinfo.databinding.RvItemHomePlaceholderBinding
 import com.example.foodinfo.repository.model.RecipeShortModel
-import com.example.foodinfo.ui.view_holder.HomeProgressViewHolder
+import com.example.foodinfo.ui.view_holder.HomePlaceholder
 import com.example.foodinfo.ui.view_holder.HomeViewHolder
 
 
-class HomeRecipesAdapter(
+class HomeAdapter(
     context: Context,
     private val onGetTime: (Int) -> String,
     private val onItemClickListener: (String) -> Unit
@@ -33,7 +33,7 @@ class HomeRecipesAdapter(
                 )
             }
             else                          -> {
-                HomeProgressViewHolder(
+                HomePlaceholder(
                     RvItemHomePlaceholderBinding.inflate(layoutInflater, parent, false)
                 )
             }

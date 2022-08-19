@@ -9,9 +9,9 @@
     tools:layout_width = "240dp">
 
     <View
-        style = "@style/BackgroundItemBig"
         android:layout_width = "0dp"
         android:layout_height = "match_parent"
+        android:background = "@drawable/background_secondary_bg_30"
         app:layout_constraintDimensionRatio = "W,240:370"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"

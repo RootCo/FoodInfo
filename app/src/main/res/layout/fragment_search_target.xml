@@ -51,8 +51,8 @@
         app:layoutManager = "androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintTop_toBottomOf = "@+id/btn_back"
-        tools:listitem = "@layout/rv_item_search_target"
-        tools:spanCount = "2" />
+        app:spanCount = "2"
+        tools:listitem = "@layout/rv_item_search_target" />
 
     <ProgressBar
         android:id = "@+id/pb_recipes"

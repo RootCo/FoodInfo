@@ -1,15 +1,8 @@
 <resources>
 
-    <style name = "BackgroundBigOutline">
-        <item name = "android:background">@drawable/background_big_outline</item>
-    </style>
-
-    <style name = "BackgroundItemBig">
-        <item name = "android:background">@drawable/rv_item_background_home</item>
-    </style>
-
-    <style name = "BackgroundItemSmall">
-        <item name = "android:background">@drawable/rv_item_background_explore</item>
+    <style name = "ShapeAppearanceNormal">
+        <item name = "cornerFamily">rounded</item>
+        <item name = "cornerSize">@dimen/dp_18</item>
     </style>
 
     <style name = "ShapeAppearanceBig">
@@ -17,9 +10,9 @@
         <item name = "cornerSize">@dimen/dp_24</item>
     </style>
 
-    <style name = "ShapeAppearanceNormal">
+    <style name = "ShapeAppearanceLarge">
         <item name = "cornerFamily">rounded</item>
-        <item name = "cornerSize">@dimen/dp_18</item>
+        <item name = "cornerSize">@dimen/dp_30</item>
     </style>
 
     <style name = "SearchView">
@@ -101,7 +94,7 @@
     </style>
 
     <style name = "BottomSheetDialogModal" parent = "Widget.Design.BottomSheet.Modal">
-        <item name = "android:background">@drawable/background_dialog_description</item>
+        <item name = "android:background">@drawable/background_main_bg_24</item>
     </style>
 
     <style name = "ButtonStroke">
@@ -111,11 +104,19 @@
         <item name = "android:padding">@dimen/dp_8</item>
     </style>
 
+    <style name = "ButtonLikeSmall">
+        <item name = "android:layout_width">@dimen/dp_40</item>
+        <item name = "android:layout_height">@dimen/dp_40</item>
+        <item name = "android:padding">@dimen/dp_6</item>
+        <item name = "android:src">@drawable/ic_bookmark</item>
+        <item name = "android:background">@drawable/background_main_ft_30</item>
+    </style>
+
     <style name = "ButtonLikeBig">
         <item name = "android:layout_width">@dimen/dp_54</item>
         <item name = "android:layout_height">@dimen/dp_54</item>
         <item name = "android:padding">@dimen/dp_10</item>
         <item name = "android:src">@drawable/ic_bookmark</item>
-        <item name = "android:background">@drawable/button_like_big</item>
+        <item name = "android:background">@drawable/background_main_ft_30</item>
     </style>
 </resources>

@@ -18,7 +18,7 @@
     <ImageView
         android:id = "@+id/btn_like"
         style = "@style/ButtonStroke"
-        android:layout_marginEnd = "@dimen/dp_16"
+        android:layout_marginEnd = "@dimen/dp_10"
         android:contentDescription = "@string/default_content_description"
         android:elevation = "1dp"
         android:src = "@drawable/ic_bookmark"

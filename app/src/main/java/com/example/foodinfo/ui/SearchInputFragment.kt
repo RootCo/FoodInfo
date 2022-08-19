@@ -7,7 +7,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.databinding.FragmentSearchInputBinding
 import com.example.foodinfo.ui.adapter.SearchInputAdapter
@@ -83,7 +82,6 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         btnBack.setOnClickListener { onBackClickListener() }
 
         with(rvSearchInput) {
-            layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addOnScrollListener(onScrollStateListener)

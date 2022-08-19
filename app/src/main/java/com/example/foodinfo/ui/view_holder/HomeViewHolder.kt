@@ -14,7 +14,7 @@ class HomeViewHolder(
 ) : BaseViewHolder<RvItemHomeBinding, RecipeShortModel>(binding) {
 
     init {
-        binding.ivRecipePreview.setOnClickListener {
+        binding.ivPreview.setOnClickListener {
             onItemClickListener(item.id)
         }
     }
@@ -22,15 +22,15 @@ class HomeViewHolder(
 
     override fun bind(newItem: RecipeShortModel): Unit = with(binding) {
         super.bind(newItem)
-        tvRecipeName.text = item.name
+        tvName.text = item.name
         tvTimeValue.text = onGetTime.invoke(item.totalTime)
         tvServingsValue.text = item.servings
         tvCaloriesValue.text = item.calories
-        GlideApp.with(ivRecipePreview.context)
+        GlideApp.with(ivPreview.context)
             .load(item.previewURL)
             .error(R.drawable.ic_no_image)
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .into(ivRecipePreview)
+            .into(ivPreview)
     }
 }

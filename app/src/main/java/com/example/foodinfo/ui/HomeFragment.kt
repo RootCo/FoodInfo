@@ -11,7 +11,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
-import com.example.foodinfo.ui.adapter.HomeRecipesAdapter
+import com.example.foodinfo.ui.adapter.HomeAdapter
 import com.example.foodinfo.ui.decorator.HomeItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.HomeViewModel
@@ -27,7 +27,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         requireActivity().appComponent.viewModelsFactory()
     }
 
-    private lateinit var recyclerAdapter: HomeRecipesAdapter
+    private lateinit var recyclerAdapter: HomeAdapter
 
     private val onItemClickListener: (String) -> Unit = { id ->
         findNavController().navigate(
@@ -41,7 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
 
     override fun initUI(): Unit = with(binding) {
-        recyclerAdapter = HomeRecipesAdapter(
+        recyclerAdapter = HomeAdapter(
             requireContext(),
             onGetTime,
             onItemClickListener
