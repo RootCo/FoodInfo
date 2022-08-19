@@ -1,15 +1,24 @@
 package com.example.foodinfo.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchTargetBinding
+import com.example.foodinfo.ui.adapter.SearchTargetAdapter
+import com.example.foodinfo.ui.decorator.SearchTargetItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchTargetViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -18,6 +27,8 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
 ) {
 
     private val args: SearchTargetFragmentArgs by navArgs()
+
+    private lateinit var recyclerAdapter: SearchTargetAdapter
 
     private val viewModel: SearchTargetViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
@@ -46,6 +57,16 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         }
     }
 
+    private val onItemClickListener: (String) -> Unit = { id ->
+        findNavController().navigate(
+            SearchTargetFragmentDirections.actionFSearchTargetToFRecipeExtended(id)
+        )
+    }
+
+    private val onGetTime: (Int) -> String = { time ->
+        getString(R.string.time_value, time)
+    }
+
 
     override fun initUI(): Unit = with(binding) {
         tvLabel.text = args.label
@@ -53,9 +74,40 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
 
-        binding.hint.textView.text = getString(
+        hint.textView.text = getString(
             R.string.TBD_screen,
             viewModel.featureName
         )
+
+        recyclerAdapter = SearchTargetAdapter(
+            requireContext(),
+            onGetTime,
+            onItemClickListener
+        ).also {
+            it.addLoadStateListener { state: CombinedLoadStates ->
+                rvRecipes.isVisible = state.refresh != LoadState.Loading
+                pbRecipes.isVisible = state.refresh == LoadState.Loading
+            }
+        }
+
+        with(rvRecipes) {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = recyclerAdapter
+            setHasFixedSize(true)
+            addItemDecoration(
+                SearchTargetItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.home_recipes_space),
+                    resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
+                )
+            )
+        }
+    }
+
+    override fun subscribeUI() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.recipes.collectLatest(recyclerAdapter::submitData)
+            }
+        }
     }
 }

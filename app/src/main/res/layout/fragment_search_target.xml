@@ -42,8 +42,32 @@
         app:layout_constraintTop_toTopOf = "parent"
         tools:text = "condiments and sauces" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id = "@+id/rv_recipes"
+        android:layout_width = "match_parent"
+        android:layout_height = "0dp"
+        android:clipToPadding = "false"
+        android:descendantFocusability = "blocksDescendants"
+        app:layoutManager = "androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/btn_back"
+        tools:listitem = "@layout/rv_item_search_target"
+        tools:spanCount = "2" />
+
+    <ProgressBar
+        android:id = "@+id/pb_recipes"
+        android:layout_width = "@dimen/progress_size"
+        android:layout_height = "@dimen/progress_size"
+        android:layout_gravity = "center"
+        android:visibility = "gone"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/btn_back" />
+
     <include
         android:id = "@+id/hint"
-        layout = "@layout/tbd_screen_hint" />
+        layout = "@layout/tbd_screen_hint"
+        android:visibility = "gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
