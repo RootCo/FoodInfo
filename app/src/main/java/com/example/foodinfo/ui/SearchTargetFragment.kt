@@ -97,7 +97,8 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
             addItemDecoration(
                 SearchTargetItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.search_target_item_horizontal),
-                    resources.getDimensionPixelSize(R.dimen.search_target_item_vertical)
+                    resources.getDimensionPixelSize(R.dimen.search_target_item_vertical),
+                    2
                 )
             )
         }

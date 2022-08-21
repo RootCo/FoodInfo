@@ -10,7 +10,7 @@
     <color name = "main_background_dark">#0C0F14</color>
 
     <color name = "secondary_background">#F8F8F8</color>
-    <color name = "secondary_background_dark">#141923</color>
+    <color name = "secondary_background_dark">#282828</color>
 
     <color name = "main_font">#282828</color>
     <color name = "main_font_dark">#FAFAFA</color>

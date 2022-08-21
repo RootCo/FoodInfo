@@ -23,11 +23,11 @@
 
     <TextView
         android:id = "@+id/tv_name"
-        style = "@style/TextViewBig"
+        style = "@style/TextViewMedium"
         android:layout_width = "0dp"
         android:layout_height = "wrap_content"
         android:layout_marginHorizontal = "@dimen/dp_10"
-        android:layout_marginTop = "@dimen/dp_10"
+        android:layout_marginTop = "@dimen/dp_12"
         android:ellipsize = "end"
         android:fontFamily = "@font/app_font_medium"
         android:maxLines = "1"
