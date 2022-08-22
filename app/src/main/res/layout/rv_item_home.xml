@@ -86,14 +86,14 @@
             android:layout_height = "wrap_content"
             android:fontFamily = "@font/app_font_medium"
             app:drawableEndCompat = "@drawable/ic_kcal_28"
-            app:layout_constraintBottom_toBottomOf = "@id/btn_like"
+            app:layout_constraintBottom_toBottomOf = "@id/btn_favorite"
             app:layout_constraintEnd_toEndOf = "parent"
             app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "@+id/btn_like"
+            app:layout_constraintTop_toTopOf = "@+id/btn_favorite"
             tools:text = "@sample/recipes.json/short/calories" />
 
         <ImageView
-            android:id = "@+id/btn_like"
+            android:id = "@+id/btn_favorite"
             style = "@style/ButtonLikeBig"
             android:layout_marginEnd = "@dimen/dp_10"
             android:layout_marginBottom = "@dimen/dp_10"

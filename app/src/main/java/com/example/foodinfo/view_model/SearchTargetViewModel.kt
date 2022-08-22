@@ -19,10 +19,9 @@ import javax.inject.Inject
 
 
 class SearchTargetViewModel @Inject constructor(
-    repositoryRecipes: RepositoryRecipes,
+    private val repositoryRecipes: RepositoryRecipes,
     private val repositoryLabels: RepositoryLabels
 ) : ViewModel() {
-    val featureName = "Search recipes"
     private val filter = SearchFilterModel()
 
     fun getLabel(category: String, label: String): LabelModel {
@@ -39,4 +38,8 @@ class SearchTargetViewModel @Inject constructor(
             .flowOn(Dispatchers.IO)
             .cachedIn(viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+
+    fun updateFavoriteMark(recipeId: String) {
+        repositoryRecipes.updateFavoriteMark(recipeId)
+    }
 }

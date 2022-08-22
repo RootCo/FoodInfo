@@ -62,6 +62,10 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         )
     }
 
+    private val onFavoriteClickListener: (String) -> Unit = { id ->
+        viewModel.updateFavoriteMark(id)
+    }
+
     private val onGetTime: (Int) -> String = { time ->
         getString(R.string.time_value, time)
     }
@@ -75,15 +79,11 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         btnBack.setOnClickListener { onBackClickListener() }
         btnSearch.setOnClickListener { onSearchClickListener() }
 
-        hint.textView.text = getString(
-            R.string.TBD_screen,
-            viewModel.featureName
-        )
-
         recyclerAdapter = SearchTargetAdapter(
             requireContext(),
             onGetTime,
-            onItemClickListener
+            onItemClickListener,
+            onFavoriteClickListener
         ).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
                 rvRecipes.isVisible = state.refresh != LoadState.Loading

@@ -35,6 +35,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         )
     }
 
+    private val onFavoriteClickListener: (String) -> Unit = { id ->
+        viewModel.updateFavoriteMark(id)
+    }
+
     private val onGetTime: (Int) -> String = { time ->
         getString(R.string.time_value, time)
     }
@@ -44,7 +48,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         recyclerAdapter = HomeAdapter(
             requireContext(),
             onGetTime,
-            onItemClickListener
+            onItemClickListener,
+            onFavoriteClickListener
         ).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
                 rvRecipes.isVisible = state.refresh != LoadState.Loading

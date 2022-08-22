@@ -22,6 +22,7 @@ import com.example.foodinfo.repository.model.RecipeNutrientModel
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.utils.showDescriptionDialog
+import com.example.foodinfo.utils.setFavorite
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.imageview.ShapeableImageView
@@ -46,7 +47,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         findNavController().navigateUp()
     }
 
-    private val onLikeClickListener: () -> Unit = { }
+    private val onFavoriteClickListener: () -> Unit = {
+        viewModel.updateFavoriteMark()
+    }
 
     private val onShareClickListener: () -> Unit = { }
 
@@ -83,8 +86,8 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     override fun initUI() {
         viewModel.recipeId = args.recipeId
         binding.btnBack.setOnClickListener { onBackClickListener() }
-        binding.btnLike.setOnClickListener { onLikeClickListener() }
         binding.btnShare.setOnClickListener { onShareClickListener() }
+        binding.btnFavorite.setOnClickListener { onFavoriteClickListener() }
         binding.tvNutrientsViewAll.setOnClickListener { onNutrientsViewAllClickListener() }
         binding.tvIngredientsViewAll.setOnClickListener { onIngredientsViewAllClickListener() }
     }
@@ -146,6 +149,11 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         binding.iEnergy.tvTitle.text = resources.getString(R.string.calories_header)
         binding.iEnergy.tvValue.text = recipe.calories
         binding.iEnergy.progressBar.progress = recipe.caloriesDaily
+
+        binding.btnFavorite.setFavorite(
+            recipe.isFavorite,
+            falseColor = R.attr.appMainFontColor
+        )
     }
 
     private fun initLabels(labels: RecipeLabelsModel) {

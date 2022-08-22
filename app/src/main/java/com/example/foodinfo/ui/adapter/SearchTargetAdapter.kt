@@ -15,7 +15,8 @@ import com.example.foodinfo.ui.view_holder.SearchTargetViewHolder
 class SearchTargetAdapter(
     context: Context,
     private val onGetTime: (Int) -> String,
-    private val onItemClickListener: (String) -> Unit
+    private val onItemClickListener: (String) -> Unit,
+    private val onFavoriteClickListener: (String) -> Unit,
 ) : PagingDataAdapter<RecipeShortModel, ViewHolder>(
     RecipeShortModel.ItemCallBack
 ) {
@@ -29,7 +30,8 @@ class SearchTargetAdapter(
                 SearchTargetViewHolder(
                     RvItemSearchTargetBinding.inflate(layoutInflater, parent, false),
                     onGetTime,
-                    onItemClickListener
+                    onItemClickListener,
+                    onFavoriteClickListener
                 )
             }
             else                          -> {
@@ -48,6 +50,21 @@ class SearchTargetAdapter(
         getItem(position)?.let { recipe ->
             holder as SearchTargetViewHolder
             holder.bind(recipe)
+        }
+    }
+
+    override fun onBindViewHolder(
+        holder: ViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty()) {
+            super.onBindViewHolder(holder, position, payloads)
+        } else {
+            getItem(position)?.let { recipe ->
+                holder as SearchTargetViewHolder
+                holder.bind(recipe, payloads)
+            }
         }
     }
 

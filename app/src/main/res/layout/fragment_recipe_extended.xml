@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf = "parent" />
 
     <ImageView
-        android:id = "@+id/btn_like"
+        android:id = "@+id/btn_favorite"
         style = "@style/ButtonStroke"
         android:layout_marginEnd = "@dimen/dp_10"
         android:contentDescription = "@string/default_content_description"

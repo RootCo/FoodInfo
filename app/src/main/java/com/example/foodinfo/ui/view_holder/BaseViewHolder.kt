@@ -15,4 +15,8 @@ abstract class BaseViewHolder<out V : ViewBinding, I : Any>(binding: V) :
     open fun bind(newItem: I) {
         item = newItem
     }
+
+    open fun bind(newItem: I, payloads: List<Any>) {
+        item = newItem
+    }
 }

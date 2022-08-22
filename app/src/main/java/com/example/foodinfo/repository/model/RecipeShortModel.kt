@@ -33,5 +33,13 @@ data class RecipeShortModel(
                     oldItem.isFavorite == newItem.isFavorite
 
         }
+
+        override fun getChangePayload(
+            oldItem: RecipeShortModel,
+            newItem: RecipeShortModel
+        ): Any? {
+            if (oldItem.isFavorite != newItem.isFavorite) return newItem.isFavorite
+            return super.getChangePayload(oldItem, newItem)
+        }
     }
 }

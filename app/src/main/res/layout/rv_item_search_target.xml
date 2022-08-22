@@ -85,7 +85,7 @@
         tools:text = "@sample/recipes.json/short/calories" />
 
     <ImageView
-        android:id = "@+id/btn_like"
+        android:id = "@+id/btn_favorite"
         style = "@style/ButtonLikeSmall"
         android:layout_marginTop = "@dimen/dp_6"
         android:layout_marginEnd = "@dimen/dp_6"

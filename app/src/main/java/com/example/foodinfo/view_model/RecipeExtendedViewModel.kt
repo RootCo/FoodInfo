@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 
 class RecipeExtendedViewModel @Inject constructor(
-    repositoryRecipes: RepositoryRecipes,
+    private val repositoryRecipes: RepositoryRecipes,
     private val repositoryLabels: RepositoryLabels
 ) :
     ViewModel() {
@@ -41,7 +41,12 @@ class RecipeExtendedViewModel @Inject constructor(
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 
+
     fun getLabel(category: String, label: String): LabelModel {
         return repositoryLabels.getByLabel(category, label)
+    }
+
+    fun updateFavoriteMark() {
+        repositoryRecipes.updateFavoriteMark(recipeId)
     }
 }
