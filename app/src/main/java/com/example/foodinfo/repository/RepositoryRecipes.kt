@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface RepositoryRecipes {
     fun getPopular(): Flow<PagingData<RecipeShortModel>>
 
-    fun getFavorite(): Flow<PagingData<RecipeShortModel>>
+    fun getFavorite(): Flow<PagingData<RecipeFavoriteModel>>
 
     fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
 

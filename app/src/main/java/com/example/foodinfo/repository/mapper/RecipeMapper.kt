@@ -1,6 +1,7 @@
 package com.example.foodinfo.repository.mapper
 
 import com.example.foodinfo.local.entity.RecipePOJO
+import com.example.foodinfo.repository.model.RecipeFavoriteModel
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeShortModel
 
@@ -30,5 +31,16 @@ fun RecipePOJO.toModelShort(): RecipeShortModel {
         totalIngredients = this.totalIngredients.toString(),
         previewURL = this.previewURL,
         isFavorite = this.favoriteMark.isFavorite
+    )
+}
+
+fun RecipePOJO.toModelFavorite(): RecipeFavoriteModel {
+    return RecipeFavoriteModel(
+        id = this.id,
+        name = this.name,
+        source = this.source,
+        calories = this.calories.toString(),
+        servings = this.servings,
+        previewURL = this.previewURL
     )
 }

@@ -23,7 +23,7 @@
         tools:src = "@drawable/ic_no_image" />
 
     <TextView
-        android:id = "@+id/tv_dish"
+        android:id = "@+id/tv_source"
         style = "@style/TextViewSmall"
         android:layout_width = "0dp"
         android:layout_height = "wrap_content"
@@ -32,9 +32,10 @@
         android:fontFamily = "@font/app_font_regular"
         android:maxLines = "1"
         android:textColor = "?appSecondaryFontColor"
+        app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toEndOf = "@id/iv_preview"
         app:layout_constraintTop_toTopOf = "@id/iv_preview"
-        tools:text = "desserts" />
+        tools:text = "Simple Recipes" />
 
     <TextView
         android:id = "@+id/tv_name"
@@ -47,8 +48,8 @@
         android:maxLines = "1"
         android:textAlignment = "textStart"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "@id/tv_dish"
-        app:layout_constraintTop_toBottomOf = "@+id/tv_dish"
+        app:layout_constraintStart_toStartOf = "@id/tv_source"
+        app:layout_constraintTop_toBottomOf = "@+id/tv_source"
         tools:text = "@sample/recipes.json/short/name" />
 
     <TextView
@@ -62,7 +63,7 @@
         app:drawableEndCompat = "@drawable/ic_peoples_20"
         app:drawableTint = "?appMainFontColor"
         app:layout_constraintBottom_toBottomOf = "@id/tv_calories_value"
-        app:layout_constraintStart_toStartOf = "@id/tv_dish"
+        app:layout_constraintStart_toStartOf = "@id/tv_source"
         app:layout_constraintTop_toTopOf = "@id/tv_calories_value"
         tools:text = "36" />
 

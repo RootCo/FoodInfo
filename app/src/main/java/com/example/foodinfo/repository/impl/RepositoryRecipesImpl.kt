@@ -8,6 +8,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.local.dao.RecipesDAO
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.mapper.toModel
+import com.example.foodinfo.repository.mapper.toModelFavorite
 import com.example.foodinfo.repository.mapper.toModelShort
 import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.flow.Flow
@@ -28,13 +29,13 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
     }
 
-    override fun getFavorite(): Flow<PagingData<RecipeShortModel>> {
+    override fun getFavorite(): Flow<PagingData<RecipeFavoriteModel>> {
         return Pager(
             config = DB_FAVORITE_PAGER,
             pagingSourceFactory = {
                 recipesDAO.getFavorite()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }
     }
 
     override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
