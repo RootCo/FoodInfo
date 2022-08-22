@@ -10,7 +10,8 @@ data class RecipeShortModel(
     val servings: String,
     val totalTime: Int,
     val totalIngredients: String,
-    val previewURL: String
+    val previewURL: String,
+    val isFavorite: Boolean
 ) {
 
     object ItemCallBack : DiffUtil.ItemCallback<RecipeShortModel>() {
@@ -28,7 +29,8 @@ data class RecipeShortModel(
                     oldItem.servings == newItem.servings &&
                     oldItem.totalTime == newItem.totalTime &&
                     oldItem.totalIngredients == newItem.totalIngredients &&
-                    oldItem.previewURL == newItem.previewURL
+                    oldItem.previewURL == newItem.previewURL &&
+                    oldItem.isFavorite == newItem.isFavorite
 
         }
     }

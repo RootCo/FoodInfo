@@ -1,11 +1,11 @@
 package com.example.foodinfo.repository.mapper
 
-import com.example.foodinfo.local.entity.RecipeEntity
+import com.example.foodinfo.local.entity.RecipePOJO
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeShortModel
 
 
-fun RecipeEntity.toModel(): RecipeModel {
+fun RecipePOJO.toModel(): RecipeModel {
     return RecipeModel(
         id = this.id,
         name = this.name,
@@ -15,11 +15,12 @@ fun RecipeEntity.toModel(): RecipeModel {
         totalWeight = this.totalWeight,
         totalTime = this.totalTime,
         servings = this.servings,
-        previewURL = this.previewURL
+        previewURL = this.previewURL,
+        isFavorite = this.favoriteMark.isFavorite
     )
 }
 
-fun RecipeEntity.toModelShort(): RecipeShortModel {
+fun RecipePOJO.toModelShort(): RecipeShortModel {
     return RecipeShortModel(
         id = this.id,
         name = this.name,
@@ -27,6 +28,7 @@ fun RecipeEntity.toModelShort(): RecipeShortModel {
         servings = this.servings.toString(),
         totalTime = this.totalTime,
         totalIngredients = this.totalIngredients.toString(),
-        previewURL = this.previewURL
+        previewURL = this.previewURL,
+        isFavorite = this.favoriteMark.isFavorite
     )
 }

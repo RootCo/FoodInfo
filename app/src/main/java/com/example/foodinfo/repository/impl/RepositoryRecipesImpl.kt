@@ -28,6 +28,15 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
     }
 
+    override fun getFavorite(): Flow<PagingData<RecipeShortModel>> {
+        return Pager(
+            config = DB_FAVORITE_PAGER,
+            pagingSourceFactory = {
+                recipesDAO.getFavorite()
+            }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+    }
+
     override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
@@ -53,6 +62,10 @@ class RepositoryRecipesImpl @Inject constructor(
         return recipesDAO.getByIdLabels(id).map { it.toModel() }
     }
 
+    override fun updateFavoriteMark(id: String) {
+        recipesDAO.updateFavoriteStatus(id)
+    }
+
 
     companion object {
         val DB_POPULAR_PAGER = PagingConfig(
@@ -62,6 +75,12 @@ class RepositoryRecipesImpl @Inject constructor(
             maxSize = 40
         )
         val DB_EXPLORE_PAGER = PagingConfig(
+            pageSize = 10,
+            initialLoadSize = 20,
+            jumpThreshold = 40,
+            maxSize = 40
+        )
+        val DB_FAVORITE_PAGER = PagingConfig(
             pageSize = 10,
             initialLoadSize = 20,
             jumpThreshold = 40,

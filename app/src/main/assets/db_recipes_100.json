@@ -39415,5 +39415,407 @@
       "inputText": "boiled beef",
       "date": 1657985930678
     }
+  ],
+  "favorite_marks": [
+    {
+      "recipeId": "6R4ZSDIYL1C9316KZW02",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "9L8WMYJ9C3NQSNP12NNJ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "5IZF2UDNVIV7ID8MO40U",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "CU1T38D4LRKOY9CQFDRO",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "1QVHNYT92YPSF8WREMP4",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "8PU4EX737C2EMFZTMSVZ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "BKES3TILLJKW4L8B99ZN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "POO2AH8Z8UX9V0WXXJDA",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "BC2Q129HJ1TISGL2IH1B",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "LS5FON95HL6M1U4QDMK7",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "TX1DWA52JUGJADBIPAWD",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "E4E9R9O4YW37QSY4JUPQ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "VIM8NNX1CEVPJ5ND4TIM",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "0C1RSC57QW2SXSG0NKQI",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "G1IK3JSRB7ESMOASG344",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "6K8C336J5LTH4BH1T0M9",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "50C0K7QO8JUI5F5ARO09",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "QUZKQJKAV898ZB9GER21",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "OFVIOO734JZ999B5HM12",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "RXVRHUJMTWEWJM2248R3",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "LRL64SVMPRTHQGQHYXVK",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "HM87N4YYSNL0737TX2W0",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "PFT4RHVTP5G1BL1A9CIF",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "0U18278NFHRT9SX4ZBJW",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "JPTQNO387EL3XPAG1OH3",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "YOMUFP8Q9ZW6ETAT5JNN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "LZO110B00CDH40KUC4VD",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "QEFTQG0SNJJ89MOH7PKK",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "26G21VAMURIHWF1RMQ9M",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "T02IB3IK4BFXR61FNJ3D",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "M4SD161WO0D4QQPVTVVE",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "5UZQCJI7LKCXBCF28UR3",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "ZZEWWP07QKMWGW95BFBX",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "FL0RMNJY7YXJ651CR9VS",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "GX28KPB8AK7VF2BX8O9R",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "Z6MDTPKZS4EO1NFXGU3W",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "F898RGLH0TAGJ1K7GCWN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "5YFYYQXVJB23SL2C5QVV",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "NL0T8OBBQEHTPRWCAJU2",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "UDJMIXSKF4JO7NLH2EQR",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "8EXOYFWYO03LQ0S9D4JO",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "9JEEC7KEBJLKFMDVZJT8",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "ILZF85G7DCYEW0C5GCQ7",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "TTB5YI06HACBCWTWWWVR",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "M0PO72B0IK41R75B0BZH",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "NUMQEAJLIENDS0SL4MXK",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "SWYX7SKSWKAFOF90OJ7N",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "L90LNK1UCQEUEKGABLJE",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "VH4ASYEG8HN5PDUKNZ8H",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "K86QLTC6JK9Z3TVDPC40",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "V4Q52OAOWLOF7XS6QH6O",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "3M40GP862PLH5TVFEJJ5",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "PQOKUVDXARVKAUR23O5R",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "SID9EO4VUCG9L6EDKJC3",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "4R4HHLSQUZ6SAUS8FSD8",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "HPK9UK5H58US5MUCF9MV",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "FDERA80B0DX0QHWUYR2M",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "NAA7SER516ZCF1RV79JP",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "W43IFGA0QF7KLYGSD2DN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "S3SQTU6M4Y3VTX15L90M",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "U6F1LTOLIZOLF4SKUN7P",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "AKSZ4QQHLXCOUXWDIBF6",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "NOW5AAGYPK8XZO5UIHGC",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "J7VO9TMVL0A1VJY376H3",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "SEPTELAWWM6MPA8QMAO2",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "FQR4S6QNSWNI2RBRH3W4",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "BRHAADMFHCWJNFHKAOKT",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "LH4FWKLNMV69J2SZHGGE",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "PL2ZSSEKH6RNX8KPYW2T",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "68PKVRIZAW0EIPAN4A6S",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "1MMVGIN7W58TZAXUI8C8",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "8BWOKD2E3PD5U3IHWCQ8",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "D82Y1RSKW7QW4KDBWH4F",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "UG0EHVTLBJVM3VH78GU9",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "PQ1DCCBNIWNOVXOD5W6L",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "MKHTQNZCRRJ79AHEACRQ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "MJ5Q9VC57SJ9VF09KENZ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "JP7V5A8QTSOLG44OX7K4",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "Q7CTKVGIWC5YAA0F0FRZ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "RV2U3PVWGSO563PKCTQN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "6CJVWXP0HXLOH4HNQR36",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "XESG1SN7BZ5625S4DM8D",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "PM7GTHUETGNPOVO8ZK9F",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "4XYWCA29D4GCRR5JES1L",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "UX7P6RV11AMZHXG26T58",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "WCC9NLVYETKP8UAMREI5",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "XQYWCEW9QHOYN5NMH32G",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "YFERKULDYUH61X50KNBW",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "5VQ0RH7GJQB1ZQVSXX95",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "9IEP7UPIVST4Z0SMS32C",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "3ZJKV2EP94AQIBC4XBCB",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "R7V3HLMLJICDW1VRUVY1",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "78VAF7AFQ8JKFEF14Q9Z",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "0D07AX3CQVGXACH1PNNN",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "AWMHZXM9G3SCT4BZO2HJ",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "RKS4OMSENZ8IOKCALDLP",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "E6C5T4Z89R8PU45OSY22",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "I3XR15JPS6N38YRIUHM9",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "QC4X6SW3U9Z4NUVKMWY0",
+      "isFavorite": false
+    },
+    {
+      "recipeId": "J1Y4BW3ICOWO6A6NRP8B",
+      "isFavorite": false
+    }
   ]
 }

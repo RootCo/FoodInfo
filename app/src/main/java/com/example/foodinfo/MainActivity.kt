@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity() {
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.LABELS).toString(),
                 object : TypeToken<List<RecipeLabelEntity>>() {}.type
+            ),
+            gson.fromJson(
+                dbRecipes.get(AssetsKeyWords.FAVORITE_MARKS).toString(),
+                object : TypeToken<List<FavoriteMarkEntity>>() {}.type
             )
         )
 

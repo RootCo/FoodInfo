@@ -10,7 +10,8 @@ data class RecipeModel(
     val totalWeight: Int,
     val totalTime: Int,
     val servings: Int,
-    val previewURL: String
+    val previewURL: String,
+    val isFavorite: Boolean,
 ) {
 
     companion object {

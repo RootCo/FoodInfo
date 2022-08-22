@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 interface RepositoryRecipes {
     fun getPopular(): Flow<PagingData<RecipeShortModel>>
 
+    fun getFavorite(): Flow<PagingData<RecipeShortModel>>
+
     fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
 
     fun getById(id: String): Flow<RecipeModel>
@@ -16,4 +18,6 @@ interface RepositoryRecipes {
     fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>>
 
     fun getByIdLabels(id: String): Flow<RecipeLabelsModel>
+
+    fun updateFavoriteMark(id: String)
 }

@@ -17,6 +17,7 @@ object AssetsKeyWords {
     const val CATEGORY_MEAL = "meal"
     const val CATEGORY_HEALTH = "health"
     const val CATEGORY_CUISINE = "cuisine"
+    const val FAVORITE_MARKS = "favorite_marks"
 
     const val DB_NUTRIENT_REMOTE = "db_nutrient_remote.json"
     const val DB_NUTRIENT_LOCAL = "db_nutrient_local.json"

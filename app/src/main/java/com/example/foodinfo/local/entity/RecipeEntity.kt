@@ -37,7 +37,7 @@ data class RecipeEntity(
     val totalTime: Int,
 
     @ColumnInfo(name = Columns.SERVINGS)
-    val servings: Int,
+    val servings: Int
 ) {
 
     object Columns {
