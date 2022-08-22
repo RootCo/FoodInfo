@@ -36,4 +36,6 @@
     <string name = "servings_text">Servings</string>
     <string name = "cooking_text">Cooking</string>
     <string name = "weight_text">Weight</string>
+    <string name = "favorite_recipes_text">Favorite recipes</string>
+    <string name = "selected_text">selected</string>
 </resources>

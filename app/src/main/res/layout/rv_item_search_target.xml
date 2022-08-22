@@ -49,7 +49,6 @@
         app:drawableEndCompat = "@drawable/ic_peoples_20"
         app:drawableTint = "?appMainFontColor"
         app:layout_constraintEnd_toStartOf = "@+id/tv_time_value"
-        app:layout_constraintHorizontal_bias = "0.5"
         app:layout_constraintHorizontal_chainStyle = "packed"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@+id/tv_name"
@@ -68,7 +67,6 @@
         app:drawableEndCompat = "@drawable/ic_time_20"
         app:drawableTint = "?appMainFontColor"
         app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintHorizontal_bias = "0.5"
         app:layout_constraintStart_toEndOf = "@+id/tv_servings_value"
         app:layout_constraintTop_toBottomOf = "@+id/tv_name"
         tools:text = "180 min" />

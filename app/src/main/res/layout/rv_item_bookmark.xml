@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:background = "@drawable/background_secondary_bg_30"
+    tools:layout_height = "120dp"
+    tools:layout_width = "match_parent">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id = "@+id/iv_preview"
+        android:layout_width = "0dp"
+        android:layout_height = "0dp"
+        android:layout_margin = "@dimen/dp_16"
+        android:scaleType = "centerCrop"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintDimensionRatio = "W,1:1"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig"
+        tools:src = "@drawable/ic_no_image" />
+
+    <TextView
+        android:id = "@+id/tv_dish"
+        style = "@style/TextViewSmall"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginHorizontal = "@dimen/dp_16"
+        android:ellipsize = "end"
+        android:fontFamily = "@font/app_font_regular"
+        android:maxLines = "1"
+        android:textColor = "?appSecondaryFontColor"
+        app:layout_constraintStart_toEndOf = "@id/iv_preview"
+        app:layout_constraintTop_toTopOf = "@id/iv_preview"
+        tools:text = "desserts" />
+
+    <TextView
+        android:id = "@+id/tv_name"
+        style = "@style/TextViewMedium"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "3dp"
+        android:ellipsize = "end"
+        android:fontFamily = "@font/app_font_regular"
+        android:maxLines = "1"
+        android:textAlignment = "textStart"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "@id/tv_dish"
+        app:layout_constraintTop_toBottomOf = "@+id/tv_dish"
+        tools:text = "@sample/recipes.json/short/name" />
+
+    <TextView
+        android:id = "@+id/tv_servings_value"
+        style = "@style/TextViewMedium"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:drawablePadding = "@dimen/dp_6"
+        android:fontFamily = "@font/app_font_regular"
+        android:textColor = "?appSecondaryFontColor"
+        app:drawableEndCompat = "@drawable/ic_peoples_20"
+        app:drawableTint = "?appMainFontColor"
+        app:layout_constraintBottom_toBottomOf = "@id/tv_calories_value"
+        app:layout_constraintStart_toStartOf = "@id/tv_dish"
+        app:layout_constraintTop_toTopOf = "@id/tv_calories_value"
+        tools:text = "36" />
+
+    <TextView
+        android:id = "@+id/tv_calories_value"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginStart = "@dimen/dp_16"
+        android:fontFamily = "@font/app_font_medium"
+        android:gravity = "center"
+        app:drawableEndCompat = "@drawable/ic_kcal_28"
+        app:layout_constraintBottom_toBottomOf = "@id/iv_preview"
+        app:layout_constraintStart_toEndOf = "@id/tv_servings_value"
+        tools:text = "@sample/recipes.json/short/calories" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
