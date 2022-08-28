@@ -5,17 +5,18 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:id = "@+id/cl_item"
     android:layout_width = "match_parent"
-    android:layout_height = "@dimen/dp_120"
-    android:background = "@drawable/background_item_favorite_unselected">
+    android:layout_height = "wrap_content"
+    android:background = "@drawable/background_item_favorite_unselected"
+    android:padding = "@dimen/dp_16">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id = "@+id/iv_preview"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:layout_margin = "@dimen/dp_16"
         android:scaleType = "centerCrop"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintDimensionRatio = "W,1:1"
+        app:layout_constraintHeight_min = "@dimen/dp_80"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent"
         app:shapeAppearanceOverlay = "@style/ShapeAppearanceBig"
@@ -26,7 +27,7 @@
         style = "@style/TextViewSmall"
         android:layout_width = "0dp"
         android:layout_height = "wrap_content"
-        android:layout_marginHorizontal = "@dimen/dp_16"
+        android:layout_marginStart = "@dimen/dp_16"
         android:ellipsize = "end"
         android:fontFamily = "@font/app_font_regular"
         android:maxLines = "1"
@@ -72,11 +73,12 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:layout_marginStart = "@dimen/dp_16"
+        android:layout_marginTop = "@dimen/dp_10"
         android:fontFamily = "@font/app_font_medium"
         android:gravity = "center"
         app:drawableEndCompat = "@drawable/ic_kcal_28"
-        app:layout_constraintBottom_toBottomOf = "@id/iv_preview"
         app:layout_constraintStart_toEndOf = "@id/tv_servings_value"
+        app:layout_constraintTop_toBottomOf = "@id/tv_name"
         tools:text = "@sample/recipes.json/short/calories" />
 
 
