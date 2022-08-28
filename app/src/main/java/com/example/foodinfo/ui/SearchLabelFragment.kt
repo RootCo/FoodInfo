@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
     FragmentSearchLabelBinding::inflate
 ) {

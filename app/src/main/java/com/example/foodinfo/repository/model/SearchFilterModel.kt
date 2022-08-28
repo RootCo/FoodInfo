@@ -1,8 +1,8 @@
 package com.example.foodinfo.repository.model
 
+import com.example.foodinfo.local.entity.RecipeEntity
 import com.example.foodinfo.local.entity.RecipeLabelEntity
 import com.example.foodinfo.local.entity.RecipeNutrientEntity
-import com.example.foodinfo.local.entity.RecipeEntity
 import com.example.foodinfo.repository.model.filter_field.CategoryField
 import com.example.foodinfo.repository.model.filter_field.NutrientField
 import com.example.foodinfo.repository.model.filter_field.RangeField
@@ -120,7 +120,7 @@ data class SearchFilterModel(
 
     private fun inputTextToQuery(): String {
         if (inputText == "") return ""
-        return "${RecipeEntity.Columns.NAME} LIKE '$inputText'"
+        return "${RecipeEntity.Columns.NAME} LIKE '%$inputText%'"
     }
 
     fun buildQuery() {
