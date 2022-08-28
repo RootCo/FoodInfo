@@ -26,18 +26,18 @@ class HomeViewHolder(
     }
 
 
-    override fun bind(newItem: RecipeShortModel): Unit = with(binding) {
+    override fun bind(newItem: RecipeShortModel) {
         super.bind(newItem)
-        tvName.text = item.name
-        tvTimeValue.text = onGetTime.invoke(item.totalTime)
-        tvServingsValue.text = item.servings
-        tvCaloriesValue.text = item.calories
-        GlideApp.with(ivPreview.context)
+        binding.tvName.text = item.name
+        binding.tvTimeValue.text = onGetTime.invoke(item.totalTime)
+        binding.tvServingsValue.text = item.servings
+        binding.tvCaloriesValue.text = item.calories
+        GlideApp.with(binding.ivPreview.context)
             .load(item.previewURL)
             .error(R.drawable.ic_no_image)
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .into(ivPreview)
+            .into(binding.ivPreview)
         binding.btnFavorite.setFavorite(item.isFavorite)
     }
 

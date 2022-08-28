@@ -19,13 +19,13 @@ class ExploreInnerViewHolder(
     }
 
 
-    override fun bind(newItem: LabelModel): Unit = with(binding) {
+    override fun bind(newItem: LabelModel) {
         super.bind(newItem)
-        tvTitle.text = item.label
-        GlideApp.with(icPreview.context)
+        binding.tvTitle.text = item.label
+        GlideApp.with(binding.icPreview.context)
             .load(item.preview)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .error(R.drawable.ic_no_image)
-            .into(icPreview)
+            .into(binding.icPreview)
     }
 }

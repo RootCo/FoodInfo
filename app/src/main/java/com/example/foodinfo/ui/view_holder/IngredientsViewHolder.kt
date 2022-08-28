@@ -13,16 +13,16 @@ class IngredientsViewHolder(
     private val onGetQuantity: (Double, String) -> String,
 ) : BaseViewHolder<RvItemIngredientBinding, RecipeIngredientModel>(binding) {
 
-    override fun bind(newItem: RecipeIngredientModel): Unit = with(binding) {
+    override fun bind(newItem: RecipeIngredientModel) {
         super.bind(newItem)
-        tvIngredientName.text = item.text
-        tvIngredientValue.text = onGetQuantity.invoke(item.quantity, item.measure)
-        tvIngredientWeight.text = onGetWeight.invoke(item.weight)
-        GlideApp.with(ivIngredientPreview.context)
+        binding.tvIngredientName.text = item.text
+        binding.tvIngredientValue.text = onGetQuantity.invoke(item.quantity, item.measure)
+        binding.tvIngredientWeight.text = onGetWeight.invoke(item.weight)
+        GlideApp.with(binding.ivIngredientPreview.context)
             .load(item.previewURL)
             .error(R.drawable.ic_no_image)
             .placeholder(null)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .into(ivIngredientPreview)
+            .into(binding.ivIngredientPreview)
     }
 }

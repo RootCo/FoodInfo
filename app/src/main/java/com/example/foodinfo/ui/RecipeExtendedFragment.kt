@@ -21,8 +21,8 @@ import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
-import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.utils.setFavorite
+import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.imageview.ShapeableImageView

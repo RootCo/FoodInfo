@@ -58,11 +58,11 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         }
     }
 
-    override fun initUI(): Unit = with(binding) {
+    override fun initUI() {
         recyclerAdapter = ExploreOuterAdapter(requireContext(), onInnerItemClickListener)
-        llSearch.setOnClickListener { onSearchClickListener() }
-        btnFilter.setOnClickListener { onFilterClickListener() }
-        with(rvCategories) {
+        binding.llSearch.setOnClickListener { onSearchClickListener() }
+        binding.btnFilter.setOnClickListener { onFilterClickListener() }
+        with(binding.rvCategories) {
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
@@ -75,14 +75,14 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
         }
     }
 
-    override fun subscribeUI(): Unit = with(binding) {
+    override fun subscribeUI() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 withContext(Dispatchers.IO) {
                     recyclerAdapter.submitList(viewModel.categories)
                 }
                 withContext(Dispatchers.Main) {
-                    rvCategories.restoreState(viewModel.scrollState)
+                    binding.rvCategories.restoreState(viewModel.scrollState)
                 }
             }
         }

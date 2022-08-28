@@ -19,8 +19,8 @@ class SearchInputViewHolder(
     }
 
 
-    override fun bind(newItem: SearchInputModel): Unit = with(binding) {
+    override fun bind(newItem: SearchInputModel) {
         super.bind(newItem)
-        tvSearchInput.text = item.inputText
+        binding.tvSearchInput.text = item.inputText
     }
 }

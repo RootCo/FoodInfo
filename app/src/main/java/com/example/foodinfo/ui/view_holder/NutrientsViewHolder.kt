@@ -16,15 +16,15 @@ class NutrientsViewHolder(
     }
 
 
-    override fun bind(newItem: RecipeNutrientModel): Unit = with(binding) {
+    override fun bind(newItem: RecipeNutrientModel) {
         super.bind(newItem)
-        tvName.text = item.label
-        tvWeight.text = onGetNutrientWeight.invoke(
+        binding.tvName.text = item.label
+        binding.tvWeight.text = onGetNutrientWeight.invoke(
             item.totalWeight,
             item.dailyWeight,
             item.measure
         )
-        tvPercent.text = onGetNutrientPercent.invoke(item.dailyPercent)
-        progressBar.progress = item.dailyPercent
+        binding.tvPercent.text = onGetNutrientPercent.invoke(item.dailyPercent)
+        binding.progressBar.progress = item.dailyPercent
     }
 }

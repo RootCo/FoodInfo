@@ -71,13 +71,13 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
+    override fun initUI() {
         viewModel.setFilter(args.category, args.label)
 
-        tvLabel.text = args.label
-        tvLabel.setOnClickListener { onLabelClickListener() }
-        btnBack.setOnClickListener { onBackClickListener() }
-        btnSearch.setOnClickListener { onSearchClickListener() }
+        binding.tvLabel.text = args.label
+        binding.tvLabel.setOnClickListener { onLabelClickListener() }
+        binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnSearch.setOnClickListener { onSearchClickListener() }
 
         recyclerAdapter = SearchTargetAdapter(
             requireContext(),
@@ -86,12 +86,12 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
             onFavoriteClickListener
         ).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
-                rvRecipes.isVisible = state.refresh != LoadState.Loading
-                pbRecipes.isVisible = state.refresh == LoadState.Loading
+                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
+                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
             }
         }
 
-        with(rvRecipes) {
+        with(binding.rvRecipes) {
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(

@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
+    override fun initUI() {
         recyclerAdapter = HomeAdapter(
             requireContext(),
             onGetTime,
@@ -52,12 +52,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             onFavoriteClickListener
         ).also {
             it.addLoadStateListener { state: CombinedLoadStates ->
-                rvRecipes.isVisible = state.refresh != LoadState.Loading
-                pbRecipes.isVisible = state.refresh == LoadState.Loading
+                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
+                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
             }
         }
 
-        with(rvRecipes) {
+        with(binding.rvRecipes) {
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }

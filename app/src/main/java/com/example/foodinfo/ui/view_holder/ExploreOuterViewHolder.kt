@@ -59,17 +59,17 @@ class ExploreOuterViewHolder(
         }
     }
 
-    override fun bind(newItem: CategoryModel): Unit = with(binding) {
+    override fun bind(newItem: CategoryModel) {
         super.bind(newItem)
-        tvTitle.text = item.category
+        binding.tvTitle.text = item.category
     }
 
-    fun subscribe(): Unit = with(binding) {
+    fun subscribe() {
         recyclerAdapter.submitList(item.labels)
-        rvExploreOuterItem.restoreState(item.state)
+        binding.rvExploreOuterItem.restoreState(item.state)
     }
 
-    fun saveState(): Unit = with(binding) {
-        item.state = rvExploreOuterItem.getState()
+    fun saveState() {
+        item.state = binding.rvExploreOuterItem.getState()
     }
 }

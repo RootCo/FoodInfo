@@ -30,10 +30,10 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
-        tvRecipeName.text = args.inputText
-        btnBack.setOnClickListener { onBackClickListener() }
-        btnSearch.setOnClickListener { onSearchClickListener() }
+    override fun initUI() {
+        binding.tvRecipeName.text = args.inputText
+        binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnSearch.setOnClickListener { onSearchClickListener() }
 
         binding.hint.textView.text = getString(
             R.string.TBD_screen,

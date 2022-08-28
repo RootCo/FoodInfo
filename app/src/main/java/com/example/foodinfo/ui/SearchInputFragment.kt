@@ -72,21 +72,21 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
+    override fun initUI() {
         recyclerAdapter = SearchInputAdapter(
             requireContext(),
             onArrowClickListener,
             onItemClickListener
         )
 
-        btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnBack.setOnClickListener { onBackClickListener() }
 
-        with(rvSearchInput) {
+        with(binding.rvSearchInput) {
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addOnScrollListener(onScrollStateListener)
         }
-        etSearchInput.setOnQueryTextListener(onQueryChangedListener)
+        binding.etSearchInput.setOnQueryTextListener(onQueryChangedListener)
     }
 
     override fun subscribeUI() {

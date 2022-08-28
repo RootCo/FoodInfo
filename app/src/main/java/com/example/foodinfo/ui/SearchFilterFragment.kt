@@ -20,8 +20,8 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
     }
 
 
-    override fun initUI(): Unit = with(binding) {
-        btnBack.setOnClickListener { onBackClickListener() }
+    override fun initUI() {
+        binding.btnBack.setOnClickListener { onBackClickListener() }
 
         binding.hint.textView.text = getString(
             R.string.TBD_screen,
