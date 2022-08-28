@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination: NavDestination, _ ->
             when (destination.id) {
                 R.id.f_home,
-                R.id.f_bookmark,
+                R.id.f_favorite,
                 R.id.f_explore,
                 R.id.f_planner,
                 R.id.f_settings -> binding.navView.isVisible = true

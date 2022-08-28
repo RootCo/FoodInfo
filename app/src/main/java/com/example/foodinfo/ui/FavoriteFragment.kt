@@ -6,20 +6,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.foodinfo.databinding.FragmentBookmarkBinding
+import com.example.foodinfo.databinding.FragmentFavoriteBinding
 import com.example.foodinfo.ui.adapter.FavoriteAdapter
 import com.example.foodinfo.ui.decorator.FavoriteItemDecoration
 import com.example.foodinfo.utils.appComponent
-import com.example.foodinfo.view_model.BookMarkViewModel
+import com.example.foodinfo.view_model.FavoriteViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class BookMarkFragment : BaseFragment<FragmentBookmarkBinding>(
-    FragmentBookmarkBinding::inflate
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
+    FragmentFavoriteBinding::inflate
 ) {
 
-    private val viewModel: BookMarkViewModel by viewModels {
+    private val viewModel: FavoriteViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 
@@ -56,7 +56,7 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding>(
 
     private val onReadyToNavigate: (String) -> Unit = { id ->
         findNavController().navigate(
-            BookMarkFragmentDirections.actionFBookmarkToFRecipeExtended(id)
+            FavoriteFragmentDirections.actionFFavoriteToFRecipeExtended(id)
         )
     }
 

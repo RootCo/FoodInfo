@@ -122,12 +122,12 @@
         android:label = "@string/title_planner"
         tools:layout = "@layout/fragment_planner" />
     <fragment
-        android:id = "@+id/f_bookmark"
-        android:name = "com.example.foodinfo.ui.BookMarkFragment"
-        android:label = "@string/title_bookmark"
-        tools:layout = "@layout/fragment_bookmark" >
+        android:id = "@+id/f_favorite"
+        android:name = "com.example.foodinfo.ui.FavoriteFragment"
+        android:label = "@string/title_favorite"
+        tools:layout = "@layout/fragment_favorite" >
         <action
-            android:id = "@+id/action_f_bookmark_to_f_recipe_extended"
+            android:id = "@+id/action_f_favorite_to_f_recipe_extended"
             app:destination = "@id/f_recipe_extended" />
     </fragment>
 </navigation>

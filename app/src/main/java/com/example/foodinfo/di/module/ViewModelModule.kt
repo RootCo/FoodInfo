@@ -79,6 +79,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(BookMarkViewModel::class)
-    abstract fun bindsBookMarkViewModel(viewModel: BookMarkViewModel): ViewModel
+    @ViewModelKey(FavoriteViewModel::class)
+    abstract fun bindsBookMarkViewModel(viewModel: FavoriteViewModel): ViewModel
 }

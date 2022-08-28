@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
-class BookMarkViewModel @Inject constructor(
+class FavoriteViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
 
