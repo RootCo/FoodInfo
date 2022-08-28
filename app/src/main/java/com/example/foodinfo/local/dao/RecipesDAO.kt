@@ -26,6 +26,15 @@ interface RecipesDAO {
     )
     fun getFavorite(): PagingSource<Int, RecipePOJO>
 
+    @Query(
+        "SELECT ${RecipeEntity.Columns.ID} FROM ${RecipeEntity.TABLE_NAME} " +
+                "WHERE ${RecipeEntity.Columns.ID} " +
+                "IN (SELECT ${FavoriteMarkEntity.Columns.RECIPE_ID} " +
+                "FROM ${FavoriteMarkEntity.TABLE_NAME} " +
+                "WHERE ${FavoriteMarkEntity.Columns.IS_FAVORITE} == 1)"
+    )
+    fun getFavoriteIds(): List<String>
+
     @RawQuery(
         observedEntities = [
             RecipeEntity::class,
@@ -74,6 +83,12 @@ interface RecipesDAO {
     )
     fun updateFavoriteStatus(recipeId: String)
 
+    @Query(
+        "UPDATE ${FavoriteMarkEntity.TABLE_NAME} " +
+                "SET ${FavoriteMarkEntity.Columns.IS_FAVORITE} = 0 " +
+                "WHERE ${FavoriteMarkEntity.Columns.RECIPE_ID} IN (:recipeId)"
+    )
+    fun delFromFavorite(recipeId: List<String>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRecipe(recipe: RecipeEntity)

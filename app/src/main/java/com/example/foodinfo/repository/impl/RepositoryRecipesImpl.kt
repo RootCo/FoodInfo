@@ -38,6 +38,10 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }
     }
 
+    override fun getFavoriteIds(): List<String> {
+        return recipesDAO.getFavoriteIds()
+    }
+
     override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
@@ -65,6 +69,10 @@ class RepositoryRecipesImpl @Inject constructor(
 
     override fun updateFavoriteMark(id: String) {
         recipesDAO.updateFavoriteStatus(id)
+    }
+
+    override fun delFromFavorite(id: List<String>) {
+        recipesDAO.delFromFavorite(id)
     }
 
 

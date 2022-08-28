@@ -40,7 +40,7 @@ fun RecipePOJO.toModelFavorite(): RecipeFavoriteModel {
         name = this.name,
         source = this.source,
         calories = this.calories.toString(),
-        servings = this.servings,
+        servings = this.servings.toString(),
         previewURL = this.previewURL
     )
 }

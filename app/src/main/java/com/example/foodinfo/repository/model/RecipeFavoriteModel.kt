@@ -8,7 +8,7 @@ data class RecipeFavoriteModel(
     val name: String,
     val calories: String,
     val source: String,
-    val servings: Int,
+    val servings: String,
     val previewURL: String
 ) {
 

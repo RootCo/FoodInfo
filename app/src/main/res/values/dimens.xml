@@ -18,9 +18,9 @@
     <dimen name = "ingredients_item_margin">@dimen/dp_30</dimen>
     <dimen name = "nutrients_item_space">@dimen/dp_16</dimen>
     <dimen name = "nutrients_item_margin">@dimen/dp_30</dimen>
-
     <dimen name = "search_target_item_horizontal">@dimen/dp_30</dimen>
     <dimen name = "search_target_item_vertical">@dimen/dp_16</dimen>
+    <dimen name = "favorite_item_space">@dimen/dp_12</dimen>
 
     <dimen name = "screen_bottom_margin">56dp</dimen>
 

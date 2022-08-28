@@ -9,6 +9,8 @@ interface RepositoryRecipes {
 
     fun getFavorite(): Flow<PagingData<RecipeFavoriteModel>>
 
+    fun getFavoriteIds(): List<String>
+
     fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
 
     fun getById(id: String): Flow<RecipeModel>
@@ -20,4 +22,6 @@ interface RepositoryRecipes {
     fun getByIdLabels(id: String): Flow<RecipeLabelsModel>
 
     fun updateFavoriteMark(id: String)
+
+    fun delFromFavorite(id: List<String>)
 }

@@ -3,11 +3,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
+    android:id = "@+id/cl_item"
     android:layout_width = "match_parent"
-    android:layout_height = "wrap_content"
-    android:background = "@drawable/background_secondary_bg_30"
-    tools:layout_height = "120dp"
-    tools:layout_width = "match_parent">
+    android:layout_height = "@dimen/dp_120"
+    android:background = "@drawable/background_item_favorite_unselected">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id = "@+id/iv_preview"
