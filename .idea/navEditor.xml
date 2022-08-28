@@ -8,18 +8,6 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="f_bookmark">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-2573" />
-                            <option name="y" value="-1476" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="f_explore">
                     <value>
                       <LayoutPositions>
@@ -31,11 +19,6 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_f_explore_to_f_recipe_extended">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
                             <entry key="action_f_explore_to_f_search_filter">
                               <value>
                                 <LayoutPositions />
@@ -52,6 +35,44 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="f_favorite">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-2573" />
+                            <option name="y" value="-1476" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_f_favorite_to_f_favorite_sort">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_f_favorite_to_f_recipe_extended">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="f_favorite_sort">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-2572" />
+                            <option name="y" value="-1116" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

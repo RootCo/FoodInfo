@@ -29,6 +29,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         viewModel.setEditMode(true)
     }
 
+    private val onSortClickListener: () -> Unit = {
+        findNavController().navigate(
+            FavoriteFragmentDirections.actionFFavoriteToFFavoriteSort()
+        )
+    }
+
     private val onDeleteClickListener: () -> Unit = {
         viewModel.delSelected()
         viewModel.unselectAll()
@@ -68,6 +74,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             btnEdit.setOnClickListener { onEditClickListener() }
             btnDelete.setOnClickListener { onDeleteClickListener() }
             btnCancel.setOnClickListener { onCancelClickListener() }
+            btnSort.setOnClickListener { onSortClickListener() }
         }
 
         recyclerAdapter = FavoriteAdapter(

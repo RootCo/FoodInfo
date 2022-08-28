@@ -80,5 +80,10 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(FavoriteViewModel::class)
-    abstract fun bindsBookMarkViewModel(viewModel: FavoriteViewModel): ViewModel
+    abstract fun bindsFavoriteViewModel(viewModel: FavoriteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavoriteSortViewModel::class)
+    abstract fun bindsFavoriteSortViewModel(viewModel: FavoriteSortViewModel): ViewModel
 }

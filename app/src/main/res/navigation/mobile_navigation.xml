@@ -125,9 +125,17 @@
         android:id = "@+id/f_favorite"
         android:name = "com.example.foodinfo.ui.FavoriteFragment"
         android:label = "@string/title_favorite"
-        tools:layout = "@layout/fragment_favorite" >
+        tools:layout = "@layout/fragment_favorite">
         <action
             android:id = "@+id/action_f_favorite_to_f_recipe_extended"
             app:destination = "@id/f_recipe_extended" />
+        <action
+            android:id = "@+id/action_f_favorite_to_f_favorite_sort"
+            app:destination = "@id/f_favorite_sort" />
     </fragment>
+    <fragment
+        android:id = "@+id/f_favorite_sort"
+        android:name = "com.example.foodinfo.ui.FavoriteSortFragment"
+        android:label = "fragment_favorite_sort"
+        tools:layout = "@layout/fragment_favorite_sort" />
 </navigation>
