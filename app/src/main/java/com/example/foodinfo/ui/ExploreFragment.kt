@@ -31,7 +31,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(
 
     private val onInnerItemClickListener: (String, String) -> Unit = { category, label ->
         findNavController().navigate(
-            ExploreFragmentDirections.actionFExploreToFSearchTarget(category, label)
+            ExploreFragmentDirections.actionFExploreToFSearchLabel(category, label)
         )
     }
 

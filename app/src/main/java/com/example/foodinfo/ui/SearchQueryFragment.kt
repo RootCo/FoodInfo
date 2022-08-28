@@ -4,17 +4,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.R
-import com.example.foodinfo.databinding.FragmentSearchResultBinding
+import com.example.foodinfo.databinding.FragmentSearchQueryBinding
 import com.example.foodinfo.utils.appComponent
-import com.example.foodinfo.view_model.SearchResultViewModel
+import com.example.foodinfo.view_model.SearchQueryViewModel
 
-class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
-    FragmentSearchResultBinding::inflate
+class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
+    FragmentSearchQueryBinding::inflate
 ) {
 
-    private val args: SearchResultFragmentArgs by navArgs()
+    private val args: SearchQueryFragmentArgs by navArgs()
 
-    private val viewModel: SearchResultViewModel by viewModels {
+    private val viewModel: SearchQueryViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 
@@ -25,7 +25,7 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(
 
     private val onSearchClickListener: () -> Unit = {
         findNavController().navigate(
-            SearchResultFragmentDirections.actionFSearchResultToFSearchInput()
+            SearchQueryFragmentDirections.actionFSearchQueryToFSearchInput()
         )
     }
 

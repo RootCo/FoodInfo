@@ -23,8 +23,8 @@
             android:id = "@+id/action_f_explore_to_f_search_input"
             app:destination = "@id/f_search_input" />
         <action
-            android:id = "@+id/action_f_explore_to_f_search_target"
-            app:destination = "@id/f_search_target" />
+            android:id = "@+id/action_f_explore_to_f_search_label"
+            app:destination = "@id/f_search_label" />
         <action
             android:id = "@+id/action_f_explore_to_f_search_filter"
             app:destination = "@id/f_search_filter" />
@@ -40,22 +40,22 @@
         android:label = "fragment_search"
         tools:layout = "@layout/fragment_search_input">
         <action
-            android:id = "@+id/action_f_search_input_to_f_search_result"
-            app:destination = "@id/f_search_result" />
+            android:id = "@+id/action_f_search_input_to_f_search_query"
+            app:destination = "@id/f_search_query" />
     </fragment>
     <fragment
-        android:id = "@+id/f_search_result"
-        android:name = "com.example.foodinfo.ui.SearchResultFragment"
-        android:label = "fragment_search_result"
-        tools:layout = "@layout/fragment_search_result">
+        android:id = "@+id/f_search_query"
+        android:name = "com.example.foodinfo.ui.SearchQueryFragment"
+        android:label = "fragment_search_query"
+        tools:layout = "@layout/fragment_search_query">
         <action
-            android:id = "@+id/action_f_search_result_to_f_recipe_extended"
+            android:id = "@+id/action_f_search_query_to_f_recipe_extended"
             app:destination = "@id/f_recipe_extended" />
         <argument
             android:name = "inputText"
             app:argType = "string" />
         <action
-            android:id = "@+id/action_f_search_result_to_f_search_input"
+            android:id = "@+id/action_f_search_query_to_f_search_input"
             app:destination = "@id/f_search_input"
             app:popUpTo = "@id/f_search_input"
             app:popUpToInclusive = "true" />
@@ -66,15 +66,15 @@
         android:label = "fragment_search_input_filter"
         tools:layout = "@layout/fragment_search_filter" />
     <fragment
-        android:id = "@+id/f_search_target"
-        android:name = "com.example.foodinfo.ui.SearchTargetFragment"
-        android:label = "fragment_search_target"
-        tools:layout = "@layout/fragment_search_target">
+        android:id = "@+id/f_search_label"
+        android:name = "com.example.foodinfo.ui.SearchLabelFragment"
+        android:label = "fragment_search_label"
+        tools:layout = "@layout/fragment_search_label">
         <action
-            android:id = "@+id/action_f_search_target_to_f_recipe_extended"
+            android:id = "@+id/action_f_search_label_to_f_recipe_extended"
             app:destination = "@id/f_recipe_extended" />
         <action
-            android:id = "@+id/action_f_search_target_to_f_search_input"
+            android:id = "@+id/action_f_search_label_to_f_search_input"
             app:destination = "@id/f_search_input" />
         <argument
             android:name = "category"

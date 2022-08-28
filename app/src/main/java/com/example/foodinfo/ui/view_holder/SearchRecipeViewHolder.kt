@@ -8,7 +8,7 @@ import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.utils.setFavorite
 
 
-class SearchTargetViewHolder(
+class SearchRecipeViewHolder(
     private val binding: RvItemSearchTargetBinding,
     private val onGetTime: (Int) -> String,
     onItemClickListener: (String) -> Unit,

@@ -59,13 +59,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SearchResultViewModel::class)
-    abstract fun bindsSearchResultViewModel(viewModel: SearchResultViewModel): ViewModel
+    @ViewModelKey(SearchQueryViewModel::class)
+    abstract fun bindsSearchQuertViewModel(viewModel: SearchQueryViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(SearchTargetViewModel::class)
-    abstract fun bindsSearchTargetViewModel(viewModel: SearchTargetViewModel): ViewModel
+    @ViewModelKey(SearchLabelViewModel::class)
+    abstract fun bindsSearchLabelViewModel(viewModel: SearchLabelViewModel): ViewModel
 
     @Binds
     @IntoMap

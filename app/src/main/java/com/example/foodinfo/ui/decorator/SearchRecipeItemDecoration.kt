@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 
-class SearchTargetItemDecoration(
+class SearchRecipeItemDecoration(
     private val horizontal: Int, private val vertical: Int, private val columnsCount: Int
 ) : RecyclerView.ItemDecoration() {
 

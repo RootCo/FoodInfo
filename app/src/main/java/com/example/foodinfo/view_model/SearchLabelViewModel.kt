@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 
-class SearchTargetViewModel @Inject constructor(
+class SearchLabelViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes,
     private val repositoryLabels: RepositoryLabels
 ) : ViewModel() {

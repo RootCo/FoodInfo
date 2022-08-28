@@ -38,7 +38,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     private val onItemClickListener: (String) -> Unit = { text ->
         viewModel.addToHistory(text)
         findNavController().navigate(
-            SearchInputFragmentDirections.actionFSearchInputToFSearchResult(text)
+            SearchInputFragmentDirections.actionFSearchInputToFSearchQuery(text)
         )
     }
 
@@ -65,7 +65,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         override fun onQueryTextSubmit(query: String): Boolean {
             viewModel.addToHistory(query)
             findNavController().navigate(
-                SearchInputFragmentDirections.actionFSearchInputToFSearchResult(query)
+                SearchInputFragmentDirections.actionFSearchInputToFSearchQuery(query)
             )
             return false
         }

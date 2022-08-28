@@ -10,26 +10,26 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.example.foodinfo.R
-import com.example.foodinfo.databinding.FragmentSearchTargetBinding
-import com.example.foodinfo.ui.adapter.SearchTargetAdapter
-import com.example.foodinfo.ui.decorator.SearchTargetItemDecoration
+import com.example.foodinfo.databinding.FragmentSearchLabelBinding
+import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
+import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.showDescriptionDialog
-import com.example.foodinfo.view_model.SearchTargetViewModel
+import com.example.foodinfo.view_model.SearchLabelViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
-    FragmentSearchTargetBinding::inflate
+class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
+    FragmentSearchLabelBinding::inflate
 ) {
 
-    private val args: SearchTargetFragmentArgs by navArgs()
+    private val args: SearchLabelFragmentArgs by navArgs()
 
-    private lateinit var recyclerAdapter: SearchTargetAdapter
+    private lateinit var recyclerAdapter: SearchRecipeAdapter
 
-    private val viewModel: SearchTargetViewModel by viewModels {
+    private val viewModel: SearchLabelViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 
@@ -39,7 +39,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
 
     private val onSearchClickListener: () -> Unit = {
         findNavController().navigate(
-            SearchTargetFragmentDirections.actionFSearchTargetToFSearchInput()
+            SearchLabelFragmentDirections.actionFSearchLabelToFSearchInput()
         )
     }
 
@@ -58,7 +58,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
 
     private val onItemClickListener: (String) -> Unit = { id ->
         findNavController().navigate(
-            SearchTargetFragmentDirections.actionFSearchTargetToFRecipeExtended(id)
+            SearchLabelFragmentDirections.actionFSearchLabelToFRecipeExtended(id)
         )
     }
 
@@ -79,7 +79,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnSearch.setOnClickListener { onSearchClickListener() }
 
-        recyclerAdapter = SearchTargetAdapter(
+        recyclerAdapter = SearchRecipeAdapter(
             requireContext(),
             onGetTime,
             onItemClickListener,
@@ -95,7 +95,7 @@ class SearchTargetFragment : BaseFragment<FragmentSearchTargetBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                SearchTargetItemDecoration(
+                SearchRecipeItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.search_target_item_horizontal),
                     resources.getDimensionPixelSize(R.dimen.search_target_item_vertical),
                     2

@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemSearchTargetBinding
 import com.example.foodinfo.databinding.RvItemSearchTargetPlaceholderBinding
 import com.example.foodinfo.repository.model.RecipeShortModel
-import com.example.foodinfo.ui.view_holder.SearchTargetPlaceholder
-import com.example.foodinfo.ui.view_holder.SearchTargetViewHolder
+import com.example.foodinfo.ui.view_holder.SearchRecipePlaceholder
+import com.example.foodinfo.ui.view_holder.SearchRecipeViewHolder
 
 
-class SearchTargetAdapter(
+class SearchRecipeAdapter(
     context: Context,
     private val onGetTime: (Int) -> String,
     private val onItemClickListener: (String) -> Unit,
@@ -27,7 +27,7 @@ class SearchTargetAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             ViewTypes.LOADED_VIEW.ordinal -> {
-                SearchTargetViewHolder(
+                SearchRecipeViewHolder(
                     RvItemSearchTargetBinding.inflate(layoutInflater, parent, false),
                     onGetTime,
                     onItemClickListener,
@@ -35,7 +35,7 @@ class SearchTargetAdapter(
                 )
             }
             else                          -> {
-                SearchTargetPlaceholder(
+                SearchRecipePlaceholder(
                     RvItemSearchTargetPlaceholderBinding.inflate(
                         layoutInflater,
                         parent,
@@ -48,7 +48,7 @@ class SearchTargetAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { recipe ->
-            holder as SearchTargetViewHolder
+            holder as SearchRecipeViewHolder
             holder.bind(recipe)
         }
     }
@@ -62,7 +62,7 @@ class SearchTargetAdapter(
             super.onBindViewHolder(holder, position, payloads)
         } else {
             getItem(position)?.let { recipe ->
-                holder as SearchTargetViewHolder
+                holder as SearchRecipeViewHolder
                 holder.bind(recipe, payloads)
             }
         }
