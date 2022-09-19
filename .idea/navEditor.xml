@@ -29,7 +29,7 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_f_explore_to_f_search_target">
+                            <entry key="action_f_explore_to_f_search_label">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -177,13 +177,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-2401" />
-                            <option name="y" value="-1849" />
+                            <option name="x" value="-2403" />
+                            <option name="y" value="-1854" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_f_search_input_to_f_search_result">
+                            <entry key="action_f_search_input_to_f_search_query">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -193,23 +193,23 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="f_search_result">
+                  <entry key="f_search_label">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-2190" />
-                            <option name="y" value="-1848" />
+                            <option name="x" value="-2234" />
+                            <option name="y" value="-1852" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_f_search_result_to_f_recipe_extended">
+                            <entry key="action_f_search_label_to_f_recipe_extended">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_f_search_result_to_f_search_input">
+                            <entry key="action_f_search_label_to_f_search_input">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -219,23 +219,23 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="f_search_target">
+                  <entry key="f_search_query">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-2601" />
-                            <option name="y" value="-1851" />
+                            <option name="x" value="-2574" />
+                            <option name="y" value="-1852" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_f_search_target_to_f_recipe_extended">
+                            <entry key="action_f_search_query_to_f_recipe_extended">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_f_search_target_to_f_search_input">
+                            <entry key="action_f_search_query_to_f_search_input">
                               <value>
                                 <LayoutPositions />
                               </value>
