@@ -81,8 +81,8 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
             setHasFixedSize(true)
             addItemDecoration(
                 SearchRecipeItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.search_target_item_horizontal),
-                    resources.getDimensionPixelSize(R.dimen.search_target_item_vertical),
+                    resources.getDimensionPixelSize(R.dimen.search_recipes_item_horizontal),
+                    resources.getDimensionPixelSize(R.dimen.search_recipes_item_vertical),
                     2
                 )
             )

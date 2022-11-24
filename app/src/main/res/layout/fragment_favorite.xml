@@ -6,7 +6,6 @@
     android:layout_height = "match_parent"
     android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
     android:layout_marginTop = "@dimen/screen_vertical_margin"
-    android:layout_marginBottom = "@dimen/screen_bottom_margin"
     android:orientation = "vertical">
 
     <LinearLayout

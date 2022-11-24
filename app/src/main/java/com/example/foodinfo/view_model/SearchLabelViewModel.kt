@@ -23,12 +23,16 @@ class SearchLabelViewModel @Inject constructor(
     private val repositoryLabels: RepositoryLabels
 ) : ViewModel() {
     private val filter = SearchFilterModel()
+    private lateinit var categoryName: String
+    private lateinit var labelName: String
 
-    fun getLabel(category: String, label: String): LabelModel {
-        return repositoryLabels.getByLabel(category, label)
+    val label: LabelModel by lazy {
+        repositoryLabels.getLabel(categoryName, labelName)
     }
 
-    fun setFilter(category: String, label: String) {
+    fun setLabel(category: String, label: String) {
+        this.categoryName = category
+        this.labelName = label
         filter.categoryFields.add(CategoryField(category, listOf(label)))
         filter.buildQuery()
     }

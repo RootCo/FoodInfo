@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.f_home,
                 R.id.f_favorite,
-                R.id.f_explore,
                 R.id.f_planner,
                 R.id.f_settings -> binding.navView.isVisible = true
                 else            -> binding.navView.isVisible = false
@@ -88,44 +87,57 @@ class MainActivity : AppCompatActivity() {
         )
 
         val dbCategory = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORY_LOCAL)
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_LABELS_LOCAL)
         )
 
 
         val typeCategoryLabel = object : TypeToken<List<LabelEntity>>() {}.type
 
-        dataBase.labelsDAO.addCategory(
+        dataBase.labelsDAO.addCategoryLabels(
             gson.fromJson
                 (
                 dbCategory.get(AssetsKeyWords.CATEGORY_MEAL).toString(),
                 typeCategoryLabel
             )
         )
-        dataBase.labelsDAO.addCategory(
+        dataBase.labelsDAO.addCategoryLabels(
             gson.fromJson(
                 dbCategory.get(AssetsKeyWords.CATEGORY_DISH).toString(),
                 typeCategoryLabel
             )
         )
-        dataBase.labelsDAO.addCategory(
+        dataBase.labelsDAO.addCategoryLabels(
             gson.fromJson
                 (
                 dbCategory.get(AssetsKeyWords.CATEGORY_DIET).toString(),
                 typeCategoryLabel
             )
         )
-        dataBase.labelsDAO.addCategory(
+        dataBase.labelsDAO.addCategoryLabels(
             gson.fromJson(
                 dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString(),
                 typeCategoryLabel
             )
         )
-        dataBase.labelsDAO.addCategory(
+        dataBase.labelsDAO.addCategoryLabels(
             gson.fromJson(
                 dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString(),
                 typeCategoryLabel
             )
         )
+
+
+        val dbCategories = jsonLoader.load(
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORIES_LOCAL)
+        )
+
+        dataBase.labelsDAO.addCategories(
+            gson.fromJson(
+                dbCategories.get(AssetsKeyWords.CONTENT).toString(),
+                object : TypeToken<List<CategoryEntity>>() {}.type
+            )
+        )
+
 
         val dbNutrients = jsonLoader.load(
             appComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT_LOCAL)

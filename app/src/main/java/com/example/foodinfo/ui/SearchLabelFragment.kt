@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchLabelBinding
 import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
@@ -44,9 +45,9 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
         )
     }
 
-    private val onLabelClickListener: () -> Unit = {
+    private val onHeaderClickListener: () -> Unit = {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val labelItem = viewModel.getLabel(args.category, args.label)
+            val labelItem = viewModel.label
             withContext(Dispatchers.Main) {
                 showDescriptionDialog(
                     labelItem.label,
@@ -73,10 +74,10 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
 
 
     override fun initUI() {
-        viewModel.setFilter(args.category, args.label)
+        viewModel.setLabel(args.category, args.label)
 
         binding.tvLabel.text = args.label
-        binding.tvLabel.setOnClickListener { onLabelClickListener() }
+        binding.tvLabel.setOnClickListener { onHeaderClickListener() }
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnSearch.setOnClickListener { onSearchClickListener() }
 
@@ -97,8 +98,8 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
             setHasFixedSize(true)
             addItemDecoration(
                 SearchRecipeItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.search_target_item_horizontal),
-                    resources.getDimensionPixelSize(R.dimen.search_target_item_vertical),
+                    resources.getDimensionPixelSize(R.dimen.search_recipes_item_horizontal),
+                    resources.getDimensionPixelSize(R.dimen.search_recipes_item_vertical),
                     2
                 )
             )

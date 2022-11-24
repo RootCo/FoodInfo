@@ -6,10 +6,7 @@ import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
@@ -43,7 +40,7 @@ class RecipeExtendedViewModel @Inject constructor(
 
 
     fun getLabel(category: String, label: String): LabelModel {
-        return repositoryLabels.getByLabel(category, label)
+        return repositoryLabels.getLabel(category, label)
     }
 
     fun updateFavoriteMark() {

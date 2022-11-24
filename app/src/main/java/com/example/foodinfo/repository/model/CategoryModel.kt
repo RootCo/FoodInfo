@@ -1,13 +1,13 @@
 package com.example.foodinfo.repository.model
 
-import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 
 
 data class CategoryModel(
-    val category: String,
-    val labels: List<LabelModel>,
-    var state: Parcelable? = null
+    val id: Long,
+    val name: String,
+    val description: String,
+    val preview: SVGModel
 ) {
     object ItemCallBack :
         DiffUtil.ItemCallback<CategoryModel>() {
@@ -16,15 +16,17 @@ data class CategoryModel(
             oldItem: CategoryModel,
             newItem: CategoryModel
         ): Boolean {
-            return oldItem.category == newItem.category
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
             oldItem: CategoryModel,
             newItem: CategoryModel
         ): Boolean {
-            return oldItem.category == newItem.category &&
-                    oldItem.labels == newItem.labels
+            return oldItem.id == newItem.id &&
+                    oldItem.name == newItem.name &&
+                    oldItem.description == newItem.description &&
+                    oldItem.preview.content == newItem.preview.content
         }
     }
 }

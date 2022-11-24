@@ -29,11 +29,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ExploreViewModel::class)
-    abstract fun bindsExploreViewModel(viewModel: ExploreViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(RecipeExtendedViewModel::class)
     abstract fun bindsRecipeExtendedViewModel(viewModel: RecipeExtendedViewModel): ViewModel
 
@@ -60,12 +55,17 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SearchQueryViewModel::class)
-    abstract fun bindsSearchQuertViewModel(viewModel: SearchQueryViewModel): ViewModel
+    abstract fun bindsSearchQueryViewModel(viewModel: SearchQueryViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(SearchLabelViewModel::class)
     abstract fun bindsSearchLabelViewModel(viewModel: SearchLabelViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchCategoryViewModel::class)
+    abstract fun bindsSearchCategoryViewModel(viewModel: SearchCategoryViewModel): ViewModel
 
     @Binds
     @IntoMap

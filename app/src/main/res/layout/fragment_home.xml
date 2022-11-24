@@ -5,65 +5,72 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginTop = "@dimen/dp_40"
-    android:layout_marginBottom = "@dimen/screen_bottom_margin"
+    android:layout_marginTop = "@dimen/screen_vertical_margin"
     android:orientation = "vertical"
     tools:context = ".ui.HomeFragment">
 
-
-    <TextView
-        android:id = "@+id/tv_logo"
-        android:layout_width = "0dp"
-        android:layout_height = "@dimen/dp_140"
-        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
-        android:fontFamily = "@font/app_font_regular"
-        android:gravity = "center"
-        android:text = "@string/logo_text"
-        android:textColor = "?appMainFontColor"
-        android:textSize = "@dimen/dp_50"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent" />
-
     <LinearLayout
-        android:layout_width = "0dp"
-        android:layout_height = "0dp"
-        android:layout_marginVertical = "@dimen/dp_20"
-        android:orientation = "vertical"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintEnd_toEndOf = "parent"
-        app:layout_constraintHeight_max = "450dp"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@id/tv_logo">
+        android:id = "@+id/ll_search"
+        android:layout_width = "match_parent"
+        android:layout_height = "@dimen/dp_50"
+        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
+        android:layout_marginBottom = "@dimen/screen_vertical_margin"
+        android:background = "@drawable/background_outline_24"
+        app:layout_constraintTop_toTopOf = "parent">
+
+        <ImageView
+            android:layout_width = "wrap_content"
+            android:layout_height = "match_parent"
+            android:layout_marginStart = "@dimen/dp_10"
+            android:contentDescription = "@string/content_description_text"
+            android:paddingVertical = "@dimen/dp_12"
+            android:src = "@drawable/ic_search"
+            app:tint = "?appMainFontColor" />
 
         <TextView
-            android:id = "@+id/tv_recipes_header"
-            style = "@style/TextViewVeryBig"
+            style = "@style/TextViewSmall"
+            android:layout_width = "0dp"
+            android:layout_height = "match_parent"
+            android:layout_weight = "1"
+            android:gravity = "center|start"
+            android:text = "@string/et_search_hint" />
+
+        <ImageView
+            android:id = "@+id/btn_filter"
             android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:layout_marginVertical = "@dimen/dp_20"
-            android:layout_marginStart = "@dimen/screen_vertical_margin"
-            android:fontFamily = "@font/app_font_bold"
-            android:text = "@string/text_home_recipes_header"
-            android:textAlignment = "textStart" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id = "@+id/rv_recipes"
-            android:layout_width = "match_parent"
             android:layout_height = "match_parent"
-            android:clipToPadding = "true"
-            android:orientation = "horizontal"
-            app:layoutManager = "LinearLayoutManager"
-            tools:listitem = "@layout/rv_item_home" />
-
-        <ProgressBar
-            android:id = "@+id/pb_recipes"
-            android:layout_width = "@dimen/progress_size"
-            android:layout_height = "match_parent"
-            android:layout_gravity = "center"
-            android:visibility = "gone" />
+            android:layout_marginEnd = "@dimen/dp_10"
+            android:contentDescription = "@string/content_description_text"
+            android:paddingVertical = "@dimen/dp_12"
+            android:src = "@drawable/ic_search_filter"
+            app:tint = "?appMainFontColor" />
 
     </LinearLayout>
+
+    <TextView
+        android:id = "@+id/tv_category_header"
+        style = "@style/TextViewVeryBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginStart = "@dimen/screen_horizontal_margin"
+        android:layout_marginTop = "@dimen/dp_30"
+        android:fontFamily = "@font/app_font_medium"
+        android:text = "@string/explore_by_category_text"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/ll_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id = "@+id/rv_categories"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:layout_marginTop = "@dimen/dp_16"
+        android:clipToPadding = "true"
+        android:orientation = "horizontal"
+        app:layoutManager = "LinearLayoutManager"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/tv_category_header"
+        tools:listitem = "@layout/rv_item_category" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

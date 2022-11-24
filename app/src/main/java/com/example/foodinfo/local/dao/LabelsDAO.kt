@@ -3,6 +3,7 @@ package com.example.foodinfo.local.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.foodinfo.local.entity.CategoryEntity
 import com.example.foodinfo.local.entity.LabelEntity
 
 
@@ -12,22 +13,34 @@ interface LabelsDAO {
     @Query(
         "SELECT * FROM ${LabelEntity.TABLE_NAME} " +
                 "WHERE ${LabelEntity.Columns.LABEL} " +
-                "LIKE '%' || :label || '%' " +
+                "LIKE '%' || :labelName || '%' " +
                 "AND ${LabelEntity.Columns.CATEGORY} " +
-                "LIKE '%' || :category || '%'"
+                "LIKE '%' || :categoryName || '%'"
     )
-    fun getByLabel(category: String, label: String): LabelEntity
-
-    @Query("SELECT * FROM ${LabelEntity.TABLE_NAME}")
-    fun getAll(): List<LabelEntity>
+    fun getLabel(categoryName: String, labelName: String): LabelEntity
 
     @Query(
         "SELECT * FROM ${LabelEntity.TABLE_NAME} " +
                 "WHERE ${LabelEntity.Columns.CATEGORY} " +
-                "LIKE '%' || :category || '%'"
+                "LIKE '%' || :categoryName || '%'"
     )
-    fun getCategory(category: String): List<LabelEntity>
+    fun getLabels(categoryName: String): List<LabelEntity>
+
+
+    @Query(
+        "SELECT * FROM ${CategoryEntity.TABLE_NAME} " +
+                "WHERE ${CategoryEntity.Columns.NAME} " +
+                "LIKE '%' || :name || '%'"
+    )
+    fun getCategory(name: String): CategoryEntity
+
+    @Query("SELECT * FROM ${CategoryEntity.TABLE_NAME}")
+    fun getCategories(): List<CategoryEntity>
+
 
     @Insert
-    fun addCategory(category: List<LabelEntity>)
+    fun addCategoryLabels(labels: List<LabelEntity>)
+
+    @Insert
+    fun addCategories(categories: List<CategoryEntity>)
 }

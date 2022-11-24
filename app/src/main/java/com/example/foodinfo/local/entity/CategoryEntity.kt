@@ -5,17 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = LabelEntity.TABLE_NAME)
-data class LabelEntity(
+@Entity(tableName = CategoryEntity.TABLE_NAME)
+data class CategoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)
     val id: Long = 0,
 
-    @ColumnInfo(name = Columns.CATEGORY)
-    val category: String,
-
-    @ColumnInfo(name = Columns.LABEL)
-    val label: String,
+    @ColumnInfo(name = Columns.NAME)
+    val name: String,
 
     @ColumnInfo(name = Columns.DESCRIPTION)
     val description: String,
@@ -26,13 +23,12 @@ data class LabelEntity(
 
     object Columns {
         const val ID = "id"
-        const val CATEGORY = "category"
-        const val LABEL = "label"
+        const val NAME = "name"
         const val DESCRIPTION = "description"
         const val PREVIEW_URL = "preview_url"
     }
 
     companion object {
-        const val TABLE_NAME = "labels"
+        const val TABLE_NAME = "categories"
     }
 }

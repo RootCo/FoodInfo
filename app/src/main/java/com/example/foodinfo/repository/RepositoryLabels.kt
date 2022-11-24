@@ -1,12 +1,15 @@
 package com.example.foodinfo.repository
 
+import com.example.foodinfo.repository.model.CategoryModel
 import com.example.foodinfo.repository.model.LabelModel
 
 
 interface RepositoryLabels {
-    fun getByLabel(category: String, label: String): LabelModel
+    fun getLabel(categoryName: String, labelName: String): LabelModel
 
-    fun getAll(): Map<String, List<LabelModel>>
+    fun getLabels(categoryName: String): List<LabelModel>
 
-    fun getCategory(category: String): List<LabelModel>
+    fun getCategory(name: String): CategoryModel
+
+    fun getCategories(): List<CategoryModel>
 }

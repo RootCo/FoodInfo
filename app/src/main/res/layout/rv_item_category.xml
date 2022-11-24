@@ -3,16 +3,16 @@
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
     android:id = "@+id/cl_explore_inner_item"
-    android:layout_width = "120dp"
-    android:layout_height = "190dp">
+    android:layout_width = "@dimen/dp_140"
+    android:layout_height = "@dimen/dp_140"
+    android:background = "@drawable/background_secondary_bg_30">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id = "@+id/ic_preview"
-        android:background="@drawable/background_secondary_bg_40"
-        android:layout_width = "0dp"
-        android:layout_height = "0dp"
+        android:layout_width = "@dimen/dp_60"
+        android:layout_height = "@dimen/dp_60"
+        android:layout_marginTop = "@dimen/dp_12"
         android:scaleType = "centerCrop"
-        app:contentPadding = "@dimen/dp_30"
         app:layout_constraintDimensionRatio = "W,1:1"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
@@ -24,15 +24,14 @@
         style = "@style/TextViewMedium"
         android:layout_width = "wrap_content"
         android:layout_height = "0dp"
-        android:layout_marginTop = "@dimen/dp_10"
+        android:layout_marginBottom = "@dimen/dp_16"
         android:ellipsize = "end"
         android:fontFamily = "@font/app_font_medium"
         android:gravity = "center_horizontal"
-        android:maxLines = "2"
+        android:maxLines = "1"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@id/ic_preview"
-        tools:text = "condiments and cookies" />
+        tools:text = "cuisine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

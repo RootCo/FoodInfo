@@ -1,22 +1,20 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
-import com.example.foodinfo.ui.adapter.HomeAdapter
-import com.example.foodinfo.ui.decorator.HomeItemDecoration
+import com.example.foodinfo.ui.adapter.HomeCategoriesAdapter
+import com.example.foodinfo.ui.decorator.HomeCategoriesItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.HomeViewModel
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
@@ -27,55 +25,57 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         requireActivity().appComponent.viewModelsFactory()
     }
 
-    private lateinit var recyclerAdapter: HomeAdapter
+    private lateinit var recyclerAdapter: HomeCategoriesAdapter
 
-    private val onItemClickListener: (String) -> Unit = { id ->
+    private val onItemClickListener: (String) -> Unit = { category ->
         findNavController().navigate(
-            HomeFragmentDirections.actionFHomeToFRecipeExtended(id)
+            HomeFragmentDirections.actionFHomeToFSearchCategory(category)
         )
     }
 
-    private val onFavoriteClickListener: (String) -> Unit = { id ->
-        viewModel.updateFavoriteMark(id)
+    private val onSearchClickListener: () -> Unit = {
+        findNavController().navigate(
+            HomeFragmentDirections.actionFHomeToFSearchInput()
+        )
     }
 
-    private val onGetTime: (Int) -> String = { time ->
-        getString(R.string.time_value, time)
+    private val onFilterClickListener: () -> Unit = {
+        findNavController().navigate(
+            HomeFragmentDirections.actionFHomeToFSearchFilter()
+        )
     }
 
 
     override fun initUI() {
-        recyclerAdapter = HomeAdapter(
+        recyclerAdapter = HomeCategoriesAdapter(
             requireContext(),
-            onGetTime,
-            onItemClickListener,
-            onFavoriteClickListener
-        ).also {
-            it.addLoadStateListener { state: CombinedLoadStates ->
-                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-            }
-        }
+            onItemClickListener
+        )
+        binding.llSearch.setOnClickListener { onSearchClickListener() }
+        binding.btnFilter.setOnClickListener { onFilterClickListener() }
 
-        with(binding.rvRecipes) {
+        with(binding.rvCategories) {
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                HomeItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.home_recipes_space),
-                    resources.getDimensionPixelSize(R.dimen.home_recipes_margin)
+                HomeCategoriesItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.home_categories_space),
+                    resources.getDimensionPixelSize(R.dimen.home_categories_margin)
                 )
             )
+            itemAnimator = null
         }
     }
 
     override fun subscribeUI() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipes.collectLatest(recyclerAdapter::submitData)
+                withContext(Dispatchers.IO) {
+                    recyclerAdapter.submitList(viewModel.categories)
+                }
             }
         }
     }

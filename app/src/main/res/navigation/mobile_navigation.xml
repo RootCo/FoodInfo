@@ -13,21 +13,18 @@
         <action
             android:id = "@+id/action_f_home_to_f_recipe_extended"
             app:destination = "@id/f_recipe_extended" />
-    </fragment>
-    <fragment
-        android:id = "@+id/f_explore"
-        android:name = "com.example.foodinfo.ui.ExploreFragment"
-        android:label = "@string/title_explore"
-        tools:layout = "@layout/fragment_explore">
         <action
-            android:id = "@+id/action_f_explore_to_f_search_input"
+            android:id = "@+id/action_f_home_to_f_search_input"
             app:destination = "@id/f_search_input" />
         <action
-            android:id = "@+id/action_f_explore_to_f_search_label"
+            android:id = "@+id/action_f_home_to_f_search_label"
             app:destination = "@id/f_search_label" />
         <action
-            android:id = "@+id/action_f_explore_to_f_search_filter"
+            android:id = "@+id/action_f_home_to_f_search_filter"
             app:destination = "@id/f_search_filter" />
+        <action
+            android:id = "@+id/action_f_home_to_f_search_category"
+            app:destination = "@id/f_search_category" />
     </fragment>
     <fragment
         android:id = "@+id/f_settings"
@@ -138,4 +135,19 @@
         android:name = "com.example.foodinfo.ui.FavoriteSortFragment"
         android:label = "fragment_favorite_sort"
         tools:layout = "@layout/fragment_favorite_sort" />
+    <fragment
+        android:id = "@+id/f_search_category"
+        android:name = "com.example.foodinfo.ui.SearchCategoryFragment"
+        android:label = "fragment_search_category"
+        tools:layout = "@layout/fragment_search_category">
+        <argument
+            android:name = "category"
+            app:argType = "string" />
+        <action
+            android:id = "@+id/action_f_search_category_to_f_search_input"
+            app:destination = "@id/f_search_input" />
+        <action
+            android:id = "@+id/action_f_search_category_to_f_search_label"
+            app:destination = "@id/f_search_label" />
+    </fragment>
 </navigation>

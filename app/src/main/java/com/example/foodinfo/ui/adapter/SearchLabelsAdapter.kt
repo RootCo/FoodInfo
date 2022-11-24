@@ -5,29 +5,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.databinding.RvItemExploreInnerBinding
+import com.example.foodinfo.databinding.RvItemLabelBinding
 import com.example.foodinfo.repository.model.LabelModel
-import com.example.foodinfo.ui.view_holder.ExploreInnerViewHolder
+import com.example.foodinfo.ui.view_holder.SearchLabelsViewHolder
 
 
-class ExploreInnerAdapter(
+class SearchLabelsAdapter(
     context: Context,
-    private val onItemClickListener: (String, String) -> Unit
-) : ListAdapter<LabelModel, ViewHolder>(LabelModel.ItemCallBack) {
+    private val onItemClickListener: (String, String) -> Unit,
+) : ListAdapter<LabelModel, ViewHolder>(
+    LabelModel.ItemCallBack
+) {
 
     private val layoutInflater = LayoutInflater.from(context)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ExploreInnerViewHolder(
-            RvItemExploreInnerBinding.inflate(layoutInflater, parent, false),
+        return SearchLabelsViewHolder(
+            RvItemLabelBinding.inflate(layoutInflater, parent, false),
             onItemClickListener
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { label ->
-            holder as ExploreInnerViewHolder
+            holder as SearchLabelsViewHolder
             holder.bind(label)
         }
     }

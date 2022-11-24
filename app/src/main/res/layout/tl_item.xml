@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utF-8"?>
+<FrameLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "wrap_content"
+    android:layout_height = "wrap_content">
+
+    <TextView
+        android:id = "@+id/textView"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:layout_marginHorizontal = "@dimen/dp_18"
+        android:fontFamily = "@font/app_font_medium"
+        android:textColor = "@drawable/selector_color_tl"
+        tools:text = "meal">
+
+    </TextView>
+
+</FrameLayout>

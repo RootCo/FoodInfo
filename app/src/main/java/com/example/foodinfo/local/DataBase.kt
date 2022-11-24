@@ -18,6 +18,7 @@ import com.example.foodinfo.local.entity.*
         RecipeNutrientEntity::class,
         RecipeLabelEntity::class,
         LabelEntity::class,
+        CategoryEntity::class,
         NutrientEntity::class,
         FavoriteMarkEntity::class,
     ]
