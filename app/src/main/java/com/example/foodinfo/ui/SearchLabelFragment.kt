@@ -18,6 +18,7 @@ import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchLabelViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -87,10 +88,15 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
             onItemClickListener,
             onFavoriteClickListener
         ).also {
-            it.addLoadStateListener { state: CombinedLoadStates ->
-                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-            }
+
+            // this part cause flickering when user adds recipe to favorites (operation is
+            // too fast, recycler appears a few milliseconds after disappearing)
+            // don't know how to fix so simply disabled it temporary
+
+//            it.addLoadStateListener { state: CombinedLoadStates ->
+//                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
+//                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
+//            }
         }
 
         with(binding.rvRecipes) {
