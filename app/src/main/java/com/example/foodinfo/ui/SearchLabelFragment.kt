@@ -1,24 +1,19 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchLabelBinding
 import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
 import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchLabelViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -93,10 +88,10 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
             // too fast, recycler appears a few milliseconds after disappearing)
             // don't know how to fix so simply disabled it temporary
 
-//            it.addLoadStateListener { state: CombinedLoadStates ->
-//                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-//                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-//            }
+            //            it.addLoadStateListener { state: CombinedLoadStates ->
+            //                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
+            //                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
+            //            }
         }
 
         with(binding.rvRecipes) {
@@ -113,10 +108,8 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipes.collectLatest(recyclerAdapter::submitData)
-            }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.recipes.collectLatest(recyclerAdapter::submitData)
         }
     }
 }

@@ -2,8 +2,6 @@ package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
@@ -11,9 +9,9 @@ import com.example.foodinfo.databinding.FragmentHomeBinding
 import com.example.foodinfo.ui.adapter.HomeCategoriesAdapter
 import com.example.foodinfo.ui.decorator.HomeCategoriesItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.HomeViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
@@ -71,11 +69,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                withContext(Dispatchers.IO) {
-                    recyclerAdapter.submitList(viewModel.categories)
-                }
+        repeatOn(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.IO) {
+                recyclerAdapter.submitList(viewModel.categories)
             }
         }
     }

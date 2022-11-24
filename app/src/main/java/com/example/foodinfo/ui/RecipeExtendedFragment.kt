@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -21,6 +20,7 @@ import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.setFavorite
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
@@ -93,33 +93,31 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        repeatOn(Lifecycle.State.STARTED) {
 
-                binding.pbContent.isVisible = true
-                binding.svContent.isVisible = false
+            binding.pbContent.isVisible = true
+            binding.svContent.isVisible = false
 
-                combine(
-                    viewModel.recipe,
-                    viewModel.labels,
-                    viewModel.nutrients,
-                    viewModel.ingredients,
-                ) { recipe, labels, nutrients, ingredients ->
+            combine(
+                viewModel.recipe,
+                viewModel.labels,
+                viewModel.nutrients,
+                viewModel.ingredients,
+            ) { recipe, labels, nutrients, ingredients ->
 
-                    initRecipe(recipe)
-                    initLabels(labels)
-                    initNutrients(nutrients)
-                    initIngredients(ingredients)
+                initRecipe(recipe)
+                initLabels(labels)
+                initNutrients(nutrients)
+                initIngredients(ingredients)
 
-                    binding.pbContent.isVisible = false
-                    binding.svContent.isVisible = true
-                    binding.svContent.apply {
-                        alpha = 0f
-                        animate().alpha(1f).setDuration(100).setListener(null)
-                    }
+                binding.pbContent.isVisible = false
+                binding.svContent.isVisible = true
+                binding.svContent.apply {
+                    alpha = 0f
+                    animate().alpha(1f).setDuration(100).setListener(null)
+                }
 
-                }.collectLatest { }
-            }
+            }.collectLatest { }
         }
     }
 

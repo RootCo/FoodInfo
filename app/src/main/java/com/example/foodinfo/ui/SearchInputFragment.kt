@@ -4,18 +4,16 @@ import android.widget.SearchView.OnQueryTextListener
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.databinding.FragmentSearchInputBinding
 import com.example.foodinfo.ui.adapter.SearchInputAdapter
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.hideKeyboard
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showKeyboard
 import com.example.foodinfo.view_model.SearchInputViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
@@ -90,10 +88,8 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
-            }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.searchHistory.collectLatest(recyclerAdapter::submitList)
         }
     }
 

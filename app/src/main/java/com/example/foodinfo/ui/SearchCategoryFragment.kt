@@ -3,14 +3,13 @@ package com.example.foodinfo.ui
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.foodinfo.databinding.FragmentSearchCategoryBinding
 import com.example.foodinfo.ui.adapter.SearchLabelsAdapter
 import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchCategoryViewModel
 import kotlinx.coroutines.Dispatchers
@@ -91,11 +90,9 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                withContext(Dispatchers.IO) {
-                    recyclerAdapter.submitList(viewModel.labels)
-                }
+        repeatOn(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.IO) {
+                recyclerAdapter.submitList(viewModel.labels)
             }
         }
     }

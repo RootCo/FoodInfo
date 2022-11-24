@@ -5,11 +5,15 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.DialogDescriptionBinding
 import com.example.foodinfo.repository.model.SVGModel
 import com.example.foodinfo.utils.glide.GlideApp
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.launch
 
 
 /*
@@ -61,3 +65,10 @@ fun Fragment.showDescriptionDialog(
     }.show()
 }
 
+fun Fragment.repeatOn(state: Lifecycle.State, runnable: suspend () -> Unit) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycle.repeatOnLifecycle(state) {
+            runnable.invoke()
+        }
+    }
+}
