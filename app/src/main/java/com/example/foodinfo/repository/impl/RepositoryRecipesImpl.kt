@@ -76,6 +76,7 @@ class RepositoryRecipesImpl @Inject constructor(
     }
 
 
+    // definitely this is the wrong place to store pager configs but dunno where else
     companion object {
         val DB_POPULAR_PAGER = PagingConfig(
             pageSize = 10,

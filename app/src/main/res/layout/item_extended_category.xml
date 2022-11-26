@@ -10,7 +10,7 @@
         style = "@style/TextViewVeryBig"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_regular"
         android:paddingBottom = "@dimen/dp_6"
         android:text = "@string/meal_text" />
 

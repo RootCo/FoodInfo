@@ -28,6 +28,7 @@
         app:shapeAppearanceOverlay = "@style/ShapeAppearanceNormal"
         tools:src = "@drawable/ic_no_image" />
 
+
     <TextView
         android:id = "@+id/tv_ingredient_name"
         style = "@style/TextViewMedium"
@@ -40,18 +41,18 @@
         android:textColor = "?appSecondaryFontColor"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "@+id/guideline"
+        app:layout_constraintHorizontal_bias = "0.0"
         app:layout_constraintStart_toEndOf = "@+id/iv_ingredient_preview"
         app:layout_constraintTop_toTopOf = "parent"
         app:layout_constraintVertical_chainStyle = "packed"
         tools:text = "portabello mushrooms" />
-
 
     <TextView
         android:id = "@+id/tv_ingredient_value"
         style = "@style/TextViewSmall"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_bold_rounded"
         app:layout_constraintBottom_toTopOf = "@+id/tv_ingredient_weight"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toEndOf = "@id/guideline"
@@ -65,7 +66,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:layout_marginTop = "@dimen/dp_10"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_bold_rounded"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toEndOf = "@id/guideline"

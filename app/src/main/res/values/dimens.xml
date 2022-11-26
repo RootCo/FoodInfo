@@ -24,7 +24,7 @@
     <dimen name = "screen_bottom_margin">56dp</dimen>
 
     <!--Rounded corners-->
-    <dimen name = "background_corner_item_big">@dimen/dp_30</dimen>
+    <dimen name = "background_corner_item_big">@dimen/dp_24</dimen>
 
     <!--View sizes-->
     <dimen name = "progress_size">@dimen/dp_50</dimen>

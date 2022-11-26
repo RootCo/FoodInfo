@@ -87,6 +87,7 @@
         <item name = "android:layout_height">wrap_content</item>
         <item name = "chipBackgroundColor">?appSecondaryBackgroundColor</item>
         <item name = "android:textAppearance">@style/TextViewSmall</item>
+        <item name = "android:fontFamily">@font/app_font_bold_rounded</item>
     </style>
 
     <style name = "BottomSheetDialog" parent = "Theme.Design.Light.BottomSheetDialog">

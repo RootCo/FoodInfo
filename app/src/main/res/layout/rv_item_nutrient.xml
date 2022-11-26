@@ -32,7 +32,7 @@
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:layout_marginEnd = "@dimen/dp_20"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_bold_rounded"
         android:textColor = "?appMainFontColor"
         app:layout_constraintBottom_toBottomOf = "@id/tv_name"
         app:layout_constraintEnd_toEndOf = "parent"

@@ -38,5 +38,5 @@
     <string name = "weight_text">Weight</string>
     <string name = "favorite_recipes_text">Favorite recipes</string>
     <string name = "selected_text">selected</string>
-    <string name = "explore_by_category_text">Explore by category</string>
+    <string name = "category_text">Category</string>
 </resources>

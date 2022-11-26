@@ -19,7 +19,7 @@
         android:id = "@+id/tv_ingredients_header"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_regular"
         android:text = "@string/nutrients_text"
         android:theme = "@style/TextViewVeryBig"
         app:layout_constraintBottom_toBottomOf = "@id/btn_back"

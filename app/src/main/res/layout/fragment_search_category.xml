@@ -31,6 +31,7 @@
         android:layout_marginHorizontal = "@dimen/dp_10"
         android:drawablePadding = "@dimen/dp_6"
         android:ellipsize = "end"
+        android:fontFamily = "@font/app_font_regular"
         android:gravity = "center"
         android:maxLines = "1"
         android:theme = "@style/TextViewBig"
