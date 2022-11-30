@@ -1,7 +1,6 @@
 package com.example.foodinfo
 
 import android.app.Application
-import com.example.foodinfo.di.DaggerBaseApplicationComponent
 import com.example.foodinfo.di.module.BaseApplicationModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
