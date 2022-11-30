@@ -38,6 +38,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 ) {
 
     private val args: RecipeExtendedFragmentArgs by navArgs()
+    private var isInitialized = false
 
     private val viewModel: RecipeExtendedViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
@@ -95,8 +96,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
 
-            binding.pbContent.isVisible = true
-            binding.svContent.isVisible = false
+            if (!isInitialized) {
+                binding.pbContent.isVisible = true
+                binding.svContent.isVisible = false
+            }
 
             combine(
                 viewModel.recipe,
@@ -110,11 +113,14 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 initNutrients(nutrients)
                 initIngredients(ingredients)
 
-                binding.pbContent.isVisible = false
-                binding.svContent.isVisible = true
-                binding.svContent.apply {
-                    alpha = 0f
-                    animate().alpha(1f).setDuration(100).setListener(null)
+                if (!isInitialized) {
+                    binding.pbContent.isVisible = false
+                    binding.svContent.isVisible = true
+                    binding.svContent.apply {
+                        alpha = 0f
+                        animate().alpha(1f).setDuration(100).setListener(null)
+                    }
+                    isInitialized = true
                 }
 
             }.collectLatest { }
