@@ -23,6 +23,7 @@
 
     <string name = "description_placeholder">Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.</string>
 
+    <string name = "selected_value">%1$d selected</string>
     <string name = "time_value">%1$d min</string>
     <string name = "serving_value">%1$d ppl</string>
     <string name = "percent_value">%1$d%%</string>
@@ -39,4 +40,5 @@
     <string name = "favorite_recipes_text">Favorite recipes</string>
     <string name = "selected_text">selected</string>
     <string name = "category_text">Category</string>
+    <string name = "all_text">all</string>
 </resources>

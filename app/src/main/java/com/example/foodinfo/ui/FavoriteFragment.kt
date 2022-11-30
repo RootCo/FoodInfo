@@ -44,9 +44,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         viewModel.setEditMode(false)
     }
 
-    private val onCancelClickListener: () -> Unit = {
-        viewModel.unselectAll()
-        viewModel.setEditMode(false)
+    private val onSelectAllClickListener: () -> Unit = {
+        if (viewModel.selectedCount.value == viewModel.totalRecipesCount) {
+            viewModel.unselectAll()
+        } else {
+            viewModel.selectAll()
+        }
         recyclerAdapter.notifyDataSetChanged()
     }
 
@@ -103,13 +106,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
     }
 
     override fun initUI() {
-        viewModel.updateSelected()
-
         with(binding) {
             btnEdit.setOnClickListener { onEditClickListener() }
             btnDelete.setOnClickListener { onDeleteClickListener() }
-            btnCancel.setOnClickListener { onCancelClickListener() }
             btnSort.setOnClickListener { onSortClickListener() }
+            cbSelectAll.setOnClickListener { onSelectAllClickListener() }
         }
 
         findNavController().addOnDestinationChangedListener(navigateCallback)
@@ -146,7 +147,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         }
         repeatOn(Lifecycle.State.STARTED) {
             viewModel.selectedCount.collectLatest { count ->
-                binding.tvSelectedCount.text = count.toString()
+                binding.tvSelectedCount.text = getString(
+                    R.string.selected_value,
+                    count
+                )
+                binding.cbSelectAll.isChecked = count == viewModel.totalRecipesCount
             }
         }
     }
