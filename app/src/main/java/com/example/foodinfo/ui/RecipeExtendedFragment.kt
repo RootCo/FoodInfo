@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.get
@@ -85,6 +86,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
 
     override fun initUI() {
+        isInitialized = false
         viewModel.recipeId = args.recipeId
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnShare.setOnClickListener { onShareClickListener() }
@@ -95,7 +97,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-
             if (!isInitialized) {
                 binding.pbContent.isVisible = true
                 binding.svContent.isVisible = false
