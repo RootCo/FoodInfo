@@ -1,9 +1,14 @@
 package com.example.foodinfo.ui
 
+import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentFavoriteBinding
 import com.example.foodinfo.ui.adapter.FavoriteAdapter
 import com.example.foodinfo.ui.decorator.FavoriteItemDecoration
@@ -23,8 +28,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
 
     private lateinit var recyclerAdapter: FavoriteAdapter
 
-    private val onEditClickListener: () -> Unit = {
-        viewModel.setEditMode(true)
+
+    private val onHoldClickListener: (String) -> Unit = { id ->
+        if (!viewModel.isEditMode.value) {
+            viewModel.setEditMode(true)
+            viewModel.updateSelectStatus(id)
+        }
     }
 
     private val onSortClickListener: () -> Unit = {
@@ -39,9 +48,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         viewModel.setEditMode(false)
     }
 
-    private val onCancelClickListener: () -> Unit = {
-        viewModel.unselectAll()
-        viewModel.setEditMode(false)
+    private val onSelectAllClickListener: () -> Unit = {
+        if (viewModel.selectedCount.value == viewModel.totalRecipesCount) {
+            viewModel.unselectAll()
+        } else {
+            viewModel.selectAll()
+        }
         recyclerAdapter.notifyDataSetChanged()
     }
 
@@ -64,23 +76,62 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         )
     }
 
+    private val navigateBackCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (viewModel.isEditMode.value) {
+                viewModel.setEditMode(false)
+                viewModel.unselectAll()
+                recyclerAdapter.notifyDataSetChanged()
+            } else {
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private val navigateCallback = object : NavController.OnDestinationChangedListener {
+        override fun onDestinationChanged(
+            controller: NavController,
+            destination: NavDestination,
+            arguments: Bundle?
+        ) {
+            if (destination.id == R.id.f_favorite) {
+                viewModel.setEditMode(false)
+                viewModel.unselectAll()
+            }
+        }
+
+    }
+
+    override fun onStop() {
+        // removing all callbacks to prevent memory leaks
+        findNavController().removeOnDestinationChangedListener(navigateCallback)
+        navigateBackCallback.remove()
+        super.onStop()
+    }
+
 
     override fun initUI() {
-        viewModel.updateSelected()
-
         with(binding) {
-            btnEdit.setOnClickListener { onEditClickListener() }
             btnDelete.setOnClickListener { onDeleteClickListener() }
-            btnCancel.setOnClickListener { onCancelClickListener() }
             btnSort.setOnClickListener { onSortClickListener() }
+            cbSelectAll.setOnClickListener { onSelectAllClickListener() }
+
+            tvHeader.setOnLongClickListener {
+                viewModel.setEditMode(true)
+                true
+            }
         }
+
+        findNavController().addOnDestinationChangedListener(navigateCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(navigateBackCallback)
 
         recyclerAdapter = FavoriteAdapter(
             requireContext(),
             isEditMode,
             isSelected,
             onReadyToSelect,
-            onReadyToNavigate
+            onReadyToNavigate,
+            onHoldClickListener
         )
 
         with(binding.rvRecipes) {
@@ -88,7 +139,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             setHasFixedSize(true)
             addItemDecoration(
                 FavoriteItemDecoration(
-                    resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.favorite_item_space),
+                    resources.getDimensionPixelSize(R.dimen.favorite_item_space),
                 )
             )
         }
@@ -106,7 +157,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         }
         repeatOn(Lifecycle.State.STARTED) {
             viewModel.selectedCount.collectLatest { count ->
-                binding.tvSelectedCount.text = count.toString()
+                binding.tvSelectedCount.text = getString(
+                    R.string.selected_value,
+                    count
+                )
+                binding.cbSelectAll.isChecked = count == viewModel.totalRecipesCount
             }
         }
     }
