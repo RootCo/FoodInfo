@@ -1,9 +1,14 @@
 package com.example.foodinfo.ui
 
+import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentFavoriteBinding
 import com.example.foodinfo.ui.adapter.FavoriteAdapter
 import com.example.foodinfo.ui.decorator.FavoriteItemDecoration
@@ -64,6 +69,38 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         )
     }
 
+    private val navigateBackCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (viewModel.isEditMode.value) {
+                viewModel.setEditMode(false)
+                viewModel.unselectAll()
+                recyclerAdapter.notifyDataSetChanged()
+            } else {
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private val navigateCallback = object : NavController.OnDestinationChangedListener {
+        override fun onDestinationChanged(
+            controller: NavController,
+            destination: NavDestination,
+            arguments: Bundle?
+        ) {
+            if (destination.id == R.id.f_favorite) {
+                viewModel.setEditMode(false)
+                viewModel.unselectAll()
+            }
+        }
+
+    }
+
+    override fun onStop() {
+        // removing all callbacks to prevent memory leaks
+        findNavController().removeOnDestinationChangedListener(navigateCallback)
+        navigateBackCallback.remove()
+        super.onStop()
+    }
 
     override fun initUI() {
         viewModel.updateSelected()
@@ -74,6 +111,9 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             btnCancel.setOnClickListener { onCancelClickListener() }
             btnSort.setOnClickListener { onSortClickListener() }
         }
+
+        findNavController().addOnDestinationChangedListener(navigateCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(navigateBackCallback)
 
         recyclerAdapter = FavoriteAdapter(
             requireContext(),
@@ -88,7 +128,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             setHasFixedSize(true)
             addItemDecoration(
                 FavoriteItemDecoration(
-                    resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.favorite_item_space),
+                    resources.getDimensionPixelSize(R.dimen.favorite_item_space),
                 )
             )
         }
