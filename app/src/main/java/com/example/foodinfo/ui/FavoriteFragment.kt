@@ -28,8 +28,12 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
 
     private lateinit var recyclerAdapter: FavoriteAdapter
 
-    private val onEditClickListener: () -> Unit = {
-        viewModel.setEditMode(true)
+
+    private val onHoldClickListener: (String) -> Unit = { id ->
+        if (!viewModel.isEditMode.value) {
+            viewModel.setEditMode(true)
+            viewModel.updateSelectStatus(id)
+        }
     }
 
     private val onSortClickListener: () -> Unit = {
@@ -105,12 +109,17 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
         super.onStop()
     }
 
+
     override fun initUI() {
         with(binding) {
-            btnEdit.setOnClickListener { onEditClickListener() }
             btnDelete.setOnClickListener { onDeleteClickListener() }
             btnSort.setOnClickListener { onSortClickListener() }
             cbSelectAll.setOnClickListener { onSelectAllClickListener() }
+
+            tvHeader.setOnLongClickListener {
+                viewModel.setEditMode(true)
+                true
+            }
         }
 
         findNavController().addOnDestinationChangedListener(navigateCallback)
@@ -121,7 +130,8 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             isEditMode,
             isSelected,
             onReadyToSelect,
-            onReadyToNavigate
+            onReadyToNavigate,
+            onHoldClickListener
         )
 
         with(binding.rvRecipes) {

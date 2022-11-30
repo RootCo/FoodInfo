@@ -12,6 +12,7 @@
         android:id = "@+id/ll_edit_menu"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
+        android:visibility = "gone"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent">
 
@@ -46,7 +47,6 @@
         android:id = "@+id/ll_base_menu"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
-        android:visibility = "gone"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent">
 
@@ -68,16 +68,8 @@
             android:id = "@+id/btn_sort"
             style = "@style/ButtonStroke"
             android:layout_gravity = "end"
-            android:layout_marginEnd = "@dimen/dp_10"
             android:contentDescription = "@string/default_content_description"
             android:src = "@drawable/ic_sort" />
-
-        <ImageView
-            android:id = "@+id/btn_edit"
-            style = "@style/ButtonStroke"
-            android:layout_gravity = "end"
-            android:contentDescription = "@string/default_content_description"
-            android:src = "@drawable/ic_edit" />
 
     </LinearLayout>
 
