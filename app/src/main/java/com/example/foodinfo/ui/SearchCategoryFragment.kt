@@ -91,9 +91,9 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.IO) {
-                recyclerAdapter.submitList(viewModel.labels)
-            }
+            recyclerAdapter.submitList(withContext(Dispatchers.IO) {
+                viewModel.labels
+            })
         }
     }
 }

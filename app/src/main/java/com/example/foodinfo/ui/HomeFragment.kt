@@ -70,9 +70,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.IO) {
-                recyclerAdapter.submitList(viewModel.categories)
-            }
+            recyclerAdapter.submitList(withContext(Dispatchers.IO) {
+                viewModel.categories
+            })
         }
     }
 }
