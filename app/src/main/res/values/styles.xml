@@ -82,22 +82,6 @@
         <item name = "shapeAppearanceOverlay">@style/ShapeAppearanceNormal</item>
     </style>
 
-    <style name = "Chip" parent = "Widget.MaterialComponents.Chip.Action">
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "chipBackgroundColor">?appSecondaryBackgroundColor</item>
-        <item name = "android:textAppearance">@style/TextViewSmall</item>
-        <item name = "android:fontFamily">@font/app_font_bold_rounded</item>
-    </style>
-
-    <style name = "CheapChip" parent="Widget.MaterialComponents.TextView">
-        <item name = "android:layout_width">wrap_content</item>
-        <item name = "android:layout_height">wrap_content</item>
-        <item name = "background">@drawable/background_secondary_bg_30</item>
-        <item name = "android:textAppearance">@style/TextViewSmall</item>
-        <item name = "android:fontFamily">@font/app_font_bold_rounded</item>
-    </style>
-
     <style name = "BottomSheetDialog" parent = "Theme.Design.Light.BottomSheetDialog">
         <item name = "bottomSheetStyle">@style/BottomSheetDialogModal</item>
     </style>
