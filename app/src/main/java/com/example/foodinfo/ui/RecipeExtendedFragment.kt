@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.get
@@ -15,17 +14,14 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
 import com.example.foodinfo.databinding.ItemExtendedCategoryBinding
+import com.example.foodinfo.databinding.TvChipBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.repository.model.RecipeLabelsModel
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
-import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
-import com.example.foodinfo.utils.repeatOn
-import com.example.foodinfo.utils.setFavorite
-import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
-import com.google.android.material.chip.Chip
 import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -117,10 +113,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 if (!isInitialized) {
                     binding.pbContent.isVisible = false
                     binding.svContent.isVisible = true
-                    binding.svContent.apply {
-                        alpha = 0f
-                        animate().alpha(1f).setDuration(100).setListener(null)
-                    }
+                    binding.svContent.baseAnimation()
                     isInitialized = true
                 }
 
@@ -213,14 +206,19 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         return ItemExtendedCategoryBinding.inflate(inflater, null, false).apply {
             tvTitle.text = name
             for (label in labels) {
-                cgLabels.addView(createLabel(name, label))
+                cgLabels.addView(createLabel(name, label, inflater))
             }
         }.root
     }
 
-    private fun createLabel(name: String, label: String): Chip {
-        return Chip(context, null, R.attr.appChipStyle).apply {
-            text = label
+    private fun createLabel(
+        name: String,
+        label: String,
+        inflater: LayoutInflater
+    ): View {
+        return TvChipBinding.inflate(inflater, null, false).apply {
+            this.textView.text = label
+        }.root.apply {
             setOnClickListener { onLabelClickListener(name, label) }
         }
     }

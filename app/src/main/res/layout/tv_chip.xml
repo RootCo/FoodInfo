@@ -6,12 +6,13 @@
 
     <TextView
         android:id = "@+id/textView"
-        style = "@style/TextViewBig"
+        style = "@style/TextViewSmall"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:layout_marginHorizontal = "@dimen/dp_18"
-        android:fontFamily = "@font/app_font_regular"
-        android:textColor = "@drawable/selector_color_tl"
+        android:background = "@drawable/background_secondary_bg_30"
+        android:includeFontPadding = "false"
+        android:paddingHorizontal = "@dimen/dp_16"
+        android:paddingVertical = "@dimen/dp_6"
         tools:text = "meal">
 
     </TextView>
