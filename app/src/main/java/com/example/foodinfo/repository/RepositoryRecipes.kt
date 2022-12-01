@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.example.foodinfo.repository.model.*
 import kotlinx.coroutines.flow.Flow
 
+
 interface RepositoryRecipes {
     fun getPopular(): Flow<PagingData<RecipeShortModel>>
 

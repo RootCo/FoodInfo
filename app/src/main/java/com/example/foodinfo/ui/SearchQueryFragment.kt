@@ -1,12 +1,9 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchQueryBinding
 import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
@@ -67,12 +64,7 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
             onGetTime,
             onItemClickListener,
             onFavoriteClickListener
-        ).also {
-            it.addLoadStateListener { state: CombinedLoadStates ->
-                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-            }
-        }
+        )
 
         with(binding.rvRecipes) {
             adapter = recyclerAdapter

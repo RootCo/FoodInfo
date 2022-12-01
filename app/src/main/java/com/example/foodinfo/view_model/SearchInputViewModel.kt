@@ -2,10 +2,11 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.model.SearchInputModel
 import com.example.foodinfo.repository.RepositorySearchHistory
+import com.example.foodinfo.repository.model.SearchInputModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
+
 
 class SearchInputViewModel @Inject constructor(
     private val repositorySearchHistory: RepositorySearchHistory

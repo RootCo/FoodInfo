@@ -82,17 +82,7 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
             onGetTime,
             onItemClickListener,
             onFavoriteClickListener
-        ).also {
-
-            // this part cause flickering when user adds recipe to favorites (operation is
-            // too fast, recycler appears a few milliseconds after disappearing)
-            // don't know how to fix so simply disabled it temporary
-
-            //            it.addLoadStateListener { state: CombinedLoadStates ->
-            //                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-            //                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-            //            }
-        }
+        )
 
         with(binding.rvRecipes) {
             adapter = recyclerAdapter
