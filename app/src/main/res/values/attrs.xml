@@ -10,5 +10,4 @@
     <attr name = "appErrorColor" format = "reference" />
     <attr name = "appDivider" format = "reference" />
     <attr name = "appOutline" format = "reference" />
-    <attr name = "appChipStyle" format = "reference" />
 </resources>
