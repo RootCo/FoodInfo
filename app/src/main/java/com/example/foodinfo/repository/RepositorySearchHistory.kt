@@ -4,7 +4,7 @@ import com.example.foodinfo.repository.model.SearchInputModel
 
 
 interface RepositorySearchHistory {
-    fun getHistoryLatest(inputText: String): List<SearchInputModel>
+    suspend fun getHistoryLatest(inputText: String): List<SearchInputModel>
 
     fun getHistoryAll(): List<SearchInputModel>
 
