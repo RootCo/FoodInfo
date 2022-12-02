@@ -36,20 +36,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         )
     }
 
-    private val onFilterClickListener: () -> Unit = {
-        findNavController().navigate(
-            HomeFragmentDirections.actionFHomeToFSearchFilter()
-        )
-    }
-
 
     override fun initUI() {
         recyclerAdapter = HomeCategoriesAdapter(
             requireContext(),
             onItemClickListener
         )
-        binding.llSearch.setOnClickListener { onSearchClickListener() }
-        binding.btnFilter.setOnClickListener { onFilterClickListener() }
+        binding.ivSearch.setOnClickListener { onSearchClickListener() }
 
         with(binding.rvCategories) {
             layoutManager = LinearLayoutManager(context).also {
@@ -65,6 +58,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             )
             itemAnimator = null
         }
+
+        binding.hintTop.textView.text = getString(
+            R.string.TBD_screen,
+            resources.getString(R.string.top_recipes_text)
+        )
+        binding.hintTrending.textView.text = getString(
+            R.string.TBD_screen,
+            resources.getString(R.string.trending_text)
+        )
     }
 
     override fun subscribeUI() {

@@ -40,6 +40,12 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         )
     }
 
+    private val onFilterClickListener: () -> Unit = {
+        findNavController().navigate(
+            SearchInputFragmentDirections.actionFSearchInputToFSearchFilter()
+        )
+    }
+
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
     }
@@ -78,6 +84,7 @@ class SearchInputFragment : BaseFragment<FragmentSearchInputBinding>(
         )
 
         binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnFilter.setOnClickListener { onFilterClickListener() }
 
         with(binding.rvSearchInput) {
             adapter = recyclerAdapter

@@ -5,72 +5,118 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginTop = "@dimen/screen_vertical_margin"
-    android:orientation = "vertical"
-    tools:context = ".ui.HomeFragment">
+    android:layout_marginTop = "@dimen/dp_40">
 
-    <LinearLayout
-        android:id = "@+id/ll_search"
-        android:layout_width = "match_parent"
-        android:layout_height = "@dimen/dp_50"
-        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
-        android:layout_marginBottom = "@dimen/screen_vertical_margin"
-        android:background = "@drawable/background_outline_24"
+    <ScrollView
+        android:id = "@+id/sv_content"
+        android:layout_width = "0dp"
+        android:layout_height = "0dp"
+        android:fadingEdgeLength = "@dimen/dp_30"
+        android:requiresFadingEdge = "vertical"
+        android:scrollbars = "none"
+        app:layout_constraintBottom_toBottomOf = "parent"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent">
 
-        <ImageView
-            android:layout_width = "wrap_content"
-            android:layout_height = "match_parent"
-            android:layout_marginStart = "@dimen/dp_10"
-            android:contentDescription = "@string/content_description_text"
-            android:paddingVertical = "@dimen/dp_12"
-            android:src = "@drawable/ic_search"
-            app:tint = "?appMainFontColor" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content">
 
-        <TextView
-            style = "@style/TextViewSmall"
-            android:layout_width = "0dp"
-            android:layout_height = "match_parent"
-            android:layout_weight = "1"
-            android:gravity = "center|start"
-            android:text = "@string/et_search_hint" />
+            <TextView
+                android:id = "@+id/tv_category_header"
+                style = "@style/TextViewVeryBig"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "@dimen/screen_horizontal_margin"
+                android:ellipsize = "end"
+                android:fontFamily = "@font/app_font_regular"
+                android:maxLines = "2"
+                android:text = "@string/home_header_text"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent" />
 
-        <ImageView
-            android:id = "@+id/btn_filter"
-            android:layout_width = "wrap_content"
-            android:layout_height = "match_parent"
-            android:layout_marginEnd = "@dimen/dp_10"
-            android:contentDescription = "@string/content_description_text"
-            android:paddingVertical = "@dimen/dp_12"
-            android:src = "@drawable/ic_search_filter"
-            app:tint = "?appMainFontColor" />
+            <ImageView
+                android:id = "@+id/iv_search"
+                style = "@style/ButtonStroke"
+                android:layout_width = "@dimen/dp_60"
+                android:layout_height = "@dimen/dp_60"
+                android:layout_gravity = "center"
+                android:layout_marginEnd = "@dimen/screen_horizontal_margin"
+                android:background = "@drawable/background_outline_16"
+                android:contentDescription = "@string/default_content_description"
+                android:padding = "@dimen/dp_12"
+                android:src = "@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf = "@+id/tv_category_header"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintTop_toTopOf = "@+id/tv_category_header" />
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id = "@+id/rv_categories"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_40"
+                android:clipToPadding = "true"
+                android:orientation = "horizontal"
+                app:layoutManager = "LinearLayoutManager"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_category_header"
+                tools:listitem = "@layout/rv_item_category" />
 
-    <TextView
-        android:id = "@+id/tv_category_header"
-        style = "@style/TextViewVeryBig"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:layout_marginStart = "@dimen/screen_horizontal_margin"
-        android:layout_marginTop = "@dimen/dp_30"
-        android:fontFamily = "@font/app_font_regular"
-        android:text = "@string/category_text"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/ll_search" />
+            <TextView
+                android:id = "@+id/tv_top_header"
+                style = "@style/TextViewVeryBig"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "@dimen/screen_horizontal_margin"
+                android:layout_marginTop = "@dimen/dp_40"
+                android:ellipsize = "end"
+                android:fontFamily = "@font/app_font_regular"
+                android:maxLines = "2"
+                android:text = "@string/top_recipes_text"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/rv_categories" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id = "@+id/rv_categories"
-        android:layout_width = "match_parent"
-        android:layout_height = "wrap_content"
-        android:layout_marginTop = "@dimen/dp_16"
-        android:clipToPadding = "true"
-        android:orientation = "horizontal"
-        app:layoutManager = "LinearLayoutManager"
-        app:layout_constraintStart_toStartOf = "parent"
-        app:layout_constraintTop_toBottomOf = "@+id/tv_category_header"
-        tools:listitem = "@layout/rv_item_category" />
+            <include
+                android:id = "@+id/hint_top"
+                layout = "@layout/tbd_screen_hint"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginHorizontal = "@dimen/dp_40"
+                android:layout_marginTop = "120dp"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_top_header" />
 
+            <TextView
+                android:id = "@+id/tv_trending_header"
+                style = "@style/TextViewVeryBig"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_marginStart = "@dimen/screen_horizontal_margin"
+                android:layout_marginTop = "@dimen/dp_40"
+                android:ellipsize = "end"
+                android:fontFamily = "@font/app_font_regular"
+                android:maxLines = "2"
+                android:text = "@string/trending_text"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/hint_top" />
+
+            <include
+                android:id = "@+id/hint_trending"
+                layout = "@layout/tbd_screen_hint"
+                android:layout_width = "0dp"
+                android:layout_height = "wrap_content"
+                android:layout_marginHorizontal = "@dimen/dp_40"
+                android:layout_marginTop = "120dp"
+                app:layout_constraintEnd_toEndOf = "parent"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/tv_trending_header" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,9 +20,6 @@
             android:id = "@+id/action_f_home_to_f_search_label"
             app:destination = "@id/f_search_label" />
         <action
-            android:id = "@+id/action_f_home_to_f_search_filter"
-            app:destination = "@id/f_search_filter" />
-        <action
             android:id = "@+id/action_f_home_to_f_search_category"
             app:destination = "@id/f_search_category" />
     </fragment>
@@ -39,6 +36,9 @@
         <action
             android:id = "@+id/action_f_search_input_to_f_search_query"
             app:destination = "@id/f_search_query" />
+        <action
+            android:id = "@+id/action_f_search_input_to_f_search_filter"
+            app:destination = "@id/f_search_filter" />
     </fragment>
     <fragment
         android:id = "@+id/f_search_query"
