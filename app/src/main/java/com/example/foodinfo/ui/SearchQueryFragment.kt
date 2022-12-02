@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -26,7 +27,6 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
 
     private lateinit var recyclerAdapter: SearchRecipeAdapter
 
-    // возвращаемся на предыдущий экран минуя экран с вводом поиска
     private val onBackClickListener: () -> Unit = {
         findNavController().popBackStack(R.id.f_search_input, true)
     }
@@ -47,8 +47,20 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
         viewModel.updateFavoriteMark(id)
     }
 
+    private val navigateBackCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack(R.id.f_search_input, true)
+        }
+    }
+
     private val onGetTime: (Int) -> String = { time ->
         getString(R.string.time_value, time)
+    }
+
+
+    override fun onStop() {
+        navigateBackCallback.remove()
+        super.onStop()
     }
 
 
@@ -58,6 +70,8 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
         binding.tvQuery.text = args.query
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnSearch.setOnClickListener { onSearchClickListener() }
+
+        requireActivity().onBackPressedDispatcher.addCallback(navigateBackCallback)
 
         recyclerAdapter = SearchRecipeAdapter(
             requireContext(),
