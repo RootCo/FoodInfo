@@ -6,7 +6,10 @@ import com.example.foodinfo.repository.RepositorySearchHistory
 import com.example.foodinfo.repository.model.SearchInputModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -19,8 +22,11 @@ class SearchInputViewModel @Inject constructor(
     private var job: Job? = null
 
     private val _searchHistory = MutableSharedFlow<List<SearchInputModel>>()
-    val searchHistory: SharedFlow<List<SearchInputModel>> = _searchHistory.asSharedFlow()
-        .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 0)
+    val searchHistory: SharedFlow<List<SearchInputModel>> = _searchHistory.shareIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(),
+        0
+    )
 
 
     init {

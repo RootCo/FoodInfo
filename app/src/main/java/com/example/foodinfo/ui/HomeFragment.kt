@@ -11,8 +11,7 @@ import com.example.foodinfo.ui.decorator.HomeCategoriesItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.HomeViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.collectLatest
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
@@ -70,9 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            recyclerAdapter.submitList(withContext(Dispatchers.IO) {
-                viewModel.categories
-            })
+            viewModel.categories.collectLatest(recyclerAdapter::submitList)
         }
     }
 }

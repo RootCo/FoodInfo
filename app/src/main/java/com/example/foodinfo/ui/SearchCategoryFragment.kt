@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -9,10 +10,12 @@ import com.example.foodinfo.databinding.FragmentSearchCategoryBinding
 import com.example.foodinfo.ui.adapter.SearchLabelsAdapter
 import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.baseAnimation
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchCategoryViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -86,14 +89,19 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
                     3
                 )
             )
+            itemAnimator = null
         }
     }
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            recyclerAdapter.submitList(withContext(Dispatchers.IO) {
-                viewModel.labels
-            })
+            viewModel.labels.collectLatest {
+                binding.rvLabels.isVisible = false
+                recyclerAdapter.submitList(it) {
+                    binding.rvLabels.isVisible = true
+                    binding.rvLabels.baseAnimation()
+                }
+            }
         }
     }
 }
