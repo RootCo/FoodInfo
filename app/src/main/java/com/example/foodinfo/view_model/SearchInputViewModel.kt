@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -15,7 +16,7 @@ class SearchInputViewModel @Inject constructor(
     private val repositorySearchHistory: RepositorySearchHistory
 ) : ViewModel() {
 
-    var job: Job? = null
+    private var job: Job? = null
 
     private val _searchHistory = MutableSharedFlow<List<SearchInputModel>>()
     val searchHistory: SharedFlow<List<SearchInputModel>> = _searchHistory.asSharedFlow()
@@ -23,8 +24,10 @@ class SearchInputViewModel @Inject constructor(
 
 
     init {
-        viewModelScope.launch(Dispatchers.IO) {
-            _searchHistory.emit(repositorySearchHistory.getHistoryLatest(""))
+        viewModelScope.launch {
+            withContext((Dispatchers.IO)) {
+                _searchHistory.emit(repositorySearchHistory.getHistoryLatest(""))
+            }
         }
     }
 
