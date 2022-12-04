@@ -63,7 +63,7 @@ class RepositoryRecipesImpl @Inject constructor(
         return recipesDAO.getByIdNutrients(id).map { list -> list.map { it.toModel() } }
     }
 
-    override fun getByIdLabels(id: String): Flow<RecipeLabelsModel> {
+    override fun getByIdLabels(id: String): Flow<List<RecipeCategoryModel>> {
         return recipesDAO.getByIdLabels(id).map { it.toModel() }
     }
 

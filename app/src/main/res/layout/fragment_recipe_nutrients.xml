@@ -37,6 +37,6 @@
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@id/btn_back"
-        tools:listitem = "@layout/rv_item_nutrient" />
+        tools:listitem = "@layout/rv_item_recipe_nutrient" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -182,7 +182,7 @@
 
                 <include
                     android:id = "@+id/i_protein"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_carbs"
@@ -191,7 +191,7 @@
 
                 <include
                     android:id = "@+id/i_carbs"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_fat"
@@ -199,7 +199,7 @@
 
                 <include
                     android:id = "@+id/i_fat"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_energy"
@@ -207,7 +207,7 @@
 
                 <include
                     android:id = "@+id/i_energy"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toEndOf = "parent"
@@ -286,13 +286,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <com.example.foodinfo.ui.custom_view.NonScrollListView
                 android:id = "@+id/ll_categories"
                 android:layout_width = "0dp"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_50"
-                android:orientation = "vertical"
-                android:paddingBottom = "@dimen/dp_40"
+                android:paddingBottom = "@dimen/dp_20"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@id/cl_ingredients" />
