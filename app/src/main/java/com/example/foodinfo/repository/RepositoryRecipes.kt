@@ -20,7 +20,7 @@ interface RepositoryRecipes {
 
     fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>>
 
-    fun getByIdLabels(id: String): Flow<RecipeLabelsModel>
+    fun getByIdLabels(id: String): Flow<List<RecipeCategoryModel>>
 
     fun updateFavoriteMark(id: String)
 

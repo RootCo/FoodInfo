@@ -36,7 +36,7 @@ class RecipeExtendedViewModel @Inject constructor(
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 
-    val labels: SharedFlow<RecipeLabelsModel> by lazy {
+    val labels: SharedFlow<List<RecipeCategoryModel>> by lazy {
         repositoryRecipes.getByIdLabels(recipeId).flowOn(Dispatchers.IO)
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }

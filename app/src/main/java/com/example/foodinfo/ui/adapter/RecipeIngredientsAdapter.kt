@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.foodinfo.databinding.RvItemIngredientBinding
+import com.example.foodinfo.databinding.RvItemRecipeIngredientBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.ui.view_holder.IngredientsViewHolder
 
@@ -23,7 +23,7 @@ class RecipeIngredientsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return IngredientsViewHolder(
-            RvItemIngredientBinding.inflate(layoutInflater, parent, false),
+            RvItemRecipeIngredientBinding.inflate(layoutInflater, parent, false),
             onGetWeight,
             onGetQuantity
         )
