@@ -21,6 +21,7 @@ import com.example.foodinfo.local.entity.*
         CategoryEntity::class,
         NutrientEntity::class,
         FavoriteMarkEntity::class,
+        RangeFieldEntity::class,
     ]
 )
 abstract class DataBase : RoomDatabase() {

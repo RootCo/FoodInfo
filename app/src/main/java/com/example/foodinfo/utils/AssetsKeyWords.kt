@@ -14,6 +14,7 @@ object AssetsKeyWords {
     const val DB_CATEGORIES_LOCAL = "db_categories_local.json"
     const val DB_LABELS_REMOTE = "db_labels_remote.json"
     const val DB_LABELS_LOCAL = "db_labels_local.json"
+    const val DB_RANGE_FIELDS = "db_range_fields.json"
     const val CATEGORY_DISH = "dish"
     const val CATEGORY_DIET = "diet"
     const val CATEGORY_MEAL = "meal"

@@ -1,9 +1,28 @@
 package com.example.foodinfo.local.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.example.foodinfo.local.entity.RangeFieldEntity
 
 
 @Dao
 interface SearchFilterDAO {
-    // TODO not implement yet
+
+    @Query(
+        "SELECT * FROM ${RangeFieldEntity.TABLE_NAME} " +
+                "WHERE ${RangeFieldEntity.Columns.NAME} " +
+                "LIKE '%' || :fieldName || '%'"
+    )
+    fun getField(fieldName: String): RangeFieldEntity
+
+    @Query(
+        "SELECT * FROM ${RangeFieldEntity.TABLE_NAME} " +
+                "WHERE ${RangeFieldEntity.Columns.CATEGORY} " +
+                "LIKE '%' || :categoryName || '%'"
+    )
+    fun getFieldsByCategory(categoryName: String): List<RangeFieldEntity>
+
+    @Insert
+    fun addAll(fields: List<RangeFieldEntity>)
 }

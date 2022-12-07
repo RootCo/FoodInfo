@@ -149,5 +149,17 @@ class MainActivity : AppCompatActivity() {
                 object : TypeToken<List<NutrientEntity>>() {}.type
             )
         )
+
+
+        val dbRangeFields = jsonLoader.load(
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RANGE_FIELDS)
+        )
+
+        dataBase.searchFilterDAO.addAll(
+            gson.fromJson(
+                dbRangeFields.get(AssetsKeyWords.CONTENT).toString(),
+                object : TypeToken<List<RangeFieldEntity>>() {}.type
+            )
+        )
     }
 }
