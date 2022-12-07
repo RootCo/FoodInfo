@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utF-8"?>
-<FrameLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<TextView xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:tools = "http://schemas.android.com/tools"
+    android:id = "@+id/textView"
+    style = "@style/TextViewSmall"
     android:layout_width = "wrap_content"
-    android:layout_height = "wrap_content">
+    android:layout_height = "wrap_content"
+    android:background = "@drawable/background_secondary_bg_30"
+    android:includeFontPadding = "false"
+    android:paddingHorizontal = "@dimen/dp_16"
+    android:paddingVertical = "@dimen/dp_6"
+    tools:text = "meal">
 
-    <TextView
-        android:id = "@+id/textView"
-        style = "@style/TextViewSmall"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:background = "@drawable/background_secondary_bg_30"
-        android:includeFontPadding = "false"
-        android:paddingHorizontal = "@dimen/dp_16"
-        android:paddingVertical = "@dimen/dp_6"
-        tools:text = "meal">
-
-    </TextView>
-
-</FrameLayout>
+</TextView>
