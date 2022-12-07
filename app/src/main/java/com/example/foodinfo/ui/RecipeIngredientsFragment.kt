@@ -7,7 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeIngredientsBinding
 import com.example.foodinfo.ui.adapter.RecipeIngredientsAdapter
-import com.example.foodinfo.ui.decorator.IngredientsItemDecoration
+import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.getMeasureSpacer
 import com.example.foodinfo.utils.repeatOn
@@ -59,7 +59,7 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                IngredientsItemDecoration(
+                ListVerticalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.ingredients_item_space),
                     resources.getDimensionPixelSize(R.dimen.ingredients_item_margin)
                 )
