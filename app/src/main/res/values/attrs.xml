@@ -10,4 +10,16 @@
     <attr name = "appErrorColor" format = "reference" />
     <attr name = "appDivider" format = "reference" />
     <attr name = "appOutline" format = "reference" />
+
+    <declare-styleable name = "RangeInput">
+        <attr name = "header" format = "string" />
+        <attr name = "measure" format = "string" />
+        <attr name = "stepSize" format = "float" />
+        <attr name = "minValue" format = "float" />
+        <attr name = "maxValue" format = "float" />
+        <attr name = "questionMarkVisible" format = "boolean" />
+        <attr name = "headerFontFamily" format = "reference" />
+        <attr name = "headerTextColor" format = "reference" />
+        <attr name = "headerTextSize" format = "reference" />
+    </declare-styleable>
 </resources>

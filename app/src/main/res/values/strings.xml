@@ -44,4 +44,11 @@
     <string name = "all_text">all</string>
     <string name = "top_recipes_text">Top recipes</string>
     <string name = "trending_text">Trending</string>
+    <string name = "long_dash_text">─</string>
+
+    <string-array name = "preview_range_slider_values">
+        <item>0</item>
+        <item>100</item>
+    </string-array>
+
 </resources>
