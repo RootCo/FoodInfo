@@ -34,7 +34,7 @@ class RangeInput @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    private var stopTrackingCallback: ((Float, Float) -> Unit)? = null
+    private var stopTrackingCallback: ((Float, Float, Boolean) -> Unit)? = null
 
 
     var header: String = DEFAULT_HEADER
@@ -140,7 +140,11 @@ class RangeInput @JvmOverloads constructor(
         override fun onStartTrackingTouch(slider: RangeSlider) {}
 
         override fun onStopTrackingTouch(slider: RangeSlider) {
-            stopTrackingCallback?.invoke(minCurrent, maxCurrent)
+            stopTrackingCallback?.invoke(
+                minCurrent,
+                maxCurrent,
+                minValue == minCurrent && maxValue == maxCurrent
+            )
         }
     }
 
@@ -149,7 +153,7 @@ class RangeInput @JvmOverloads constructor(
         binding.tvHeader.setOnClickListener { callback(binding.tvHeader.text.toString()) }
     }
 
-    fun addStopTrackingCallback(callback: (Float, Float) -> Unit) {
+    fun addStopTrackingCallback(callback: (Float, Float, Boolean) -> Unit) {
         stopTrackingCallback = callback
     }
 
