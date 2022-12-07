@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content">
+
+    <TextView
+        android:id = "@+id/tv_header"
+        style = "@style/TextViewMedium"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:includeFontPadding = "false"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent"
+        tools:text = "Folate equivalent (total)" />
+
+    <TextView
+        android:id = "@+id/tv_range"
+        style = "@style/TextViewSmall"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:fontFamily = "@font/app_font_bold_rounded"
+        android:includeFontPadding = "false"
+        app:layout_constraintBottom_toBottomOf = "@+id/tv_header"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "@+id/tv_header"
+        tools:text = "20 ─ 300 ug" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

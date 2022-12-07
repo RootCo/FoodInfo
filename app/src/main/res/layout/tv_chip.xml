@@ -9,6 +9,4 @@
     android:includeFontPadding = "false"
     android:paddingHorizontal = "@dimen/dp_16"
     android:paddingVertical = "@dimen/dp_6"
-    tools:text = "meal">
-
-</TextView>
+    tools:text = "meal" />

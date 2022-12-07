@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
     android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
@@ -39,6 +40,15 @@
             android:layout_height = "wrap_content"
             android:layout_marginTop = "@dimen/dp_20">
 
+            <com.example.foodinfo.ui.custom_view.NonScrollListView
+                android:id = "@+id/ll_base_fields"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toTopOf = "parent"
+                tools:itemCount = "2"
+                tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem = "@layout/rv_item_filter_input_base_field" />
 
             <TextView
                 android:id = "@+id/tv_nutrients_header"
@@ -55,20 +65,24 @@
                 android:id = "@+id/iv_nutrients_edit"
                 android:layout_width = "@dimen/dp_100"
                 android:layout_height = "@dimen/dp_50"
+                android:layout_marginTop = "@dimen/dp_20"
                 android:contentDescription = "@string/default_content_description"
                 android:padding = "@dimen/dp_12"
                 android:scaleType = "fitEnd"
                 android:src = "@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintTop_toTopOf = "parent" />
+                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields" />
 
             <com.example.foodinfo.ui.custom_view.NonScrollListView
                 android:id = "@+id/ll_nutrients"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_20"
+                android:layout_marginTop = "@dimen/dp_10"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit" />
+                app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit"
+                tools:itemCount = "5"
+                tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem = "@layout/rv_item_filter_input_nutrients" />
 
             <com.example.foodinfo.ui.custom_view.NonScrollListView
                 android:id = "@+id/ll_categories"
