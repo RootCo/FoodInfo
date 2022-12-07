@@ -17,6 +17,7 @@ import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
 import com.example.foodinfo.ui.adapter.RecipeCategoriesAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
+import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
@@ -100,6 +101,11 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 it.orientation = LinearLayoutManager.VERTICAL
                 it.isScrollEnabled = false
             }
+            addItemDecoration(
+                ListVerticalItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.recipe_extended_category_item_space)
+                )
+            )
             adapter = recyclerAdapter
         }
     }
