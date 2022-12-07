@@ -22,6 +22,8 @@
     <dimen name = "favorite_item_space">@dimen/dp_12</dimen>
     <dimen name = "favorite_item_margin">@dimen/dp_24</dimen>
 
+    <dimen name = "recipe_extended_category_item_space">@dimen/dp_12</dimen>
+
     <dimen name = "screen_bottom_margin">56dp</dimen>
 
     <!--Rounded corners-->
