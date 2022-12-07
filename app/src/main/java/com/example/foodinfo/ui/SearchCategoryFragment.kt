@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.databinding.FragmentSearchCategoryBinding
 import com.example.foodinfo.ui.adapter.SearchLabelsAdapter
-import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
+import com.example.foodinfo.ui.decorator.GridItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.baseAnimation
 import com.example.foodinfo.utils.repeatOn
@@ -83,7 +83,7 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                SearchRecipeItemDecoration(
+                GridItemDecoration(
                     resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.search_labels_item_horizontal),
                     resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.search_labels_item_vertical),
                     3

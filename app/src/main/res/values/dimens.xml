@@ -11,15 +11,16 @@
     <dimen name = "home_categories_space">@dimen/dp_8</dimen>
     <dimen name = "home_categories_margin">@dimen/dp_24</dimen>
     <dimen name = "ingredients_item_space">@dimen/dp_16</dimen>
-    <dimen name = "ingredients_item_margin">@dimen/dp_30</dimen>
+    <dimen name = "ingredients_item_margin">@dimen/dp_24</dimen>
     <dimen name = "nutrients_item_space">@dimen/dp_16</dimen>
-    <dimen name = "nutrients_item_margin">@dimen/dp_30</dimen>
+    <dimen name = "nutrients_item_margin">@dimen/dp_24</dimen>
     <dimen name = "search_recipes_item_horizontal">@dimen/dp_30</dimen>
     <dimen name = "search_recipes_item_vertical">@dimen/dp_16</dimen>
     <dimen name = "search_labels_item_horizontal">@dimen/dp_20</dimen>
     <dimen name = "search_labels_item_vertical">@dimen/dp_6</dimen>
 
     <dimen name = "favorite_item_space">@dimen/dp_12</dimen>
+    <dimen name = "favorite_item_margin">@dimen/dp_24</dimen>
 
     <dimen name = "screen_bottom_margin">56dp</dimen>
 

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 
-class IngredientsItemDecoration(
+class ListVerticalItemDecoration(
     private val space: Int, private val margin: Int
 ) : RecyclerView.ItemDecoration() {
 
@@ -14,6 +14,7 @@ class IngredientsItemDecoration(
     ) {
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
+                top = margin
                 bottom = space
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
                 top = space

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentFavoriteBinding
 import com.example.foodinfo.ui.adapter.FavoriteAdapter
-import com.example.foodinfo.ui.decorator.FavoriteItemDecoration
+import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.FavoriteViewModel
@@ -138,8 +138,9 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                FavoriteItemDecoration(
+                ListVerticalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.favorite_item_space),
+                    resources.getDimensionPixelSize(R.dimen.favorite_item_margin),
                 )
             )
         }
