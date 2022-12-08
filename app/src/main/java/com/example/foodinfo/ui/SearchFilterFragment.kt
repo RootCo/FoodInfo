@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterBinding
 import com.example.foodinfo.ui.adapter.FilterBaseFieldAdapter
+import com.example.foodinfo.ui.adapter.FilterCategoriesAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
 import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
@@ -23,7 +24,8 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         requireActivity().appComponent.viewModelsFactory()
     }
 
-    private lateinit var recyclerAdapter: FilterBaseFieldAdapter
+    private lateinit var recyclerAdapterBaseFields: FilterBaseFieldAdapter
+    private lateinit var recyclerAdapterCategories: FilterCategoriesAdapter
 
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
@@ -37,7 +39,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         )
     }
 
-    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
+    private val onBaseFieldValueChangedCallback: (Float, Float, Boolean) -> Unit =
         { minValue, maxValue, isDefault ->
             if (isDefault) {
                 //TODO
@@ -46,20 +48,28 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             }
         }
 
+    private val onCategoryChangedCallback: (String) -> Unit = { category ->
+        findNavController().navigate(
+            SearchFilterFragmentDirections.actionFSearchFilterToFSearchFilterCategory(
+                category,
+                viewModel.recipeId
+            )
+        )
+    }
+
 
     override fun initUI() {
-        recyclerAdapter = FilterBaseFieldAdapter(
-            requireContext(),
-            onValueChangedCallback
-        )
-
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.ivNutrientsEdit.setOnClickListener {
             onNutrientsEditClickListener()
         }
 
+        recyclerAdapterBaseFields = FilterBaseFieldAdapter(
+            requireContext(),
+            onBaseFieldValueChangedCallback
+        )
         with(binding.llBaseFields) {
-            adapter = recyclerAdapter
+            adapter = recyclerAdapterBaseFields
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
             }
@@ -71,12 +81,33 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 
             )
         }
+
+        recyclerAdapterCategories = FilterCategoriesAdapter(
+            requireContext(),
+            onCategoryChangedCallback
+        )
+        with(binding.llCategories) {
+            adapter = recyclerAdapterCategories
+            layoutManager = NonScrollLinearLayoutManager(context).also {
+                it.orientation = LinearLayoutManager.VERTICAL
+            }
+            itemAnimator = null
+            addItemDecoration(
+                ListVerticalItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space)
+                )
+
+            )
+        }
     }
 
     override fun subscribeUI() {
         super.subscribeUI()
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.rangeFields.collectLatest(recyclerAdapter::submitList)
+            viewModel.rangeFields.collectLatest(recyclerAdapterBaseFields::submitList)
+        }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)
         }
     }
 }

@@ -25,6 +25,9 @@
     <dimen name = "recipe_extended_category_item_space">@dimen/dp_12</dimen>
 
     <dimen name = "filter_base_range_field_item_space">@dimen/dp_8</dimen>
+    <dimen name = "filter_category_item_space">@dimen/dp_8</dimen>
+    <dimen name = "filter_category_edit_item_space">@dimen/dp_8</dimen>
+    <dimen name = "filter_category_edit_item_margin">@dimen/dp_20</dimen>
     <dimen name = "filter_nutrients_edit_field_item_space">@dimen/dp_8</dimen>
     <dimen name = "filter_nutrients_edit_field_item_margin">@dimen/dp_20</dimen>
 

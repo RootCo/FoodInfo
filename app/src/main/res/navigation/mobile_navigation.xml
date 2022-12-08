@@ -61,7 +61,7 @@
         android:id = "@+id/f_search_filter"
         android:name = "com.example.foodinfo.ui.SearchFilterFragment"
         android:label = "fragment_search_input_filter"
-        tools:layout = "@layout/fragment_search_filter" >
+        tools:layout = "@layout/fragment_search_filter">
         <action
             android:id = "@+id/action_f_search_filter_to_f_search_filter_category"
             app:destination = "@id/f_search_filter_category" />
@@ -165,6 +165,9 @@
         android:name = "com.example.foodinfo.ui.SearchFilterCategoryFragment"
         android:label = "SearchFilterCategoryFragment"
         tools:layout = "@layout/fragment_search_filter_category">
+        <argument
+            android:name = "category"
+            app:argType = "string" />
         <argument
             android:name = "searchFilterId"
             app:argType = "string" />

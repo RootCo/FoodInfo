@@ -38,7 +38,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
-            android:layout_marginTop = "@dimen/dp_20">
+            android:paddingTop = "@dimen/dp_20">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_base_fields"
@@ -50,9 +50,20 @@
                 tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem = "@layout/rv_item_filter_input_base_field" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id = "@+id/ll_categories"
+                android:layout_width = "match_parent"
+                android:layout_height = "wrap_content"
+                android:layout_marginTop = "@dimen/dp_30"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields"
+                tools:itemCount = "5"
+                tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem = "@layout/rv_item_filter_input_category" />
+
             <TextView
                 android:id = "@+id/tv_nutrients_header"
-                style = "@style/TextViewVeryBig"
+                style = "@style/TextViewBig"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:includeFontPadding = "false"
@@ -64,36 +75,26 @@
             <ImageView
                 android:id = "@+id/iv_nutrients_edit"
                 android:layout_width = "@dimen/dp_100"
-                android:layout_height = "@dimen/dp_50"
-                android:layout_marginTop = "@dimen/dp_20"
+                android:layout_height = "@dimen/dp_44"
+                android:layout_marginTop = "@dimen/dp_30"
                 android:contentDescription = "@string/default_content_description"
-                android:padding = "@dimen/dp_12"
+                android:paddingVertical = "@dimen/dp_10"
                 android:scaleType = "fitEnd"
                 android:src = "@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields" />
+                app:layout_constraintTop_toBottomOf = "@+id/ll_categories" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_nutrients"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_10"
+                android:paddingBottom = "@dimen/dp_30"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit"
                 tools:itemCount = "5"
                 tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem = "@layout/rv_item_filter_input_nutrients" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id = "@+id/ll_categories"
-                android:layout_width = "match_parent"
-                android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_40"
-                app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_nutrients"
-                tools:itemCount = "5"
-                tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem = "@layout/item_recipe_category" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
