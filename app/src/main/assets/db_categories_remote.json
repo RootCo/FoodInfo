@@ -2,27 +2,22 @@
   "content": [
     {
       "name": "dish",
-      "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "https://raw.githubusercontent.com/OBNOXIOUSALLCAPSNICKNAME/SharedFiles/main/ic_dish.svg"
     },
     {
       "name": "meal",
-      "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "https://raw.githubusercontent.com/OBNOXIOUSALLCAPSNICKNAME/SharedFiles/main/ic_meal.svg"
     },
     {
       "name": "diet",
-      "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "https://raw.githubusercontent.com/OBNOXIOUSALLCAPSNICKNAME/SharedFiles/main/ic_diet.svg"
     },
     {
       "name": "health",
-      "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "https://raw.githubusercontent.com/OBNOXIOUSALLCAPSNICKNAME/SharedFiles/main/ic_health.svg"
     },
     {
       "name": "cuisine",
-      "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "https://raw.githubusercontent.com/OBNOXIOUSALLCAPSNICKNAME/SharedFiles/main/ic_cuisine.svg"
     }
   ]

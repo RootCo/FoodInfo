@@ -3,7 +3,6 @@ package com.example.foodinfo.ui
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.databinding.FragmentSearchCategoryBinding
@@ -12,12 +11,8 @@ import com.example.foodinfo.ui.decorator.GridItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.baseAnimation
 import com.example.foodinfo.utils.repeatOn
-import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.SearchCategoryViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
@@ -42,19 +37,6 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
         )
     }
 
-    private val onHeaderClickListener: () -> Unit = {
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val categoryItem = viewModel.category
-            withContext(Dispatchers.Main) {
-                showDescriptionDialog(
-                    categoryItem.name,
-                    categoryItem.description,
-                    categoryItem.preview
-                )
-            }
-        }
-    }
-
     private val onItemClickListener: (String, String) -> Unit = { category, label ->
         findNavController().navigate(
             SearchCategoryFragmentDirections.actionFSearchCategoryToFSearchLabel(
@@ -69,7 +51,6 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
         viewModel.categoryName = args.category
 
         binding.tvCategory.text = args.category
-        binding.tvCategory.setOnClickListener { onHeaderClickListener() }
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnSearch.setOnClickListener { onSearchClickListener() }
 

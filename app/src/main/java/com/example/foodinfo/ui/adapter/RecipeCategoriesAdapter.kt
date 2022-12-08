@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.ItemRecipeCategoryBinding
-import com.example.foodinfo.repository.model.RecipeCategoryModel
+import com.example.foodinfo.repository.model.CategoryLabelsModel
 import com.example.foodinfo.ui.view_holder.RecipeCategoryViewHolder
 
 
 class RecipeCategoriesAdapter(
     context: Context,
     private val onLabelClickListener: (String, String) -> Unit
-) : ListAdapter<RecipeCategoryModel, ViewHolder>(
-    RecipeCategoryModel.ItemCallBack
+) : ListAdapter<CategoryLabelsModel, ViewHolder>(
+    CategoryLabelsModel.ItemCallBack
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)

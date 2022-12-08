@@ -9,7 +9,6 @@ fun CategoryEntity.toModel(): CategoryModel {
     return CategoryModel(
         id = this.id,
         name = this.name,
-        description = this.description,
         preview = SVGModel(this.previewURL)
     )
 }

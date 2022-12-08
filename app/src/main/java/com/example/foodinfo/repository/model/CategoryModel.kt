@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 data class CategoryModel(
     val id: Long,
     val name: String,
-    val description: String,
     val preview: SVGModel
 ) {
     object ItemCallBack :
@@ -25,7 +24,6 @@ data class CategoryModel(
         ): Boolean {
             return oldItem.id == newItem.id &&
                     oldItem.name == newItem.name &&
-                    oldItem.description == newItem.description &&
                     oldItem.preview.content == newItem.preview.content
         }
     }
