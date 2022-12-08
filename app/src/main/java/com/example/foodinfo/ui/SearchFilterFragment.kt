@@ -56,7 +56,6 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
                 it.orientation = LinearLayoutManager.VERTICAL
                 it.isScrollEnabled = false
             }
-            setHasFixedSize(true)
             itemAnimator = null
             addItemDecoration(
                 ListVerticalItemDecoration(
