@@ -6,6 +6,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.CvRangeInputFieldBinding
 import com.google.android.material.slider.RangeSlider
@@ -62,15 +63,7 @@ class RangeInput @JvmOverloads constructor(
     var questionMarkVisible: Boolean = false
         set(value) {
             field = value
-            if (value) {
-                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_question_mark, 0, 0, 0
-                )
-            } else {
-                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
-                    0, 0, 0, 0
-                )
-            }
+            binding.ivQuestionMark.isVisible = field
         }
 
     var header: String = DEFAULT_HEADER
@@ -146,7 +139,7 @@ class RangeInput @JvmOverloads constructor(
 
 
     fun addHeaderClickCallback(callback: (String) -> Unit) {
-        binding.tvHeader.setOnClickListener { callback(binding.tvHeader.text.toString()) }
+        binding.clHeader.setOnClickListener { callback(binding.tvHeader.text.toString()) }
     }
 
     fun addStopTrackingCallback(callback: (Float, Float, Boolean) -> Unit) {
