@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui.view_holder
 
-import android.util.Log
 import com.example.foodinfo.databinding.RvItemFilterInputBaseFieldBinding
 import com.example.foodinfo.repository.model.RangeFieldModel
 
@@ -10,7 +9,15 @@ class FilterBaseFieldViewHolder(
     onValueChangedCallback: (Float, Float, Boolean) -> Unit
 ) : BaseViewHolder<RvItemFilterInputBaseFieldBinding, RangeFieldModel>(binding) {
 
+    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
+        { minValue, maxValue, _ ->
+            item.minCurrent = minValue
+            item.maxCurrent = maxValue
+        }
+
+
     init {
+        binding.root.addStopTrackingCallback(this.onValueChangedCallback)
         binding.root.addStopTrackingCallback(onValueChangedCallback)
     }
 
@@ -23,6 +30,8 @@ class FilterBaseFieldViewHolder(
             stepSize = item.stepSize
             minValue = item.minValue
             maxValue = item.maxValue
+            minCurrent = item.minCurrent
+            maxCurrent = item.maxCurrent
         }
     }
 }

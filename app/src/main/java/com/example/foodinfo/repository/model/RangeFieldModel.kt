@@ -11,8 +11,8 @@ data class RangeFieldModel(
     val stepSize: Float,
     val minValue: Float,
     val maxValue: Float,
-    val minCurrent: Float,
-    val maxCurrent: Float
+    var minCurrent: Float,
+    var maxCurrent: Float
 ) {
 
     object ItemCallBack :
