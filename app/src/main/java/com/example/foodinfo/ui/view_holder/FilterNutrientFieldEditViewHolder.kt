@@ -27,7 +27,6 @@ class FilterNutrientFieldEditViewHolder(
     override fun bind(newItem: RangeFieldModel) {
         super.bind(newItem)
         with(binding.root) {
-            questionMarkVisible = true
             header = item.name
             measure = item.measure
             stepSize = item.stepSize
