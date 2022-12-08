@@ -99,7 +99,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         with(binding.llCategories) {
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
-                it.isScrollEnabled = false
             }
             addItemDecoration(
                 ListVerticalItemDecoration(
