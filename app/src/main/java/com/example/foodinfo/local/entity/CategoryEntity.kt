@@ -14,9 +14,6 @@ data class CategoryEntity(
     @ColumnInfo(name = Columns.NAME)
     val name: String,
 
-    @ColumnInfo(name = Columns.DESCRIPTION)
-    val description: String,
-
     @ColumnInfo(name = Columns.PREVIEW_URL)
     val previewURL: String,
 ) {
@@ -24,7 +21,6 @@ data class CategoryEntity(
     object Columns {
         const val ID = "id"
         const val NAME = "name"
-        const val DESCRIPTION = "description"
         const val PREVIEW_URL = "preview_url"
     }
 
