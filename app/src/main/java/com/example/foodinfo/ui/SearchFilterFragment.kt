@@ -54,7 +54,6 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             adapter = recyclerAdapter
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
-                it.isScrollEnabled = false
             }
             itemAnimator = null
             addItemDecoration(
