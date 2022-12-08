@@ -24,6 +24,8 @@
 
     <dimen name = "recipe_extended_category_item_space">@dimen/dp_12</dimen>
 
+    <dimen name = "filter_base_range_field_item_space">@dimen/dp_8</dimen>
+
     <dimen name = "screen_bottom_margin">56dp</dimen>
 
     <!--Rounded corners-->

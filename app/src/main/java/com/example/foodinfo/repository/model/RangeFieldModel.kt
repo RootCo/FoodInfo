@@ -4,11 +4,11 @@ import androidx.recyclerview.widget.DiffUtil
 
 
 data class RangeFieldModel(
-    val id: Long = 0,
+    val id: Long,
     val name: String,
     val measure: String,
     val category: String,
-    val step: Float,
+    val stepSize: Float,
     val minValue: Float,
     val maxValue: Float,
     val minCurrent: Float,
@@ -32,7 +32,7 @@ data class RangeFieldModel(
             return oldItem.name == newItem.name &&
                     oldItem.measure == newItem.measure &&
                     oldItem.category == newItem.category &&
-                    oldItem.step == newItem.step &&
+                    oldItem.stepSize == newItem.stepSize &&
                     oldItem.minValue == newItem.minValue &&
                     oldItem.maxValue == newItem.maxValue &&
                     oldItem.minCurrent == newItem.minCurrent &&

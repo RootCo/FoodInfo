@@ -4,7 +4,7 @@ import com.example.foodinfo.repository.model.RangeFieldModel
 
 
 interface RepositorySearchFilter {
-    fun getField(fieldName: String): RangeFieldModel
+    suspend fun getField(fieldName: String): RangeFieldModel
 
-    fun getFieldsByCategory(categoryName: String): List<RangeFieldModel>
+    suspend fun getFieldsByCategory(categoryName: String): List<RangeFieldModel>
 }

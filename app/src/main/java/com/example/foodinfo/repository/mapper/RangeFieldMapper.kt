@@ -10,7 +10,7 @@ fun RangeFieldEntity.toModel(): RangeFieldModel {
         name = this.name,
         measure = this.measure,
         category = this.category,
-        step = this.step,
+        stepSize = this.step,
         minValue = this.minValue,
         maxValue = this.maxValue,
         minCurrent = this.minValue,

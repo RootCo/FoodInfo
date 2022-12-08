@@ -11,11 +11,11 @@ class RepositorySearchFilterImpl @Inject constructor(
     private val searchFilterDAO: SearchFilterDAO
 ) : RepositorySearchFilter {
 
-    override fun getField(fieldName: String): RangeFieldModel {
+    override suspend fun getField(fieldName: String): RangeFieldModel {
         return searchFilterDAO.getField(fieldName).toModel()
     }
 
-    override fun getFieldsByCategory(categoryName: String): List<RangeFieldModel> {
+    override suspend fun getFieldsByCategory(categoryName: String): List<RangeFieldModel> {
         return searchFilterDAO.getFieldsByCategory(categoryName).map { it.toModel() }
     }
 }

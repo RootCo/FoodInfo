@@ -14,14 +14,14 @@ interface SearchFilterDAO {
                 "WHERE ${RangeFieldEntity.Columns.NAME} " +
                 "LIKE '%' || :fieldName || '%'"
     )
-    fun getField(fieldName: String): RangeFieldEntity
+    suspend fun getField(fieldName: String): RangeFieldEntity
 
     @Query(
         "SELECT * FROM ${RangeFieldEntity.TABLE_NAME} " +
                 "WHERE ${RangeFieldEntity.Columns.CATEGORY} " +
                 "LIKE '%' || :categoryName || '%'"
     )
-    fun getFieldsByCategory(categoryName: String): List<RangeFieldEntity>
+    suspend fun getFieldsByCategory(categoryName: String): List<RangeFieldEntity>
 
     @Insert
     fun addAll(fields: List<RangeFieldEntity>)
