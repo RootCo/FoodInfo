@@ -33,56 +33,9 @@ class RangeInput @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    private var stopTrackingCallback: ((Float, Float, Boolean) -> Unit)? = null
+    private var stopTrackingCallbacks: ArrayList<((Float, Float, Boolean) -> Unit)> =
+        arrayListOf()
 
-
-    var header: String = DEFAULT_HEADER
-        set(value) {
-            field = value
-            binding.tvHeader.text = field
-        }
-
-    var measure: String = DEFAULT_MEASURE
-        set(value) {
-            field = value
-            binding.tvMeasure.text = field
-        }
-
-    var stepSize: Float = DEFAULT_STEP_SIZE
-        set(value) {
-            field = value
-            binding.rsRange.stepSize = field
-        }
-
-    var minValue: Float = DEFAULT_MIN_VALUE
-        set(value) {
-            field = value
-            values = listOf(field, maxValue)
-            binding.rsRange.values = values
-            binding.rsRange.valueFrom = field
-        }
-
-    var maxValue: Float = DEFAULT_MAX_VALUE
-        set(value) {
-            field = value
-            values = listOf(minValue, field)
-            binding.rsRange.values = values
-            binding.rsRange.valueTo = field
-        }
-
-    var questionMarkVisible: Boolean = false
-        set(value) {
-            field = value
-            if (value) {
-                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_question_mark, 0, 0, 0
-                )
-            } else {
-                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
-                    0, 0, 0, 0
-                )
-            }
-        }
 
     var headerTextColor: Int = DEFAULT_HEADER_COLOR
         set(value) {
@@ -106,40 +59,88 @@ class RangeInput @JvmOverloads constructor(
             binding.tvMeasure.setTextSize(TypedValue.COMPLEX_UNIT_PX, size)
         }
 
-
-    var values: List<Float> = listOf(DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE).also {
-        binding.rsRange.values = it
-        binding.tvRangeStart.text = DEFAULT_MIN_VALUE.toInt().toString()
-        binding.tvRangeEnd.text = DEFAULT_MAX_VALUE.toInt().toString()
-    }
-        private set(value) {
+    var questionMarkVisible: Boolean = false
+        set(value) {
             field = value
-            binding.tvRangeStart.text = field.min().toInt().toString()
-            binding.tvRangeEnd.text = field.max().toInt().toString()
+            if (value) {
+                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_question_mark, 0, 0, 0
+                )
+            } else {
+                binding.tvHeader.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, 0, 0
+                )
+            }
+        }
+
+    var header: String = DEFAULT_HEADER
+        set(value) {
+            field = value
+            binding.tvHeader.text = field
+        }
+
+    var measure: String = DEFAULT_MEASURE
+        set(value) {
+            field = value
+            binding.tvMeasure.text = field
+        }
+
+    var stepSize: Float = DEFAULT_STEP_SIZE
+        set(value) {
+            field = value
+            binding.rsRange.stepSize = field
+        }
+
+    var minValue: Float = DEFAULT_MIN_VALUE
+        set(value) {
+            field = value
+            if (field > minCurrent) {
+                binding.rsRange.values = listOf(field, maxCurrent)
+            }
+            binding.rsRange.valueFrom = field
+        }
+
+    var maxValue: Float = DEFAULT_MAX_VALUE
+        set(value) {
+            field = value
+            if (field < maxCurrent) {
+                binding.rsRange.values = listOf(minCurrent, field)
+            }
+            binding.rsRange.valueTo = field
         }
 
     var minCurrent: Float = DEFAULT_MIN_VALUE
-        private set
-        get() = values.min()
+        set(value) {
+            field = if (value < minValue) minValue else value
+            binding.rsRange.values = listOf(field, maxCurrent)
+        }
+        get() = binding.rsRange.values.min()
 
     var maxCurrent: Float = DEFAULT_MAX_VALUE
-        private set
-        get() = values.max()
+        set(value) {
+            field = if (value > maxValue) maxValue else value
+            binding.rsRange.values = listOf(minCurrent, field)
+        }
+        get() = binding.rsRange.values.max()
 
 
-    private val onValueChangedCallback = RangeSlider.OnChangeListener { slider, _, _ ->
-        values = slider.values
+    private val onValueChangedCallback = RangeSlider.OnChangeListener { _, _, _ ->
+        binding.tvRangeStart.text = minCurrent.toInt().toString()
+        binding.tvRangeEnd.text = maxCurrent.toInt().toString()
     }
+
 
     private val onStopTrackingCallback = object : RangeSlider.OnSliderTouchListener {
         override fun onStartTrackingTouch(slider: RangeSlider) {}
 
         override fun onStopTrackingTouch(slider: RangeSlider) {
-            stopTrackingCallback?.invoke(
-                minCurrent,
-                maxCurrent,
-                minValue == minCurrent && maxValue == maxCurrent
-            )
+            stopTrackingCallbacks.forEach { callback ->
+                callback.invoke(
+                    minCurrent,
+                    maxCurrent,
+                    minValue == minCurrent && maxValue == maxCurrent
+                )
+            }
         }
     }
 
@@ -149,7 +150,7 @@ class RangeInput @JvmOverloads constructor(
     }
 
     fun addStopTrackingCallback(callback: (Float, Float, Boolean) -> Unit) {
-        stopTrackingCallback = callback
+        stopTrackingCallbacks.add(callback)
     }
 
 
