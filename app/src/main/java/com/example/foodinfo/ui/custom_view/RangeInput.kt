@@ -13,9 +13,9 @@ import com.google.android.material.slider.RangeSlider
 
 class RangeInput @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+    attrs: AttributeSet? = null
+) : ConstraintLayout(context, attrs) {
+
 
     companion object {
         private const val DEFAULT_HEADER: String = "duration"
@@ -24,7 +24,6 @@ class RangeInput @JvmOverloads constructor(
         private const val DEFAULT_MIN_VALUE: Float = 0f
         private const val DEFAULT_MAX_VALUE: Float = 100f
         private const val DEFAULT_QUESTION_MARK_VISIBILITY: Boolean = false
-        private const val DEFAULT_HEADER_FONT: Int = R.font.app_font_regular
         private const val DEFAULT_HEADER_COLOR: Int = R.attr.appMainFontColor
         private const val DEFAULT_HEADER_TEXT_SIZE: Int = R.dimen.text_20
     }
@@ -58,12 +57,16 @@ class RangeInput @JvmOverloads constructor(
     var minValue: Float = DEFAULT_MIN_VALUE
         set(value) {
             field = value
+            values = listOf(field, maxValue)
+            binding.rsRange.values = values
             binding.rsRange.valueFrom = field
         }
 
     var maxValue: Float = DEFAULT_MAX_VALUE
         set(value) {
             field = value
+            values = listOf(minValue, field)
+            binding.rsRange.values = values
             binding.rsRange.valueTo = field
         }
 
@@ -79,14 +82,6 @@ class RangeInput @JvmOverloads constructor(
                     0, 0, 0, 0
                 )
             }
-        }
-
-    var headerFontFamily: Int = DEFAULT_HEADER_FONT
-        set(value) {
-            field = value
-            val font = resources.getFont(value)
-            binding.tvHeader.typeface = font
-            binding.tvMeasure.typeface = font
         }
 
     var headerTextColor: Int = DEFAULT_HEADER_COLOR
@@ -184,10 +179,6 @@ class RangeInput @JvmOverloads constructor(
                     DEFAULT_QUESTION_MARK_VISIBILITY
                 )
 
-                headerFontFamily = getResourceId(
-                    R.styleable.RangeInput_headerFontFamily,
-                    DEFAULT_HEADER_FONT
-                )
                 headerTextColor = getResourceId(
                     R.styleable.RangeInput_headerTextColor,
                     DEFAULT_HEADER_COLOR
