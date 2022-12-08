@@ -40,7 +40,7 @@
             android:layout_height = "wrap_content"
             android:layout_marginTop = "@dimen/dp_20">
 
-            <com.example.foodinfo.ui.custom_view.NonScrollListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_base_fields"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
@@ -73,7 +73,7 @@
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields" />
 
-            <com.example.foodinfo.ui.custom_view.NonScrollListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_nutrients"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
@@ -84,7 +84,7 @@
                 tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem = "@layout/rv_item_filter_input_nutrients" />
 
-            <com.example.foodinfo.ui.custom_view.NonScrollListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_categories"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
