@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 class NonScrollLinearLayoutManager(context: Context?) :
     LinearLayoutManager(context) {
-    var isScrollEnabled = true
 
     override fun canScrollHorizontally(): Boolean {
-        return isScrollEnabled && super.canScrollHorizontally()
+        return false
     }
 
     override fun canScrollVertically(): Boolean {
-        return isScrollEnabled && super.canScrollVertically()
+        return false
     }
 }
