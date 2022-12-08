@@ -29,6 +29,8 @@ class SearchFilterViewModel @Inject constructor(
         1
     )
 
+    val recipeId = ""
+
 
     init {
         viewModelScope.launch {

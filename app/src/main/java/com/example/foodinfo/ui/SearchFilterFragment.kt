@@ -29,6 +29,14 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         findNavController().navigateUp()
     }
 
+    private val onNutrientsEditClickListener: () -> Unit = {
+        findNavController().navigate(
+            SearchFilterFragmentDirections.actionFSearchFilterToFSearchFilterNutrients(
+                viewModel.recipeId
+            )
+        )
+    }
+
     private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
         { minValue, maxValue, isDefault ->
             if (isDefault) {
@@ -46,8 +54,8 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         )
 
         binding.btnBack.setOnClickListener { onBackClickListener() }
-        binding.tvNutrientsHeader.setOnClickListener {
-            recyclerAdapter.notifyDataSetChanged()
+        binding.ivNutrientsEdit.setOnClickListener {
+            onNutrientsEditClickListener()
         }
 
         with(binding.llBaseFields) {
