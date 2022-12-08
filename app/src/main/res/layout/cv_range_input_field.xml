@@ -6,37 +6,27 @@
     android:layout_height = "wrap_content"
     android:orientation = "vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id = "@+id/cl_header"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
+        android:gravity = "bottom"
         android:minHeight = "@dimen/dp_44"
         android:orientation = "horizontal"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent">
-
-        <ImageView
-            android:id = "@+id/iv_question_mark"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:paddingEnd = "@dimen/dp_6"
-            android:src = "@drawable/ic_question_mark"
-            app:layout_constraintBottom_toBottomOf = "@+id/tv_header"
-            app:layout_constraintStart_toStartOf = "parent"
-            app:layout_constraintTop_toTopOf = "@+id/tv_header" />
 
         <TextView
             android:id = "@+id/tv_header"
             style = "@style/TextViewBig"
             android:layout_width = "0dp"
             android:layout_height = "wrap_content"
+            android:layout_weight = "1"
+            android:drawablePadding = "@dimen/dp_6"
             android:ellipsize = "end"
             android:gravity = "start|bottom"
             android:maxLines = "1"
-            app:layout_constrainedWidth = "true"
-            app:layout_constraintBottom_toBottomOf = "parent"
-            app:layout_constraintEnd_toStartOf = "@+id/tv_measure"
-            app:layout_constraintStart_toEndOf = "@+id/iv_question_mark"
+            app:drawableStartCompat = "@drawable/ic_question_mark"
             tools:text = "duration" />
 
         <TextView
@@ -45,11 +35,9 @@
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:gravity = "start|bottom"
-            app:layout_constraintBottom_toBottomOf = "parent"
-            app:layout_constraintEnd_toEndOf = "parent"
             tools:text = "sec" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
     <com.google.android.material.slider.RangeSlider
