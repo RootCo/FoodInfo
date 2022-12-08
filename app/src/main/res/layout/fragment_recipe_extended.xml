@@ -286,7 +286,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.example.foodinfo.ui.custom_view.NonScrollListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_categories"
                 android:layout_width = "0dp"
                 android:layout_height = "wrap_content"
