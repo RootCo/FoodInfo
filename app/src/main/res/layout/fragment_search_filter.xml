@@ -55,8 +55,9 @@
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_30"
+                android:paddingBottom = "@dimen/dp_30"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields"
+                app:layout_constraintTop_toBottomOf = "@+id/ll_nutrients"
                 tools:itemCount = "5"
                 tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem = "@layout/rv_item_filter_input_category" />
@@ -82,14 +83,13 @@
                 android:scaleType = "fitEnd"
                 android:src = "@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_categories" />
+                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_nutrients"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_16"
-                android:paddingBottom = "@dimen/dp_30"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit"
                 tools:itemCount = "5"

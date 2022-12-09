@@ -26,7 +26,6 @@ class RepositorySearchFilterImpl @Inject constructor(
             FilterNutrientModel(2, "Carbs", "g", 8.3f, 32.2f),
             FilterNutrientModel(3, "Fat", "g", 24f, 74f),
             FilterNutrientModel(4, "Vitamin A", "mg", 3.5f, 17.6f),
-            FilterNutrientModel(5, "Calcium", "mg", 9f, 25f),
             FilterNutrientModel(6, "Carbohydrates (net)", "ug", 100f, 450f)
         )
     }
