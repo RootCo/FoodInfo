@@ -155,7 +155,7 @@ class MainActivity : AppCompatActivity() {
             appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RANGE_FIELDS)
         )
 
-        dataBase.searchFilterDAO.addAll(
+        dataBase.searchFilterDAO.addRangeFields(
             gson.fromJson(
                 dbRangeFields.get(AssetsKeyWords.CONTENT).toString(),
                 object : TypeToken<List<RangeFieldEntity>>() {}.type

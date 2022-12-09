@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.model.CategoryLabelsModel
+import com.example.foodinfo.repository.model.FilterNutrientModel
 import com.example.foodinfo.repository.model.RangeFieldModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
@@ -42,13 +43,28 @@ class SearchFilterViewModel @Inject constructor(
         1
     )
 
+    private val _nutrients = MutableSharedFlow<List<FilterNutrientModel>>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+    val nutrients: SharedFlow<List<FilterNutrientModel>> = _nutrients.shareIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(),
+        1
+    )
+
     val recipeId = ""
 
 
     init {
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _rangeFields.emit(repositorySearchFilter.getFieldsByCategory("base"))
+                _rangeFields.emit(repositorySearchFilter.getRangeFieldsByCategory("base"))
+            }
+        }
+        viewModelScope.launch {
+            withContext((Dispatchers.IO)) {
+                _nutrients.emit(repositorySearchFilter.getEditedNutrients())
             }
         }
         viewModelScope.launch {

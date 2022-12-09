@@ -36,7 +36,7 @@ class SearchFilterNutrientsViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _rangeFields.emit(repositorySearchFilter.getFieldsByCategory("nutrients"))
+                _rangeFields.emit(repositorySearchFilter.getRangeFieldsByCategory("nutrients"))
             }
         }
     }

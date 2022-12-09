@@ -26,6 +26,7 @@
 
     <dimen name = "filter_base_range_field_item_space">@dimen/dp_8</dimen>
     <dimen name = "filter_category_item_space">@dimen/dp_8</dimen>
+    <dimen name = "filter_nutrient_item_space">@dimen/dp_6</dimen>
     <dimen name = "filter_category_edit_item_space">@dimen/dp_8</dimen>
     <dimen name = "filter_category_edit_item_margin">@dimen/dp_20</dimen>
     <dimen name = "filter_nutrients_edit_field_item_space">@dimen/dp_8</dimen>

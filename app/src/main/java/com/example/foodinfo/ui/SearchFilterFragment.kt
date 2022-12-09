@@ -8,6 +8,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterBinding
 import com.example.foodinfo.ui.adapter.FilterBaseFieldAdapter
 import com.example.foodinfo.ui.adapter.FilterCategoriesAdapter
+import com.example.foodinfo.ui.adapter.FilterNutrientsAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
 import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
@@ -26,6 +27,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 
     private lateinit var recyclerAdapterBaseFields: FilterBaseFieldAdapter
     private lateinit var recyclerAdapterCategories: FilterCategoriesAdapter
+    private lateinit var recyclerAdapterNutrients: FilterNutrientsAdapter
 
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
@@ -56,6 +58,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             )
         )
     }
+
+    private val getFormattedRange: (Float, Float, String) -> String =
+        { minValue, maxValue, measure ->
+            getString(
+                R.string.rv_item_filter_nutrient_range,
+                minValue,
+                maxValue,
+                measure
+            )
+        }
 
 
     override fun initUI() {
@@ -96,7 +108,23 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
                 ListVerticalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.filter_category_item_space)
                 )
+            )
+        }
 
+        recyclerAdapterNutrients = FilterNutrientsAdapter(
+            requireContext(),
+            getFormattedRange
+        )
+        with(binding.llNutrients) {
+            adapter = recyclerAdapterNutrients
+            layoutManager = NonScrollLinearLayoutManager(context).also {
+                it.orientation = LinearLayoutManager.VERTICAL
+            }
+            itemAnimator = null
+            addItemDecoration(
+                ListVerticalItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space)
+                )
             )
         }
     }
@@ -108,6 +136,9 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         }
         repeatOn(Lifecycle.State.STARTED) {
             viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)
+        }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.nutrients.collectLatest(recyclerAdapterNutrients::submitList)
         }
     }
 }

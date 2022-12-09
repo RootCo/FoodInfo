@@ -34,6 +34,9 @@
     <string name = "int_measure_value">%1$d%2$s%3$s</string>
     <string name = "float_measure_value">%1$.1f%2$s%3$s</string>
     <string name = "rv_item_nutrient_value">%1$.1f / %2$.1f%3$s</string>
+
+    <string name = "rv_item_filter_nutrient_range">%1$.0f ─ %2$.0f %3$s</string>
+
     <string name = "TBD_screen">Feature %1$s is temporary unavailable</string>
     <string name = "servings_text">Servings</string>
     <string name = "cooking_text">Cooking</string>

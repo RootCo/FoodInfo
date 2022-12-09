@@ -7,7 +7,7 @@
 
     <TextView
         android:id = "@+id/tv_header"
-        style = "@style/TextViewMedium"
+        style = "@style/TextViewSmall"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:includeFontPadding = "false"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id = "@+id/tv_range"
-        style = "@style/TextViewSmall"
+        style = "@style/TextViewVerySmall"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
         android:fontFamily = "@font/app_font_bold_rounded"
