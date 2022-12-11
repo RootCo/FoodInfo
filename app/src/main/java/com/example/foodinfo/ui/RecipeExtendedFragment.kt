@@ -19,6 +19,7 @@ import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.repository.model.RecipeLabelsModel
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
+import com.example.foodinfo.utils.Resource
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.utils.setFavorite
@@ -105,19 +106,24 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                     viewModel.nutrients,
                     viewModel.ingredients,
                 ) { recipe, labels, nutrients, ingredients ->
+                    // TODO: дописать логику работы учитывая Resource Init, Loading, Error 
+                    if (recipe is Resource.Success
+                        && labels is Resource.Success
+                        && nutrients is Resource.Success
+                        && ingredients is Resource.Success
+                    ) {
+                        initRecipe(recipe.data)
+                        initLabels(labels.data)
+                        initNutrients(nutrients.data)
+                        initIngredients(ingredients.data)
 
-                    initRecipe(recipe)
-                    initLabels(labels)
-                    initNutrients(nutrients)
-                    initIngredients(ingredients)
-
-                    binding.pbContent.isVisible = false
-                    binding.svContent.isVisible = true
-                    binding.svContent.apply {
-                        alpha = 0f
-                        animate().alpha(1f).setDuration(100).setListener(null)
+                        binding.pbContent.isVisible = false
+                        binding.svContent.isVisible = true
+                        binding.svContent.apply {
+                            alpha = 0f
+                            animate().alpha(1f).setDuration(100).setListener(null)
+                        }
                     }
-
                 }.collectLatest { }
             }
         }
