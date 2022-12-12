@@ -3,13 +3,16 @@ package com.example.foodinfo.di.module
 import dagger.Module
 import dagger.android.AndroidInjectionModule
 
-@Module(includes = [
-    ContextModule::class,
-    UtilsModule::class,
-    RepositoryModule::class,
-    ViewModelModule::class,
-    ContextModule::class,
-    RoomModule::class,
-    AndroidInjectionModule::class
-])
+
+@Module(
+    includes = [
+        ContextModule::class,
+        UtilsModule::class,
+        RepositoryModule::class,
+        ViewModelModule::class,
+        ContextModule::class,
+        RoomModule::class,
+        AndroidInjectionModule::class
+    ]
+)
 class BaseApplicationModule

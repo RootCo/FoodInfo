@@ -2,19 +2,17 @@ package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeIngredientsBinding
 import com.example.foodinfo.ui.adapter.RecipeIngredientsAdapter
-import com.example.foodinfo.ui.decorator.IngredientsItemDecoration
+import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.getMeasureSpacer
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.RecipeIngredientsViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>(
@@ -61,7 +59,7 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                IngredientsItemDecoration(
+                ListVerticalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.ingredients_item_space),
                     resources.getDimensionPixelSize(R.dimen.ingredients_item_margin)
                 )
@@ -70,10 +68,8 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.ingredients.collectLatest(recyclerAdapter::submitList)
-            }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.ingredients.collectLatest(recyclerAdapter::submitList)
         }
     }
 }

@@ -19,7 +19,5 @@
         <item name = "appErrorColor">@color/error</item>
         <item name = "appDivider">@color/divider</item>
         <item name = "appOutline">@color/outline</item>
-
-        <item name = "appChipStyle">@style/Chip</item>
     </style>
 </resources>

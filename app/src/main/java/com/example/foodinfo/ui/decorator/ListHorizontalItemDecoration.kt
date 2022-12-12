@@ -4,8 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class NutrientsItemDecoration(
-    private val space: Int, private val margin: Int
+
+class ListHorizontalItemDecoration(
+    private val space: Int = 0, private val margin: Int = 0
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -13,13 +14,14 @@ class NutrientsItemDecoration(
     ) {
         with(outRect) {
             if (parent.getChildAdapterPosition(view) == 0) {
-                bottom = space
+                right = space
+                left = margin
             } else if (parent.getChildAdapterPosition(view) == state.itemCount - 1) {
-                top = space
-                bottom = margin
+                left = space
+                right = margin
             } else {
-                top = space
-                bottom = space
+                left = space
+                right = space
             }
         }
     }

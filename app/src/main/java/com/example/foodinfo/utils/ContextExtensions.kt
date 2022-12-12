@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import com.example.foodinfo.di.BaseApplication
-import com.example.foodinfo.di.BaseApplicationComponent
+import com.example.foodinfo.BaseApplication
+import com.example.foodinfo.BaseApplicationComponent
 
 
 // подсмотрел этот код у Android Broadcast

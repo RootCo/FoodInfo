@@ -7,6 +7,7 @@ import com.example.foodinfo.databinding.FragmentFavoriteSortBinding
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.FavoriteSortViewModel
 
+
 class FavoriteSortFragment : BaseFragment<FragmentFavoriteSortBinding>(
     FragmentFavoriteSortBinding::inflate
 ) {

@@ -36,7 +36,7 @@
         style = "@style/TextViewSmall"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_bold_rounded"
         app:layout_constraintBottom_toBottomOf = "@+id/progress_bar"
         app:layout_constraintEnd_toEndOf = "@+id/progress_bar"
         app:layout_constraintStart_toStartOf = "@+id/progress_bar"

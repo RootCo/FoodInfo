@@ -19,7 +19,7 @@
         android:id = "@+id/tv_ingredients_header"
         android:layout_width = "wrap_content"
         android:layout_height = "wrap_content"
-        android:fontFamily = "@font/app_font_medium"
+        android:fontFamily = "@font/app_font_regular"
         android:text = "@string/ingredients_text"
         android:theme = "@style/TextViewVeryBig"
         app:layout_constraintBottom_toBottomOf = "@id/btn_back"
@@ -31,12 +31,11 @@
         android:id = "@+id/rv_ingredients"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:layout_marginTop = "@dimen/screen_vertical_margin"
         app:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf = "parent"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toBottomOf = "@id/btn_back"
-        tools:listitem = "@layout/rv_item_ingredient" />
+        tools:listitem = "@layout/rv_item_recipe_ingredient" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,12 +30,12 @@ data class RecipeIngredientModel(
             newItem: RecipeIngredientModel
         ): Boolean {
             return oldItem.text == newItem.text &&
-                    oldItem.measure == oldItem.measure &&
-                    oldItem.quantity == oldItem.quantity &&
-                    oldItem.weight == oldItem.weight &&
-                    oldItem.food == oldItem.food &&
-                    oldItem.foodCategory == oldItem.foodCategory &&
-                    oldItem.foodId == oldItem.foodId &&
+                    oldItem.measure == newItem.measure &&
+                    oldItem.quantity == newItem.quantity &&
+                    oldItem.weight == newItem.weight &&
+                    oldItem.food == newItem.food &&
+                    oldItem.foodCategory == newItem.foodCategory &&
+                    oldItem.foodId == newItem.foodId &&
                     oldItem.previewURL == newItem.previewURL
         }
     }

@@ -3,6 +3,7 @@ package com.example.foodinfo.utils
 import org.json.JSONObject
 import java.io.InputStream
 
+
 class JSONLoader {
     fun load(inputStream: InputStream): JSONObject {
         val size = inputStream.available()

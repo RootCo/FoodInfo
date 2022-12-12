@@ -1,0 +1,13 @@
+<vector xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:width = "100dp"
+    android:height = "100dp"
+    android:viewportWidth = "120"
+    android:viewportHeight = "120">
+    <group
+        android:translateX = "12"
+        android:translateY = "12">
+        <path
+            android:fillColor = "?appSecondaryFontColor"
+            android:pathData = "M61,11.03c0,6.09 -4.93,11.03 -11,11.03s-11,-4.94 -11,-11.03S43.92,0 50,0s11,4.94 11,11.03M61,50.06c0,6.09 -4.93,11.03 -11,11.03S39,56.15 39,50.06s4.93,-11.03 11,-11.03 11,4.94 11,11.03M61,88.97C61,95.06 56.08,100 50,100s-11,-4.94 -11,-11.03 4.93,-11.03 11,-11.03 11,4.94 11,11.03" />
+    </group>
+</vector>

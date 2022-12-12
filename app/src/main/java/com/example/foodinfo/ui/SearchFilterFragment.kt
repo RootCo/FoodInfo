@@ -7,6 +7,7 @@ import com.example.foodinfo.databinding.FragmentSearchFilterBinding
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.view_model.SearchFilterViewModel
 
+
 class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
     FragmentSearchFilterBinding::inflate
 ) {

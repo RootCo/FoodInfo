@@ -2,19 +2,16 @@ package com.example.foodinfo.ui
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
 import com.example.foodinfo.ui.adapter.HomeCategoriesAdapter
-import com.example.foodinfo.ui.decorator.HomeCategoriesItemDecoration
+import com.example.foodinfo.ui.decorator.ListHorizontalItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.HomeViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.collectLatest
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
@@ -39,20 +36,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         )
     }
 
-    private val onFilterClickListener: () -> Unit = {
-        findNavController().navigate(
-            HomeFragmentDirections.actionFHomeToFSearchFilter()
-        )
-    }
-
 
     override fun initUI() {
         recyclerAdapter = HomeCategoriesAdapter(
             requireContext(),
             onItemClickListener
         )
-        binding.llSearch.setOnClickListener { onSearchClickListener() }
-        binding.btnFilter.setOnClickListener { onFilterClickListener() }
+        binding.ivSearch.setOnClickListener { onSearchClickListener() }
 
         with(binding.rvCategories) {
             layoutManager = LinearLayoutManager(context).also {
@@ -61,22 +51,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                HomeCategoriesItemDecoration(
+                ListHorizontalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.home_categories_space),
                     resources.getDimensionPixelSize(R.dimen.home_categories_margin)
                 )
             )
             itemAnimator = null
         }
+
+        binding.hintTop.textView.text = getString(
+            R.string.TBD_screen,
+            resources.getString(R.string.top_recipes_text)
+        )
+        binding.hintTrending.textView.text = getString(
+            R.string.TBD_screen,
+            resources.getString(R.string.trending_text)
+        )
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                withContext(Dispatchers.IO) {
-                    recyclerAdapter.submitList(viewModel.categories)
-                }
-            }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.categories.collectLatest(recyclerAdapter::submitList)
         }
     }
 }

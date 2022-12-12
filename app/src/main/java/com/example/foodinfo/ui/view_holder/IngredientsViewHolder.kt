@@ -2,16 +2,16 @@ package com.example.foodinfo.ui.view_holder
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
-import com.example.foodinfo.databinding.RvItemIngredientBinding
+import com.example.foodinfo.databinding.RvItemRecipeIngredientBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.utils.glide.GlideApp
 
 
 class IngredientsViewHolder(
-    private val binding: RvItemIngredientBinding,
+    private val binding: RvItemRecipeIngredientBinding,
     private val onGetWeight: (Double) -> String,
     private val onGetQuantity: (Double, String) -> String,
-) : BaseViewHolder<RvItemIngredientBinding, RecipeIngredientModel>(binding) {
+) : BaseViewHolder<RvItemRecipeIngredientBinding, RecipeIngredientModel>(binding) {
 
     override fun bind(newItem: RecipeIngredientModel) {
         super.bind(newItem)

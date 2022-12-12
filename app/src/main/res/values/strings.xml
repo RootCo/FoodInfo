@@ -21,8 +21,10 @@
     <string name = "default_content_description">this is image</string>
     <string name = "ingredients_text">ingredients</string>
 
+    <string name = "home_header_text">Find your best food</string>
     <string name = "description_placeholder">Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.</string>
 
+    <string name = "selected_value">%1$d selected</string>
     <string name = "time_value">%1$d min</string>
     <string name = "serving_value">%1$d ppl</string>
     <string name = "percent_value">%1$d%%</string>
@@ -38,5 +40,8 @@
     <string name = "weight_text">Weight</string>
     <string name = "favorite_recipes_text">Favorite recipes</string>
     <string name = "selected_text">selected</string>
-    <string name = "explore_by_category_text">Explore by category</string>
+    <string name = "category_text">Category</string>
+    <string name = "all_text">all</string>
+    <string name = "top_recipes_text">Top recipes</string>
+    <string name = "trending_text">Trending</string>
 </resources>

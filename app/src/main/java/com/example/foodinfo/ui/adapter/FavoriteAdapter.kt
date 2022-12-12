@@ -15,7 +15,8 @@ class FavoriteAdapter(
     private val isEditMode: () -> Boolean,
     private val isSelected: (String) -> Boolean,
     private val onReadyToSelect: (String) -> Unit,
-    private val onReadyTNavigate: (String) -> Unit
+    private val onReadyTNavigate: (String) -> Unit,
+    private val onHoldClickListener: (String) -> Unit
 ) : PagingDataAdapter<RecipeFavoriteModel, ViewHolder>(
     RecipeFavoriteModel.ItemCallBack
 ) {
@@ -41,6 +42,11 @@ class FavoriteAdapter(
                 } else {
                     onReadyTNavigate.invoke(recipe.id)
                 }
+            }
+            holder.binding.clItem.setOnLongClickListener {
+                onHoldClickListener(recipe.id)
+                this.notifyItemChanged(holder.bindingAdapterPosition, listOf(true))
+                true
             }
         }
     }

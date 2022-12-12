@@ -1,22 +1,18 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.isVisible
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchQueryBinding
 import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
-import com.example.foodinfo.ui.decorator.SearchRecipeItemDecoration
+import com.example.foodinfo.ui.decorator.GridItemDecoration
 import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.SearchQueryViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
 class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
@@ -31,7 +27,6 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
 
     private lateinit var recyclerAdapter: SearchRecipeAdapter
 
-    // возвращаемся на предыдущий экран минуя экран с вводом поиска
     private val onBackClickListener: () -> Unit = {
         findNavController().popBackStack(R.id.f_search_input, true)
     }
@@ -52,8 +47,20 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
         viewModel.updateFavoriteMark(id)
     }
 
+    private val navigateBackCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            findNavController().popBackStack(R.id.f_search_input, true)
+        }
+    }
+
     private val onGetTime: (Int) -> String = { time ->
         getString(R.string.time_value, time)
+    }
+
+
+    override fun onStop() {
+        navigateBackCallback.remove()
+        super.onStop()
     }
 
 
@@ -64,23 +71,20 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnSearch.setOnClickListener { onSearchClickListener() }
 
+        requireActivity().onBackPressedDispatcher.addCallback(navigateBackCallback)
+
         recyclerAdapter = SearchRecipeAdapter(
             requireContext(),
             onGetTime,
             onItemClickListener,
             onFavoriteClickListener
-        ).also {
-            it.addLoadStateListener { state: CombinedLoadStates ->
-                binding.rvRecipes.isVisible = state.refresh != LoadState.Loading
-                binding.pbRecipes.isVisible = state.refresh == LoadState.Loading
-            }
-        }
+        )
 
         with(binding.rvRecipes) {
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                SearchRecipeItemDecoration(
+                GridItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.search_recipes_item_horizontal),
                     resources.getDimensionPixelSize(R.dimen.search_recipes_item_vertical),
                     2
@@ -90,10 +94,8 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipes.collectLatest(recyclerAdapter::submitData)
-            }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.recipes.collectLatest(recyclerAdapter::submitData)
         }
     }
 }

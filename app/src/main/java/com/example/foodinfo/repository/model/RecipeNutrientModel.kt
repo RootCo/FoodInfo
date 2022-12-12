@@ -27,8 +27,8 @@ data class RecipeNutrientModel(
             newItem: RecipeNutrientModel
         ): Boolean {
             return oldItem.label == newItem.label &&
-                    oldItem.totalWeight == oldItem.totalWeight &&
-                    oldItem.dailyPercent == oldItem.dailyPercent
+                    oldItem.totalWeight == newItem.totalWeight &&
+                    oldItem.dailyPercent == newItem.dailyPercent
         }
     }
 }

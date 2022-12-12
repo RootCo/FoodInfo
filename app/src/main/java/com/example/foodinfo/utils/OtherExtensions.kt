@@ -39,3 +39,8 @@ fun ImageView.setFavorite(
         this.setColorFilter(this.context.getAttrColor(falseColor))
     }
 }
+
+fun View.baseAnimation() {
+    alpha = 0f
+    animate().alpha(1f).setDuration(100).setListener(null)
+}

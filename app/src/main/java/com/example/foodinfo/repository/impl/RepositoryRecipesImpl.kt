@@ -11,8 +11,8 @@ import com.example.foodinfo.repository.mapper.toModel
 import com.example.foodinfo.repository.mapper.toModelFavorite
 import com.example.foodinfo.repository.mapper.toModelShort
 import com.example.foodinfo.repository.model.*
-import com.example.foodinfo.utils.Resource
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
@@ -51,34 +51,20 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
     }
 
-    // TODO: реализовать хэндл ошибок (если считаешь надо) 
-    override fun getById(id: String): Flow<Resource<RecipeModel>> {
-        return flow {
-            emit(Resource.Loading(RecipeModel("","","",0,"",0,0,0,"",false)))
-            recipesDAO.getById(id).collect() { emit(Resource.Success(it.toModel())) }
-        }
-
+    override fun getById(id: String): Flow<RecipeModel> {
+        return recipesDAO.getById(id).map { it.toModel() }
     }
 
-    override fun getByIdIngredients(id: String): Flow<Resource<List<RecipeIngredientModel>>> {
-        return flow {
-            emit(Resource.Loading(listOf(RecipeIngredientModel(0L,"","",0.0,0.0,"","","",""))))
-            recipesDAO.getByIdIngredients(id).collect() {list -> emit(Resource.Success(list.map { it.toModel() })) }
-        }
+    override fun getByIdIngredients(id: String): Flow<List<RecipeIngredientModel>> {
+        return recipesDAO.getByIdIngredients(id).map { list -> list.map { it.toModel() } }
     }
 
-    override fun getByIdNutrients(id: String): Flow<Resource<List<RecipeNutrientModel>>> {
-        return flow {
-            emit(Resource.Loading(listOf(RecipeNutrientModel(0L,"","",0.0,0.0,0))))
-            recipesDAO.getByIdNutrients(id).collect() { list -> emit(Resource.Success(list.map { it.toModel() })) }
-        }
+    override fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>> {
+        return recipesDAO.getByIdNutrients(id).map { list -> list.map { it.toModel() } }
     }
 
-    override fun getByIdLabels(id: String): Flow<Resource<RecipeLabelsModel>> {
-        return flow {
-            emit(Resource.Loading(RecipeLabelsModel(mapOf(Pair("", listOf(""))))))
-            recipesDAO.getByIdLabels(id).collect() { emit(Resource.Success(it.toModel())) }
-        }
+    override fun getByIdLabels(id: String): Flow<List<CategoryLabelsModel>> {
+        return recipesDAO.getByIdLabels(id).map { it.toModel() }
     }
 
     override fun updateFavoriteMark(id: String) {
@@ -90,6 +76,7 @@ class RepositoryRecipesImpl @Inject constructor(
     }
 
 
+    // definitely this is the wrong place to store pager configs but dunno where else
     companion object {
         val DB_POPULAR_PAGER = PagingConfig(
             pageSize = 10,

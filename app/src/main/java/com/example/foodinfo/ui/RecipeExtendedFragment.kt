@@ -1,31 +1,26 @@
 package com.example.foodinfo.ui
 
-import android.view.LayoutInflater
-import android.view.View
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
-import com.example.foodinfo.databinding.ItemExtendedCategoryBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
-import com.example.foodinfo.repository.model.RecipeLabelsModel
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeNutrientModel
-import com.example.foodinfo.utils.Resource
-import com.example.foodinfo.utils.appComponent
+import com.example.foodinfo.ui.adapter.RecipeCategoriesAdapter
+import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
+import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
-import com.example.foodinfo.utils.setFavorite
-import com.example.foodinfo.utils.showDescriptionDialog
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
-import com.google.android.material.chip.Chip
 import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -39,10 +34,13 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 ) {
 
     private val args: RecipeExtendedFragmentArgs by navArgs()
+    private var isInitialized = false
 
     private val viewModel: RecipeExtendedViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
+
+    private lateinit var recyclerAdapter: RecipeCategoriesAdapter
 
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
@@ -85,47 +83,59 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
 
     override fun initUI() {
+        recyclerAdapter = RecipeCategoriesAdapter(
+            requireContext(),
+            onLabelClickListener
+        )
+
+        isInitialized = false
         viewModel.recipeId = args.recipeId
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnShare.setOnClickListener { onShareClickListener() }
         binding.btnFavorite.setOnClickListener { onFavoriteClickListener() }
         binding.tvNutrientsViewAll.setOnClickListener { onNutrientsViewAllClickListener() }
         binding.tvIngredientsViewAll.setOnClickListener { onIngredientsViewAllClickListener() }
+
+        with(binding.llCategories) {
+            layoutManager = NonScrollLinearLayoutManager(context).also {
+                it.orientation = LinearLayoutManager.VERTICAL
+            }
+            addItemDecoration(
+                ListVerticalItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.recipe_extended_category_item_space)
+                )
+            )
+            adapter = recyclerAdapter
+        }
     }
 
     override fun subscribeUI() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-
+        repeatOn(Lifecycle.State.STARTED) {
+            if (!isInitialized) {
                 binding.pbContent.isVisible = true
                 binding.svContent.isVisible = false
-
-                combine(
-                    viewModel.recipe,
-                    viewModel.labels,
-                    viewModel.nutrients,
-                    viewModel.ingredients,
-                ) { recipe, labels, nutrients, ingredients ->
-                    // TODO: дописать логику работы учитывая Resource Init, Loading, Error 
-                    if (recipe is Resource.Success
-                        && labels is Resource.Success
-                        && nutrients is Resource.Success
-                        && ingredients is Resource.Success
-                    ) {
-                        initRecipe(recipe.data)
-                        initLabels(labels.data)
-                        initNutrients(nutrients.data)
-                        initIngredients(ingredients.data)
-
-                        binding.pbContent.isVisible = false
-                        binding.svContent.isVisible = true
-                        binding.svContent.apply {
-                            alpha = 0f
-                            animate().alpha(1f).setDuration(100).setListener(null)
-                        }
-                    }
-                }.collectLatest { }
             }
+
+            combine(
+                viewModel.recipe,
+                viewModel.labels,
+                viewModel.nutrients,
+                viewModel.ingredients,
+            ) { recipe, labels, nutrients, ingredients ->
+
+                initRecipe(recipe)
+                recyclerAdapter.submitList(labels)
+                initNutrients(nutrients)
+                initIngredients(ingredients)
+
+                if (!isInitialized) {
+                    binding.pbContent.isVisible = false
+                    binding.svContent.isVisible = true
+                    binding.svContent.baseAnimation()
+                    isInitialized = true
+                }
+
+            }.collectLatest { }
         }
     }
 
@@ -162,15 +172,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         )
     }
 
-    private fun initLabels(labels: RecipeLabelsModel) {
-        binding.llCategories.removeAllViews()
-        with(LayoutInflater.from(context)) {
-            labels.content.forEach { (name, labels) ->
-                binding.llCategories.addView(createCategory(name, labels, this))
-            }
-        }
-    }
-
     private fun initNutrients(nutrients: List<RecipeNutrientModel>) {
         nutrients.findLast { nutrient ->
             nutrient.label == resources.getString(R.string.protein_header)
@@ -202,27 +203,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             GlideApp.with(requireContext())
                 .load(ingredients.getOrNull(index)?.previewURL)
                 .into(binding.clIngredients[index] as ShapeableImageView)
-        }
-    }
-
-
-    private fun createCategory(
-        name: String,
-        labels: List<String>,
-        inflater: LayoutInflater
-    ): View {
-        return ItemExtendedCategoryBinding.inflate(inflater, null, false).apply {
-            tvTitle.text = name
-            for (label in labels) {
-                cgLabels.addView(createLabel(name, label))
-            }
-        }.root
-    }
-
-    private fun createLabel(name: String, label: String): Chip {
-        return Chip(context, null, R.attr.appChipStyle).apply {
-            text = label
-            setOnClickListener { onLabelClickListener(name, label) }
         }
     }
 }

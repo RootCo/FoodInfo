@@ -19,18 +19,26 @@
         android:id = "@+id/et_search_input"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
         android:imeOptions = "actionSearch"
         android:singleLine = "true"
         android:theme = "@style/SearchView"
         app:defaultQueryHint = "@string/et_search_hint"
         app:iconifiedByDefault = "false"
         app:layout_constraintBottom_toBottomOf = "@+id/btn_back"
-        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintEnd_toStartOf = "@+id/btn_filter"
         app:layout_constraintStart_toEndOf = "@id/btn_back"
         app:layout_constraintTop_toTopOf = "parent"
         app:queryBackground = "@android:color/transparent"
         app:searchIcon = "@null" />
+
+    <ImageView
+        android:id = "@+id/btn_filter"
+        style = "@style/ButtonStroke"
+        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
+        android:contentDescription = "@string/default_content_description"
+        android:src = "@drawable/ic_search_filter"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
 
     <View
         android:id = "@+id/divider"

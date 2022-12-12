@@ -7,6 +7,18 @@ import com.example.foodinfo.local.entity.CategoryEntity
 import com.example.foodinfo.local.entity.LabelEntity
 
 
+/*
+    not sure whether i should split labels and categories into 2 separate DAO or not
+    (in case they are too small and kinda same)
+
+    no Flow here because usually it uses just to once grab data from database even though
+    data comes from internet.
+    labels/categories DAO and Repo might be simply replaced by json file or even hardcoded
+    into lists but it will lead to app updates each time developers decides to change
+    description or icon for label or add|replace category
+
+ */
+
 @Dao
 interface LabelsDAO {
 

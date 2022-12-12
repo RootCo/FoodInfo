@@ -15,13 +15,26 @@ class FavoriteViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes
 ) : ViewModel() {
 
-    private val selectedRecipes: ArrayList<String> = arrayListOf()
+    private val _isEditMode = MutableStateFlow(false)
+    val isEditMode: StateFlow<Boolean> = _isEditMode.asStateFlow()
 
     private val _selectedCount = MutableStateFlow(0)
     val selectedCount: StateFlow<Int> = _selectedCount.asStateFlow()
 
-    private val _isEditMode = MutableStateFlow(false)
-    val isEditMode: StateFlow<Boolean> = _isEditMode.asStateFlow()
+    private val selectedRecipes: HashSet<String> = hashSetOf()
+
+    // not sure about making database query every time but if simply initialize
+    // totalRecipesCount once at viewModel initialization will cause to incorrect behavior
+    // in situation when user removes a recipe from favorite in RecipeExtended screen
+    // which will cause favorite recipes table size to change and totalRecipesCount
+    // to store incorrect value
+    // there are couple ways to avoid that:
+    // use flow in getFavoriteIds (but have to store whole list of recipe ids here)
+    // make function in viewModel for updating totalRecipesCount value and call it
+    // on fragment's onStart() (but forcing View layer to care about such stuff is kinda
+    // breaking the concept of having separate ViewModel/Model layers)
+    val totalRecipesCount: Int
+        get() = repositoryRecipes.getFavoriteIds().size
 
     val recipes: StateFlow<PagingData<RecipeFavoriteModel>> =
         repositoryRecipes.getFavorite()
@@ -39,7 +52,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     fun delSelected() {
-        repositoryRecipes.delFromFavorite(selectedRecipes)
+        repositoryRecipes.delFromFavorite(selectedRecipes.toList())
     }
 
     fun updateSelectStatus(id: String) {
@@ -51,15 +64,13 @@ class FavoriteViewModel @Inject constructor(
         _selectedCount.value = selectedRecipes.size
     }
 
-    fun unselectAll() {
-        selectedRecipes.clear()
+    fun selectAll() {
+        selectedRecipes.addAll(repositoryRecipes.getFavoriteIds())
         _selectedCount.value = selectedRecipes.size
     }
 
-    fun updateSelected() {
-        selectedRecipes.removeAll { recipeId ->
-            recipeId !in repositoryRecipes.getFavoriteIds()
-        }
+    fun unselectAll() {
+        selectedRecipes.clear()
         _selectedCount.value = selectedRecipes.size
     }
 }

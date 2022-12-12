@@ -1,12 +1,14 @@
-package com.example.foodinfo.di
+package com.example.foodinfo
 
 import android.app.Application
+import com.example.foodinfo.di.BaseViewModelFactory
 import com.example.foodinfo.di.module.BaseApplicationModule
 import com.example.foodinfo.local.DataBase
 import com.example.foodinfo.utils.AssetProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
+
 
 @Singleton
 @Component(modules = [BaseApplicationModule::class])

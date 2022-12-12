@@ -69,7 +69,6 @@
                 android:layout_width = "0dp"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_10"
-                android:fontFamily = "@font/app_font_medium"
                 android:textAlignment = "center"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
@@ -94,7 +93,7 @@
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_6"
                 android:drawablePadding = "@dimen/dp_6"
-                android:fontFamily = "@font/app_font_medium"
+                android:fontFamily = "@font/app_font_bold_rounded"
                 app:drawableStartCompat = "@drawable/ic_peoples_20"
                 app:drawableTint = "?appPrimaryColor"
                 app:layout_constraintEnd_toStartOf = "@+id/tv_time_value"
@@ -118,7 +117,7 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:drawablePadding = "@dimen/dp_6"
-                android:fontFamily = "@font/app_font_medium"
+                android:fontFamily = "@font/app_font_bold_rounded"
                 app:drawableStartCompat = "@drawable/ic_time_20"
                 app:drawableTint = "?appPrimaryColor"
                 app:layout_constraintEnd_toStartOf = "@+id/tv_weight_value"
@@ -142,7 +141,7 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:drawablePadding = "@dimen/dp_6"
-                android:fontFamily = "@font/app_font_medium"
+                android:fontFamily = "@font/app_font_bold_rounded"
                 app:drawableStartCompat = "@drawable/ic_scale_20"
                 app:drawableTint = "?appPrimaryColor"
                 app:layout_constraintEnd_toEndOf = "parent"
@@ -156,7 +155,6 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_50"
-                android:fontFamily = "@font/app_font_medium"
                 android:text = "@string/nutrients_text"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/tv_servings_value" />
@@ -184,7 +182,7 @@
 
                 <include
                     android:id = "@+id/i_protein"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_carbs"
@@ -193,7 +191,7 @@
 
                 <include
                     android:id = "@+id/i_carbs"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_fat"
@@ -201,7 +199,7 @@
 
                 <include
                     android:id = "@+id/i_fat"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toStartOf = "@+id/i_energy"
@@ -209,7 +207,7 @@
 
                 <include
                     android:id = "@+id/i_energy"
-                    layout = "@layout/item_extended_nutrient"
+                    layout = "@layout/item_recipe_base_nutrient"
                     android:layout_width = "wrap_content"
                     android:layout_height = "wrap_content"
                     app:layout_constraintEnd_toEndOf = "parent"
@@ -223,7 +221,6 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_50"
-                android:fontFamily = "@font/app_font_medium"
                 android:text = "@string/ingredients_text"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/cl_nutrients" />
@@ -289,13 +286,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_categories"
                 android:layout_width = "0dp"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_50"
-                android:orientation = "vertical"
-                android:paddingBottom = "@dimen/dp_40"
+                android:paddingBottom = "@dimen/dp_20"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@id/cl_ingredients" />

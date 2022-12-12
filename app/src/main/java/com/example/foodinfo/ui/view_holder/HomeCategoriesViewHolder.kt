@@ -4,7 +4,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.RvItemCategoryBinding
 import com.example.foodinfo.repository.model.CategoryModel
-import com.example.foodinfo.repository.model.LabelModel
 import com.example.foodinfo.utils.glide.GlideApp
 
 
