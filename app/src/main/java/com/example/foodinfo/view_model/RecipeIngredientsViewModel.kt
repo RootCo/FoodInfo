@@ -5,10 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
@@ -18,7 +15,7 @@ class RecipeIngredientsViewModel @Inject constructor(repositoryRecipes: Reposito
     var recipeId: String = ""
 
     val ingredients: SharedFlow<List<RecipeIngredientModel>> by lazy {
-        repositoryRecipes.getByIdIngredients(recipeId).flowOn(Dispatchers.IO)
+        repositoryRecipes.getByIdIngredients(recipeId).map { it.data }.flowOn(Dispatchers.IO)
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
     }
 }
