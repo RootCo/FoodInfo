@@ -123,16 +123,23 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 viewModel.ingredients,
             ) { recipe, labels, nutrients, ingredients ->
 
-                initRecipe(recipe)
-                recyclerAdapter.submitList(labels)
-                initNutrients(nutrients)
-                initIngredients(ingredients)
+                if (recipe is State.Success
+                    && labels is State.Success
+                    && nutrients is State.Success
+                    && ingredients is State.Success
+                ) {
 
-                if (!isInitialized) {
-                    binding.pbContent.isVisible = false
-                    binding.svContent.isVisible = true
-                    binding.svContent.baseAnimation()
-                    isInitialized = true
+                    initRecipe(recipe.data)
+                    recyclerAdapter.submitList(labels.data)
+                    initNutrients(nutrients.data)
+                    initIngredients(ingredients.data)
+
+                    if (!isInitialized) {
+                        binding.pbContent.isVisible = false
+                        binding.svContent.isVisible = true
+                        binding.svContent.baseAnimation()
+                        isInitialized = true
+                    }
                 }
 
             }.collectLatest { }

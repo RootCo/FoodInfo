@@ -9,6 +9,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeNutrientsBinding
 import com.example.foodinfo.ui.adapter.RecipeNutrientsAdapter
 import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.utils.State
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
@@ -92,7 +93,11 @@ class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.nutrients.collectLatest(recyclerAdapter::submitList)
+            viewModel.nutrients.collectLatest { ingredients ->
+                if (ingredients is State.Success) {
+                    recyclerAdapter.submitList(ingredients.data)
+                }
+            }
         }
     }
 }
