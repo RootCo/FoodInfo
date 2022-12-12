@@ -22,11 +22,8 @@ import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.imageview.ShapeableImageView
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
@@ -34,13 +31,31 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 ) {
 
     private val args: RecipeExtendedFragmentArgs by navArgs()
-    private var isInitialized = false
 
     private val viewModel: RecipeExtendedViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 
     private lateinit var recyclerAdapter: RecipeCategoriesAdapter
+
+
+    // no SupervisorJob on purpose
+    private val initUiScope = CoroutineScope(Job() + Dispatchers.Default)
+
+    enum class UIElements {
+        RECIPE,
+        LABELS,
+        NUTRIENTS,
+        INGREDIENTS
+    }
+
+    private val initUiElementsState: HashMap<UIElements, UiState> = hashMapOf(
+        Pair(UIElements.RECIPE, UiState.Loading()),
+        Pair(UIElements.LABELS, UiState.Loading()),
+        Pair(UIElements.NUTRIENTS, UiState.Loading()),
+        Pair(UIElements.INGREDIENTS, UiState.Loading())
+    )
+
 
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
@@ -82,13 +97,35 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
 
+    private fun updateState(key: UIElements, value: UiState) {
+        initUiElementsState[key] = value
+        initUiElementsState.values.firstOrNull { it is UiState.Error }.also {
+            it?.let { uiState ->
+                uiState as UiState.Error
+                updateUiState(UiState.Error(uiState.message, uiState.error))
+                return
+            }
+        }
+        if (initUiElementsState.map { it.value is UiState.Success }.all { it }) {
+            updateUiState(UiState.Success())
+        } else {
+            updateUiState(UiState.Loading())
+        }
+    }
+
+
+    override fun onDestroy() {
+        initUiScope.cancel()
+        super.onDestroy()
+    }
+
+
     override fun initUI() {
         recyclerAdapter = RecipeCategoriesAdapter(
             requireContext(),
             onLabelClickListener
         )
 
-        isInitialized = false
         viewModel.recipeId = args.recipeId
         binding.btnBack.setOnClickListener { onBackClickListener() }
         binding.btnShare.setOnClickListener { onShareClickListener() }
@@ -110,39 +147,100 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     override fun subscribeUI() {
-        repeatOn(Lifecycle.State.STARTED) {
-            if (!isInitialized) {
-                binding.pbContent.isVisible = true
-                binding.svContent.isVisible = false
+
+        observeUiState { uiState ->
+            when (uiState) {
+                is UiState.Error   -> {}
+                is UiState.Success -> {
+                    binding.pbContent.isVisible = false
+                    binding.svContent.isVisible = true
+                    binding.svContent.baseAnimation()
+                }
+                is UiState.Loading -> {
+                    binding.pbContent.isVisible = true
+                    binding.svContent.isVisible = false
+                }
             }
 
-            combine(
-                viewModel.recipe,
-                viewModel.labels,
-                viewModel.nutrients,
-                viewModel.ingredients,
-            ) { recipe, labels, nutrients, ingredients ->
+        }
 
-                if (recipe is State.Success
-                    && labels is State.Success
-                    && nutrients is State.Success
-                    && ingredients is State.Success
-                ) {
-
-                    initRecipe(recipe.data)
-                    recyclerAdapter.submitList(labels.data)
-                    initNutrients(nutrients.data)
-                    initIngredients(ingredients.data)
-
-                    if (!isInitialized) {
-                        binding.pbContent.isVisible = false
-                        binding.svContent.isVisible = true
-                        binding.svContent.baseAnimation()
-                        isInitialized = true
+        initUiScope.launch {
+            repeatOn(Lifecycle.State.STARTED) {
+                viewModel.recipe.collectLatest { recipe ->
+                    when (recipe) {
+                        is State.Success -> {
+                            initRecipe(recipe.data)
+                            updateState(UIElements.RECIPE, UiState.Success())
+                        }
+                        is State.Error   -> {
+                            initUiElementsState[UIElements.RECIPE] = UiState.Error(
+                                recipe.message,
+                                recipe.error
+                            )
+                            throw recipe.error
+                        }
+                        else             -> {}
                     }
                 }
+            }
 
-            }.collectLatest { }
+            repeatOn(Lifecycle.State.STARTED) {
+                viewModel.labels.collectLatest { labels ->
+                    when (labels) {
+                        is State.Success -> {
+                            recyclerAdapter.submitList(labels.data) {
+                                updateState(UIElements.LABELS, UiState.Success())
+                            }
+                        }
+                        is State.Error   -> {
+                            initUiElementsState[UIElements.LABELS] = UiState.Error(
+                                labels.message,
+                                labels.error
+                            )
+                            throw labels.error
+                        }
+                        else             -> {}
+                    }
+                }
+            }
+
+            repeatOn(Lifecycle.State.STARTED) {
+                viewModel.nutrients.collectLatest { nutrients ->
+                    when (nutrients) {
+                        is State.Success -> {
+                            initNutrients(nutrients.data)
+                            updateState(UIElements.NUTRIENTS, UiState.Success())
+                        }
+                        is State.Error   -> {
+                            initUiElementsState[UIElements.NUTRIENTS] = UiState.Error(
+                                nutrients.message,
+                                nutrients.error
+                            )
+                            throw nutrients.error
+                        }
+                        else             -> {}
+                    }
+                }
+            }
+
+            repeatOn(Lifecycle.State.STARTED) {
+                viewModel.ingredients.collectLatest { ingredients ->
+                    when (ingredients) {
+                        is State.Success -> {
+                            initIngredients(ingredients.data)
+                            updateState(UIElements.INGREDIENTS, UiState.Success())
+                        }
+                        is State.Error   -> {
+                            initUiElementsState[UIElements.INGREDIENTS] = UiState.Error(
+                                ingredients.message,
+                                ingredients.error
+                            )
+                            throw ingredients.error
+                        }
+                        else             -> {}
+                    }
+                }
+            }
         }
     }
 
