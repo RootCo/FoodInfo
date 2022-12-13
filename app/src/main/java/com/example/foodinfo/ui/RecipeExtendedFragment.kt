@@ -173,11 +173,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                             updateState(UIElements.RECIPE, UiState.Success())
                         }
                         is State.Error   -> {
-                            initUiElementsState[UIElements.RECIPE] = UiState.Error(
-                                recipe.message,
-                                recipe.error
+                            updateState(
+                                UIElements.RECIPE,
+                                UiState.Error(recipe.message, recipe.error)
                             )
-                            throw recipe.error
                         }
                         else             -> {}
                     }
@@ -193,11 +192,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                             }
                         }
                         is State.Error   -> {
-                            initUiElementsState[UIElements.LABELS] = UiState.Error(
-                                labels.message,
-                                labels.error
+                            updateState(
+                                UIElements.LABELS,
+                                UiState.Error(labels.message, labels.error)
                             )
-                            throw labels.error
                         }
                         else             -> {}
                     }
@@ -212,11 +210,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                             updateState(UIElements.NUTRIENTS, UiState.Success())
                         }
                         is State.Error   -> {
-                            initUiElementsState[UIElements.NUTRIENTS] = UiState.Error(
-                                nutrients.message,
-                                nutrients.error
+                            updateState(
+                                UIElements.NUTRIENTS,
+                                UiState.Error(nutrients.message, nutrients.error)
                             )
-                            throw nutrients.error
                         }
                         else             -> {}
                     }
@@ -231,11 +228,10 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                             updateState(UIElements.INGREDIENTS, UiState.Success())
                         }
                         is State.Error   -> {
-                            initUiElementsState[UIElements.INGREDIENTS] = UiState.Error(
-                                ingredients.message,
-                                ingredients.error
+                            updateState(
+                                UIElements.INGREDIENTS,
+                                UiState.Error(ingredients.message, ingredients.error)
                             )
-                            throw ingredients.error
                         }
                         else             -> {}
                     }

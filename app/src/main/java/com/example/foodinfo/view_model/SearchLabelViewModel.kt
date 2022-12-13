@@ -39,7 +39,6 @@ class SearchLabelViewModel @Inject constructor(
 
     val recipes: StateFlow<PagingData<RecipeShortModel>> =
         repositoryRecipes.getByFilter(filter)
-            .flowOn(Dispatchers.IO)
             .cachedIn(viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 

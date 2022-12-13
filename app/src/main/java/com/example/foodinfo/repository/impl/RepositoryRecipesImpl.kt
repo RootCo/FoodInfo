@@ -30,7 +30,7 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getPopular()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
 
     override fun getFavorite(): Flow<PagingData<RecipeFavoriteModel>> {
@@ -39,7 +39,7 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getFavorite()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }.flowOn(Dispatchers.IO)
     }
 
     override fun getFavoriteIds(): List<String> {
@@ -52,7 +52,7 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getByFilter(SimpleSQLiteQuery(filter.query))
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
 
     override fun getById(id: String): Flow<State<RecipeModel>> {
