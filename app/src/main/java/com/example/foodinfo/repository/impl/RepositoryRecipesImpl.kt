@@ -11,7 +11,11 @@ import com.example.foodinfo.repository.mapper.toModel
 import com.example.foodinfo.repository.mapper.toModelFavorite
 import com.example.foodinfo.repository.mapper.toModelShort
 import com.example.foodinfo.repository.model.*
+import com.example.foodinfo.utils.State
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -26,7 +30,7 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getPopular()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
 
     override fun getFavorite(): Flow<PagingData<RecipeFavoriteModel>> {
@@ -35,7 +39,7 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getFavorite()
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelFavorite() } }.flowOn(Dispatchers.IO)
     }
 
     override fun getFavoriteIds(): List<String> {
@@ -48,23 +52,43 @@ class RepositoryRecipesImpl @Inject constructor(
             pagingSourceFactory = {
                 recipesDAO.getByFilter(SimpleSQLiteQuery(filter.query))
             }
-        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }
+        ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
 
-    override fun getById(id: String): Flow<RecipeModel> {
-        return recipesDAO.getById(id).map { it.toModel() }
+    override fun getById(id: String): Flow<State<RecipeModel>> {
+        return flow {
+            emit(State.Loading())
+            recipesDAO.getById(id).collect {
+                emit(State.Success(it.toModel()))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override fun getByIdIngredients(id: String): Flow<List<RecipeIngredientModel>> {
-        return recipesDAO.getByIdIngredients(id).map { list -> list.map { it.toModel() } }
+    override fun getByIdIngredients(id: String): Flow<State<List<RecipeIngredientModel>>> {
+        return flow {
+            emit(State.Loading())
+            recipesDAO.getByIdIngredients(id).collect { list ->
+                emit(State.Success(list.map { it.toModel() }))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>> {
-        return recipesDAO.getByIdNutrients(id).map { list -> list.map { it.toModel() } }
+    override fun getByIdNutrients(id: String): Flow<State<List<RecipeNutrientModel>>> {
+        return flow {
+            emit(State.Loading())
+            recipesDAO.getByIdNutrients(id).collect { list ->
+                emit(State.Success(list.map { it.toModel() }))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
-    override fun getByIdLabels(id: String): Flow<List<CategoryLabelsModel>> {
-        return recipesDAO.getByIdLabels(id).map { it.toModel() }
+    override fun getByIdLabels(id: String): Flow<State<List<CategoryLabelsModel>>> {
+        return flow {
+            emit(State.Loading())
+            recipesDAO.getByIdLabels(id).collect {
+                emit(State.Success(it.toModel()))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun updateFavoriteMark(id: String) {

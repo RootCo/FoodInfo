@@ -2,6 +2,7 @@ package com.example.foodinfo.repository
 
 import androidx.paging.PagingData
 import com.example.foodinfo.repository.model.*
+import com.example.foodinfo.utils.State
 import kotlinx.coroutines.flow.Flow
 
 
@@ -14,13 +15,13 @@ interface RepositoryRecipes {
 
     fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
 
-    fun getById(id: String): Flow<RecipeModel>
+    fun getById(id: String): Flow<State<RecipeModel>>
 
-    fun getByIdIngredients(id: String): Flow<List<RecipeIngredientModel>>
+    fun getByIdIngredients(id: String): Flow<State<List<RecipeIngredientModel>>>
 
-    fun getByIdNutrients(id: String): Flow<List<RecipeNutrientModel>>
+    fun getByIdNutrients(id: String): Flow<State<List<RecipeNutrientModel>>>
 
-    fun getByIdLabels(id: String): Flow<List<CategoryLabelsModel>>
+    fun getByIdLabels(id: String): Flow<State<List<CategoryLabelsModel>>>
 
     fun updateFavoriteMark(id: String)
 

@@ -8,6 +8,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeIngredientsBinding
 import com.example.foodinfo.ui.adapter.RecipeIngredientsAdapter
 import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.utils.State
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.getMeasureSpacer
 import com.example.foodinfo.utils.repeatOn
@@ -69,7 +70,11 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.ingredients.collectLatest(recyclerAdapter::submitList)
+            viewModel.ingredients.collectLatest { ingredients ->
+                if (ingredients is State.Success) {
+                    recyclerAdapter.submitList(ingredients.data)
+                }
+            }
         }
     }
 }

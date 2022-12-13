@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.viewbinding.ViewBinding
+import com.example.foodinfo.utils.UiState
+import com.example.foodinfo.utils.repeatOn
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 
 /**
  * Base class to avoid boilerplate binding initialization and releasing.
@@ -30,6 +35,31 @@ abstract class BaseFragment<VB : ViewBinding>(
      * Function to launch all necessary coroutines.
      */
     open fun subscribeUI() {}
+
+
+    private var _uiState = MutableSharedFlow<UiState>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    ).also {
+        it.tryEmit(UiState.Loading())
+    }
+
+    private val uiState: SharedFlow<UiState> = _uiState.asSharedFlow()
+
+
+    fun observeUiState(runnable: suspend (UiState) -> Unit) {
+        repeatOn(Lifecycle.State.STARTED) {
+            uiState.distinctUntilChanged { old, new ->
+                old.equalState(new)
+            }.collectLatest {
+                runnable(it)
+            }
+        }
+    }
+
+    fun updateUiState(newState: UiState): Boolean {
+        return _uiState.tryEmit(newState)
+    }
 
 
     override fun onCreateView(

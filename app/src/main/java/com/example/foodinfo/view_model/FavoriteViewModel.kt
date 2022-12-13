@@ -38,7 +38,6 @@ class FavoriteViewModel @Inject constructor(
 
     val recipes: StateFlow<PagingData<RecipeFavoriteModel>> =
         repositoryRecipes.getFavorite()
-            .flowOn(Dispatchers.IO)
             .cachedIn(viewModelScope)
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 

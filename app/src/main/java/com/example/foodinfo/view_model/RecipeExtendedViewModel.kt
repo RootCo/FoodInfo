@@ -5,10 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.model.*
-import kotlinx.coroutines.Dispatchers
+import com.example.foodinfo.utils.State
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 
@@ -21,24 +20,28 @@ class RecipeExtendedViewModel @Inject constructor(
 
     var recipeId: String = ""
 
-    val recipe: SharedFlow<RecipeModel> by lazy {
-        repositoryRecipes.getById(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    val recipe: SharedFlow<State<RecipeModel>> by lazy {
+        repositoryRecipes.getById(recipeId).shareIn(
+            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
+        )
     }
 
-    val ingredients: SharedFlow<List<RecipeIngredientModel>> by lazy {
-        repositoryRecipes.getByIdIngredients(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    val ingredients: SharedFlow<State<List<RecipeIngredientModel>>> by lazy {
+        repositoryRecipes.getByIdIngredients(recipeId).shareIn(
+            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
+        )
     }
 
-    val nutrients: SharedFlow<List<RecipeNutrientModel>> by lazy {
-        repositoryRecipes.getByIdNutrients(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    val nutrients: SharedFlow<State<List<RecipeNutrientModel>>> by lazy {
+        repositoryRecipes.getByIdNutrients(recipeId).shareIn(
+            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
+        )
     }
 
-    val labels: SharedFlow<List<CategoryLabelsModel>> by lazy {
-        repositoryRecipes.getByIdLabels(recipeId).flowOn(Dispatchers.IO)
-            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    val labels: SharedFlow<State<List<CategoryLabelsModel>>> by lazy {
+        repositoryRecipes.getByIdLabels(recipeId).shareIn(
+            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
+        )
     }
 
 
