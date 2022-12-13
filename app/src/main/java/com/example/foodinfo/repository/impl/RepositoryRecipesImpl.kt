@@ -12,7 +12,11 @@ import com.example.foodinfo.repository.mapper.toModelFavorite
 import com.example.foodinfo.repository.mapper.toModelShort
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.utils.State
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
@@ -57,7 +61,7 @@ class RepositoryRecipesImpl @Inject constructor(
             recipesDAO.getById(id).collect {
                 emit(State.Success(it.toModel()))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getByIdIngredients(id: String): Flow<State<List<RecipeIngredientModel>>> {
@@ -66,7 +70,7 @@ class RepositoryRecipesImpl @Inject constructor(
             recipesDAO.getByIdIngredients(id).collect { list ->
                 emit(State.Success(list.map { it.toModel() }))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getByIdNutrients(id: String): Flow<State<List<RecipeNutrientModel>>> {
@@ -75,7 +79,7 @@ class RepositoryRecipesImpl @Inject constructor(
             recipesDAO.getByIdNutrients(id).collect { list ->
                 emit(State.Success(list.map { it.toModel() }))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getByIdLabels(id: String): Flow<State<List<CategoryLabelsModel>>> {
@@ -84,7 +88,7 @@ class RepositoryRecipesImpl @Inject constructor(
             recipesDAO.getByIdLabels(id).collect {
                 emit(State.Success(it.toModel()))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun updateFavoriteMark(id: String) {

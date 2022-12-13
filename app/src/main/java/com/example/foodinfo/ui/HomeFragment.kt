@@ -49,7 +49,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 it.orientation = LinearLayoutManager.HORIZONTAL
             }
             adapter = recyclerAdapter
-            setHasFixedSize(true)
             addItemDecoration(
                 ListHorizontalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.home_categories_space),
