@@ -43,22 +43,64 @@ abstract class BaseFragment<VB : ViewBinding>(
     ).also {
         it.tryEmit(UiState.Loading())
     }
-
     private val uiState: SharedFlow<UiState> = _uiState.asSharedFlow()
 
+    private val uiChunksState: HashMap<Any, UiState> = hashMapOf()
 
-    fun observeUiState(runnable: suspend (UiState) -> Unit) {
+
+    /**
+     * Observes UI state changes.
+     *
+     * All repetitions of the same state are filtered out.
+     *
+     * See [updateUiState] for a description of UI state calculation
+     *
+     * @param callBack runnable that is executed each time UI state changes
+     */
+    fun observeUiState(callBack: suspend (UiState) -> Unit) {
         repeatOn(Lifecycle.State.STARTED) {
             uiState.distinctUntilChanged { old, new ->
                 old.equalState(new)
             }.collectLatest {
-                runnable(it)
+                callBack(it)
             }
         }
     }
 
-    fun updateUiState(newState: UiState): Boolean {
-        return _uiState.tryEmit(newState)
+    /**
+     * Adds new UI chunk and sets it's state to [UiState.Loading].
+     * Chunk state will be used to calculate general UI state in [updateUiState]
+     *
+     * It's recommended to use enums for chunkId type and register all chunks inside [initUI]
+     */
+    fun registerUiChunk(chunkId: Any) {
+        uiChunksState[chunkId] = UiState.Loading()
+    }
+
+    /**
+     * Updates state for specific UI chunk and recalculate general UI state like this:
+     *
+     * [UiState.Error] - If any of chunks has state Error (error type and message will be
+     * from the first founded chunk with this state).
+     *
+     * [UiState.Success] - If all chunks has Success state.
+     *
+     * [UiState.Loading] - Any other conditions.
+     */
+    fun updateUiState(key: Any, value: UiState): Boolean {
+        if (!uiChunksState.containsKey(key)) return false
+        uiChunksState[key] = value
+        uiChunksState.values.firstOrNull { it is UiState.Error }.also {
+            it?.let { uiState ->
+                uiState as UiState.Error
+                return _uiState.tryEmit(UiState.Error(uiState.message, uiState.error))
+            }
+        }
+        return if (uiChunksState.map { it.value is UiState.Success }.all { it }) {
+            _uiState.tryEmit(UiState.Success())
+        } else {
+            _uiState.tryEmit(UiState.Loading())
+        }
     }
 
 

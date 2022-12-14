@@ -36,8 +36,8 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         requireActivity().appComponent.viewModelsFactory()
     }
 
-    private lateinit var recyclerAdapter: RecipeCategoriesAdapter
 
+    private lateinit var recyclerAdapter: RecipeCategoriesAdapter
 
     // no SupervisorJob on purpose
     private val initUiScope = CoroutineScope(Job() + Dispatchers.Default)
@@ -48,13 +48,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         NUTRIENTS,
         INGREDIENTS
     }
-
-    private val initUiElementsState: HashMap<UIElements, UiState> = hashMapOf(
-        Pair(UIElements.RECIPE, UiState.Loading()),
-        Pair(UIElements.LABELS, UiState.Loading()),
-        Pair(UIElements.NUTRIENTS, UiState.Loading()),
-        Pair(UIElements.INGREDIENTS, UiState.Loading())
-    )
 
 
     private val onBackClickListener: () -> Unit = {
@@ -97,23 +90,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
 
-    private fun updateState(key: UIElements, value: UiState) {
-        initUiElementsState[key] = value
-        initUiElementsState.values.firstOrNull { it is UiState.Error }.also {
-            it?.let { uiState ->
-                uiState as UiState.Error
-                updateUiState(UiState.Error(uiState.message, uiState.error))
-                return
-            }
-        }
-        if (initUiElementsState.map { it.value is UiState.Success }.all { it }) {
-            updateUiState(UiState.Success())
-        } else {
-            updateUiState(UiState.Loading())
-        }
-    }
-
-
     override fun onDestroy() {
         initUiScope.cancel()
         super.onDestroy()
@@ -121,6 +97,11 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
 
     override fun initUI() {
+        registerUiChunk(UIElements.RECIPE)
+        registerUiChunk(UIElements.LABELS)
+        registerUiChunk(UIElements.NUTRIENTS)
+        registerUiChunk(UIElements.INGREDIENTS)
+
         recyclerAdapter = RecipeCategoriesAdapter(
             requireContext(),
             onLabelClickListener
@@ -167,74 +148,73 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         initUiScope.launch {
             repeatOn(Lifecycle.State.STARTED) {
                 viewModel.recipe.collectLatest { recipe ->
-                    when (recipe) {
+                    val state: UiState = when (recipe) {
                         is State.Success -> {
                             initRecipe(recipe.data)
-                            updateState(UIElements.RECIPE, UiState.Success())
+                            UiState.Success()
                         }
                         is State.Error   -> {
-                            updateState(
-                                UIElements.RECIPE,
-                                UiState.Error(recipe.message, recipe.error)
-                            )
+                            UiState.Error(recipe.message, recipe.error)
                         }
-                        else             -> {}
+                        else             -> {
+                            UiState.Loading()
+                        }
                     }
+                    updateUiState(UIElements.RECIPE, state)
                 }
             }
 
             repeatOn(Lifecycle.State.STARTED) {
                 viewModel.labels.collectLatest { labels ->
-                    when (labels) {
+                    val state: UiState = when (labels) {
                         is State.Success -> {
-                            recyclerAdapter.submitList(labels.data) {
-                                updateState(UIElements.LABELS, UiState.Success())
-                            }
+                            recyclerAdapter.submitList(labels.data)
+                            UiState.Success()
                         }
                         is State.Error   -> {
-                            updateState(
-                                UIElements.LABELS,
-                                UiState.Error(labels.message, labels.error)
-                            )
+                            UiState.Error(labels.message, labels.error)
                         }
-                        else             -> {}
+                        else             -> {
+                            UiState.Loading()
+                        }
                     }
+                    updateUiState(UIElements.LABELS, state)
                 }
             }
 
             repeatOn(Lifecycle.State.STARTED) {
                 viewModel.nutrients.collectLatest { nutrients ->
-                    when (nutrients) {
+                    val state: UiState = when (nutrients) {
                         is State.Success -> {
                             initNutrients(nutrients.data)
-                            updateState(UIElements.NUTRIENTS, UiState.Success())
+                            UiState.Success()
                         }
                         is State.Error   -> {
-                            updateState(
-                                UIElements.NUTRIENTS,
-                                UiState.Error(nutrients.message, nutrients.error)
-                            )
+                            UiState.Error(nutrients.message, nutrients.error)
                         }
-                        else             -> {}
+                        else             -> {
+                            UiState.Loading()
+                        }
                     }
+                    updateUiState(UIElements.NUTRIENTS, state)
                 }
             }
 
             repeatOn(Lifecycle.State.STARTED) {
                 viewModel.ingredients.collectLatest { ingredients ->
-                    when (ingredients) {
+                    val state: UiState = when (ingredients) {
                         is State.Success -> {
                             initIngredients(ingredients.data)
-                            updateState(UIElements.INGREDIENTS, UiState.Success())
+                            UiState.Success()
                         }
                         is State.Error   -> {
-                            updateState(
-                                UIElements.INGREDIENTS,
-                                UiState.Error(ingredients.message, ingredients.error)
-                            )
+                            UiState.Error(ingredients.message, ingredients.error)
                         }
-                        else             -> {}
+                        else             -> {
+                            UiState.Loading()
+                        }
                     }
+                    updateUiState(UIElements.INGREDIENTS, state)
                 }
             }
         }
