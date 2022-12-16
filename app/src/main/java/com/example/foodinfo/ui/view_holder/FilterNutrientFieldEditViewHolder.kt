@@ -7,14 +7,13 @@ import com.example.foodinfo.repository.model.NutrientFilterEditModel
 class FilterNutrientFieldEditViewHolder(
     private val binding: RvItemFilterInputNutrientsEditBinding,
     onHeaderClickCallback: (String) -> Unit,
-    onValueChangedCallback: (Float, Float, Boolean) -> Unit
+    onValueChangedCallback: (Float, Float) -> Unit
 ) : BaseViewHolder<RvItemFilterInputNutrientsEditBinding, NutrientFilterEditModel>(binding) {
 
-    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
-        { minValue, maxValue, _ ->
-            item.minValue = minValue
-            item.maxValue = maxValue
-        }
+    private val onValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
+        item.minValue = minValue
+        item.maxValue = maxValue
+    }
 
 
     init {

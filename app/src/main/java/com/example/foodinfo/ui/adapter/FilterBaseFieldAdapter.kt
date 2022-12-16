@@ -12,7 +12,7 @@ import com.example.foodinfo.ui.view_holder.FilterBaseFieldViewHolder
 
 class FilterBaseFieldAdapter(
     context: Context,
-    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit
+    private val onValueChangedCallback: (Float, Float) -> Unit
 ) : ListAdapter<BaseFieldFilterEditModel, ViewHolder>(BaseFieldFilterEditModel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)

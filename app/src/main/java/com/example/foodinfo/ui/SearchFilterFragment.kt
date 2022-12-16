@@ -36,25 +36,20 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
     private val onNutrientsEditClickListener: () -> Unit = {
         findNavController().navigate(
             SearchFilterFragmentDirections.actionFSearchFilterToFSearchFilterNutrients(
-                viewModel.recipeId
+                viewModel.filterName
             )
         )
     }
 
-    private val onBaseFieldValueChangedCallback: (Float, Float, Boolean) -> Unit =
-        { minValue, maxValue, isDefault ->
-            if (isDefault) {
-                //TODO
-            } else {
-                //TODO
-            }
-        }
+    private val onBaseFieldValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
+
+    }
 
     private val onCategoryChangedCallback: (String) -> Unit = { category ->
         findNavController().navigate(
             SearchFilterFragmentDirections.actionFSearchFilterToFSearchFilterCategory(
                 category,
-                viewModel.recipeId
+                viewModel.filterName
             )
         )
     }

@@ -6,14 +6,13 @@ import com.example.foodinfo.repository.model.BaseFieldFilterEditModel
 
 class FilterBaseFieldViewHolder(
     private val binding: RvItemFilterInputBaseFieldBinding,
-    onValueChangedCallback: (Float, Float, Boolean) -> Unit
+    onValueChangedCallback: (Float, Float) -> Unit
 ) : BaseViewHolder<RvItemFilterInputBaseFieldBinding, BaseFieldFilterEditModel>(binding) {
 
-    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
-        { minValue, maxValue, _ ->
-            item.minValue = minValue
-            item.maxValue = maxValue
-        }
+    private val onValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
+        item.minValue = minValue
+        item.maxValue = maxValue
+    }
 
 
     init {

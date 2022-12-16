@@ -2,6 +2,7 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.foodinfo.local.entity.SearchFilterEntity
 import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.model.BaseFieldFilterEditModel
 import com.example.foodinfo.repository.model.CategoryFilterPreviewModel
@@ -51,7 +52,7 @@ class SearchFilterViewModel @Inject constructor(
         1
     )
 
-    val recipeId = ""
+    var filterName = SearchFilterEntity.DEFAULT_NAME
 
 
     init {

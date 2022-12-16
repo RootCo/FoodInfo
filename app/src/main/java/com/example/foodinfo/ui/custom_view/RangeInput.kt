@@ -33,7 +33,7 @@ class RangeInput @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    private var stopTrackingCallbacks: ArrayList<((Float, Float, Boolean) -> Unit)> =
+    private var stopTrackingCallbacks: ArrayList<((Float, Float) -> Unit)> =
         arrayListOf()
 
 
@@ -137,8 +137,7 @@ class RangeInput @JvmOverloads constructor(
             stopTrackingCallbacks.forEach { callback ->
                 callback.invoke(
                     minValue,
-                    maxValue,
-                    rangeMin == minValue && rangeMax == maxValue
+                    maxValue
                 )
             }
         }
@@ -149,7 +148,7 @@ class RangeInput @JvmOverloads constructor(
         binding.clHeader.setOnClickListener { callback(binding.tvHeader.text.toString()) }
     }
 
-    fun addStopTrackingCallback(callback: (Float, Float, Boolean) -> Unit) {
+    fun addStopTrackingCallback(callback: (Float, Float) -> Unit) {
         stopTrackingCallbacks.add(callback)
     }
 

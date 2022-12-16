@@ -49,14 +49,9 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
         }
     }
 
-    private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
-        { minValue, maxValue, isDefault ->
-            if (isDefault) {
-                //TODO
-            } else {
-                //TODO
-            }
-        }
+    private val onValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
+
+    }
 
 
     override fun initUI() {
