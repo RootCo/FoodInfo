@@ -11,6 +11,7 @@ fun BaseFieldFilterPOJO.toModelEdit(): BaseFieldFilterEditModel {
         id = this.id,
         name = this.name,
         measure = this.fieldInfo.measure,
+        stepSize = this.fieldInfo.stepSize,
         rangeMin = this.fieldInfo.rangeMin,
         rangeMax = this.fieldInfo.rangeMax,
         minValue = this.minValue,
