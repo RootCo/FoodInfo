@@ -59,4 +59,14 @@ interface RecipeFieldsInfoDao {
 
     @Insert
     fun addCategoriesFields(categories: List<CategoryFieldEntity>)
+
+
+    @Query("SELECT * FROM ${NutrientFieldEntity.TABLE_NAME}")
+    fun getNutrientFields(): List<NutrientFieldEntity>
+
+    @Query("SELECT * FROM ${BaseFieldEntity.TABLE_NAME}")
+    fun getBaseFields(): List<BaseFieldEntity>
+
+    @Query("SELECT * FROM ${LabelFieldEntity.TABLE_NAME}")
+    fun getLabelFields(): List<LabelFieldEntity>
 }
