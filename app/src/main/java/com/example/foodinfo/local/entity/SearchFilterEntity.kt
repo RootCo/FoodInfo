@@ -19,24 +19,12 @@ data class SearchFilterEntity(
     val name: String,
 
     @ColumnInfo(name = Columns.INPUT_TEXT)
-    val inputText: String = "",
-
-    @ColumnInfo(name = Columns.RANGE_FIELDS)
-    val rangeFields: String,
-
-    @ColumnInfo(name = Columns.CATEGORY_FIELDS)
-    val categoryFields: String,
-
-    @ColumnInfo(name = Columns.NUTRIENT_FIELDS)
-    val nutrientFields: String,
+    val inputText: String = ""
 ) {
     object Columns {
         const val ID = "id"
         const val NAME = "name"
         const val INPUT_TEXT = "input_text"
-        const val RANGE_FIELDS = "range_fields"
-        const val CATEGORY_FIELDS = "category_fields"
-        const val NUTRIENT_FIELDS = "nutrient_fields"
     }
 
     companion object {

@@ -1,11 +1,11 @@
 package com.example.foodinfo.repository.model
 
+import com.example.foodinfo.local.entity.LabelRecipeEntity
+import com.example.foodinfo.local.entity.NutrientRecipeEntity
 import com.example.foodinfo.local.entity.RecipeEntity
-import com.example.foodinfo.local.entity.RecipeLabelEntity
-import com.example.foodinfo.local.entity.RecipeNutrientEntity
+import com.example.foodinfo.repository.model.filter_field.BaseField
 import com.example.foodinfo.repository.model.filter_field.CategoryField
 import com.example.foodinfo.repository.model.filter_field.NutrientField
-import com.example.foodinfo.repository.model.filter_field.RangeField
 import com.example.foodinfo.utils.queryExample
 
 
@@ -28,9 +28,9 @@ import com.example.foodinfo.utils.queryExample
 data class SearchFilterModel(
     val id: Long = 0,
     val name: String = "target",
-    val rangeFields: HashSet<RangeField> = hashSetOf(),
-    val categoryFields: HashSet<CategoryField> = hashSetOf(),
-    val nutrientFields: HashSet<NutrientField> = hashSetOf(),
+    val baseFields: List<BaseField> = listOf(),
+    val categoryFields: List<CategoryField> = listOf(),
+    val nutrientFields: List<NutrientField> = listOf(),
     var inputText: String = "",
     private val separator: String = " AND ",
     private var _query: String = "",
@@ -49,23 +49,23 @@ data class SearchFilterModel(
         }
         var query = "${RecipeEntity.Columns.ID} IN "
         query += "("
-        query += "SELECT ${RecipeNutrientEntity.Columns.RECIPE_ID} "
-        query += "FROM ${RecipeNutrientEntity.TABLE_NAME} WHERE CASE "
+        query += "SELECT ${NutrientRecipeEntity.Columns.RECIPE_ID} "
+        query += "FROM ${NutrientRecipeEntity.TABLE_NAME} WHERE CASE "
         query += nutrientQueryList.joinToString(" ")
         query += " ELSE NULL END "
-        query += "GROUP BY ${RecipeNutrientEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${RecipeNutrientEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size}"
+        query += "GROUP BY ${NutrientRecipeEntity.Columns.RECIPE_ID} "
+        query += "HAVING  count(${NutrientRecipeEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size}"
         query += ")"
         return query
     }
 
     private fun nutrientFieldToQuery(
-        name: String, minValue: Float?, maxValue: Float?
+        name: String, minValue: Double?, maxValue: Double?
     ): String {
         var query = ""
-        query += "WHEN ${RecipeNutrientEntity.Columns.LABEL} = '$name' THEN "
+        query += "WHEN ${NutrientRecipeEntity.Columns.NAME} = '$name' THEN "
         query += rangeFieldToQuery(
-            RecipeNutrientEntity.Columns.TOTAL_VALUE,
+            NutrientRecipeEntity.Columns.TOTAL_VALUE,
             minValue,
             maxValue
         )
@@ -93,17 +93,17 @@ data class SearchFilterModel(
         var query = "${RecipeEntity.Columns.ID} IN "
         val categoryQueryList = categoryFields.map { field ->
             categoryFieldToQuery(
-                field.value,
+                field.name,
                 field.labels
             )
         }
         query += "("
-        query += "SELECT ${RecipeLabelEntity.Columns.RECIPE_ID} "
-        query += "FROM ${RecipeLabelEntity.TABLE_NAME} WHERE CASE "
+        query += "SELECT ${LabelRecipeEntity.Columns.RECIPE_ID} "
+        query += "FROM ${LabelRecipeEntity.TABLE_NAME} WHERE CASE "
         query += categoryQueryList.joinToString(" ")
         query += " ELSE NULL END "
-        query += "GROUP BY ${RecipeLabelEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${RecipeLabelEntity.Columns.RECIPE_ID}) = "
+        query += "GROUP BY ${LabelRecipeEntity.Columns.RECIPE_ID} "
+        query += "HAVING  count(${LabelRecipeEntity.Columns.RECIPE_ID}) = "
         query += "${categoryFields.sumOf { it.labels.size }}"
         query += ")"
         return query
@@ -113,8 +113,8 @@ data class SearchFilterModel(
         column: String, labels: List<String>
     ): String {
         var query = ""
-        query += "WHEN ${RecipeLabelEntity.Columns.CATEGORY} = '$column' THEN "
-        query += "${RecipeLabelEntity.Columns.LABEL} IN ('${labels.joinToString("', '")}')"
+        query += "WHEN ${LabelRecipeEntity.Columns.CATEGORY} = '$column' THEN "
+        query += "${LabelRecipeEntity.Columns.NAME} IN ('${labels.joinToString("', '")}')"
         return query
     }
 
@@ -126,9 +126,9 @@ data class SearchFilterModel(
     fun buildQuery() {
         _query = ""
         val subQueryList = arrayListOf<String>()
-        subQueryList.addAll(rangeFields.map { field ->
+        subQueryList.addAll(baseFields.map { field ->
             rangeFieldToQuery(
-                field.value.column,
+                field.name,
                 field.minValue,
                 field.maxValue
             )

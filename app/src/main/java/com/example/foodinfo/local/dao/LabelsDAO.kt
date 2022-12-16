@@ -24,7 +24,7 @@ interface LabelsDAO {
 
     @Query(
         "SELECT * FROM ${LabelEntity.TABLE_NAME} " +
-                "WHERE ${LabelEntity.Columns.LABEL} " +
+                "WHERE ${LabelEntity.Columns.NAME} " +
                 "LIKE '%' || :labelName || '%' " +
                 "AND ${LabelEntity.Columns.CATEGORY} " +
                 "LIKE '%' || :categoryName || '%'"

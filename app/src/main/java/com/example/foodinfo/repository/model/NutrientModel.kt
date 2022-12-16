@@ -26,8 +26,8 @@ data class NutrientModel(
             newItem: NutrientModel
         ): Boolean {
             return oldItem.label == newItem.label &&
-                    oldItem.tag == oldItem.tag &&
-                    oldItem.description == oldItem.description &&
+                    oldItem.tag == newItem.tag &&
+                    oldItem.description == newItem.description &&
                     oldItem.preview.content == newItem.preview.content
         }
     }

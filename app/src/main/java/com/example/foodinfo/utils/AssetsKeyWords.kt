@@ -4,6 +4,8 @@ package com.example.foodinfo.utils
 // константы с наименованиями файлов и их полей
 object AssetsKeyWords {
     const val DB_RECIPES_100 = "db_recipes_100.json"
+    const val DB_FIELD_NUTRIENTS = "db_field_nutrients.json"
+    const val DB_FIELD_BASE = "db_field_base.json"
     const val SEARCH_HISTORY = "search_history"
     const val RECIPES = "recipes"
     const val INGREDIENTS = "ingredients"

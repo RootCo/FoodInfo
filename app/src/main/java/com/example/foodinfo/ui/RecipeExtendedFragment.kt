@@ -14,7 +14,7 @@ import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.repository.model.RecipeModel
-import com.example.foodinfo.repository.model.RecipeNutrientModel
+import com.example.foodinfo.repository.model.NutrientRecipeModel
 import com.example.foodinfo.ui.adapter.RecipeCategoriesAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
 import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
@@ -65,7 +65,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             val labelItem = viewModel.getLabel(category, label)
             withContext(Dispatchers.Main) {
                 showDescriptionDialog(
-                    labelItem.label,
+                    labelItem.name,
                     labelItem.description,
                     labelItem.preview
                 )
@@ -253,7 +253,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         )
     }
 
-    private fun initNutrients(nutrients: List<RecipeNutrientModel>) {
+    private fun initNutrients(nutrients: List<NutrientRecipeModel>) {
         nutrients.findLast { nutrient ->
             nutrient.label == resources.getString(R.string.protein_header)
         }!!.apply {

@@ -52,6 +52,30 @@ class MainActivity : AppCompatActivity() {
 
         dataBase.clearAllTables()
 
+
+        val dbFieldNutrients = jsonLoader.load(
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_FIELD_NUTRIENTS)
+        )
+
+        dataBase.searchFilterDAO.addNutrientFields(
+            gson.fromJson(
+                dbFieldNutrients.get(AssetsKeyWords.CONTENT).toString(),
+                object : TypeToken<List<NutrientFieldEntity>>() {}.type
+            )
+        )
+
+        val dbFieldBase = jsonLoader.load(
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_FIELD_NUTRIENTS)
+        )
+
+        dataBase.searchFilterDAO.addBaseFields(
+            gson.fromJson(
+                dbFieldBase.get(AssetsKeyWords.CONTENT).toString(),
+                object : TypeToken<List<BaseFieldEntity>>() {}.type
+            )
+        )
+
+
         val dbRecipes = jsonLoader.load(
             appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RECIPES_100)
         )
@@ -63,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             ),
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.NUTRIENTS).toString(),
-                object : TypeToken<List<RecipeNutrientEntity>>() {}.type
+                object : TypeToken<List<NutrientRecipeEntity>>() {}.type
             ),
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.INGREDIENTS).toString(),
@@ -71,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             ),
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.LABELS).toString(),
-                object : TypeToken<List<RecipeLabelEntity>>() {}.type
+                object : TypeToken<List<LabelRecipeEntity>>() {}.type
             ),
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.FAVORITE_MARKS).toString(),

@@ -46,7 +46,7 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
             val labelItem = viewModel.label
             withContext(Dispatchers.Main) {
                 showDescriptionDialog(
-                    labelItem.label,
+                    labelItem.name,
                     labelItem.description,
                     labelItem.preview
                 )

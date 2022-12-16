@@ -2,205 +2,205 @@
   "content": [
     {
       "tag": "FAT",
-      "label": "Fat",
+      "name": "Fat",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FASAT",
-      "label": "Saturated",
+      "name": "Saturated",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FATRN",
-      "label": "Trans",
+      "name": "Trans",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FAMS",
-      "label": "Monounsaturated",
+      "name": "Monounsaturated",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FAPU",
-      "label": "Polyunsaturated",
+      "name": "Polyunsaturated",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "CHOCDF",
-      "label": "Carbs",
+      "name": "Carbs",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "CHOCDF_NET",
-      "label": "Carbohydrates (net)",
+      "name": "Carbohydrates (net)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FIBTG",
-      "label": "Fiber",
+      "name": "Fiber",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "SUGAR",
-      "label": "Sugars",
+      "name": "Sugars",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "SUGAR_ADDED",
-      "label": "Sugars, added",
+      "name": "Sugars, added",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "PROCNT",
-      "label": "Protein",
+      "name": "Protein",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "CHOLE",
-      "label": "Cholesterol",
+      "name": "Cholesterol",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "NA",
-      "label": "Sodium",
+      "name": "Sodium",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "CA",
-      "label": "Calcium",
+      "name": "Calcium",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "MG",
-      "label": "Magnesium",
+      "name": "Magnesium",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "K",
-      "label": "Potassium",
+      "name": "Potassium",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FE",
-      "label": "Iron",
+      "name": "Iron",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "ZN",
-      "label": "Zinc",
+      "name": "Zinc",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "P",
-      "label": "Phosphorus",
+      "name": "Phosphorus",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITA_RAE",
-      "label": "Vitamin A",
+      "name": "Vitamin A",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITC",
-      "label": "Vitamin C",
+      "name": "Vitamin C",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "THIA",
-      "label": "Thiamin (B1)",
+      "name": "Thiamin (B1)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "RIBF",
-      "label": "Riboflavin (B2)",
+      "name": "Riboflavin (B2)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "NIA",
-      "label": "Niacin (B3)",
+      "name": "Niacin (B3)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITB6A",
-      "label": "Vitamin B6",
+      "name": "Vitamin B6",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FOLDFE",
-      "label": "Folate equivalent (total)",
+      "name": "Folate equivalent (total)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FOLFD",
-      "label": "Folate (food)",
+      "name": "Folate (food)",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "FOLAC",
-      "label": "Folic acid",
+      "name": "Folic acid",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITB12",
-      "label": "Vitamin B12",
+      "name": "Vitamin B12",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITD",
-      "label": "Vitamin D",
+      "name": "Vitamin D",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "TOCPHA",
-      "label": "Vitamin E",
+      "name": "Vitamin E",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "VITK1",
-      "label": "Vitamin K",
+      "name": "Vitamin K",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "SUGAR_ALCOHOL",
-      "label": "Sugar alcohol",
+      "name": "Sugar alcohol",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     },
     {
       "tag": "WATER",
-      "label": "Water",
+      "name": "Water",
       "description": "Catla swordtail, lightfish eulachon spinyfin, ling sea devil-sucker snipe eel eel-goby black bass; elver olive flounder, poolfish long-whiskered catfish, finback cat shark. Southern Dolly Varden, unicorn fish snipefish whiptail gulper ghost flathead Blobfish Atlantic salmon tenuis Bigscale pomfret lemon sole.",
       "previewURL": "URL"
     }

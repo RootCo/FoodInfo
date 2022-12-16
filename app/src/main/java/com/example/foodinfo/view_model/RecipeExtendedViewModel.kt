@@ -32,13 +32,13 @@ class RecipeExtendedViewModel @Inject constructor(
         )
     }
 
-    val nutrients: SharedFlow<State<List<RecipeNutrientModel>>> by lazy {
+    val nutrients: SharedFlow<State<List<NutrientRecipeModel>>> by lazy {
         repositoryRecipes.getByIdNutrients(recipeId).shareIn(
             viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
         )
     }
 
-    val labels: SharedFlow<State<List<CategoryLabelsModel>>> by lazy {
+    val labels: SharedFlow<State<List<CategoryRecipeModel>>> by lazy {
         repositoryRecipes.getByIdLabels(recipeId).shareIn(
             viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
         )

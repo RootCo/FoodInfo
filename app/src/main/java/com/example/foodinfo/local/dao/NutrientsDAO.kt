@@ -8,10 +8,9 @@ import com.example.foodinfo.local.entity.NutrientEntity
 
 @Dao
 interface NutrientsDAO {
-
     @Query(
         "SELECT * FROM ${NutrientEntity.TABLE_NAME} " +
-                "WHERE ${NutrientEntity.Columns.LABEL} " +
+                "WHERE ${NutrientEntity.Columns.NAME} " +
                 "LIKE '%' || :label || '%'"
     )
     fun getByLabel(label: String): NutrientEntity

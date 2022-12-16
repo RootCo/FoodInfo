@@ -2,10 +2,14 @@ package com.example.foodinfo.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = CategoryEntity.TABLE_NAME)
+@Entity(
+    tableName = CategoryEntity.TABLE_NAME,
+    indices = [Index(value = arrayOf(CategoryEntity.Columns.NAME), unique = true)]
+)
 data class CategoryEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)

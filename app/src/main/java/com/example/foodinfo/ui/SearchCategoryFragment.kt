@@ -37,10 +37,10 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
         )
     }
 
-    private val onItemClickListener: (String, String) -> Unit = { category, label ->
+    private val onItemClickListener: (String) -> Unit = {label ->
         findNavController().navigate(
             SearchCategoryFragmentDirections.actionFSearchCategoryToFSearchLabel(
-                category,
+                args.category,
                 label
             )
         )

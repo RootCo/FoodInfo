@@ -15,12 +15,15 @@ import com.example.foodinfo.local.entity.*
         SearchFilterEntity::class,
         SearchInputEntity::class,
         RecipeIngredientEntity::class,
-        RecipeNutrientEntity::class,
-        RecipeLabelEntity::class,
+        NutrientRecipeEntity::class,
+        LabelRecipeEntity::class,
         LabelEntity::class,
         CategoryEntity::class,
         NutrientEntity::class,
         FavoriteMarkEntity::class,
+        LabelFilterEntity::class,
+        NutrientFilterEntity::class,
+        NutrientFieldEntity::class,
     ]
 )
 abstract class DataBase : RoomDatabase() {
