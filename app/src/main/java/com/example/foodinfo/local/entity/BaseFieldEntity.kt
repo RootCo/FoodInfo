@@ -22,13 +22,13 @@ data class BaseFieldEntity(
     val measure: String,
 
     @ColumnInfo(name = Columns.RANGE_MIN)
-    val rangeMin: Double,
+    val rangeMin: Float,
 
     @ColumnInfo(name = Columns.RANGE_MAX)
-    val rangeMax: Double,
+    val rangeMax: Float,
 
     @ColumnInfo(name = Columns.STEP_SIZE)
-    val stepSize: Double
+    val stepSize: Float
 
 ) {
     object Columns {

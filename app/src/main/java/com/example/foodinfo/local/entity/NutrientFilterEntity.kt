@@ -28,10 +28,10 @@ data class NutrientFilterEntity(
     val name: String,
 
     @ColumnInfo(name = Columns.MIN_VALUE)
-    val minValue: Double,
+    val minValue: Float,
 
     @ColumnInfo(name = Columns.MAX_VALUE)
-    val maxValue: Double
+    val maxValue: Float
 ) {
     object Columns {
         const val ID = "id"

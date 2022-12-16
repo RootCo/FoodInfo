@@ -19,10 +19,10 @@ data class BaseFieldFilterPOJO(
     val filterName: String,
 
     @ColumnInfo(name = BaseFieldFilterEntity.Columns.MIN_VALUE)
-    val minValue: Double,
+    val minValue: Float,
 
     @ColumnInfo(name = BaseFieldFilterEntity.Columns.MAX_VALUE)
-    val maxValue: Double,
+    val maxValue: Float,
 
     @Relation(
         parentColumn = BaseFieldFilterEntity.Columns.NAME,

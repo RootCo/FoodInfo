@@ -25,16 +25,16 @@ data class NutrientFieldEntity(
     val measure: String,
 
     @ColumnInfo(name = Columns.RANGE_MIN)
-    val rangeMin: Double,
+    val rangeMin: Float,
 
     @ColumnInfo(name = Columns.RANGE_MAX)
-    val rangeMax: Double,
+    val rangeMax: Float,
 
     @ColumnInfo(name = Columns.STEP_SIZE)
-    val stepSize: Double,
+    val stepSize: Float,
 
     @ColumnInfo(name = Columns.DAILY_ALLOWANCE)
-    val dailyAllowance: Double,
+    val dailyAllowance: Float,
 
     @ColumnInfo(name = Columns.DESCRIPTION)
     val description: String,

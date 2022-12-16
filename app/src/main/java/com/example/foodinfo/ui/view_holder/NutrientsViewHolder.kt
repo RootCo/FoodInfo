@@ -6,7 +6,7 @@ import com.example.foodinfo.repository.model.NutrientRecipeModel
 
 class NutrientsViewHolder(
     private val binding: RvItemRecipeNutrientBinding,
-    private val onGetNutrientWeight: (Double, Double, String) -> String,
+    private val onGetNutrientWeight: (Float, Float, String) -> String,
     private val onGetNutrientPercent: (Int) -> String,
     private val onNutrientClickListener: (String) -> Unit,
 ) : BaseViewHolder<RvItemRecipeNutrientBinding, NutrientRecipeModel>(binding) {

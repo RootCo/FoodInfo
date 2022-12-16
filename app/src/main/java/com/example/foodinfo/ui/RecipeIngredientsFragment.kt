@@ -32,11 +32,11 @@ class RecipeIngredientsFragment : BaseFragment<FragmentRecipeIngredientsBinding>
         findNavController().navigateUp()
     }
 
-    private val onGetWeight: (Double) -> String = { weight ->
+    private val onGetWeight: (Float) -> String = { weight ->
         getString(R.string.gram_float_value, weight)
     }
 
-    private val onGetQuantity: (Double, String) -> String = { quantity, measure ->
+    private val onGetQuantity: (Float, String) -> String = { quantity, measure ->
         getString(
             R.string.float_measure_value,
             quantity,
