@@ -37,7 +37,7 @@ class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
     }
 
     private val onGetNutrientWeight: (
-        Double, Double, String
+        Float, Float, String
     ) -> String = { totalWeight, dailyWeight, measure ->
         getString(
             R.string.rv_item_nutrient_value,

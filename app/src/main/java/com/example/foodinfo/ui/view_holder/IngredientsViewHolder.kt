@@ -9,8 +9,8 @@ import com.example.foodinfo.utils.glide.GlideApp
 
 class IngredientsViewHolder(
     private val binding: RvItemRecipeIngredientBinding,
-    private val onGetWeight: (Double) -> String,
-    private val onGetQuantity: (Double, String) -> String,
+    private val onGetWeight: (Float) -> String,
+    private val onGetQuantity: (Float, String) -> String,
 ) : BaseViewHolder<RvItemRecipeIngredientBinding, RecipeIngredientModel>(binding) {
 
     override fun bind(newItem: RecipeIngredientModel) {

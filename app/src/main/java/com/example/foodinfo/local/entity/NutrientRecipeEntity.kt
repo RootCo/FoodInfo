@@ -28,10 +28,10 @@ data class NutrientRecipeEntity(
     val name: String,
 
     @ColumnInfo(name = Columns.TOTAL_VALUE)
-    val totalValue: Double,
+    val totalValue: Float,
 
     @ColumnInfo(name = Columns.DAILY_VALUE)
-    val dailyValue: Double
+    val dailyValue: Float
 ) {
     object Columns {
         const val ID = "id"

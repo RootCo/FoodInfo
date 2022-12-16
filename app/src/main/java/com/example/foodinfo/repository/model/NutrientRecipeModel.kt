@@ -7,8 +7,8 @@ data class NutrientRecipeModel(
     val id: Long,
     val label: String,
     val measure: String,
-    val totalWeight: Double,
-    val dailyWeight: Double,
+    val totalWeight: Float,
+    val dailyWeight: Float,
     val dailyPercent: Int,
 ) {
 

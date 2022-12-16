@@ -12,8 +12,8 @@ import com.example.foodinfo.ui.view_holder.IngredientsViewHolder
 
 class RecipeIngredientsAdapter(
     context: Context,
-    private val onGetWeight: (Double) -> String,
-    private val onGetQuantity: (Double, String) -> String,
+    private val onGetWeight: (Float) -> String,
+    private val onGetQuantity: (Float, String) -> String,
 ) : ListAdapter<RecipeIngredientModel, ViewHolder>(
     RecipeIngredientModel.ItemCallBack
 ) {

@@ -55,7 +55,7 @@ data class FilterQueryBuilder(
     }
 
     private fun nutrientFieldToQuery(
-        name: String, minValue: Double?, maxValue: Double?
+        name: String, minValue: Float?, maxValue: Float?
     ): String {
         var query = ""
         query += "WHEN ${NutrientRecipeEntity.Columns.NAME} = '$name' THEN "

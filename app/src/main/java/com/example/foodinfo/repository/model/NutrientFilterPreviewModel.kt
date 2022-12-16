@@ -7,8 +7,8 @@ data class NutrientFilterPreviewModel(
     val id: Long,
     val name: String,
     val measure: String,
-    val minValue: Double,
-    val maxValue: Double
+    val minValue: Float,
+    val maxValue: Float
 ) {
 
     object ItemCallBack :

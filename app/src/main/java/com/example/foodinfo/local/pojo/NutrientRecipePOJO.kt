@@ -19,7 +19,7 @@ data class NutrientRecipePOJO(
     val recipeId: String,
 
     @ColumnInfo(name = NutrientRecipeEntity.Columns.TOTAL_VALUE)
-    val totalValue: Double,
+    val totalValue: Float,
 
     @Relation(
         parentColumn = NutrientRecipeEntity.Columns.NAME,

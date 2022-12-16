@@ -7,10 +7,10 @@ data class NutrientFilterEditModel(
     val id: Long,
     val name: String,
     val measure: String,
-    val rangeMin: Double,
-    val rangeMax: Double,
-    val minValue: Double,
-    val maxValue: Double
+    val rangeMin: Float,
+    val rangeMax: Float,
+    val minValue: Float,
+    val maxValue: Float
 ) {
 
     object ItemCallBack :

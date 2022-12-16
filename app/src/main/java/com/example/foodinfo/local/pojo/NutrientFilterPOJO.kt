@@ -20,10 +20,10 @@ data class NutrientFilterPOJO(
     val filterName: String,
 
     @ColumnInfo(name = NutrientFilterEntity.Columns.MIN_VALUE)
-    val minValue: Double,
+    val minValue: Float,
 
     @ColumnInfo(name = NutrientFilterEntity.Columns.MAX_VALUE)
-    val maxValue: Double,
+    val maxValue: Float,
 
     @Relation(
         parentColumn = NutrientRecipeEntity.Columns.NAME,
