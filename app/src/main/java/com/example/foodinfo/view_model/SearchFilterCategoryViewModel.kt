@@ -2,9 +2,10 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.RepositoryLabels
+import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
+import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.model.LabelFilterEditModel
-import com.example.foodinfo.repository.model.LabelModel
+import com.example.foodinfo.repository.model.LabelHintModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,7 +18,8 @@ import javax.inject.Inject
 
 
 class SearchFilterCategoryViewModel @Inject constructor(
-    private val repositoryLabels: RepositoryLabels
+    private val repositoryRecipeFieldsInfo: RepositoryRecipeFieldsInfo,
+    private val repositorySearchFilter: RepositorySearchFilter
 ) : ViewModel() {
 
     private val _labels = MutableSharedFlow<List<LabelFilterEditModel>>(
@@ -25,25 +27,21 @@ class SearchFilterCategoryViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val labels: SharedFlow<List<LabelFilterEditModel>> = _labels.shareIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(),
-        1
+        viewModelScope, SharingStarted.WhileSubscribed(), 1
     )
 
     var categoryName: String = ""
         set(initializer) {
-            if (initializer == field) {
-                return
-            }
+            if (initializer == field) return
+            field = initializer
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
-                    _labels.emit(repositoryLabels.getLabelsFilterEdit(initializer))
+                    _labels.emit(repositorySearchFilter.getCategory(categoryName = field).labels)
                 }
             }
-            field = initializer
         }
 
-    fun getLabel(labelName: String): LabelModel {
-        return repositoryLabels.getLabel(categoryName, labelName)
+    fun getLabelHint(labelName: String): LabelHintModel {
+        return repositoryRecipeFieldsInfo.getLabelHint(categoryName, labelName)
     }
 }

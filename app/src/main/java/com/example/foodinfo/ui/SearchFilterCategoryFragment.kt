@@ -37,10 +37,10 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
 
     private val onQuestionMarkClickListener: (String) -> Unit = { label ->
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val labelItem = viewModel.getLabel(label)
+            val labelItem = viewModel.getLabelHint(label)
             withContext(Dispatchers.Main) {
                 showDescriptionDialog(
-                    labelItem.label,
+                    labelItem.name,
                     labelItem.description,
                     labelItem.preview
                 )

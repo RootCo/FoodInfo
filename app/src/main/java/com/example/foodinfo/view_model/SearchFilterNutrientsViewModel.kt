@@ -2,10 +2,10 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.RepositoryNutrients
+import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
 import com.example.foodinfo.repository.RepositorySearchFilter
-import com.example.foodinfo.repository.model.NutrientModel
-import com.example.foodinfo.repository.model.RangeFieldModel
+import com.example.foodinfo.repository.model.NutrientFilterEditModel
+import com.example.foodinfo.repository.model.NutrientHintModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,15 +18,15 @@ import javax.inject.Inject
 
 
 class SearchFilterNutrientsViewModel @Inject constructor(
+    private val repositoryRecipeFieldsInfo: RepositoryRecipeFieldsInfo,
     private val repositorySearchFilter: RepositorySearchFilter,
-    private val repositoryNutrients: RepositoryNutrients
 ) : ViewModel() {
 
-    private val _rangeFields = MutableSharedFlow<List<RangeFieldModel>>(
+    private val _rangeFields = MutableSharedFlow<List<NutrientFilterEditModel>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val rangeFields: SharedFlow<List<RangeFieldModel>> = _rangeFields.shareIn(
+    val rangeFields: SharedFlow<List<NutrientFilterEditModel>> = _rangeFields.shareIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
         1
@@ -36,12 +36,12 @@ class SearchFilterNutrientsViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _rangeFields.emit(repositorySearchFilter.getRangeFieldsByCategory("nutrients"))
+                _rangeFields.emit(repositorySearchFilter.getNutrientsEdit())
             }
         }
     }
 
-    fun getNutrient(label: String): NutrientModel {
-        return repositoryNutrients.getByLabel(label)
+    fun getNutrient(name: String): NutrientHintModel {
+        return repositoryRecipeFieldsInfo.getNutrientHint(name)
     }
 }

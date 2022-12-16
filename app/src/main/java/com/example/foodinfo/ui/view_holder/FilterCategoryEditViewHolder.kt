@@ -10,18 +10,18 @@ class FilterCategoryEditViewHolder(
 ) : BaseViewHolder<RvItemFilterInputCategoryEditBinding, LabelFilterEditModel>(binding) {
 
     init {
-        binding.ivQuestionMark.setOnClickListener { onQuestionMarkClickListener(item.label) }
+        binding.ivQuestionMark.setOnClickListener { onQuestionMarkClickListener(item.name) }
         binding.tvHeader.setOnClickListener {
-            item.selected = !item.selected
-            binding.cbChecked.isChecked = item.selected
+            item.isSelected = !item.isSelected
+            binding.cbChecked.isChecked = item.isSelected
         }
     }
 
     override fun bind(newItem: LabelFilterEditModel) {
         super.bind(newItem)
         with(binding) {
-            tvHeader.text = item.label
-            cbChecked.isChecked = item.selected
+            tvHeader.text = item.name
+            cbChecked.isChecked = item.isSelected
         }
     }
 }

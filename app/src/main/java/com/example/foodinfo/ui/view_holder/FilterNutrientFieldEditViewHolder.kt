@@ -1,19 +1,19 @@
 package com.example.foodinfo.ui.view_holder
 
 import com.example.foodinfo.databinding.RvItemFilterInputNutrientsEditBinding
-import com.example.foodinfo.repository.model.RangeFieldModel
+import com.example.foodinfo.repository.model.NutrientFilterEditModel
 
 
 class FilterNutrientFieldEditViewHolder(
     private val binding: RvItemFilterInputNutrientsEditBinding,
     onHeaderClickCallback: (String) -> Unit,
     onValueChangedCallback: (Float, Float, Boolean) -> Unit
-) : BaseViewHolder<RvItemFilterInputNutrientsEditBinding, RangeFieldModel>(binding) {
+) : BaseViewHolder<RvItemFilterInputNutrientsEditBinding, NutrientFilterEditModel>(binding) {
 
     private val onValueChangedCallback: (Float, Float, Boolean) -> Unit =
         { minValue, maxValue, _ ->
-            item.minCurrent = minValue
-            item.maxCurrent = maxValue
+            item.minValue = minValue
+            item.maxValue = maxValue
         }
 
 
@@ -24,16 +24,16 @@ class FilterNutrientFieldEditViewHolder(
     }
 
 
-    override fun bind(newItem: RangeFieldModel) {
+    override fun bind(newItem: NutrientFilterEditModel) {
         super.bind(newItem)
         with(binding.root) {
             header = item.name
             measure = item.measure
             stepSize = item.stepSize
-            rangeMin = item.minValue
-            rangeMax = item.maxValue
-            minValue = item.minCurrent
-            maxValue = item.maxCurrent
+            rangeMin = item.rangeMin
+            rangeMax = item.rangeMax
+            minValue = item.minValue
+            maxValue = item.maxValue
         }
     }
 }
