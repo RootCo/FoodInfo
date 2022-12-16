@@ -57,6 +57,9 @@ interface SearchFilterDAO {
 
 
     @Insert
+    fun insertFilter(filter: SearchFilterEntity)
+
+    @Insert
     fun insertLabels(labels: List<LabelFilterEntity>)
 
     @Insert
@@ -71,6 +74,7 @@ interface SearchFilterDAO {
         nutrients: List<NutrientFilterEntity>,
         baseFields: List<BaseFieldFilterEntity>
     ) {
+        insertFilter(SearchFilterEntity())
         insertLabels(labels)
         insertNutrients(nutrients)
         insertBaseFields(baseFields)
