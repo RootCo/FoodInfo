@@ -2,6 +2,8 @@ package com.example.foodinfo.local.dao
 
 import androidx.room.*
 import com.example.foodinfo.local.entity.*
+import com.example.foodinfo.local.pojo.BaseFieldFilterPOJO
+import com.example.foodinfo.local.pojo.NutrientFilterPOJO
 
 
 @Dao
@@ -73,10 +75,4 @@ interface SearchFilterDAO {
         insertNutrients(nutrients)
         insertBaseFields(baseFields)
     }
-
-    @Insert
-    fun addNutrientFields(fields: List<NutrientFieldEntity>)
-
-    @Insert
-    fun addBaseFields(fields: List<BaseFieldEntity>)
 }

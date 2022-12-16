@@ -43,7 +43,7 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
 
     private val onHeaderClickListener: () -> Unit = {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val labelItem = viewModel.label
+            val labelItem = viewModel.getLabel(args.category, args.label)
             withContext(Dispatchers.Main) {
                 showDescriptionDialog(
                     labelItem.name,

@@ -4,6 +4,8 @@ import com.example.foodinfo.local.dao.SearchFilterDAO
 import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.mapper.*
 import com.example.foodinfo.repository.model.*
+import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
+import com.example.foodinfo.utils.FilterQueryBuilder
 import javax.inject.Inject
 
 
@@ -11,17 +13,21 @@ class RepositorySearchFilterImpl @Inject constructor(
     private val searchFilterDAO: SearchFilterDAO
 ) : RepositorySearchFilter {
 
-    override fun getFilterQuery(inputText: String): String {
-        /*
-            create SearchFilter query here using FilterQueryBuilder class
+    override fun getQueryByFilter(filterName: String, inputText: String): String {
+        val builder = FilterQueryBuilder(
+            searchFilterDAO.getBaseFields(filterName).map { it.toModelFilterField() },
+            searchFilterDAO.getCategories(filterName).toModelFilterField(),
+            searchFilterDAO.getNutrients(filterName).map { it.toModelFilterField() },
+        )
+        builder.setInputText(inputText)
+        return builder.getQuery()
+    }
 
-            do not use SearchFilterModel anywhere else than on SearchFilter screen inside filter
-            selection menu
-
-            refactor searchLabel and searchQuery screens and recipeRepository to new filter format
-
-         */
-        TODO("Not yet implemented")
+    override fun getQueryByLabel(categoryName: String, labelName: String): String {
+        val builder = FilterQueryBuilder(
+            categoryFilterFields = listOf(CategoryFilterField(categoryName, listOf(labelName)))
+        )
+        return builder.getQuery()
     }
 
 

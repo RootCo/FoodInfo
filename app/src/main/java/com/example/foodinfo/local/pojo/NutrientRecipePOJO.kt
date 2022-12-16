@@ -1,9 +1,10 @@
-package com.example.foodinfo.local.entity
+package com.example.foodinfo.local.pojo
 
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.example.foodinfo.local.entity.NutrientFieldEntity
+import com.example.foodinfo.local.entity.NutrientRecipeEntity
 
 
 data class NutrientRecipePOJO(
@@ -24,5 +25,5 @@ data class NutrientRecipePOJO(
         parentColumn = NutrientRecipeEntity.Columns.NAME,
         entityColumn = NutrientFieldEntity.Columns.NAME
     )
-    val nutrientFieldInfo: NutrientFieldEntity
+    val fieldInfo: NutrientFieldEntity
 )

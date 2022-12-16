@@ -53,33 +53,9 @@ class MainActivity : AppCompatActivity() {
         dataBase.clearAllTables()
 
 
-        val dbFieldNutrients = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_FIELD_NUTRIENTS)
-        )
-
-        dataBase.searchFilterDAO.addNutrientFields(
-            gson.fromJson(
-                dbFieldNutrients.get(AssetsKeyWords.CONTENT).toString(),
-                object : TypeToken<List<NutrientFieldEntity>>() {}.type
-            )
-        )
-
-        val dbFieldBase = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_FIELD_NUTRIENTS)
-        )
-
-        dataBase.searchFilterDAO.addBaseFields(
-            gson.fromJson(
-                dbFieldBase.get(AssetsKeyWords.CONTENT).toString(),
-                object : TypeToken<List<BaseFieldEntity>>() {}.type
-            )
-        )
-
-
         val dbRecipes = jsonLoader.load(
             appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RECIPES_100)
         )
-
         dataBase.recipesDAO.addAll(
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.RECIPES).toString(),
@@ -102,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                 object : TypeToken<List<FavoriteMarkEntity>>() {}.type
             )
         )
-
         dataBase.searchHistoryDAO.addHistory(
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.SEARCH_HISTORY).toString(),
@@ -110,67 +85,32 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val dbCategory = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_LABELS_LOCAL)
+
+        val dbRecipeFieldsInfo = jsonLoader.load(
+            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_FIELDS_INFO)
         )
-
-
-        val typeCategoryLabel = object : TypeToken<List<LabelEntity>>() {}.type
-
-        dataBase.labelsDAO.addCategoryLabels(
-            gson.fromJson
-                (
-                dbCategory.get(AssetsKeyWords.CATEGORY_MEAL).toString(),
-                typeCategoryLabel
-            )
-        )
-        dataBase.labelsDAO.addCategoryLabels(
+        dataBase.recipeFieldsInfoDao.addLabelsFields(
             gson.fromJson(
-                dbCategory.get(AssetsKeyWords.CATEGORY_DISH).toString(),
-                typeCategoryLabel
+                dbRecipeFieldsInfo.get(AssetsKeyWords.LABELS).toString(),
+                object : TypeToken<List<LabelFieldEntity>>() {}.type
             )
         )
-        dataBase.labelsDAO.addCategoryLabels(
-            gson.fromJson
-                (
-                dbCategory.get(AssetsKeyWords.CATEGORY_DIET).toString(),
-                typeCategoryLabel
-            )
-        )
-        dataBase.labelsDAO.addCategoryLabels(
+        dataBase.recipeFieldsInfoDao.addCategoriesFields(
             gson.fromJson(
-                dbCategory.get(AssetsKeyWords.CATEGORY_HEALTH).toString(),
-                typeCategoryLabel
+                dbRecipeFieldsInfo.get(AssetsKeyWords.CATEGORIES).toString(),
+                object : TypeToken<List<CategoryFieldEntity>>() {}.type
             )
         )
-        dataBase.labelsDAO.addCategoryLabels(
+        dataBase.recipeFieldsInfoDao.addBaseFields(
             gson.fromJson(
-                dbCategory.get(AssetsKeyWords.CATEGORY_CUISINE).toString(),
-                typeCategoryLabel
+                dbRecipeFieldsInfo.get(AssetsKeyWords.BASE).toString(),
+                object : TypeToken<List<BaseFieldEntity>>() {}.type
             )
         )
-
-
-        val dbCategories = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_CATEGORIES_LOCAL)
-        )
-
-        dataBase.labelsDAO.addCategories(
+        dataBase.recipeFieldsInfoDao.addNutrientFields(
             gson.fromJson(
-                dbCategories.get(AssetsKeyWords.CONTENT).toString(),
-                object : TypeToken<List<CategoryEntity>>() {}.type
-            )
-        )
-
-
-        val dbNutrients = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_NUTRIENT_LOCAL)
-        )
-
-        dataBase.nutrientsDAO.addAll(
-            gson.fromJson(
-                dbNutrients.get(AssetsKeyWords.CONTENT).toString(),
-                object : TypeToken<List<NutrientEntity>>() {}.type
+                dbRecipeFieldsInfo.get(AssetsKeyWords.NUTRIENTS).toString(),
+                object : TypeToken<List<NutrientFieldEntity>>() {}.type
             )
         )
     }

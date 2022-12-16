@@ -4,6 +4,8 @@ import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.local.entity.*
+import com.example.foodinfo.local.pojo.NutrientRecipePOJO
+import com.example.foodinfo.local.pojo.RecipePOJO
 import kotlinx.coroutines.flow.Flow
 
 

@@ -3,28 +3,28 @@ package com.example.foodinfo.repository.model
 import androidx.recyclerview.widget.DiffUtil
 
 
-data class LabelModel(
+data class NutrientHintModel(
     val id: Long,
-    val name: String,
+    val label: String,
     val description: String,
     val preview: SVGModel
 ) {
 
     object ItemCallBack :
-        DiffUtil.ItemCallback<LabelModel>() {
+        DiffUtil.ItemCallback<NutrientHintModel>() {
 
         override fun areItemsTheSame(
-            oldItem: LabelModel,
-            newItem: LabelModel
+            oldItem: NutrientHintModel,
+            newItem: NutrientHintModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: LabelModel,
-            newItem: LabelModel
+            oldItem: NutrientHintModel,
+            newItem: NutrientHintModel
         ): Boolean {
-            return oldItem.name == newItem.name &&
+            return oldItem.label == newItem.label &&
                     oldItem.description == newItem.description &&
                     oldItem.preview.content == newItem.preview.content
         }

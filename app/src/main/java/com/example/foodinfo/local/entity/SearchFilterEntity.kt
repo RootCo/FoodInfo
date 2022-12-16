@@ -16,18 +16,15 @@ data class SearchFilterEntity(
     val id: Long = 0,
 
     @ColumnInfo(name = Columns.NAME)
-    val name: String,
-
-    @ColumnInfo(name = Columns.INPUT_TEXT)
-    val inputText: String = ""
+    val name: String = DEFAULT_NAME
 ) {
     object Columns {
         const val ID = "id"
         const val NAME = "name"
-        const val INPUT_TEXT = "input_text"
     }
 
     companion object {
         const val TABLE_NAME = "filter_search"
+        const val DEFAULT_NAME = "default_filter_name"
     }
 }

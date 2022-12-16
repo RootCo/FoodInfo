@@ -2,7 +2,7 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.RepositoryLabels
+import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.utils.State
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class RecipeExtendedViewModel @Inject constructor(
     private val repositoryRecipes: RepositoryRecipes,
-    private val repositoryLabels: RepositoryLabels
+    private val repositoryRecipeFieldsInfo: RepositoryRecipeFieldsInfo
 ) :
     ViewModel() {
 
@@ -45,8 +45,8 @@ class RecipeExtendedViewModel @Inject constructor(
     }
 
 
-    fun getLabel(category: String, label: String): LabelModel {
-        return repositoryLabels.getLabel(category, label)
+    fun getLabel(category: String, label: String): LabelHintModel {
+        return repositoryRecipeFieldsInfo.getLabelHint(category, label)
     }
 
     fun updateFavoriteMark() {

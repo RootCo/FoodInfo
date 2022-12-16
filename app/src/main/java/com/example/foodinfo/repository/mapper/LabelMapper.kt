@@ -1,13 +1,13 @@
 package com.example.foodinfo.repository.mapper
 
-import com.example.foodinfo.local.entity.LabelEntity
+import com.example.foodinfo.local.entity.LabelFieldEntity
 import com.example.foodinfo.local.entity.LabelFilterEntity
 import com.example.foodinfo.local.entity.LabelRecipeEntity
 import com.example.foodinfo.repository.model.*
 
 
-fun LabelEntity.toModel(): LabelModel {
-    return LabelModel(
+fun LabelFieldEntity.toModelHint(): LabelHintModel {
+    return LabelHintModel(
         id = this.id,
         name = this.name,
         description = this.description,
@@ -15,7 +15,7 @@ fun LabelEntity.toModel(): LabelModel {
     )
 }
 
-fun LabelEntity.toModelSearch(): LabelSearchModel {
+fun LabelFieldEntity.toModelSearch(): LabelSearchModel {
     return LabelSearchModel(
         id = this.id,
         name = this.name,

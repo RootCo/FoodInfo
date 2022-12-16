@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 
 
 @Entity(
-    tableName = LabelEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(LabelEntity.Columns.NAME), unique = true)]
+    tableName = LabelFieldEntity.TABLE_NAME,
+    indices = [Index(value = arrayOf(LabelFieldEntity.Columns.NAME), unique = true)]
 )
-data class LabelEntity(
+data class LabelFieldEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)
     val id: Long = 0,

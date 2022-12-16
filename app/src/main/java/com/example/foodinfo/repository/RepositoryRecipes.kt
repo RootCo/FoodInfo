@@ -13,7 +13,7 @@ interface RepositoryRecipes {
 
     fun getFavoriteIds(): List<String>
 
-    fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
+    fun getByFilter(query: String): Flow<PagingData<RecipeShortModel>>
 
     fun getById(id: String): Flow<State<RecipeModel>>
 

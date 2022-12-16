@@ -47,11 +47,11 @@ class RepositoryRecipesImpl @Inject constructor(
         return recipesDAO.getFavoriteIds()
     }
 
-    override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
+    override fun getByFilter(query: String): Flow<PagingData<RecipeShortModel>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
             pagingSourceFactory = {
-                recipesDAO.getByFilter(SimpleSQLiteQuery(filter.query))
+                recipesDAO.getByFilter(SimpleSQLiteQuery(query))
             }
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }

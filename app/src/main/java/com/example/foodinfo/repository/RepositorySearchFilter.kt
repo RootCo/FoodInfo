@@ -1,11 +1,17 @@
 package com.example.foodinfo.repository
 
+import com.example.foodinfo.local.entity.SearchFilterEntity
 import com.example.foodinfo.repository.model.*
 
 
 interface RepositorySearchFilter {
 
-    fun getFilterQuery(inputText: String = ""): String
+    fun getQueryByFilter(
+        filterName: String = SearchFilterEntity.DEFAULT_NAME,
+        inputText: String = ""
+    ): String
+
+    fun getQueryByLabel(categoryName: String, labelName: String): String
 
 
     fun getCategory(filterName: String, categoryName: String): CategoryFilterEditModel

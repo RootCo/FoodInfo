@@ -1,8 +1,10 @@
-package com.example.foodinfo.local.entity
+package com.example.foodinfo.local.pojo
 
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.example.foodinfo.local.entity.BaseFieldEntity
+import com.example.foodinfo.local.entity.BaseFieldFilterEntity
 
 
 data class BaseFieldFilterPOJO(
@@ -26,5 +28,5 @@ data class BaseFieldFilterPOJO(
         parentColumn = BaseFieldFilterEntity.Columns.NAME,
         entityColumn = BaseFieldEntity.Columns.NAME
     )
-    val baseFieldInfo: BaseFieldEntity
+    val fieldInfo: BaseFieldEntity
 )

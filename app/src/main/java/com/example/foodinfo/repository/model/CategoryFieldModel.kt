@@ -3,24 +3,24 @@ package com.example.foodinfo.repository.model
 import androidx.recyclerview.widget.DiffUtil
 
 
-data class CategoryModel(
+data class CategoryFieldModel(
     val id: Long,
     val name: String,
     val preview: SVGModel
 ) {
     object ItemCallBack :
-        DiffUtil.ItemCallback<CategoryModel>() {
+        DiffUtil.ItemCallback<CategoryFieldModel>() {
 
         override fun areItemsTheSame(
-            oldItem: CategoryModel,
-            newItem: CategoryModel
+            oldItem: CategoryFieldModel,
+            newItem: CategoryFieldModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: CategoryModel,
-            newItem: CategoryModel
+            oldItem: CategoryFieldModel,
+            newItem: CategoryFieldModel
         ): Boolean {
             return oldItem.id == newItem.id &&
                     oldItem.name == newItem.name &&
