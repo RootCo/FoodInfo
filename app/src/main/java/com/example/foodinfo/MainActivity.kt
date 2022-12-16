@@ -115,15 +115,30 @@ class MainActivity : AppCompatActivity() {
         )
 
 
-        val dbRangeFields = jsonLoader.load(
-            appComponent.assetProvider.getAsset(AssetsKeyWords.DB_RANGE_FIELDS)
-        )
-
-        dataBase.searchFilterDAO.addRangeFields(
-            gson.fromJson(
-                dbRangeFields.get(AssetsKeyWords.CONTENT).toString(),
-                object : TypeToken<List<RangeFieldEntity>>() {}.type
+        val labels = dataBase.recipeFieldsInfoDao.getLabelFields().map { label ->
+            LabelFilterEntity(
+                filterName = SearchFilterEntity.DEFAULT_NAME,
+                category = label.category,
+                name = label.name,
+                isSelected = false
             )
-        )
+        }
+        val nutrients = dataBase.recipeFieldsInfoDao.getNutrientFields().map { nutrient ->
+            NutrientFilterEntity(
+                filterName = SearchFilterEntity.DEFAULT_NAME,
+                name = nutrient.name,
+                minValue = nutrient.rangeMin,
+                maxValue = nutrient.rangeMax
+            )
+        }
+        val baseFields = dataBase.recipeFieldsInfoDao.getBaseFields().map { nutrient ->
+            BaseFieldFilterEntity(
+                filterName = SearchFilterEntity.DEFAULT_NAME,
+                name = nutrient.name,
+                minValue = nutrient.rangeMin,
+                maxValue = nutrient.rangeMax
+            )
+        }
+        dataBase.searchFilterDAO.createBlankFilter(labels, nutrients, baseFields)
     }
 }
