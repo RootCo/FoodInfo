@@ -1,21 +1,34 @@
 package com.example.foodinfo.repository
 
 import com.example.foodinfo.local.entity.SearchFilterEntity
-import com.example.foodinfo.repository.model.FilterNutrientModel
-import com.example.foodinfo.repository.model.RangeFieldModel
-import com.example.foodinfo.repository.model.SearchFilterModel
-import com.example.foodinfo.utils.State
-import kotlinx.coroutines.flow.Flow
+import com.example.foodinfo.repository.model.*
 
 
 interface RepositorySearchFilter {
-    suspend fun getRangeField(fieldName: String): RangeFieldModel
 
-    suspend fun getRangeFieldsByCategory(categoryName: String): List<RangeFieldModel>
+    fun getQueryByFilter(
+        filterName: String = SearchFilterEntity.DEFAULT_NAME,
+        inputText: String = ""
+    ): String
 
-    suspend fun getEditedNutrients(): List<FilterNutrientModel>
+    fun getQueryByLabel(categoryName: String, labelName: String): String
 
-    fun getFilter(filterName: String = SearchFilterEntity.DEFAULT_FILTER_NAME): Flow<State<SearchFilterModel>>
 
-    fun updateFilter(filter: SearchFilterModel)
+    fun getCategory(filterName: String, categoryName: String): CategoryFilterEditModel
+
+    fun getCategoriesPreview(filterName: String): List<CategoryFilterPreviewModel>
+
+    fun updateCategory(filterName: String, categoryName: String, category: CategoryFilterEditModel)
+
+
+    fun getNutrientsEdit(filterName: String): List<NutrientFilterEditModel>
+
+    fun getNutrientsPreview(filterName: String): List<NutrientFilterPreviewModel>
+
+    fun updateNutrients(filterName: String, nutrients: List<NutrientFilterEditModel>)
+
+
+    fun getBaseFields(filterName: String): List<BaseFieldFilterEditModel>
+
+    fun updateBaseFields(filterName: String, fields: List<BaseFieldFilterEditModel>)
 }

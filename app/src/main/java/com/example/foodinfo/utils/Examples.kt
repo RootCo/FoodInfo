@@ -1,46 +1,8 @@
 package com.example.foodinfo.utils
 
-import com.example.foodinfo.repository.model.SearchFilterModel
-import com.example.foodinfo.repository.model.filter_field.CategoryField
-import com.example.foodinfo.repository.model.filter_field.NutrientField
-import com.example.foodinfo.repository.model.filter_field.RangeField
-
 
 fun queryExample() {
-    val filter = SearchFilterModel()
-    filter.categoryFields.add(
-        CategoryField("cuisine", listOf("Japanese"))
-    )
-    filter.categoryFields.add(
-        CategoryField("dish", listOf("omelet", "egg"))
-    )
-    filter.categoryFields.add(
-        CategoryField("meal", listOf("breakfast", "dinner"))
-    )
-
-    filter.rangeFields.add(
-        RangeField(RangeField.fromLabel("calories"), 1343, 1345)
-    )
-    filter.rangeFields.add(
-        RangeField(RangeField.fromLabel("time"), minValue = 30)
-    )
-    filter.rangeFields.add(
-        RangeField(RangeField.fromLabel("servings"), maxValue = 4)
-    )
-
-    filter.nutrientFields.add(
-        NutrientField("Protein", minValue = 18f)
-    )
-    filter.nutrientFields.add(
-        NutrientField("Carbs", maxValue = 18f)
-    )
-    filter.nutrientFields.add(
-        NutrientField("Fat", 16f, 16.5f)
-    )
-    filter.buildQuery()
-
     /*
-    >>>filter.query
         SELECT * FROM recipe WHERE
             total_time >= 40
             AND servings <= 4
@@ -60,6 +22,6 @@ fun queryExample() {
                 GROUP BY label_recipe_id
                 HAVING  count(label_recipe_id) = 5)
 
-    // will return recipe with ID: 1MMVGIN7W58TZAXUI8C8
+   will return recipe with ID: 1MMVGIN7W58TZAXUI8C8
      */
 }

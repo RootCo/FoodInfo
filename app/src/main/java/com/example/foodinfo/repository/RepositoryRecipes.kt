@@ -13,15 +13,15 @@ interface RepositoryRecipes {
 
     fun getFavoriteIds(): List<String>
 
-    fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>>
+    fun getByFilter(query: String): Flow<PagingData<RecipeShortModel>>
 
     fun getById(id: String): Flow<State<RecipeModel>>
 
     fun getByIdIngredients(id: String): Flow<State<List<RecipeIngredientModel>>>
 
-    fun getByIdNutrients(id: String): Flow<State<List<RecipeNutrientModel>>>
+    fun getByIdNutrients(id: String): Flow<State<List<NutrientRecipeModel>>>
 
-    fun getByIdLabels(id: String): Flow<State<List<CategoryLabelsModel>>>
+    fun getByIdLabels(id: String): Flow<State<List<CategoryRecipeModel>>>
 
     fun updateFavoriteMark(id: String)
 

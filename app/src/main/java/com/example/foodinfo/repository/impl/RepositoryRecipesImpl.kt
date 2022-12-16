@@ -9,6 +9,7 @@ import com.example.foodinfo.local.dao.RecipesDAO
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.mapper.toModel
 import com.example.foodinfo.repository.mapper.toModelFavorite
+import com.example.foodinfo.repository.mapper.toModelRecipe
 import com.example.foodinfo.repository.mapper.toModelShort
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.utils.State
@@ -46,11 +47,11 @@ class RepositoryRecipesImpl @Inject constructor(
         return recipesDAO.getFavoriteIds()
     }
 
-    override fun getByFilter(filter: SearchFilterModel): Flow<PagingData<RecipeShortModel>> {
+    override fun getByFilter(query: String): Flow<PagingData<RecipeShortModel>> {
         return Pager(
             config = DB_EXPLORE_PAGER,
             pagingSourceFactory = {
-                recipesDAO.getByFilter(SimpleSQLiteQuery(filter.query))
+                recipesDAO.getByFilter(SimpleSQLiteQuery(query))
             }
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
@@ -73,7 +74,7 @@ class RepositoryRecipesImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getByIdNutrients(id: String): Flow<State<List<RecipeNutrientModel>>> {
+    override fun getByIdNutrients(id: String): Flow<State<List<NutrientRecipeModel>>> {
         return flow {
             emit(State.Loading())
             recipesDAO.getByIdNutrients(id).collect { list ->
@@ -82,11 +83,11 @@ class RepositoryRecipesImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getByIdLabels(id: String): Flow<State<List<CategoryLabelsModel>>> {
+    override fun getByIdLabels(id: String): Flow<State<List<CategoryRecipeModel>>> {
         return flow {
             emit(State.Loading())
             recipesDAO.getByIdLabels(id).collect {
-                emit(State.Success(it.toModel()))
+                emit(State.Success(it.toModelRecipe()))
             }
         }.flowOn(Dispatchers.IO)
     }

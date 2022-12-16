@@ -1,8 +1,10 @@
-package com.example.foodinfo.local.entity
+package com.example.foodinfo.local.pojo
 
 import androidx.room.ColumnInfo
 import androidx.room.PrimaryKey
 import androidx.room.Relation
+import com.example.foodinfo.local.entity.FavoriteMarkEntity
+import com.example.foodinfo.local.entity.RecipeEntity
 
 
 data class RecipePOJO(

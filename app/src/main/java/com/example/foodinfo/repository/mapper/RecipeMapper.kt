@@ -1,6 +1,6 @@
 package com.example.foodinfo.repository.mapper
 
-import com.example.foodinfo.local.entity.RecipePOJO
+import com.example.foodinfo.local.pojo.RecipePOJO
 import com.example.foodinfo.repository.model.RecipeFavoriteModel
 import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeShortModel

@@ -1,42 +1,78 @@
 package com.example.foodinfo.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.example.foodinfo.local.entity.RangeFieldEntity
-import com.example.foodinfo.local.entity.SearchFilterEntity
-import kotlinx.coroutines.flow.Flow
+import androidx.room.*
+import com.example.foodinfo.local.entity.*
+import com.example.foodinfo.local.pojo.BaseFieldFilterPOJO
+import com.example.foodinfo.local.pojo.NutrientFilterPOJO
 
 
 @Dao
 interface SearchFilterDAO {
-
-    @Query(
-        "SELECT * FROM ${RangeFieldEntity.TABLE_NAME} " +
-                "WHERE ${RangeFieldEntity.Columns.NAME} " +
-                "LIKE '%' || :fieldName || '%'"
-    )
-    suspend fun getRangeField(fieldName: String): RangeFieldEntity
-
-    @Query(
-        "SELECT * FROM ${RangeFieldEntity.TABLE_NAME} " +
-                "WHERE ${RangeFieldEntity.Columns.CATEGORY} " +
-                "LIKE '%' || :categoryName || '%'"
-    )
-    suspend fun getRangeFieldsByCategory(categoryName: String): List<RangeFieldEntity>
-
     @Query(
         "SELECT * FROM ${SearchFilterEntity.TABLE_NAME} " +
                 "WHERE ${SearchFilterEntity.Columns.NAME} " +
                 "LIKE '%' || :filterName || '%'"
     )
-    fun getFilter(filterName: String): Flow<SearchFilterEntity>
+    fun getFilter(filterName: String): SearchFilterEntity
+
+    @Query(
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} " +
+                "WHERE ${LabelFilterEntity.Columns.FILTER_NAME} " +
+                "LIKE '%' || :filterName || '%' " +
+                "AND ${LabelFilterEntity.Columns.CATEGORY} " +
+                "LIKE '%' || :categoryName || '%'"
+    )
+    fun getCategory(filterName: String, categoryName: String): List<LabelFilterEntity>
+
+    @Query(
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} " +
+                "WHERE ${LabelFilterEntity.Columns.FILTER_NAME} " +
+                "LIKE '%' || :filterName || '%'"
+    )
+    fun getCategories(filterName: String): List<LabelFilterEntity>
+
+    @Query(
+        "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} " +
+                "WHERE ${NutrientFilterEntity.Columns.FILTER_NAME} " +
+                "LIKE '%' || :filterName || '%'"
+    )
+    fun getNutrients(filterName: String): List<NutrientFilterPOJO>
+
+    @Query(
+        "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} " +
+                "WHERE ${BaseFieldFilterEntity.Columns.FILTER_NAME} " +
+                "LIKE '%' || :filterName || '%'"
+    )
+    fun getBaseFields(filterName: String): List<BaseFieldFilterPOJO>
+
+
+    @Update
+    fun updateCategory(labels: List<LabelFilterEntity>)
+
+    @Update
+    fun updateNutrients(nutrients: List<NutrientFilterEntity>)
+
+    @Update
+    fun updateBaseFields(fields: List<BaseFieldFilterEntity>)
 
 
     @Insert
-    fun addRangeFields(fields: List<RangeFieldEntity>)
+    fun insertLabels(labels: List<LabelFilterEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateFilter(filter: SearchFilterEntity)
+    @Insert
+    fun insertNutrients(nutrients: List<NutrientFilterEntity>)
+
+    @Insert
+    fun insertBaseFields(baseFields: List<BaseFieldFilterEntity>)
+
+    @Transaction
+    fun createBlankFilter(
+        labels: List<LabelFilterEntity>,
+        nutrients: List<NutrientFilterEntity>,
+        baseFields: List<BaseFieldFilterEntity>
+    ) {
+        insertLabels(labels)
+        insertNutrients(nutrients)
+        insertBaseFields(baseFields)
+    }
 }

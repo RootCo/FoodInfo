@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey
 
 
 @Entity(
-    tableName = RecipeLabelEntity.TABLE_NAME,
+    tableName = NutrientRecipeEntity.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = RecipeEntity::class,
         parentColumns = arrayOf(RecipeEntity.Columns.ID),
-        childColumns = arrayOf(RecipeLabelEntity.Columns.RECIPE_ID),
+        childColumns = arrayOf(NutrientRecipeEntity.Columns.RECIPE_ID),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
 )
-data class RecipeLabelEntity(
+data class NutrientRecipeEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = Columns.ID)
     val id: Long = 0,
@@ -24,21 +24,24 @@ data class RecipeLabelEntity(
     @ColumnInfo(name = Columns.RECIPE_ID)
     val recipeId: String,
 
-    @ColumnInfo(name = Columns.CATEGORY)
-    val category: String,
+    @ColumnInfo(name = Columns.NAME)
+    val name: String,
 
-    @ColumnInfo(name = Columns.LABEL)
-    val label: String
+    @ColumnInfo(name = Columns.TOTAL_VALUE)
+    val totalValue: Double,
 
+    @ColumnInfo(name = Columns.DAILY_VALUE)
+    val dailyValue: Double
 ) {
     object Columns {
         const val ID = "id"
-        const val RECIPE_ID = "label_recipe_id"
-        const val CATEGORY = "category"
-        const val LABEL = "label"
+        const val RECIPE_ID = "nutrient_recipe_id"
+        const val NAME = "name"
+        const val TOTAL_VALUE = "total_value"
+        const val DAILY_VALUE = "daily_value"
     }
 
     companion object {
-        const val TABLE_NAME = "recipe_labels"
+        const val TABLE_NAME = "recipe_nutrients"
     }
 }
