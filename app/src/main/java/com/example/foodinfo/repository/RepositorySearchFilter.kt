@@ -50,4 +50,9 @@ interface RepositorySearchFilter {
     fun updateBaseFields(
         filterName: String = SearchFilterEntity.DEFAULT_NAME, fields: List<BaseFieldFilterEditModel>
     )
+
+
+    fun createFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)
+
+    fun clearFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)
 }

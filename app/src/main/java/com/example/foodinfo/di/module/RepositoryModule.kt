@@ -31,9 +31,10 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepositorySearchFilter(
-        searchFilterDAO: SearchFilterDAO
+        searchFilterDAO: SearchFilterDAO,
+        recipeFieldsInfoDao: RecipeFieldsInfoDao,
     ): RepositorySearchFilter {
-        return RepositorySearchFilterImpl(searchFilterDAO)
+        return RepositorySearchFilterImpl(searchFilterDAO, recipeFieldsInfoDao)
     }
 
     @Provides

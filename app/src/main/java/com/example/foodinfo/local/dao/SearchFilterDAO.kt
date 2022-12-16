@@ -56,25 +56,26 @@ interface SearchFilterDAO {
     fun updateBaseFields(fields: List<BaseFieldFilterEntity>)
 
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFilter(filter: SearchFilterEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLabels(labels: List<LabelFilterEntity>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNutrients(nutrients: List<NutrientFilterEntity>)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBaseFields(baseFields: List<BaseFieldFilterEntity>)
 
     @Transaction
-    fun createBlankFilter(
+    fun initializeFilter(
+        filterName: String,
         labels: List<LabelFilterEntity>,
         nutrients: List<NutrientFilterEntity>,
         baseFields: List<BaseFieldFilterEntity>
     ) {
-        insertFilter(SearchFilterEntity())
+        insertFilter(SearchFilterEntity(name = filterName))
         insertLabels(labels)
         insertNutrients(nutrients)
         insertBaseFields(baseFields)

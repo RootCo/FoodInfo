@@ -1,6 +1,10 @@
 package com.example.foodinfo.repository.impl
 
+import com.example.foodinfo.local.dao.RecipeFieldsInfoDao
 import com.example.foodinfo.local.dao.SearchFilterDAO
+import com.example.foodinfo.local.entity.BaseFieldFilterEntity
+import com.example.foodinfo.local.entity.LabelFilterEntity
+import com.example.foodinfo.local.entity.NutrientFilterEntity
 import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.mapper.*
 import com.example.foodinfo.repository.model.*
@@ -10,7 +14,8 @@ import javax.inject.Inject
 
 
 class RepositorySearchFilterImpl @Inject constructor(
-    private val searchFilterDAO: SearchFilterDAO
+    private val searchFilterDAO: SearchFilterDAO,
+    private val recipeFieldsInfoDao: RecipeFieldsInfoDao
 ) : RepositorySearchFilter {
 
     override fun getQueryByFilter(filterName: String, inputText: String): String {
@@ -67,5 +72,39 @@ class RepositorySearchFilterImpl @Inject constructor(
 
     override fun updateBaseFields(filterName: String, fields: List<BaseFieldFilterEditModel>) {
         searchFilterDAO.updateBaseFields(fields.map { it.toEntity(filterName) })
+    }
+
+
+    override fun createFilter(filterName: String) {
+        val labels = recipeFieldsInfoDao.getLabelFields().map { label ->
+            LabelFilterEntity(
+                filterName = filterName,
+                category = label.category,
+                name = label.name,
+                isSelected = false
+            )
+        }
+        val nutrients = recipeFieldsInfoDao.getNutrientFields().map { nutrient ->
+            NutrientFilterEntity(
+                filterName = filterName,
+                name = nutrient.name,
+                minValue = nutrient.rangeMin,
+                maxValue = nutrient.rangeMax
+            )
+        }
+        val baseFields = recipeFieldsInfoDao.getBaseFields().map { nutrient ->
+            BaseFieldFilterEntity(
+                filterName = filterName,
+                name = nutrient.name,
+                minValue = nutrient.rangeMin,
+                maxValue = nutrient.rangeMax
+            )
+        }
+        searchFilterDAO.initializeFilter(filterName, labels, nutrients, baseFields)
+    }
+
+    // same function with different names for more clarity when using them
+    override fun clearFilter(filterName: String) {
+        createFilter(filterName)
     }
 }
