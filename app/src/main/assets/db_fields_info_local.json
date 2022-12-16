@@ -792,41 +792,41 @@
       "name": "calories",
       "measure": "kcal",
       "category": "base",
-      "step": 50,
-      "minValue": 0,
-      "maxValue": 5000
+      "stepSize": 50,
+      "rangeMin": 0,
+      "rangeMax": 5000
     },
     {
       "name": "servings",
       "measure": "ppl",
       "category": "base",
-      "step": 1,
-      "minValue": 1,
-      "maxValue": 20
+      "stepSize": 1,
+      "rangeMin": 1,
+      "rangeMax": 20
     },
     {
       "name": "ingredients",
       "measure": "pcs",
       "category": "base",
-      "step": 1,
-      "minValue": 1,
-      "maxValue": 30
+      "stepSize": 1,
+      "rangeMin": 1,
+      "rangeMax": 30
     },
     {
       "name": "time",
       "measure": "min",
       "category": "base",
-      "step": 5,
-      "minValue": 5,
-      "maxValue": 600
+      "stepSize": 5,
+      "rangeMin": 5,
+      "rangeMax": 600
     },
     {
       "name": "weight",
       "measure": "g",
       "category": "base",
-      "step": 50,
-      "minValue": 0,
-      "maxValue": 5000
+      "stepSize": 50,
+      "rangeMin": 0,
+      "rangeMax": 5000
     }
   ]
 }
