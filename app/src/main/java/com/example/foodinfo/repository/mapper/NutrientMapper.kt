@@ -36,6 +36,7 @@ fun NutrientFilterPOJO.toModelEdit(): NutrientFilterEditModel {
     return NutrientFilterEditModel(
         id = this.id,
         name = this.name,
+        stepSize = this.fieldInfo.stepSize,
         measure = this.fieldInfo.measure,
         rangeMin = this.fieldInfo.rangeMin,
         rangeMax = this.fieldInfo.rangeMax,
