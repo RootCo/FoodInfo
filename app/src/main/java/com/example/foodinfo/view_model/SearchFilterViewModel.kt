@@ -2,11 +2,10 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.RepositoryLabels
 import com.example.foodinfo.repository.RepositorySearchFilter
-import com.example.foodinfo.repository.model.CategoryLabelsModel
-import com.example.foodinfo.repository.model.FilterNutrientModel
-import com.example.foodinfo.repository.model.RangeFieldModel
+import com.example.foodinfo.repository.model.BaseFieldFilterEditModel
+import com.example.foodinfo.repository.model.CategoryFilterPreviewModel
+import com.example.foodinfo.repository.model.NutrientFilterPreviewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -20,34 +19,33 @@ import javax.inject.Inject
 
 class SearchFilterViewModel @Inject constructor(
     private val repositorySearchFilter: RepositorySearchFilter,
-    private val repositoryLabels: RepositoryLabels
 ) : ViewModel() {
 
-    private val _rangeFields = MutableSharedFlow<List<RangeFieldModel>>(
+    private val _rangeFields = MutableSharedFlow<List<BaseFieldFilterEditModel>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val rangeFields: SharedFlow<List<RangeFieldModel>> = _rangeFields.shareIn(
+    val rangeFields: SharedFlow<List<BaseFieldFilterEditModel>> = _rangeFields.shareIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
         1
     )
 
-    private val _categories = MutableSharedFlow<List<CategoryLabelsModel>>(
+    private val _categories = MutableSharedFlow<List<CategoryFilterPreviewModel>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val categories: SharedFlow<List<CategoryLabelsModel>> = _categories.shareIn(
+    val categories: SharedFlow<List<CategoryFilterPreviewModel>> = _categories.shareIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
         1
     )
 
-    private val _nutrients = MutableSharedFlow<List<FilterNutrientModel>>(
+    private val _nutrients = MutableSharedFlow<List<NutrientFilterPreviewModel>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val nutrients: SharedFlow<List<FilterNutrientModel>> = _nutrients.shareIn(
+    val nutrients: SharedFlow<List<NutrientFilterPreviewModel>> = _nutrients.shareIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
         1
@@ -59,22 +57,17 @@ class SearchFilterViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _rangeFields.emit(repositorySearchFilter.getRangeFieldsByCategory("base"))
+                _rangeFields.emit(repositorySearchFilter.getBaseFields())
             }
         }
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _nutrients.emit(repositorySearchFilter.getEditedNutrients())
+                _nutrients.emit(repositorySearchFilter.getNutrientsPreview())
             }
         }
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _categories.emit(repositoryLabels.getCategories().map { category ->
-                    CategoryLabelsModel(
-                        category.name,
-                        listOf() //TODO get content from filter
-                    )
-                })
+                _categories.emit(repositorySearchFilter.getCategoriesPreview())
             }
         }
     }

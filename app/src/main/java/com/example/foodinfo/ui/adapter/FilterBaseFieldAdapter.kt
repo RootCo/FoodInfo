@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemFilterInputBaseFieldBinding
-import com.example.foodinfo.repository.model.RangeFieldModel
+import com.example.foodinfo.repository.model.BaseFieldFilterEditModel
 import com.example.foodinfo.ui.view_holder.FilterBaseFieldViewHolder
 
 
 class FilterBaseFieldAdapter(
     context: Context,
     private val onValueChangedCallback: (Float, Float, Boolean) -> Unit
-) : ListAdapter<RangeFieldModel, ViewHolder>(RangeFieldModel.ItemCallBack) {
+) : ListAdapter<BaseFieldFilterEditModel, ViewHolder>(BaseFieldFilterEditModel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

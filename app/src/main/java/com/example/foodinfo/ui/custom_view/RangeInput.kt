@@ -91,42 +91,42 @@ class RangeInput @JvmOverloads constructor(
             binding.rsRange.stepSize = field
         }
 
-    var minValue: Float = DEFAULT_MIN_VALUE
+    var rangeMin: Float = DEFAULT_MIN_VALUE
         set(value) {
             field = value
-            if (field > minCurrent) {
-                binding.rsRange.values = listOf(field, maxCurrent)
+            if (field > minValue) {
+                binding.rsRange.values = listOf(field, maxValue)
             }
             binding.rsRange.valueFrom = field
         }
 
-    var maxValue: Float = DEFAULT_MAX_VALUE
+    var rangeMax: Float = DEFAULT_MAX_VALUE
         set(value) {
             field = value
-            if (field < maxCurrent) {
-                binding.rsRange.values = listOf(minCurrent, field)
+            if (field < maxValue) {
+                binding.rsRange.values = listOf(minValue, field)
             }
             binding.rsRange.valueTo = field
         }
 
-    var minCurrent: Float = DEFAULT_MIN_VALUE
+    var minValue: Float = DEFAULT_MIN_VALUE
         set(value) {
-            field = if (value < minValue) minValue else value
-            binding.rsRange.values = listOf(field, maxCurrent)
+            field = if (value < rangeMin) rangeMin else value
+            binding.rsRange.values = listOf(field, maxValue)
         }
         get() = binding.rsRange.values.min()
 
-    var maxCurrent: Float = DEFAULT_MAX_VALUE
+    var maxValue: Float = DEFAULT_MAX_VALUE
         set(value) {
-            field = if (value > maxValue) maxValue else value
-            binding.rsRange.values = listOf(minCurrent, field)
+            field = if (value > rangeMax) rangeMax else value
+            binding.rsRange.values = listOf(minValue, field)
         }
         get() = binding.rsRange.values.max()
 
 
     private val onValueChangedCallback = RangeSlider.OnChangeListener { _, _, _ ->
-        binding.tvRangeStart.text = minCurrent.toInt().toString()
-        binding.tvRangeEnd.text = maxCurrent.toInt().toString()
+        binding.tvRangeStart.text = minValue.toInt().toString()
+        binding.tvRangeEnd.text = maxValue.toInt().toString()
     }
 
 
@@ -136,9 +136,9 @@ class RangeInput @JvmOverloads constructor(
         override fun onStopTrackingTouch(slider: RangeSlider) {
             stopTrackingCallbacks.forEach { callback ->
                 callback.invoke(
-                    minCurrent,
-                    maxCurrent,
-                    minValue == minCurrent && maxValue == maxCurrent
+                    minValue,
+                    maxValue,
+                    rangeMin == minValue && rangeMax == maxValue
                 )
             }
         }
@@ -167,11 +167,11 @@ class RangeInput @JvmOverloads constructor(
                     R.styleable.RangeInput_stepSize,
                     DEFAULT_STEP_SIZE
                 )
-                minValue = getFloat(
+                rangeMin = getFloat(
                     R.styleable.RangeInput_minValue,
                     DEFAULT_MIN_VALUE
                 )
-                maxValue = getFloat(
+                rangeMax = getFloat(
                     R.styleable.RangeInput_maxValue,
                     DEFAULT_MAX_VALUE
                 )

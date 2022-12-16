@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemFilterInputNutrientsBinding
-import com.example.foodinfo.repository.model.FilterNutrientModel
+import com.example.foodinfo.repository.model.NutrientFilterPreviewModel
 import com.example.foodinfo.ui.view_holder.FilterNutrientFieldViewHolder
 
 
 class FilterNutrientsAdapter(
     context: Context,
     private val getFormattedRange: (Float, Float, String) -> String
-) : ListAdapter<FilterNutrientModel, ViewHolder>(FilterNutrientModel.ItemCallBack) {
+) : ListAdapter<NutrientFilterPreviewModel, ViewHolder>(NutrientFilterPreviewModel.ItemCallBack) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

@@ -30,10 +30,10 @@ class FilterNutrientFieldEditViewHolder(
             header = item.name
             measure = item.measure
             stepSize = item.stepSize
-            minValue = item.minValue
-            maxValue = item.maxValue
-            minCurrent = item.minCurrent
-            maxCurrent = item.maxCurrent
+            rangeMin = item.minValue
+            rangeMax = item.maxValue
+            minValue = item.minCurrent
+            maxValue = item.maxCurrent
         }
     }
 }
