@@ -20,9 +20,9 @@ class RepositorySearchFilterImpl @Inject constructor(
 
     override fun getQueryByFilter(filterName: String, inputText: String): String {
         val builder = FilterQueryBuilder(
-            searchFilterDAO.getBaseFields(filterName).map { it.toModelFilterField() },
+            searchFilterDAO.getBaseFields(filterName).toModelFilterField(),
             searchFilterDAO.getCategories(filterName).toModelFilterField(),
-            searchFilterDAO.getNutrients(filterName).map { it.toModelFilterField() },
+            searchFilterDAO.getNutrients(filterName).toModelFilterField(),
         )
         builder.setInputText(inputText)
         return builder.getQuery()
@@ -58,7 +58,7 @@ class RepositorySearchFilterImpl @Inject constructor(
     }
 
     override fun getNutrientsPreview(filterName: String): List<NutrientFilterPreviewModel> {
-        return searchFilterDAO.getNutrients(filterName).map { it.toModelPreview() }
+        return searchFilterDAO.getNutrients(filterName).toModelPreview()
     }
 
     override fun updateNutrients(filterName: String, nutrients: List<NutrientFilterEditModel>) {
