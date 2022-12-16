@@ -45,23 +45,33 @@ fun NutrientFilterPOJO.toModelEdit(): NutrientFilterEditModel {
     )
 }
 
-fun NutrientFilterPOJO.toModelPreview(): NutrientFilterPreviewModel {
-    return NutrientFilterPreviewModel(
-        id = this.id,
-        name = this.name,
-        measure = this.fieldInfo.measure,
-        minValue = this.minValue,
-        maxValue = this.maxValue,
-    )
+fun List<NutrientFilterPOJO>.toModelPreview(): List<NutrientFilterPreviewModel> {
+    return this.map { nutrient ->
+        if (
+            nutrient.minValue == nutrient.fieldInfo.rangeMin &&
+            nutrient.maxValue == nutrient.fieldInfo.rangeMax
+        ) {
+            null
+        } else {
+            NutrientFilterPreviewModel(
+                id = nutrient.id,
+                name = nutrient.name,
+                measure = nutrient.fieldInfo.measure,
+                minValue = nutrient.minValue,
+                maxValue = nutrient.maxValue,
+            )
+        }
+    }.filterNotNull()
 }
 
-// set value to null if it's same as range affects on query. See FilterQueryBuilder.rangeFieldToQuery() for details
-fun NutrientFilterPOJO.toModelFilterField(): NutrientFilterField {
-    return NutrientFilterField(
-        name = this.name,
-        minValue = if (this.minValue == this.fieldInfo.rangeMin) null else this.minValue,
-        maxValue = if (this.maxValue == this.fieldInfo.rangeMax) null else this.maxValue
-    )
+fun List<NutrientFilterPOJO>.toModelFilterField(): List<NutrientFilterField> {
+    return this.map { nutrient ->
+        NutrientFilterField(
+            name = nutrient.name,
+            minValue = if (nutrient.minValue == nutrient.fieldInfo.rangeMin) null else nutrient.minValue,
+            maxValue = if (nutrient.maxValue == nutrient.fieldInfo.rangeMax) null else nutrient.maxValue
+        )
+    }.filter { !(it.minValue == null && it.maxValue == null) }
 }
 
 

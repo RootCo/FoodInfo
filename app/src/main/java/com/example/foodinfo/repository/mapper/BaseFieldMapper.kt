@@ -19,14 +19,16 @@ fun BaseFieldFilterPOJO.toModelEdit(): BaseFieldFilterEditModel {
     )
 }
 
-// set value to null if it's same as range affects on query. See FilterQueryBuilder.rangeFieldToQuery() for details
-fun BaseFieldFilterPOJO.toModelFilterField(): BaseFilterField {
-    return BaseFilterField(
-        name = this.name,
-        minValue = if (this.minValue == this.fieldInfo.rangeMin) null else this.minValue,
-        maxValue = if (this.maxValue == this.fieldInfo.rangeMax) null else this.maxValue
-    )
+fun List<BaseFieldFilterPOJO>.toModelFilterField(): List<BaseFilterField> {
+    return this.map { field ->
+        BaseFilterField(
+            name = field.name,
+            minValue = if (field.minValue == field.fieldInfo.rangeMin) null else field.minValue,
+            maxValue = if (field.maxValue == field.fieldInfo.rangeMax) null else field.maxValue
+        )
+    }.filter { !(it.minValue == null && it.maxValue == null) }
 }
+
 
 fun BaseFieldFilterEditModel.toEntity(filterName: String): BaseFieldFilterEntity {
     return BaseFieldFilterEntity(

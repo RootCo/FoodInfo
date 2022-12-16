@@ -70,7 +70,6 @@ data class FilterQueryBuilder(
     private fun rangeFieldToQuery(
         column: String, minValue: Any?, maxValue: Any?
     ): String {
-        if (minValue == null && maxValue == null) return ""
         return if (minValue == null) {
             "$column <= $maxValue"
         } else if (maxValue == null) {
@@ -84,7 +83,6 @@ data class FilterQueryBuilder(
     }
 
     private fun categoryFieldsToQuery(): String {
-        if (categoryFilterFields.isEmpty()) return ""
         var query = "${RecipeEntity.Columns.ID} IN "
         val categoryQueryList = categoryFilterFields.map { field ->
             categoryFieldToQuery(

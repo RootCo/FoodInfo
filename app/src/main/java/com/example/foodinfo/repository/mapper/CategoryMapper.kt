@@ -37,7 +37,7 @@ fun List<LabelFilterEntity>.toModelFilterPreview(): List<CategoryFilterPreviewMo
     return this.groupBy { label -> label.category }.entries.map { category ->
         CategoryFilterPreviewModel(
             name = category.key,
-            labels = category.value.map { it.toModelShort() }
+            labels = category.value.filter { it.isSelected }.map { it.toModelShort() }
         )
     }
 }
@@ -48,5 +48,5 @@ fun List<LabelFilterEntity>.toModelFilterField(): List<CategoryFilterField> {
             name = category.key,
             labels = category.value.filter { it.isSelected }.map { it.name }
         )
-    }
+    }.filter { it.labels.isNotEmpty() }
 }
