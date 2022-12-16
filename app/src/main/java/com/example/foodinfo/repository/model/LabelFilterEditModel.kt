@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 data class LabelFilterEditModel(
     val id: Long,
     val name: String,
-    val isSelected: Boolean
+    var isSelected: Boolean
 ) {
 
     object ItemCallBack :
