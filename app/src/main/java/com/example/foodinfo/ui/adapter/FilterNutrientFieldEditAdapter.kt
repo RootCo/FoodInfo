@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemFilterInputNutrientsEditBinding
 import com.example.foodinfo.repository.model.NutrientFilterEditModel
-import com.example.foodinfo.repository.model.RangeFieldModel
 import com.example.foodinfo.ui.view_holder.FilterNutrientFieldEditViewHolder
 
 
