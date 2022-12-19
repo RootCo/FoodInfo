@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.foodinfo.databinding.RvItemRecipeNutrientBinding
-import com.example.foodinfo.repository.model.RecipeNutrientModel
+import com.example.foodinfo.repository.model.NutrientRecipeModel
 import com.example.foodinfo.ui.view_holder.NutrientsViewHolder
 
 
 class RecipeNutrientsAdapter(
     context: Context,
-    private val onGetNutrientWeight: (Double, Double, String) -> String,
+    private val onGetNutrientWeight: (Float, Float, String) -> String,
     private val onGetNutrientPercent: (Int) -> String,
     private val onNutrientClickListener: (String) -> Unit,
-) : ListAdapter<RecipeNutrientModel, ViewHolder>(
-    RecipeNutrientModel.ItemCallBack
+) : ListAdapter<NutrientRecipeModel, ViewHolder>(
+    NutrientRecipeModel.ItemCallBack
 ) {
 
     private val layoutInflater = LayoutInflater.from(context)

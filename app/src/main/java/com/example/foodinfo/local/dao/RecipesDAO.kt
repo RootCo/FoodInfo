@@ -4,6 +4,8 @@ import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.local.entity.*
+import com.example.foodinfo.local.pojo.NutrientRecipePOJO
+import com.example.foodinfo.local.pojo.RecipePOJO
 import kotlinx.coroutines.flow.Flow
 
 
@@ -38,9 +40,9 @@ interface RecipesDAO {
     @RawQuery(
         observedEntities = [
             RecipeEntity::class,
-            RecipeNutrientEntity::class,
+            NutrientRecipeEntity::class,
             RecipeIngredientEntity::class,
-            RecipeLabelEntity::class,
+            LabelRecipeEntity::class,
             FavoriteMarkEntity::class
         ]
     )
@@ -61,18 +63,18 @@ interface RecipesDAO {
     fun getByIdIngredients(id: String): Flow<List<RecipeIngredientEntity>>
 
     @Query(
-        "SELECT * FROM ${RecipeNutrientEntity.TABLE_NAME} " +
-                "WHERE ${RecipeNutrientEntity.Columns.RECIPE_ID} " +
+        "SELECT * FROM ${NutrientRecipeEntity.TABLE_NAME} " +
+                "WHERE ${NutrientRecipeEntity.Columns.RECIPE_ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getByIdNutrients(id: String): Flow<List<RecipeNutrientEntity>>
+    fun getByIdNutrients(id: String): Flow<List<NutrientRecipePOJO>>
 
     @Query(
-        "SELECT * FROM ${RecipeLabelEntity.TABLE_NAME} " +
-                "WHERE ${RecipeLabelEntity.Columns.RECIPE_ID} " +
+        "SELECT * FROM ${LabelRecipeEntity.TABLE_NAME} " +
+                "WHERE ${LabelRecipeEntity.Columns.RECIPE_ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getByIdLabels(id: String): Flow<List<RecipeLabelEntity>>
+    fun getByIdLabels(id: String): Flow<List<LabelRecipeEntity>>
 
 
     @Query(
@@ -98,13 +100,13 @@ interface RecipesDAO {
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addNutrients(nutrients: List<RecipeNutrientEntity>)
+    fun addNutrients(nutrients: List<NutrientRecipeEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addIngredients(nutrients: List<RecipeIngredientEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addLabels(dietLabels: List<RecipeLabelEntity>)
+    fun addLabels(dietLabels: List<LabelRecipeEntity>)
 
     /*
         При обновлении рецепта из сети создается объект RecipeEntity с isFavorite = false
@@ -119,9 +121,9 @@ interface RecipesDAO {
     @Transaction
     fun addAll(
         recipes: List<RecipeEntity>,
-        nutrients: List<RecipeNutrientEntity>,
+        nutrients: List<NutrientRecipeEntity>,
         ingredients: List<RecipeIngredientEntity>,
-        labels: List<RecipeLabelEntity>,
+        labels: List<LabelRecipeEntity>,
         favoriteMarks: List<FavoriteMarkEntity>
     ) {
         addRecipes(recipes)
