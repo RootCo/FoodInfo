@@ -22,14 +22,14 @@ interface SearchFilterDAO {
                 "AND ${LabelFilterEntity.Columns.CATEGORY} " +
                 "LIKE '%' || :categoryName || '%'"
     )
-    fun getCategory(filterName: String, categoryName: String): List<LabelFilterEntity>
+    fun getLabelsCategory(filterName: String, categoryName: String): List<LabelFilterEntity>
 
     @Query(
         "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} " +
                 "WHERE ${LabelFilterEntity.Columns.FILTER_NAME} " +
                 "LIKE '%' || :filterName || '%'"
     )
-    fun getCategories(filterName: String): List<LabelFilterEntity>
+    fun getLabelsAll(filterName: String): List<LabelFilterEntity>
 
     @Query(
         "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} " +
@@ -46,8 +46,32 @@ interface SearchFilterDAO {
     fun getBaseFields(filterName: String): List<BaseFieldFilterPOJO>
 
 
+    @Query(
+        "UPDATE ${BaseFieldFilterEntity.TABLE_NAME} SET " +
+                "${BaseFieldFilterEntity.Columns.MIN_VALUE} = :minValue," +
+                "${BaseFieldFilterEntity.Columns.MAX_VALUE} = :maxValue " +
+                "WHERE ${BaseFieldFilterEntity.Columns.ID} == :id"
+    )
+    fun updateBaseField(id: Long, minValue: Float, maxValue: Float)
+
+    @Query(
+        "UPDATE ${NutrientFilterEntity.TABLE_NAME} SET " +
+                "${NutrientFilterEntity.Columns.MIN_VALUE} = :minValue," +
+                "${NutrientFilterEntity.Columns.MAX_VALUE} = :maxValue " +
+                "WHERE ${NutrientFilterEntity.Columns.ID} == :id"
+    )
+    fun updateNutrient(id: Long, minValue: Float, maxValue: Float)
+
+    @Query(
+        "UPDATE ${LabelFilterEntity.TABLE_NAME} SET " +
+                "${LabelFilterEntity.Columns.IS_SELECTED} = :isSelected " +
+                "WHERE ${LabelFilterEntity.Columns.ID} == :id"
+    )
+    fun updateLabel(id: Long, isSelected: Boolean)
+
+
     @Update
-    fun updateCategory(labels: List<LabelFilterEntity>)
+    fun updateLabels(labels: List<LabelFilterEntity>)
 
     @Update
     fun updateNutrients(nutrients: List<NutrientFilterEntity>)
@@ -56,16 +80,16 @@ interface SearchFilterDAO {
     fun updateBaseFields(fields: List<BaseFieldFilterEntity>)
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertFilter(filter: SearchFilterEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertLabels(labels: List<LabelFilterEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertNutrients(nutrients: List<NutrientFilterEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insertBaseFields(baseFields: List<BaseFieldFilterEntity>)
 
     @Transaction

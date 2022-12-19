@@ -14,19 +14,14 @@ interface RepositorySearchFilter {
     fun getQueryByLabel(categoryName: String, labelName: String): String
 
 
-    fun getCategory(
-        filterName: String = SearchFilterEntity.DEFAULT_NAME, categoryName: String
+    fun getCategoryEdit(
+        filterName: String = SearchFilterEntity.DEFAULT_NAME,
+        categoryName: String
     ): CategoryFilterEditModel
 
     fun getCategoriesPreview(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
     ): List<CategoryFilterPreviewModel>
-
-    fun updateCategory(
-        filterName: String = SearchFilterEntity.DEFAULT_NAME,
-        categoryName: String,
-        category: CategoryFilterEditModel
-    )
 
 
     fun getNutrientsEdit(
@@ -37,22 +32,26 @@ interface RepositorySearchFilter {
         filterName: String = SearchFilterEntity.DEFAULT_NAME
     ): List<NutrientFilterPreviewModel>
 
-    fun updateNutrients(
-        filterName: String = SearchFilterEntity.DEFAULT_NAME,
-        nutrients: List<NutrientFilterEditModel>
-    )
 
-
-    fun getBaseFields(
+    fun getBaseFieldsEdit(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
     ): List<BaseFieldFilterEditModel>
-
-    fun updateBaseFields(
-        filterName: String = SearchFilterEntity.DEFAULT_NAME, fields: List<BaseFieldFilterEditModel>
-    )
 
 
     fun createFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)
 
-    fun clearFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)
+    fun resetFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)
+
+    fun resetBaseFields(filterName: String = SearchFilterEntity.DEFAULT_NAME)
+
+    fun resetNutrients(filterName: String = SearchFilterEntity.DEFAULT_NAME)
+
+    fun resetCategory(filterName: String = SearchFilterEntity.DEFAULT_NAME, categoryName: String)
+
+
+    fun updateBaseField(id: Long, minValue: Float, maxValue: Float)
+
+    fun updateNutrient(id: Long, minValue: Float, maxValue: Float)
+
+    fun updateLabel(id: Long, isSelected: Boolean)
 }
