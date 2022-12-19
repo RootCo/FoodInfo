@@ -2,6 +2,7 @@ package com.example.foodinfo.repository
 
 import com.example.foodinfo.local.entity.SearchFilterEntity
 import com.example.foodinfo.repository.model.*
+import kotlinx.coroutines.flow.Flow
 
 
 interface RepositorySearchFilter {
@@ -17,25 +18,25 @@ interface RepositorySearchFilter {
     fun getCategoryEdit(
         filterName: String = SearchFilterEntity.DEFAULT_NAME,
         categoryName: String
-    ): CategoryFilterEditModel
+    ): Flow<CategoryFilterEditModel>
 
     fun getCategoriesPreview(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
-    ): List<CategoryFilterPreviewModel>
+    ): Flow<List<CategoryFilterPreviewModel>>
 
 
     fun getNutrientsEdit(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
-    ): List<NutrientFilterEditModel>
+    ): Flow<List<NutrientFilterEditModel>>
 
     fun getNutrientsPreview(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
-    ): List<NutrientFilterPreviewModel>
+    ): Flow<List<NutrientFilterPreviewModel>>
 
 
     fun getBaseFieldsEdit(
         filterName: String = SearchFilterEntity.DEFAULT_NAME
-    ): List<BaseFieldFilterEditModel>
+    ): Flow<List<BaseFieldFilterEditModel>>
 
 
     fun createFilter(filterName: String = SearchFilterEntity.DEFAULT_NAME)

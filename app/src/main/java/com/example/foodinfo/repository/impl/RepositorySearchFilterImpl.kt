@@ -10,6 +10,8 @@ import com.example.foodinfo.repository.mapper.*
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
 import com.example.foodinfo.utils.FilterQueryBuilder
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
@@ -36,30 +38,36 @@ class RepositorySearchFilterImpl @Inject constructor(
     }
 
 
-    override fun getCategoryEdit(
-        filterName: String,
-        categoryName: String
-    ): CategoryFilterEditModel {
-        return searchFilterDAO.getLabelsCategory(filterName, categoryName).toModelFilterEdit()
-            .first()
+    override fun getCategoryEdit(filterName: String, categoryName: String): Flow<CategoryFilterEditModel> {
+        return searchFilterDAO.observeLabelsCategory(filterName, categoryName).map { data ->
+            data.toModelFilterEdit().first()
+        }
     }
 
-    override fun getCategoriesPreview(filterName: String): List<CategoryFilterPreviewModel> {
-        return searchFilterDAO.getLabelsAll(filterName).toModelFilterPreview()
-    }
-
-
-    override fun getNutrientsEdit(filterName: String): List<NutrientFilterEditModel> {
-        return searchFilterDAO.getNutrients(filterName).map { it.toModelEdit() }
-    }
-
-    override fun getNutrientsPreview(filterName: String): List<NutrientFilterPreviewModel> {
-        return searchFilterDAO.getNutrients(filterName).toModelPreview()
+    override fun getCategoriesPreview(filterName: String): Flow<List<CategoryFilterPreviewModel>> {
+        return searchFilterDAO.observeLabelsAll(filterName).map { data ->
+            data.toModelFilterPreview()
+        }
     }
 
 
-    override fun getBaseFieldsEdit(filterName: String): List<BaseFieldFilterEditModel> {
-        return searchFilterDAO.getBaseFields(filterName).map { it.toModelEdit() }
+    override fun getNutrientsEdit(filterName: String): Flow<List<NutrientFilterEditModel>> {
+        return searchFilterDAO.observeNutrients(filterName).map { data ->
+            data.map { it.toModelEdit() }
+        }
+    }
+
+    override fun getNutrientsPreview(filterName: String): Flow<List<NutrientFilterPreviewModel>> {
+        return searchFilterDAO.observeNutrients(filterName).map { data ->
+            data.toModelPreview()
+        }
+    }
+
+
+    override fun getBaseFieldsEdit(filterName: String): Flow<List<BaseFieldFilterEditModel>> {
+        return searchFilterDAO.observeBaseFields(filterName).map { data ->
+            data.map { it.toModelEdit() }
+        }
     }
 
 
@@ -109,7 +117,6 @@ class RepositorySearchFilterImpl @Inject constructor(
             )
         }
         searchFilterDAO.updateBaseFields(baseFields)
-
     }
 
     override fun resetNutrients(filterName: String) {
