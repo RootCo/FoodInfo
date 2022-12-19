@@ -21,7 +21,7 @@ class RepositorySearchFilterImpl @Inject constructor(
     override fun getQueryByFilter(filterName: String, inputText: String): String {
         val builder = FilterQueryBuilder(
             searchFilterDAO.getBaseFields(filterName).toModelFilterField(),
-            searchFilterDAO.getCategories(filterName).toModelFilterField(),
+            searchFilterDAO.getLabelsAll(filterName).toModelFilterField(),
             searchFilterDAO.getNutrients(filterName).toModelFilterField(),
         )
         builder.setInputText(inputText)
@@ -36,20 +36,16 @@ class RepositorySearchFilterImpl @Inject constructor(
     }
 
 
-    override fun getCategory(filterName: String, categoryName: String): CategoryFilterEditModel {
-        return searchFilterDAO.getCategory(filterName, categoryName).toModelFilterEdit().first()
+    override fun getCategoryEdit(
+        filterName: String,
+        categoryName: String
+    ): CategoryFilterEditModel {
+        return searchFilterDAO.getLabelsCategory(filterName, categoryName).toModelFilterEdit()
+            .first()
     }
 
     override fun getCategoriesPreview(filterName: String): List<CategoryFilterPreviewModel> {
-        return searchFilterDAO.getCategories(filterName).toModelFilterPreview()
-    }
-
-    override fun updateCategory(
-        filterName: String, categoryName: String, category: CategoryFilterEditModel
-    ) {
-        searchFilterDAO.updateCategory(category.labels.map {
-            it.toEntity(filterName, categoryName)
-        })
+        return searchFilterDAO.getLabelsAll(filterName).toModelFilterPreview()
     }
 
 
@@ -61,27 +57,19 @@ class RepositorySearchFilterImpl @Inject constructor(
         return searchFilterDAO.getNutrients(filterName).toModelPreview()
     }
 
-    override fun updateNutrients(filterName: String, nutrients: List<NutrientFilterEditModel>) {
-        searchFilterDAO.updateNutrients(nutrients.map { it.toEntity(filterName) })
-    }
 
-
-    override fun getBaseFields(filterName: String): List<BaseFieldFilterEditModel> {
+    override fun getBaseFieldsEdit(filterName: String): List<BaseFieldFilterEditModel> {
         return searchFilterDAO.getBaseFields(filterName).map { it.toModelEdit() }
-    }
-
-    override fun updateBaseFields(filterName: String, fields: List<BaseFieldFilterEditModel>) {
-        searchFilterDAO.updateBaseFields(fields.map { it.toEntity(filterName) })
     }
 
 
     override fun createFilter(filterName: String) {
-        val labels = recipeFieldsInfoDao.getLabelFields().map { label ->
-            LabelFilterEntity(
+        val baseFields = recipeFieldsInfoDao.getBaseFields().map { field ->
+            BaseFieldFilterEntity(
                 filterName = filterName,
-                category = label.category,
-                name = label.name,
-                isSelected = false
+                name = field.name,
+                minValue = field.rangeMin,
+                maxValue = field.rangeMax
             )
         }
         val nutrients = recipeFieldsInfoDao.getNutrientFields().map { nutrient ->
@@ -92,19 +80,87 @@ class RepositorySearchFilterImpl @Inject constructor(
                 maxValue = nutrient.rangeMax
             )
         }
-        val baseFields = recipeFieldsInfoDao.getBaseFields().map { nutrient ->
-            BaseFieldFilterEntity(
+        val labels = recipeFieldsInfoDao.getLabelFields().map { label ->
+            LabelFilterEntity(
                 filterName = filterName,
-                name = nutrient.name,
-                minValue = nutrient.rangeMin,
-                maxValue = nutrient.rangeMax
+                category = label.category,
+                name = label.name,
+                isSelected = false
             )
         }
         searchFilterDAO.initializeFilter(filterName, labels, nutrients, baseFields)
     }
 
-    // same function with different names for more clarity when using them
-    override fun clearFilter(filterName: String) {
-        createFilter(filterName)
+    override fun resetFilter(filterName: String) {
+        resetBaseFields(filterName)
+        resetNutrients(filterName)
+        resetLabels(filterName)
+    }
+
+
+    override fun resetBaseFields(filterName: String) {
+        val baseFields = searchFilterDAO.getBaseFields(filterName).map { field ->
+            BaseFieldFilterEntity(
+                id = field.id,
+                filterName = filterName,
+                name = field.name,
+                minValue = field.fieldInfo.rangeMin,
+                maxValue = field.fieldInfo.rangeMax
+            )
+        }
+        searchFilterDAO.updateBaseFields(baseFields)
+
+    }
+
+    override fun resetNutrients(filterName: String) {
+        val nutrients = searchFilterDAO.getNutrients(filterName).map { nutrient ->
+            NutrientFilterEntity(
+                id = nutrient.id,
+                filterName = filterName,
+                name = nutrient.name,
+                minValue = nutrient.fieldInfo.rangeMin,
+                maxValue = nutrient.fieldInfo.rangeMax
+            )
+        }
+        searchFilterDAO.updateNutrients(nutrients)
+    }
+
+    override fun resetCategory(filterName: String, categoryName: String) {
+        val labels = searchFilterDAO.getLabelsCategory(filterName, categoryName).map { label ->
+            LabelFilterEntity(
+                id = label.id,
+                name = label.name,
+                category = label.category,
+                filterName = filterName,
+                isSelected = false
+            )
+        }
+        searchFilterDAO.updateLabels(labels)
+    }
+
+    private fun resetLabels(filterName: String) {
+        val labels = searchFilterDAO.getLabelsAll(filterName).map { label ->
+            LabelFilterEntity(
+                id = label.id,
+                name = label.name,
+                category = label.category,
+                filterName = filterName,
+                isSelected = false
+            )
+        }
+        searchFilterDAO.updateLabels(labels)
+    }
+
+
+    override fun updateBaseField(id: Long, minValue: Float, maxValue: Float) {
+        searchFilterDAO.updateBaseField(id, minValue, maxValue)
+    }
+
+    override fun updateNutrient(id: Long, minValue: Float, maxValue: Float) {
+        searchFilterDAO.updateNutrient(id, minValue, maxValue)
+    }
+
+    override fun updateLabel(id: Long, isSelected: Boolean) {
+        searchFilterDAO.updateLabel(id, isSelected)
     }
 }
