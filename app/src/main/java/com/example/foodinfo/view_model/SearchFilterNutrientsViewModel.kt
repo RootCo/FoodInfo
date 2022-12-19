@@ -44,4 +44,8 @@ class SearchFilterNutrientsViewModel @Inject constructor(
     fun getNutrient(name: String): NutrientHintModel {
         return repositoryRecipeFieldsInfo.getNutrientHint(name)
     }
+
+    fun reset() {
+        repositorySearchFilter.resetNutrients()
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -31,6 +32,10 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 
     private val onBackClickListener: () -> Unit = {
         findNavController().navigateUp()
+    }
+
+    private val onResetClickListener: () -> Unit = {
+        viewModel.reset()
     }
 
     private val onNutrientsEditClickListener: () -> Unit = {
@@ -67,6 +72,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
 
     override fun initUI() {
         binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnReset.setOnClickListener { onResetClickListener() }
         binding.ivNutrientsEdit.setOnClickListener {
             onNutrientsEditClickListener()
         }
@@ -127,7 +133,10 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
     override fun subscribeUI() {
         super.subscribeUI()
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.rangeFields.collectLatest(recyclerAdapterBaseFields::submitList)
+            viewModel.rangeFields.collectLatest {
+                recyclerAdapterBaseFields.submitList(it)
+                Log.d("123", "123")
+            }
         }
         repeatOn(Lifecycle.State.STARTED) {
             viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)

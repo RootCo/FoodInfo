@@ -35,6 +35,10 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
         findNavController().navigateUp()
     }
 
+    private val onResetClickListener: () -> Unit = {
+        viewModel.reset()
+    }
+
     private val onQuestionMarkClickListener: (String) -> Unit = { label ->
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val labelItem = viewModel.getLabelHint(label)
@@ -53,6 +57,7 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
         viewModel.categoryName = args.category
 
         binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnReset.setOnClickListener { onResetClickListener() }
         binding.tvHeader.text = args.category
 
         recyclerAdapter = FilterCategoryEditAdapter(

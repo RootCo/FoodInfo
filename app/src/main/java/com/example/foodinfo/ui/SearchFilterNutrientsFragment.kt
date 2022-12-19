@@ -36,6 +36,10 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
         findNavController().navigateUp()
     }
 
+    private val onResetClickListener: () -> Unit = {
+        viewModel.reset()
+    }
+
     private val onHeaderClickCallback: (String) -> Unit = { fieldName ->
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val labelItem = viewModel.getNutrient(fieldName)
@@ -62,6 +66,7 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
         )
 
         binding.btnBack.setOnClickListener { onBackClickListener() }
+        binding.btnReset.setOnClickListener { onResetClickListener() }
 
         with(binding.rvNutrients) {
             adapter = recyclerAdapter

@@ -58,7 +58,7 @@ class SearchFilterViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             withContext((Dispatchers.IO)) {
-                _rangeFields.emit(repositorySearchFilter.getBaseFields())
+                _rangeFields.emit(repositorySearchFilter.getBaseFieldsEdit())
             }
         }
         viewModelScope.launch {
@@ -71,5 +71,9 @@ class SearchFilterViewModel @Inject constructor(
                 _categories.emit(repositorySearchFilter.getCategoriesPreview())
             }
         }
+    }
+
+    fun reset() {
+        repositorySearchFilter.resetFilter()
     }
 }

@@ -36,12 +36,16 @@ class SearchFilterCategoryViewModel @Inject constructor(
             field = initializer
             viewModelScope.launch {
                 withContext(Dispatchers.IO) {
-                    _labels.emit(repositorySearchFilter.getCategory(categoryName = field).labels)
+                    _labels.emit(repositorySearchFilter.getCategoryEdit(categoryName = field).labels)
                 }
             }
         }
 
     fun getLabelHint(labelName: String): LabelHintModel {
         return repositoryRecipeFieldsInfo.getLabelHint(categoryName, labelName)
+    }
+
+    fun reset() {
+        repositorySearchFilter.resetCategory(categoryName = categoryName)
     }
 }
