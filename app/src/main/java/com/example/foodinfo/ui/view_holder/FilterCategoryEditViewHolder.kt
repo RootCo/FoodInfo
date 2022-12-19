@@ -7,6 +7,7 @@ import com.example.foodinfo.repository.model.LabelFilterEditModel
 class FilterCategoryEditViewHolder(
     private val binding: RvItemFilterInputCategoryEditBinding,
     private val onQuestionMarkClickListener: (String) -> Unit,
+    private val onItemClickListener: (Long, Boolean) -> Unit,
 ) : BaseViewHolder<RvItemFilterInputCategoryEditBinding, LabelFilterEditModel>(binding) {
 
     init {
@@ -14,6 +15,7 @@ class FilterCategoryEditViewHolder(
         binding.tvHeader.setOnClickListener {
             item.isSelected = !item.isSelected
             binding.cbChecked.isChecked = item.isSelected
+            onItemClickListener.invoke(item.id, item.isSelected)
         }
     }
 

@@ -11,11 +11,14 @@ import com.example.foodinfo.databinding.CvRangeInputFieldBinding
 import com.google.android.material.slider.RangeSlider
 
 
+/*
+ The only one proper order of initializing values is:
+    rangeMin -> rangeMax -> stepSize -> maxValue -> minValue
+ */
 class RangeInput @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
-
 
     companion object {
         private const val DEFAULT_HEADER: String = "duration"
@@ -33,8 +36,7 @@ class RangeInput @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
-    private var stopTrackingCallbacks: ArrayList<((Float, Float) -> Unit)> =
-        arrayListOf()
+    private var stopTrackingCallback: ((Float, Float) -> Unit)? = null
 
 
     var headerTextColor: Int = DEFAULT_HEADER_COLOR
@@ -134,12 +136,7 @@ class RangeInput @JvmOverloads constructor(
         override fun onStartTrackingTouch(slider: RangeSlider) {}
 
         override fun onStopTrackingTouch(slider: RangeSlider) {
-            stopTrackingCallbacks.forEach { callback ->
-                callback.invoke(
-                    minValue,
-                    maxValue
-                )
-            }
+            stopTrackingCallback?.invoke(minValue, maxValue)
         }
     }
 
@@ -149,7 +146,7 @@ class RangeInput @JvmOverloads constructor(
     }
 
     fun addStopTrackingCallback(callback: (Float, Float) -> Unit) {
-        stopTrackingCallbacks.add(callback)
+        stopTrackingCallback = callback
     }
 
 

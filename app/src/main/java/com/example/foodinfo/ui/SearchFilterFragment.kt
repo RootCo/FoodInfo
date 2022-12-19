@@ -1,6 +1,5 @@
 package com.example.foodinfo.ui
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -46,8 +45,8 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         )
     }
 
-    private val onBaseFieldValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
-
+    private val onBaseFieldValueChangedCallback: (Long, Float, Float) -> Unit = { id, minValue, maxValue ->
+        viewModel.updateField(id, minValue, maxValue)
     }
 
     private val onCategoryChangedCallback: (String) -> Unit = { category ->
@@ -133,10 +132,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
     override fun subscribeUI() {
         super.subscribeUI()
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.rangeFields.collectLatest {
-                recyclerAdapterBaseFields.submitList(it)
-                Log.d("123", "123")
-            }
+            viewModel.rangeFields.collectLatest(recyclerAdapterBaseFields::submitList)
         }
         repeatOn(Lifecycle.State.STARTED) {
             viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)

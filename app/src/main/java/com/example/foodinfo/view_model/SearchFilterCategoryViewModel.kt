@@ -4,16 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
 import com.example.foodinfo.repository.RepositorySearchFilter
-import com.example.foodinfo.repository.model.LabelFilterEditModel
+import com.example.foodinfo.repository.model.CategoryFilterEditModel
 import com.example.foodinfo.repository.model.LabelHintModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -22,24 +17,14 @@ class SearchFilterCategoryViewModel @Inject constructor(
     private val repositorySearchFilter: RepositorySearchFilter
 ) : ViewModel() {
 
-    private val _labels = MutableSharedFlow<List<LabelFilterEditModel>>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val labels: SharedFlow<List<LabelFilterEditModel>> = _labels.shareIn(
-        viewModelScope, SharingStarted.WhileSubscribed(), 1
-    )
+    lateinit var categoryName: String
 
-    var categoryName: String = ""
-        set(initializer) {
-            if (initializer == field) return
-            field = initializer
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                    _labels.emit(repositorySearchFilter.getCategoryEdit(categoryName = field).labels)
-                }
-            }
-        }
+    val labels: SharedFlow<CategoryFilterEditModel> by lazy {
+        repositorySearchFilter.getCategoryEdit(categoryName = categoryName).shareIn(
+            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
+        )
+    }
+
 
     fun getLabelHint(labelName: String): LabelHintModel {
         return repositoryRecipeFieldsInfo.getLabelHint(categoryName, labelName)
@@ -47,5 +32,9 @@ class SearchFilterCategoryViewModel @Inject constructor(
 
     fun reset() {
         repositorySearchFilter.resetCategory(categoryName = categoryName)
+    }
+
+    fun updateLabel(id: Long, isSelected: Boolean) {
+        repositorySearchFilter.updateLabel(id, isSelected)
     }
 }

@@ -52,6 +52,9 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
         }
     }
 
+    private val onItemClickListener: (Long, Boolean) -> Unit = { id, isSelected ->
+        viewModel.updateLabel(id, isSelected)
+    }
 
     override fun initUI() {
         viewModel.categoryName = args.category
@@ -62,7 +65,8 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
 
         recyclerAdapter = FilterCategoryEditAdapter(
             requireContext(),
-            onQuestionMarkClickListener
+            onQuestionMarkClickListener,
+            onItemClickListener
         )
 
         with(binding.rvLabels) {
@@ -82,7 +86,9 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
 
     override fun subscribeUI() {
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.labels.collectLatest(recyclerAdapter::submitList)
+            viewModel.labels.collectLatest {
+                recyclerAdapter.submitList(it.labels)
+            }
         }
     }
 }

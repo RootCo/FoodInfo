@@ -53,8 +53,8 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
         }
     }
 
-    private val onValueChangedCallback: (Float, Float) -> Unit = { minValue, maxValue ->
-
+    private val onValueChangedCallback: (Long, Float, Float) -> Unit = { id, minValue, maxValue ->
+        viewModel.updateField(id, minValue, maxValue)
     }
 
 
@@ -73,6 +73,7 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
             layoutManager = LinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
             }
+            itemAnimator = null
             addItemDecoration(
                 ListVerticalItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.filter_nutrients_edit_field_item_space),
@@ -86,7 +87,7 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
     override fun subscribeUI() {
         super.subscribeUI()
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.rangeFields.collectLatest(recyclerAdapter::submitList)
+            viewModel.nutrients.collectLatest(recyclerAdapter::submitList)
         }
     }
 }
