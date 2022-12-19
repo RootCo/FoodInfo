@@ -65,7 +65,7 @@ class SearchQueryFragment : BaseFragment<FragmentSearchQueryBinding>(
 
 
     override fun initUI() {
-        viewModel.setInputText(args.query)
+        viewModel.inputText = args.query
 
         binding.tvQuery.text = args.query
         binding.btnBack.setOnClickListener { onBackClickListener() }

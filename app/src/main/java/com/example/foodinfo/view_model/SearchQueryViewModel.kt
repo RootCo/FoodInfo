@@ -7,11 +7,9 @@ import androidx.paging.cachedIn
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.RepositorySearchFilter
 import com.example.foodinfo.repository.model.RecipeShortModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 
 
@@ -20,25 +18,14 @@ class SearchQueryViewModel @Inject constructor(
     private val repositorySearchFilter: RepositorySearchFilter
 ) : ViewModel() {
 
-    private val _recipes = MutableSharedFlow<PagingData<RecipeShortModel>>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val recipes: SharedFlow<PagingData<RecipeShortModel>> = _recipes
-        .cachedIn(viewModelScope)
-        .shareIn(viewModelScope, SharingStarted.WhileSubscribed(), 5000)
+    lateinit var inputText: String
 
-
-    fun setInputText(inputText: String) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val query = repositorySearchFilter.getQueryByFilter(inputText = inputText)
-                repositoryRecipes.getByFilter(query).collectLatest {
-                    _recipes.emit(it)
-                }
-            }
-        }
+    val recipes: SharedFlow<PagingData<RecipeShortModel>> by lazy {
+        repositoryRecipes.getByFilter(repositorySearchFilter.getQueryByFilter(inputText = inputText))
+            .cachedIn(viewModelScope)
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1)
     }
+
 
     fun updateFavoriteMark(recipeId: String) {
         repositoryRecipes.updateFavoriteMark(recipeId)
