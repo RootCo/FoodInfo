@@ -90,6 +90,7 @@ data class FilterQueryBuilder(
                 field.labels
             )
         }
+        if (categoryQueryList.isEmpty()) return ""
         query += "("
         query += "SELECT ${LabelRecipeEntity.Columns.RECIPE_ID} "
         query += "FROM ${LabelRecipeEntity.TABLE_NAME} WHERE CASE "

@@ -70,7 +70,8 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
 
 
     override fun initUI() {
-        viewModel.setLabel(args.category, args.label)
+        viewModel.labelName = args.label
+        viewModel.categoryName = args.category
 
         binding.tvLabel.text = args.label
         binding.tvLabel.setOnClickListener { onHeaderClickListener() }
