@@ -4,46 +4,61 @@ import androidx.room.*
 import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.local.pojo.BaseFieldFilterPOJO
 import com.example.foodinfo.local.pojo.NutrientFilterPOJO
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface SearchFilterDAO {
     @Query(
-        "SELECT * FROM ${SearchFilterEntity.TABLE_NAME} " +
-                "WHERE ${SearchFilterEntity.Columns.NAME} " +
-                "LIKE '%' || :filterName || '%'"
-    )
-    fun getFilter(filterName: String): SearchFilterEntity
-
-    @Query(
-        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} " +
-                "WHERE ${LabelFilterEntity.Columns.FILTER_NAME} " +
-                "LIKE '%' || :filterName || '%' " +
-                "AND ${LabelFilterEntity.Columns.CATEGORY} " +
-                "LIKE '%' || :categoryName || '%'"
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} WHERE " +
+                "${LabelFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%' AND " +
+                "${LabelFilterEntity.Columns.CATEGORY}  LIKE '%' || :categoryName || '%'"
     )
     fun getLabelsCategory(filterName: String, categoryName: String): List<LabelFilterEntity>
 
     @Query(
-        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} " +
-                "WHERE ${LabelFilterEntity.Columns.FILTER_NAME} " +
-                "LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} WHERE " +
+                "${LabelFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getLabelsAll(filterName: String): List<LabelFilterEntity>
 
     @Query(
-        "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} " +
-                "WHERE ${NutrientFilterEntity.Columns.FILTER_NAME} " +
-                "LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} WHERE " +
+                "${NutrientFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getNutrients(filterName: String): List<NutrientFilterPOJO>
 
     @Query(
-        "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} " +
-                "WHERE ${BaseFieldFilterEntity.Columns.FILTER_NAME} " +
-                "LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} WHERE " +
+                "${BaseFieldFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getBaseFields(filterName: String): List<BaseFieldFilterPOJO>
+
+
+    @Query(
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} WHERE " +
+                "${LabelFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%' AND " +
+                "${LabelFilterEntity.Columns.CATEGORY}  LIKE '%' || :categoryName || '%'"
+    )
+    fun observeLabelsCategory(filterName: String, categoryName: String): Flow<List<LabelFilterEntity>>
+
+    @Query(
+        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} WHERE " +
+                "${LabelFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+    )
+    fun observeLabelsAll(filterName: String): Flow<List<LabelFilterEntity>>
+
+    @Query(
+        "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} WHERE " +
+                "${NutrientFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+    )
+    fun observeNutrients(filterName: String): Flow<List<NutrientFilterPOJO>>
+
+    @Query(
+        "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} WHERE " +
+                "${BaseFieldFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+    )
+    fun observeBaseFields(filterName: String): Flow<List<BaseFieldFilterPOJO>>
 
 
     @Query(
