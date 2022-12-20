@@ -46,9 +46,9 @@ data class RecipeEntity(
         const val NAME = "name"
         const val PREVIEW_URL = "preview_url"
         const val CALORIES = "calories"
-        const val TOTAL_INGREDIENTS = "total_ingredient"
-        const val TOTAL_WEIGHT = "total_weight"
-        const val TOTAL_TIME = "total_time"
+        const val TOTAL_INGREDIENTS = "ingredients"
+        const val TOTAL_WEIGHT = "weight"
+        const val TOTAL_TIME = "time"
         const val SERVINGS = "servings"
     }
 
