@@ -61,7 +61,17 @@
         android:id = "@+id/f_search_filter"
         android:name = "com.example.foodinfo.ui.SearchFilterFragment"
         android:label = "fragment_search_input_filter"
-        tools:layout = "@layout/fragment_search_filter" />
+        tools:layout = "@layout/fragment_search_filter">
+        <action
+            android:id = "@+id/action_f_search_filter_to_f_search_filter_category"
+            app:destination = "@id/f_search_filter_category" />
+        <action
+            android:id = "@+id/action_f_search_filter_to_f_search_filter_nutrients"
+            app:destination = "@id/f_search_filter_nutrients" />
+        <action
+            android:id = "@+id/action_f_search_filter_to_f_search_filter_select"
+            app:destination = "@id/f_search_filter_select" />
+    </fragment>
     <fragment
         android:id = "@+id/f_search_label"
         android:name = "com.example.foodinfo.ui.SearchLabelFragment"
@@ -149,5 +159,35 @@
         <action
             android:id = "@+id/action_f_search_category_to_f_search_label"
             app:destination = "@id/f_search_label" />
+    </fragment>
+    <fragment
+        android:id = "@+id/f_search_filter_category"
+        android:name = "com.example.foodinfo.ui.SearchFilterCategoryFragment"
+        android:label = "SearchFilterCategoryFragment"
+        tools:layout = "@layout/fragment_search_filter_category">
+        <argument
+            android:name = "category"
+            app:argType = "string" />
+        <argument
+            android:name = "searchFilterId"
+            app:argType = "string" />
+    </fragment>
+    <fragment
+        android:id = "@+id/f_search_filter_nutrients"
+        android:name = "com.example.foodinfo.ui.SearchFilterNutrientsFragment"
+        android:label = "SearchFilterNutrientsFragment"
+        tools:layout = "@layout/fragment_search_filter_nutrients">
+        <argument
+            android:name = "searchFilterId"
+            app:argType = "string" />
+    </fragment>
+    <fragment
+        android:id = "@+id/f_search_filter_select"
+        android:name = "com.example.foodinfo.ui.SearchFilterSelectFragment"
+        android:label = "SearchFilterSelectFragment"
+        tools:layout = "@layout/fragment_search_filter_select">
+        <argument
+            android:name = "searchFilterId"
+            app:argType = "string" />
     </fragment>
 </navigation>

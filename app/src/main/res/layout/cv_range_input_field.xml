@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content"
+    android:orientation = "vertical">
+
+    <LinearLayout
+        android:id = "@+id/cl_header"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:gravity = "bottom"
+        android:minHeight = "@dimen/dp_44"
+        android:orientation = "horizontal"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent">
+
+        <TextView
+            android:id = "@+id/tv_header"
+            style = "@style/TextViewBig"
+            android:layout_width = "0dp"
+            android:layout_height = "wrap_content"
+            android:layout_weight = "1"
+            android:drawablePadding = "@dimen/dp_6"
+            android:ellipsize = "end"
+            android:gravity = "start|bottom"
+            android:maxLines = "1"
+            app:drawableStartCompat = "@drawable/ic_question_mark"
+            tools:text = "duration" />
+
+        <TextView
+            android:id = "@+id/tv_measure"
+            style = "@style/TextViewBig"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:gravity = "start|bottom"
+            tools:text = "sec" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.slider.RangeSlider
+        android:id = "@+id/rs_range"
+        android:layout_width = "0dp"
+        android:layout_height = "wrap_content"
+        android:layout_weight = "1"
+        android:theme = "@style/appTheme"
+        app:haloColor = "?attr/appPrimaryColor"
+        app:labelBehavior = "gone"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/cl_header"
+        app:thumbColor = "?attr/appMainFontColor"
+        app:tickColorInactive = "?attr/appMainFontColor"
+        app:tickVisible = "false"
+        app:trackColorActive = "?attr/appMainFontColor"
+        app:trackColorInactive = "?attr/appOutline"
+        tools:stepSize = "1"
+        tools:valueFrom = "0"
+        tools:valueTo = "100"
+        tools:values = "@array/preview_range_slider_values" />
+
+    <TextView
+        android:id = "@+id/tv_range_start"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:fontFamily = "@font/app_font_bold_rounded"
+        android:includeFontPadding = "false"
+        android:maxLength = "6"
+        android:paddingEnd = "@dimen/dp_10"
+        app:layout_constraintEnd_toStartOf = "@+id/tv_range_separator"
+        app:layout_constraintTop_toBottomOf = "@+id/rs_range"
+        tools:text = "0" />
+
+    <TextView
+        android:id = "@+id/tv_range_separator"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:fontFamily = "@font/app_font_bold_rounded"
+        android:includeFontPadding = "false"
+        android:text = "@string/long_dash_text"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/rs_range" />
+
+    <TextView
+        android:id = "@+id/tv_range_end"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:fontFamily = "@font/app_font_bold_rounded"
+        android:includeFontPadding = "false"
+        android:maxLength = "6"
+        android:paddingStart = "@dimen/dp_10"
+        app:layout_constraintStart_toEndOf = "@+id/tv_range_separator"
+        app:layout_constraintTop_toBottomOf = "@+id/rs_range"
+        tools:text = "100" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

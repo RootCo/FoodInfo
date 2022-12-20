@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width = "match_parent"
+    android:layout_height = "wrap_content">
+
+    <TextView
+        android:id = "@+id/tv_title"
+        style = "@style/TextViewBig"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:fontFamily = "@font/app_font_regular"
+        android:includeFontPadding = "false"
+        android:text = "@string/meal_text"
+        app:layout_constraintBottom_toTopOf = "@+id/cg_labels"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+    <ImageView
+        android:id = "@+id/iv_edit"
+        android:layout_width = "@dimen/dp_100"
+        android:layout_height = "@dimen/dp_44"
+        android:contentDescription = "@string/default_content_description"
+        android:paddingVertical = "@dimen/dp_10"
+        android:scaleType = "fitEnd"
+        android:src = "@drawable/ic_edit"
+        app:layout_constraintEnd_toEndOf = "parent"
+        app:layout_constraintTop_toTopOf = "parent" />
+
+
+    <TextView
+        android:id = "@+id/tv_unspecified"
+        style = "@style/TextViewSmall"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:text = "@string/any_text"
+        android:textColor = "?appDivider"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/iv_edit" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id = "@+id/cg_labels"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:visibility = "gone"
+        app:chipSpacingHorizontal = "@dimen/dp_16"
+        app:chipSpacingVertical = "@dimen/dp_16"
+        app:layout_constraintStart_toStartOf = "parent"
+        app:layout_constraintTop_toBottomOf = "@+id/iv_edit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

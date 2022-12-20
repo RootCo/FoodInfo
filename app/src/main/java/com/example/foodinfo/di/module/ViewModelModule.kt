@@ -49,6 +49,21 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(SearchFilterCategoryViewModel::class)
+    abstract fun bindsSearchFilterCategoryViewModel(viewModel: SearchFilterCategoryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchFilterNutrientsViewModel::class)
+    abstract fun bindsSearchFilterNutrientsViewModel(viewModel: SearchFilterNutrientsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchFilterSelectViewModel::class)
+    abstract fun bindsSearchFilterSelectViewModel(viewModel: SearchFilterSelectViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(SearchInputViewModel::class)
     abstract fun bindsSearchInputViewModel(viewModel: SearchInputViewModel): ViewModel
 
