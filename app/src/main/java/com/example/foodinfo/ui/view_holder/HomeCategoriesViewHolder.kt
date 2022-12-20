@@ -13,7 +13,7 @@ class HomeCategoriesViewHolder(
 ) : BaseViewHolder<RvItemCategoryBinding, CategoryFieldModel>(binding) {
 
     init {
-        binding.clExploreInnerItem.setOnClickListener {
+        binding.clContent.setOnClickListener {
             onItemClickListener(item.name)
         }
     }
@@ -22,10 +22,10 @@ class HomeCategoriesViewHolder(
     override fun bind(newItem: CategoryFieldModel) {
         super.bind(newItem)
         binding.tvTitle.text = item.name
-        GlideApp.with(binding.icPreview.context)
+        GlideApp.with(binding.ivPreview.context)
             .load(item.preview)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .error(R.drawable.ic_no_image)
-            .into(binding.icPreview)
+            .into(binding.ivPreview)
     }
 }

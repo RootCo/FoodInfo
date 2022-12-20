@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
-    android:id = "@+id/cl_explore_inner_item"
+    android:id = "@+id/cl_content"
     android:layout_width = "match_parent"
     android:layout_height = "@dimen/dp_180"
     tools:layout_width = "100dp">
@@ -27,6 +27,7 @@
         android:layout_height = "0dp"
         android:layout_marginTop = "@dimen/dp_6"
         android:ellipsize = "end"
+        android:fontFamily = "@font/app_font_bold"
         android:gravity = "center_horizontal"
         android:maxLines = "2"
         app:layout_constraintBottom_toBottomOf = "parent"
