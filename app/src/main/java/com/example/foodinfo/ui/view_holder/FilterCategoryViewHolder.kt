@@ -24,6 +24,7 @@ class FilterCategoryViewHolder(
             binding.cgLabels.isVisible = false
             binding.tvUnspecified.isVisible = true
         } else {
+            binding.cgLabels.removeAllViews()
             binding.cgLabels.isVisible = true
             binding.tvUnspecified.isVisible = false
             for (label in item.labels) {
