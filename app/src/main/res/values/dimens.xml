@@ -17,7 +17,7 @@
     <dimen name = "ingredients_item_space">@dimen/dp_30</dimen>
     <dimen name = "nutrients_item_space">@dimen/dp_30</dimen>
     <dimen name = "favorite_item_space">@dimen/dp_24</dimen>
-    <dimen name = "recipe_extended_category_item_space">@dimen/dp_12</dimen>
+    <dimen name = "recipe_extended_category_item_space">@dimen/dp_24</dimen>
     <dimen name = "filter_base_range_field_item_space">@dimen/dp_8</dimen>
     <dimen name = "filter_category_item_space">@dimen/dp_16</dimen>
     <dimen name = "filter_nutrient_item_space">@dimen/dp_8</dimen>
