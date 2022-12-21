@@ -5,6 +5,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
+import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchCategoryBinding
 import com.example.foodinfo.ui.adapter.SearchLabelsAdapter
 import com.example.foodinfo.ui.decorator.GridItemDecoration
@@ -37,7 +39,7 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
         )
     }
 
-    private val onItemClickListener: (String) -> Unit = {label ->
+    private val onItemClickListener: (String) -> Unit = { label ->
         findNavController().navigate(
             SearchCategoryFragmentDirections.actionFSearchCategoryToFSearchLabel(
                 args.category,
@@ -60,14 +62,16 @@ class SearchCategoryFragment : BaseFragment<FragmentSearchCategoryBinding>(
             onItemClickListener,
         )
 
+
         with(binding.rvLabels) {
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
                 GridItemDecoration(
-                    resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.search_labels_item_horizontal),
-                    resources.getDimensionPixelSize(com.example.foodinfo.R.dimen.search_labels_item_vertical),
-                    3
+                    resources.getDimensionPixelSize(R.dimen.search_labels_item_horizontal),
+                    resources.getDimensionPixelSize(R.dimen.search_labels_item_vertical),
+                    3,
+                    RecyclerView.VERTICAL
                 )
             )
             itemAnimator = null

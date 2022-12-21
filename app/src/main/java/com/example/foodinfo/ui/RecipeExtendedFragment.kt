@@ -8,16 +8,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
+import com.example.foodinfo.repository.model.NutrientRecipeModel
 import com.example.foodinfo.repository.model.RecipeIngredientModel
 import com.example.foodinfo.repository.model.RecipeModel
-import com.example.foodinfo.repository.model.NutrientRecipeModel
 import com.example.foodinfo.ui.adapter.RecipeCategoriesAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
@@ -119,8 +120,9 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
                 it.orientation = LinearLayoutManager.VERTICAL
             }
             addItemDecoration(
-                ListVerticalItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.recipe_extended_category_item_space)
+                ListItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.recipe_extended_category_item_space),
+                    RecyclerView.VERTICAL
                 )
             )
             adapter = recyclerAdapter

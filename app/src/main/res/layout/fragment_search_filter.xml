@@ -5,11 +5,11 @@
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
     android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
-    android:layout_marginTop = "@dimen/screen_vertical_margin">
+    android:layout_marginTop = "@dimen/screen_top_margin">
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonStart"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
@@ -17,7 +17,7 @@
 
     <ImageView
         android:id = "@+id/btn_reset"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonEnd"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_revert"
         app:layout_constraintEnd_toEndOf = "parent"
@@ -38,7 +38,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
-            android:paddingTop = "@dimen/dp_20">
+            android:paddingTop = "@dimen/screen_top_margin">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id = "@+id/ll_base_fields"

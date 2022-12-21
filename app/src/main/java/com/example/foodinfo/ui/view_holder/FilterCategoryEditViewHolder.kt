@@ -12,7 +12,7 @@ class FilterCategoryEditViewHolder(
 
     init {
         binding.ivQuestionMark.setOnClickListener { onQuestionMarkClickListener(item.name) }
-        binding.tvHeader.setOnClickListener {
+        binding.llContent.setOnClickListener {
             item.isSelected = !item.isSelected
             binding.cbChecked.isChecked = item.isSelected
             onItemClickListener.invoke(item.id, item.isSelected)
