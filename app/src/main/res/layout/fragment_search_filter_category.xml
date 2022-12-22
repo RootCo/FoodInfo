@@ -9,7 +9,6 @@
     <ImageView
         android:id = "@+id/btn_back"
         style = "@style/ButtonStart"
-        android:layout_marginStart = "@dimen/screen_horizontal_margin"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
@@ -18,7 +17,6 @@
     <ImageView
         android:id = "@+id/btn_reset"
         style = "@style/ButtonEnd"
-        android:layout_marginEnd = "@dimen/screen_horizontal_margin"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_revert"
         app:layout_constraintEnd_toEndOf = "parent"

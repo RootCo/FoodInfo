@@ -4,7 +4,6 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
     android:layout_marginTop = "@dimen/screen_top_margin">
 
     <ImageView
@@ -45,7 +44,7 @@
         android:id = "@+id/rv_recipes"
         android:layout_width = "match_parent"
         android:layout_height = "0dp"
-        android:layout_marginHorizontal = "@dimen/dp_12"
+        android:layout_marginHorizontal = "@dimen/dp_32"
         android:layout_marginTop = "@dimen/screen_top_margin"
         android:clipToPadding = "false"
         android:descendantFocusability = "blocksDescendants"

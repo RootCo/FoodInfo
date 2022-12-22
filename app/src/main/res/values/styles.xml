@@ -100,18 +100,20 @@
 
     <style name = "ButtonEnd">
         <item name = "tint">?appMainFontColor</item>
-        <item name = "android:layout_width">@dimen/dp_44</item>
+        <item name = "android:layout_width">@dimen/dp_66</item>
         <item name = "android:layout_height">@dimen/dp_66</item>
         <item name = "android:scaleType">fitEnd</item>
         <item name = "android:paddingTop">@dimen/dp_20</item>
+        <item name = "android:paddingEnd">@dimen/screen_horizontal_margin</item>
         <item name = "android:paddingBottom">@dimen/dp_20</item>
     </style>
 
     <style name = "ButtonStart">
         <item name = "tint">?appMainFontColor</item>
-        <item name = "android:layout_width">@dimen/dp_44</item>
+        <item name = "android:layout_width">@dimen/dp_66</item>
         <item name = "android:layout_height">@dimen/dp_66</item>
         <item name = "android:scaleType">fitStart</item>
+        <item name = "android:paddingStart">@dimen/screen_horizontal_margin</item>
         <item name = "android:paddingTop">@dimen/dp_20</item>
         <item name = "android:paddingBottom">@dimen/dp_20</item>
     </style>
