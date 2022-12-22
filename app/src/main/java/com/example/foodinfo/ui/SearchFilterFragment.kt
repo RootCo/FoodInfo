@@ -1,5 +1,6 @@
 package com.example.foodinfo.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -81,7 +82,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             onBaseFieldValueChangedCallback
         )
-        with(binding.llBaseFields) {
+        with(binding.rvBaseFields) {
             adapter = recyclerAdapterBaseFields
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
@@ -100,7 +101,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             onCategoryChangedCallback
         )
-        with(binding.llCategories) {
+        with(binding.rvCategories) {
             adapter = recyclerAdapterCategories
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
@@ -118,7 +119,7 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             getFormattedRange
         )
-        with(binding.llNutrients) {
+        with(binding.rvNutrients) {
             adapter = recyclerAdapterNutrients
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
@@ -142,7 +143,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)
         }
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.nutrients.collectLatest(recyclerAdapterNutrients::submitList)
+            viewModel.nutrients.collectLatest { nutrients ->
+                if (nutrients.isEmpty()) {
+                    binding.rvNutrients.isVisible = false
+                    binding.tvNutrientsNoData.isVisible = true
+                } else {
+                    binding.rvNutrients.isVisible = true
+                    binding.tvNutrientsNoData.isVisible = false
+                    recyclerAdapterNutrients.submitList(nutrients)
+                }
+            }
         }
     }
 }
