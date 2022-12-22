@@ -9,8 +9,8 @@
     <dimen name = "screen_bottom_margin">56dp</dimen>
     <dimen name = "screen_top_margin">@dimen/dp_10</dimen>
     <dimen name = "screen_horizontal_margin">@dimen/dp_20</dimen>
-    <dimen name = "search_recipes_item_horizontal">@dimen/dp_30</dimen>
-    <dimen name = "search_recipes_item_vertical">@dimen/dp_30</dimen>
+    <dimen name = "search_recipes_item_horizontal">@dimen/dp_32</dimen>
+    <dimen name = "search_recipes_item_vertical">@dimen/dp_32</dimen>
     <dimen name = "search_labels_item_horizontal">@dimen/dp_20</dimen>
     <dimen name = "search_labels_item_vertical">@dimen/dp_8</dimen>
     <dimen name = "home_categories_space">@dimen/dp_16</dimen>
