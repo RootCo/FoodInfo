@@ -5,12 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
 import com.example.foodinfo.repository.model.CategoryFieldModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
@@ -18,19 +13,9 @@ class HomeViewModel @Inject constructor(
     repositoryRecipeFieldsInfo: RepositoryRecipeFieldsInfo
 ) : ViewModel() {
 
-    private val _categories = MutableSharedFlow<List<CategoryFieldModel>>()
-    val categories: SharedFlow<List<CategoryFieldModel>> = _categories.shareIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(),
-        1
+    val categories: SharedFlow<List<CategoryFieldModel>> = flow {
+        emit(repositoryRecipeFieldsInfo.getCategories())
+    }.flowOn(Dispatchers.IO).shareIn(
+        viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
     )
-
-
-    init {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                _categories.emit(repositoryRecipeFieldsInfo.getCategories())
-            }
-        }
-    }
 }
