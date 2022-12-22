@@ -13,10 +13,12 @@
 
     <ImageView
         android:id = "@+id/iv_question_mark"
-        android:layout_width = "wrap_content"
+        android:layout_width = "@dimen/dp_60"
         android:layout_height = "match_parent"
         android:contentDescription = "@string/default_content_description"
-        android:paddingEnd = "@dimen/screen_horizontal_margin"
+        android:paddingVertical = "@dimen/dp_18"
+        android:paddingStart = "@dimen/dp_24"
+        android:scaleType = "fitStart"
         android:src = "@drawable/ic_question_mark" />
 
     <TextView
@@ -37,6 +39,7 @@
         android:buttonTint = "@drawable/selector_color_cb"
         android:clickable = "false"
         android:minWidth = "0dp"
-        android:minHeight = "0dp" />
+        android:minHeight = "0dp"
+        android:paddingEnd = "@dimen/dp_18" />
 
 </LinearLayout>
