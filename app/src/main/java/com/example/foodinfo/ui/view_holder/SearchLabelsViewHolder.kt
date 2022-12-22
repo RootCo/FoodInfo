@@ -13,7 +13,7 @@ class SearchLabelsViewHolder(
 ) : BaseViewHolder<RvItemLabelBinding, LabelSearchModel>(binding) {
 
     init {
-        binding.ivPreview.setOnClickListener {
+        binding.clContent.setOnClickListener {
             onItemClickListener(item.name)
         }
     }

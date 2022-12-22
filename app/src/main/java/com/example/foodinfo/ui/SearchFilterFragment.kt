@@ -1,16 +1,18 @@
 package com.example.foodinfo.ui
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterBinding
 import com.example.foodinfo.ui.adapter.FilterBaseFieldAdapter
 import com.example.foodinfo.ui.adapter.FilterCategoriesAdapter
 import com.example.foodinfo.ui.adapter.FilterNutrientsAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.SearchFilterViewModel
@@ -80,15 +82,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             onBaseFieldValueChangedCallback
         )
-        with(binding.llBaseFields) {
+        with(binding.rvBaseFields) {
             adapter = recyclerAdapterBaseFields
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
             }
             itemAnimator = null
             addItemDecoration(
-                ListVerticalItemDecoration(
+                ListItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.filter_base_range_field_item_space),
+                    RecyclerView.VERTICAL
                 )
 
             )
@@ -98,15 +101,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             onCategoryChangedCallback
         )
-        with(binding.llCategories) {
+        with(binding.rvCategories) {
             adapter = recyclerAdapterCategories
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
             }
             itemAnimator = null
             addItemDecoration(
-                ListVerticalItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space)
+                ListItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space),
+                    RecyclerView.VERTICAL
                 )
             )
         }
@@ -115,15 +119,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             requireContext(),
             getFormattedRange
         )
-        with(binding.llNutrients) {
+        with(binding.rvNutrients) {
             adapter = recyclerAdapterNutrients
             layoutManager = NonScrollLinearLayoutManager(context).also {
                 it.orientation = LinearLayoutManager.VERTICAL
             }
             itemAnimator = null
             addItemDecoration(
-                ListVerticalItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space)
+                ListItemDecoration(
+                    resources.getDimensionPixelSize(R.dimen.filter_category_item_space),
+                    RecyclerView.VERTICAL
                 )
             )
         }
@@ -138,7 +143,16 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
             viewModel.categories.collectLatest(recyclerAdapterCategories::submitList)
         }
         repeatOn(Lifecycle.State.STARTED) {
-            viewModel.nutrients.collectLatest(recyclerAdapterNutrients::submitList)
+            viewModel.nutrients.collectLatest { nutrients ->
+                if (nutrients.isEmpty()) {
+                    binding.rvNutrients.isVisible = false
+                    binding.tvNutrientsNoData.isVisible = true
+                } else {
+                    binding.rvNutrients.isVisible = true
+                    binding.tvNutrientsNoData.isVisible = false
+                    recyclerAdapterNutrients.submitList(nutrients)
+                }
+            }
         }
     }
 }

@@ -7,20 +7,24 @@
 
     <ImageView
         android:id = "@+id/iv_apply_search"
-        android:layout_width = "@dimen/dp_54"
+        android:layout_width = "@dimen/dp_60"
         android:layout_height = "@dimen/dp_54"
         android:contentDescription = "@string/default_content_description"
-        android:padding = "@dimen/dp_16"
+        android:paddingVertical = "@dimen/dp_16"
+        android:paddingStart = "@dimen/screen_horizontal_margin"
+        android:scaleType = "fitStart"
         android:src = "@drawable/ic_history"
         app:layout_constraintStart_toStartOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
 
     <ImageView
         android:id = "@+id/iv_apply_text"
-        android:layout_width = "@dimen/dp_54"
+        android:layout_width = "@dimen/dp_60"
         android:layout_height = "@dimen/dp_54"
         android:contentDescription = "@string/default_content_description"
-        android:padding = "@dimen/dp_16"
+        android:paddingVertical = "@dimen/dp_16"
+        android:paddingEnd = "@dimen/screen_horizontal_margin"
+        android:scaleType = "fitEnd"
         android:src = "@drawable/ic_arrow_outward"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />

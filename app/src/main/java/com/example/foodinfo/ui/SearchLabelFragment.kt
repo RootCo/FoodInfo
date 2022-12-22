@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchLabelBinding
 import com.example.foodinfo.ui.adapter.SearchRecipeAdapter
@@ -92,7 +93,8 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
                 GridItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.search_recipes_item_horizontal),
                     resources.getDimensionPixelSize(R.dimen.search_recipes_item_vertical),
-                    2
+                    2,
+                    RecyclerView.VERTICAL
                 )
             )
         }

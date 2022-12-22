@@ -8,10 +8,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentFavoriteBinding
 import com.example.foodinfo.ui.adapter.FavoriteAdapter
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.FavoriteViewModel
@@ -138,9 +139,9 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                ListVerticalItemDecoration(
+                ListItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.favorite_item_space),
-                    resources.getDimensionPixelSize(R.dimen.favorite_item_margin),
+                    RecyclerView.VERTICAL
                 )
             )
         }

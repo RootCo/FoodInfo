@@ -6,10 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterCategoryBinding
 import com.example.foodinfo.ui.adapter.FilterCategoryEditAdapter
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
@@ -75,12 +73,6 @@ class SearchFilterCategoryFragment : BaseFragment<FragmentSearchFilterCategoryBi
                 it.orientation = LinearLayoutManager.VERTICAL
             }
             itemAnimator = null
-            addItemDecoration(
-                ListVerticalItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.filter_category_edit_item_space),
-                    resources.getDimensionPixelSize(R.dimen.filter_category_edit_item_margin)
-                )
-            )
         }
     }
 

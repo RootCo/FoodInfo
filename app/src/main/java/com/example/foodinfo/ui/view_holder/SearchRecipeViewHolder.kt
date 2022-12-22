@@ -16,7 +16,7 @@ class SearchRecipeViewHolder(
 ) : BaseViewHolder<RvItemSearchTargetBinding, RecipeShortModel>(binding) {
 
     init {
-        binding.ivPreview.setOnClickListener {
+        binding.clContent.setOnClickListener {
             onItemClickListener(item.id)
         }
 

@@ -9,7 +9,8 @@
     <dimen name = "dp_18">15dp</dimen>
     <dimen name = "dp_20">16dp</dimen>
     <dimen name = "dp_24">20dp</dimen>
-    <dimen name = "dp_30">26dp</dimen>
+    <dimen name = "dp_30">25dp</dimen>
+    <dimen name = "dp_32">27dp</dimen>
     <dimen name = "dp_40">34dp</dimen>
     <dimen name = "dp_44">38dp</dimen>
     <dimen name = "dp_50">44dp</dimen>

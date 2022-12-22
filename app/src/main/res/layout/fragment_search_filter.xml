@@ -4,12 +4,11 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
-    android:layout_marginTop = "@dimen/screen_vertical_margin">
+    android:layout_marginTop = "@dimen/screen_top_margin">
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonStart"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
@@ -17,7 +16,7 @@
 
     <ImageView
         android:id = "@+id/btn_reset"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonEnd"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_revert"
         app:layout_constraintEnd_toEndOf = "parent"
@@ -27,6 +26,7 @@
         android:id = "@+id/sv_content"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
+        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
         android:fadingEdgeLength = "@dimen/dp_30"
         android:requiresFadingEdge = "vertical"
         android:scrollbars = "none"
@@ -38,10 +38,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"
-            android:paddingTop = "@dimen/dp_20">
+            android:paddingTop = "@dimen/screen_top_margin">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id = "@+id/ll_base_fields"
+                android:id = "@+id/rv_base_fields"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 app:layout_constraintStart_toStartOf = "parent"
@@ -71,13 +71,31 @@
                 android:scaleType = "fitEnd"
                 android:src = "@drawable/ic_edit"
                 app:layout_constraintEnd_toEndOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_base_fields" />
+                app:layout_constraintTop_toBottomOf = "@+id/rv_base_fields" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id = "@+id/barrier"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                app:barrierDirection = "bottom"
+                app:constraint_referenced_ids = "rv_nutrients,tv_nutrients_no_data" />
+
+            <TextView
+                android:id = "@+id/tv_nutrients_no_data"
+                style = "@style/TextViewSmall"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:text = "@string/unspecified_text"
+                android:textColor = "?appDivider"
+                app:layout_constraintStart_toStartOf = "parent"
+                app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id = "@+id/ll_nutrients"
+                android:id = "@+id/rv_nutrients"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
-                android:layout_marginTop = "@dimen/dp_16"
+                android:layout_marginTop = "@dimen/dp_10"
+                android:visibility = "gone"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@+id/iv_nutrients_edit"
                 tools:itemCount = "5"
@@ -85,14 +103,14 @@
                 tools:listitem = "@layout/rv_item_filter_input_nutrients" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id = "@+id/ll_categories"
+                android:id = "@+id/rv_categories"
                 android:layout_width = "match_parent"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_30"
                 android:paddingBottom = "@dimen/dp_30"
                 app:layout_constraintBottom_toBottomOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
-                app:layout_constraintTop_toBottomOf = "@+id/ll_nutrients"
+                app:layout_constraintTop_toBottomOf = "@+id/barrier"
                 tools:itemCount = "5"
                 tools:layoutManager = "androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem = "@layout/rv_item_filter_input_category" />

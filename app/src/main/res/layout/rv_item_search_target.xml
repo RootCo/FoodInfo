@@ -3,6 +3,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:app = "http://schemas.android.com/apk/res-auto"
     xmlns:tools = "http://schemas.android.com/tools"
+    android:id = "@+id/cl_content"
     android:layout_width = "match_parent"
     android:layout_height = "wrap_content"
     tools:layout_height = "wrap_content"
@@ -87,10 +88,14 @@
 
     <ImageView
         android:id = "@+id/btn_favorite"
-        style = "@style/ButtonLikeSmall"
+        android:layout_width = "@dimen/dp_40"
+        android:layout_height = "@dimen/dp_40"
         android:layout_marginTop = "@dimen/dp_6"
         android:layout_marginEnd = "@dimen/dp_6"
+        android:background = "@drawable/background_main_ft_30"
         android:contentDescription = "@string/default_content_description"
+        android:padding = "@dimen/dp_6"
+        android:src = "@drawable/ic_bookmark"
         app:layout_constraintEnd_toEndOf = "@id/iv_preview"
         app:layout_constraintTop_toTopOf = "@id/iv_preview" />
 

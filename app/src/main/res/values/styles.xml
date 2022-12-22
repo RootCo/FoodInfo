@@ -18,7 +18,7 @@
     <style name = "SearchView">
         <item name = "android:textSize">@dimen/text_20</item>
         <item name = "android:textColor">?appMainFontColor</item>
-        <item name = "android:textColorHint">?appSecondaryFontColor</item>
+        <item name = "android:textColorHint">@color/divider</item>
         <item name = "android:fontFamily">@font/app_font_regular</item>
     </style>
 
@@ -90,26 +90,32 @@
         <item name = "android:background">@drawable/background_main_bg_24</item>
     </style>
 
-    <style name = "ButtonStroke">
+    <style name = "ButtonCenter">
         <item name = "tint">?appMainFontColor</item>
-        <item name = "android:layout_width">@dimen/dp_44</item>
-        <item name = "android:layout_height">@dimen/dp_44</item>
-        <item name = "android:padding">@dimen/dp_8</item>
+        <item name = "android:layout_width">@dimen/dp_66</item>
+        <item name = "android:layout_height">@dimen/dp_66</item>
+        <item name = "android:paddingTop">@dimen/dp_20</item>
+        <item name = "android:paddingBottom">@dimen/dp_20</item>
     </style>
 
-    <style name = "ButtonLikeSmall">
-        <item name = "android:layout_width">@dimen/dp_40</item>
-        <item name = "android:layout_height">@dimen/dp_40</item>
-        <item name = "android:padding">@dimen/dp_6</item>
-        <item name = "android:src">@drawable/ic_bookmark</item>
-        <item name = "android:background">@drawable/background_main_ft_30</item>
+    <style name = "ButtonEnd">
+        <item name = "tint">?appMainFontColor</item>
+        <item name = "android:layout_width">@dimen/dp_66</item>
+        <item name = "android:layout_height">@dimen/dp_66</item>
+        <item name = "android:scaleType">fitEnd</item>
+        <item name = "android:paddingTop">@dimen/dp_20</item>
+        <item name = "android:paddingEnd">@dimen/screen_horizontal_margin</item>
+        <item name = "android:paddingBottom">@dimen/dp_20</item>
     </style>
 
-    <style name = "ButtonLikeBig">
-        <item name = "android:layout_width">@dimen/dp_54</item>
-        <item name = "android:layout_height">@dimen/dp_54</item>
-        <item name = "android:padding">@dimen/dp_10</item>
-        <item name = "android:src">@drawable/ic_bookmark</item>
-        <item name = "android:background">@drawable/background_main_ft_30</item>
+    <style name = "ButtonStart">
+        <item name = "tint">?appMainFontColor</item>
+        <item name = "android:layout_width">@dimen/dp_66</item>
+        <item name = "android:layout_height">@dimen/dp_66</item>
+        <item name = "android:scaleType">fitStart</item>
+        <item name = "android:paddingStart">@dimen/screen_horizontal_margin</item>
+        <item name = "android:paddingTop">@dimen/dp_20</item>
+        <item name = "android:paddingBottom">@dimen/dp_20</item>
     </style>
+
 </resources>

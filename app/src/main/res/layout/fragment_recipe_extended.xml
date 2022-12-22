@@ -4,12 +4,11 @@
     xmlns:tools = "http://schemas.android.com/tools"
     android:layout_width = "match_parent"
     android:layout_height = "match_parent"
-    android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
-    android:layout_marginTop = "@dimen/screen_vertical_margin">
+    android:layout_marginTop = "@dimen/screen_top_margin">
 
     <ImageView
         android:id = "@+id/btn_back"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonStart"
         android:contentDescription = "@string/default_content_description"
         android:src = "@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf = "parent"
@@ -17,19 +16,16 @@
 
     <ImageView
         android:id = "@+id/btn_favorite"
-        style = "@style/ButtonStroke"
-        android:layout_marginEnd = "@dimen/dp_10"
+        style = "@style/ButtonCenter"
         android:contentDescription = "@string/default_content_description"
-        android:elevation = "1dp"
         android:src = "@drawable/ic_bookmark"
         app:layout_constraintEnd_toStartOf = "@+id/btn_share"
         app:layout_constraintTop_toTopOf = "parent" />
 
     <ImageView
         android:id = "@+id/btn_share"
-        style = "@style/ButtonStroke"
+        style = "@style/ButtonEnd"
         android:contentDescription = "@string/default_content_description"
-        android:elevation = "1dp"
         android:src = "@drawable/ic_share_20"
         app:layout_constraintEnd_toEndOf = "parent"
         app:layout_constraintTop_toTopOf = "parent" />
@@ -38,7 +34,8 @@
         android:id = "@+id/sv_content"
         android:layout_width = "0dp"
         android:layout_height = "0dp"
-        android:layout_marginTop = "@dimen/dp_16"
+        android:layout_marginHorizontal = "@dimen/screen_horizontal_margin"
+        android:layout_marginTop = "@dimen/screen_top_margin"
         android:fadingEdgeLength = "@dimen/dp_30"
         android:requiresFadingEdge = "vertical"
         android:scrollbars = "none"
@@ -291,7 +288,7 @@
                 android:layout_width = "0dp"
                 android:layout_height = "wrap_content"
                 android:layout_marginTop = "@dimen/dp_50"
-                android:paddingBottom = "@dimen/dp_20"
+                android:paddingBottom = "@dimen/dp_40"
                 app:layout_constraintEnd_toEndOf = "parent"
                 app:layout_constraintStart_toStartOf = "parent"
                 app:layout_constraintTop_toBottomOf = "@id/cl_ingredients" />

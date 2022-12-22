@@ -4,10 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentHomeBinding
 import com.example.foodinfo.ui.adapter.HomeCategoriesAdapter
-import com.example.foodinfo.ui.decorator.ListHorizontalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.view_model.HomeViewModel
@@ -50,9 +51,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             }
             adapter = recyclerAdapter
             addItemDecoration(
-                ListHorizontalItemDecoration(
+                ListItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.home_categories_space),
-                    resources.getDimensionPixelSize(R.dimen.home_categories_margin)
+                    RecyclerView.HORIZONTAL
                 )
             )
             itemAnimator = null

@@ -93,10 +93,14 @@
 
         <ImageView
             android:id = "@+id/btn_favorite"
-            style = "@style/ButtonLikeBig"
+            android:layout_width = "@dimen/dp_54"
+            android:layout_height = "@dimen/dp_54"
             android:layout_marginEnd = "@dimen/dp_10"
             android:layout_marginBottom = "@dimen/dp_10"
+            android:background = "@drawable/background_main_ft_30"
             android:contentDescription = "@string/default_content_description"
+            android:padding = "@dimen/dp_10"
+            android:src = "@drawable/ic_bookmark"
             app:layout_constraintBottom_toBottomOf = "parent"
             app:layout_constraintEnd_toEndOf = "parent" />
 

@@ -5,10 +5,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeNutrientsBinding
 import com.example.foodinfo.ui.adapter.RecipeNutrientsAdapter
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.State
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
@@ -83,9 +84,9 @@ class RecipeNutrientsFragment : BaseFragment<FragmentRecipeNutrientsBinding>(
             adapter = recyclerAdapter
             setHasFixedSize(true)
             addItemDecoration(
-                ListVerticalItemDecoration(
+                ListItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.nutrients_item_space),
-                    resources.getDimensionPixelSize(R.dimen.nutrients_item_margin)
+                    RecyclerView.VERTICAL
                 )
             )
         }

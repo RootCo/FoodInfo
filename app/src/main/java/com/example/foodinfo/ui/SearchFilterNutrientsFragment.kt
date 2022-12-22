@@ -6,10 +6,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentSearchFilterNutrientsBinding
 import com.example.foodinfo.ui.adapter.FilterNutrientFieldEditAdapter
-import com.example.foodinfo.ui.decorator.ListVerticalItemDecoration
+import com.example.foodinfo.ui.decorator.ListItemDecoration
 import com.example.foodinfo.utils.appComponent
 import com.example.foodinfo.utils.repeatOn
 import com.example.foodinfo.utils.showDescriptionDialog
@@ -75,9 +76,9 @@ class SearchFilterNutrientsFragment : BaseFragment<FragmentSearchFilterNutrients
             }
             itemAnimator = null
             addItemDecoration(
-                ListVerticalItemDecoration(
+                ListItemDecoration(
                     resources.getDimensionPixelSize(R.dimen.filter_nutrients_edit_field_item_space),
-                    resources.getDimensionPixelSize(R.dimen.filter_nutrients_edit_field_item_margin),
+                    RecyclerView.VERTICAL
                 )
 
             )
