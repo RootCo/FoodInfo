@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
 import com.example.foodinfo.repository.RepositoryRecipes
-import com.example.foodinfo.repository.model.*
+import com.example.foodinfo.repository.model.LabelHintModel
+import com.example.foodinfo.repository.model.RecipeExtendedModel
 import com.example.foodinfo.utils.State
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -20,30 +21,11 @@ class RecipeExtendedViewModel @Inject constructor(
 
     var recipeId: String = ""
 
-    val recipe: SharedFlow<State<RecipeModel>> by lazy {
-        repositoryRecipes.getById(recipeId).shareIn(
+    val recipe: SharedFlow<State<RecipeExtendedModel>> by lazy {
+        repositoryRecipes.getByIdExtended(recipeId).shareIn(
             viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
         )
     }
-
-    val ingredients: SharedFlow<State<List<RecipeIngredientModel>>> by lazy {
-        repositoryRecipes.getByIdIngredients(recipeId).shareIn(
-            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
-        )
-    }
-
-    val nutrients: SharedFlow<State<List<NutrientRecipeModel>>> by lazy {
-        repositoryRecipes.getByIdNutrients(recipeId).shareIn(
-            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
-        )
-    }
-
-    val labels: SharedFlow<State<List<CategoryRecipeModel>>> by lazy {
-        repositoryRecipes.getByIdLabels(recipeId).shareIn(
-            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
-        )
-    }
-
 
     fun getLabel(category: String, label: String): LabelHintModel {
         return repositoryRecipeFieldsInfo.getLabelHint(category, label)

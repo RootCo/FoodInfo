@@ -13,9 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.foodinfo.R
 import com.example.foodinfo.databinding.FragmentRecipeExtendedBinding
-import com.example.foodinfo.repository.model.NutrientRecipeModel
-import com.example.foodinfo.repository.model.RecipeIngredientModel
-import com.example.foodinfo.repository.model.RecipeModel
+import com.example.foodinfo.repository.model.RecipeExtendedModel
 import com.example.foodinfo.ui.adapter.RecipeCategoriesAdapter
 import com.example.foodinfo.ui.custom_view.NonScrollLinearLayoutManager
 import com.example.foodinfo.ui.decorator.ListItemDecoration
@@ -23,8 +21,10 @@ import com.example.foodinfo.utils.*
 import com.example.foodinfo.utils.glide.GlideApp
 import com.example.foodinfo.view_model.RecipeExtendedViewModel
 import com.google.android.material.imageview.ShapeableImageView
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
@@ -37,18 +37,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
         requireActivity().appComponent.viewModelsFactory()
     }
 
-
     private lateinit var recyclerAdapter: RecipeCategoriesAdapter
-
-    // no SupervisorJob on purpose
-    private val initUiScope = CoroutineScope(Job() + Dispatchers.Default)
-
-    enum class UIElements {
-        RECIPE,
-        LABELS,
-        NUTRIENTS,
-        INGREDIENTS
-    }
 
 
     private val onBackClickListener: () -> Unit = {
@@ -91,18 +80,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
 
-    override fun onDestroy() {
-        initUiScope.cancel()
-        super.onDestroy()
-    }
-
-
     override fun initUI() {
-        registerUiChunk(UIElements.RECIPE)
-        registerUiChunk(UIElements.LABELS)
-        registerUiChunk(UIElements.NUTRIENTS)
-        registerUiChunk(UIElements.INGREDIENTS)
-
         recyclerAdapter = RecipeCategoriesAdapter(
             requireContext(),
             onLabelClickListener
@@ -130,7 +108,6 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     override fun subscribeUI() {
-
         observeUiState { uiState ->
             when (uiState) {
                 is UiState.Error   -> {}
@@ -147,83 +124,27 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
         }
 
-        initUiScope.launch {
-            repeatOn(Lifecycle.State.STARTED) {
-                viewModel.recipe.collectLatest { recipe ->
-                    val state: UiState = when (recipe) {
-                        is State.Success -> {
-                            initRecipe(recipe.data)
-                            UiState.Success()
-                        }
-                        is State.Error   -> {
-                            UiState.Error(recipe.message, recipe.error)
-                        }
-                        else             -> {
-                            UiState.Loading()
-                        }
+        repeatOn(Lifecycle.State.STARTED) {
+            viewModel.recipe.collectLatest { recipe ->
+                val state: UiState = when (recipe) {
+                    is State.Success -> {
+                        initRecipe(recipe.data)
+                        UiState.Success()
                     }
-                    updateUiState(UIElements.RECIPE, state)
-                }
-            }
-
-            repeatOn(Lifecycle.State.STARTED) {
-                viewModel.labels.collectLatest { labels ->
-                    val state: UiState = when (labels) {
-                        is State.Success -> {
-                            recyclerAdapter.submitList(labels.data)
-                            UiState.Success()
-                        }
-                        is State.Error   -> {
-                            UiState.Error(labels.message, labels.error)
-                        }
-                        else             -> {
-                            UiState.Loading()
-                        }
+                    is State.Error   -> {
+                        UiState.Error(recipe.message, recipe.error)
                     }
-                    updateUiState(UIElements.LABELS, state)
-                }
-            }
-
-            repeatOn(Lifecycle.State.STARTED) {
-                viewModel.nutrients.collectLatest { nutrients ->
-                    val state: UiState = when (nutrients) {
-                        is State.Success -> {
-                            initNutrients(nutrients.data)
-                            UiState.Success()
-                        }
-                        is State.Error   -> {
-                            UiState.Error(nutrients.message, nutrients.error)
-                        }
-                        else             -> {
-                            UiState.Loading()
-                        }
+                    else             -> {
+                        UiState.Loading()
                     }
-                    updateUiState(UIElements.NUTRIENTS, state)
                 }
-            }
-
-            repeatOn(Lifecycle.State.STARTED) {
-                viewModel.ingredients.collectLatest { ingredients ->
-                    val state: UiState = when (ingredients) {
-                        is State.Success -> {
-                            initIngredients(ingredients.data)
-                            UiState.Success()
-                        }
-                        is State.Error   -> {
-                            UiState.Error(ingredients.message, ingredients.error)
-                        }
-                        else             -> {
-                            UiState.Loading()
-                        }
-                    }
-                    updateUiState(UIElements.INGREDIENTS, state)
-                }
+                updateUiState(state)
             }
         }
     }
 
 
-    private fun initRecipe(recipe: RecipeModel) {
+    private fun initRecipe(recipe: RecipeExtendedModel) {
         binding.tvRecipeName.text = recipe.name
         Glide.with(binding.ivRecipePreview.context)
             .load(recipe.previewURL)
@@ -253,39 +174,31 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             recipe.isFavorite,
             falseColor = R.attr.appMainFontColor
         )
-    }
 
-    private fun initNutrients(nutrients: List<NutrientRecipeModel>) {
-        nutrients.findLast { nutrient ->
-            nutrient.label == resources.getString(R.string.protein_header)
-        }!!.apply {
+        recipe.protein.apply {
             binding.iProtein.tvTitle.text = label
             binding.iProtein.tvValue.text = getString(R.string.float_value, totalWeight)
             binding.iProtein.progressBar.progress = dailyPercent
         }
 
-        nutrients.findLast { nutrient ->
-            nutrient.label == resources.getString(R.string.carbs_header)
-        }!!.apply {
+        recipe.carb.apply {
             binding.iCarbs.tvTitle.text = label
             binding.iCarbs.tvValue.text = getString(R.string.float_value, totalWeight)
             binding.iCarbs.progressBar.progress = dailyPercent
         }
 
-        nutrients.findLast { nutrient ->
-            nutrient.label == resources.getString(R.string.fat_header)
-        }!!.apply {
+        recipe.fat.apply {
             binding.iFat.tvTitle.text = label
             binding.iFat.tvValue.text = getString(R.string.float_value, totalWeight)
             binding.iFat.progressBar.progress = dailyPercent
         }
-    }
 
-    private fun initIngredients(ingredients: List<RecipeIngredientModel>) {
         for (index in 0..3) {
             GlideApp.with(requireContext())
-                .load(ingredients.getOrNull(index)?.previewURL)
+                .load(recipe.ingredients.getOrNull(index)?.previewURL)
                 .into(binding.clIngredients[index] as ShapeableImageView)
         }
+
+        recyclerAdapter.submitList(recipe.categories)
     }
 }

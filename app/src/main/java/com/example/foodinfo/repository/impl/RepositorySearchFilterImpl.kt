@@ -6,8 +6,12 @@ import com.example.foodinfo.local.entity.BaseFieldFilterEntity
 import com.example.foodinfo.local.entity.LabelFilterEntity
 import com.example.foodinfo.local.entity.NutrientFilterEntity
 import com.example.foodinfo.repository.RepositorySearchFilter
-import com.example.foodinfo.repository.mapper.*
-import com.example.foodinfo.repository.model.*
+import com.example.foodinfo.repository.mapper.toModelEdit
+import com.example.foodinfo.repository.mapper.toModelFilterEdit
+import com.example.foodinfo.repository.mapper.toModelFilterField
+import com.example.foodinfo.repository.model.CategoryFilterEditModel
+import com.example.foodinfo.repository.model.NutrientFilterEditModel
+import com.example.foodinfo.repository.model.SearchFilterEditModel
 import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
 import com.example.foodinfo.utils.FilterQueryBuilder
 import kotlinx.coroutines.flow.Flow
@@ -44,30 +48,14 @@ class RepositorySearchFilterImpl @Inject constructor(
         }
     }
 
-    override fun getCategoriesPreview(filterName: String): Flow<List<CategoryFilterPreviewModel>> {
-        return searchFilterDAO.observeLabelsAll(filterName).map { data ->
-            data.toModelFilterPreview()
-        }
-    }
-
-
     override fun getNutrientsEdit(filterName: String): Flow<List<NutrientFilterEditModel>> {
         return searchFilterDAO.observeNutrients(filterName).map { data ->
             data.map { it.toModelEdit() }
         }
     }
 
-    override fun getNutrientsPreview(filterName: String): Flow<List<NutrientFilterPreviewModel>> {
-        return searchFilterDAO.observeNutrients(filterName).map { data ->
-            data.toModelPreview()
-        }
-    }
-
-
-    override fun getBaseFieldsEdit(filterName: String): Flow<List<BaseFieldFilterEditModel>> {
-        return searchFilterDAO.observeBaseFields(filterName).map { data ->
-            data.map { it.toModelEdit() }
-        }
+    override fun getFilterEdit(filterName: String): Flow<SearchFilterEditModel> {
+        return searchFilterDAO.observeFilter(filterName).map { it.toModelEdit() }
     }
 
 

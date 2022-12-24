@@ -8,9 +8,7 @@ data class CategoryFilterPreviewModel(
     val labels: List<LabelShortModel>
 ) {
 
-    object ItemCallBack :
-        DiffUtil.ItemCallback<CategoryFilterPreviewModel>() {
-
+    object ItemCallBack : DiffUtil.ItemCallback<CategoryFilterPreviewModel>() {
         override fun areItemsTheSame(
             oldItem: CategoryFilterPreviewModel,
             newItem: CategoryFilterPreviewModel

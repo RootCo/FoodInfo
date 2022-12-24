@@ -7,10 +7,7 @@ import androidx.paging.map
 import androidx.sqlite.db.SimpleSQLiteQuery
 import com.example.foodinfo.local.dao.RecipesDAO
 import com.example.foodinfo.repository.RepositoryRecipes
-import com.example.foodinfo.repository.mapper.toModel
-import com.example.foodinfo.repository.mapper.toModelFavorite
-import com.example.foodinfo.repository.mapper.toModelRecipe
-import com.example.foodinfo.repository.mapper.toModelShort
+import com.example.foodinfo.repository.mapper.*
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.utils.State
 import kotlinx.coroutines.Dispatchers
@@ -56,11 +53,11 @@ class RepositoryRecipesImpl @Inject constructor(
         ).flow.map { pagingData -> pagingData.map { it.toModelShort() } }.flowOn(Dispatchers.IO)
     }
 
-    override fun getById(id: String): Flow<State<RecipeModel>> {
+    override fun getByIdExtended(id: String): Flow<State<RecipeExtendedModel>> {
         return flow {
             emit(State.Loading())
-            recipesDAO.getById(id).collect {
-                emit(State.Success(it.toModel()))
+            recipesDAO.getByIdExtended(id).collect {
+                emit(State.Success(it.toModelExtended()))
             }
         }.flowOn(Dispatchers.IO)
     }

@@ -5,6 +5,7 @@ import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.local.pojo.NutrientRecipePOJO
+import com.example.foodinfo.local.pojo.RecipeExtendedPOJO
 import com.example.foodinfo.local.pojo.RecipePOJO
 import kotlinx.coroutines.flow.Flow
 
@@ -53,7 +54,7 @@ interface RecipesDAO {
                 "WHERE ${RecipeEntity.Columns.ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getById(id: String): Flow<RecipePOJO>
+    fun getByIdExtended(id: String): Flow<RecipeExtendedPOJO>
 
     @Query(
         "SELECT * FROM ${RecipeIngredientEntity.TABLE_NAME} " +

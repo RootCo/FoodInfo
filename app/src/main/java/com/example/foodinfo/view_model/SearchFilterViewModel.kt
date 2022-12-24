@@ -4,9 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.foodinfo.local.entity.SearchFilterEntity
 import com.example.foodinfo.repository.RepositorySearchFilter
-import com.example.foodinfo.repository.model.BaseFieldFilterEditModel
-import com.example.foodinfo.repository.model.CategoryFilterPreviewModel
-import com.example.foodinfo.repository.model.NutrientFilterPreviewModel
+import com.example.foodinfo.repository.model.SearchFilterEditModel
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
@@ -17,20 +15,8 @@ class SearchFilterViewModel @Inject constructor(
     private val repositorySearchFilter: RepositorySearchFilter,
 ) : ViewModel() {
 
-    val rangeFields: SharedFlow<List<BaseFieldFilterEditModel>> by lazy {
-        repositorySearchFilter.getBaseFieldsEdit().shareIn(
-            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
-        )
-    }
-
-    val categories: SharedFlow<List<CategoryFilterPreviewModel>> by lazy {
-        repositorySearchFilter.getCategoriesPreview().shareIn(
-            viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
-        )
-    }
-
-    val nutrients: SharedFlow<List<NutrientFilterPreviewModel>> by lazy {
-        repositorySearchFilter.getNutrientsPreview().shareIn(
+    val filter: SharedFlow<SearchFilterEditModel> by lazy {
+        repositorySearchFilter.getFilterEdit().shareIn(
             viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
         )
     }

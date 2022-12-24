@@ -4,6 +4,7 @@ import androidx.room.*
 import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.local.pojo.BaseFieldFilterPOJO
 import com.example.foodinfo.local.pojo.NutrientFilterPOJO
+import com.example.foodinfo.local.pojo.SearchFilterEditPOJO
 import kotlinx.coroutines.flow.Flow
 
 
@@ -43,22 +44,16 @@ interface SearchFilterDAO {
     fun observeLabelsCategory(filterName: String, categoryName: String): Flow<List<LabelFilterEntity>>
 
     @Query(
-        "SELECT * FROM ${LabelFilterEntity.TABLE_NAME} WHERE " +
-                "${LabelFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
-    )
-    fun observeLabelsAll(filterName: String): Flow<List<LabelFilterEntity>>
-
-    @Query(
         "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} WHERE " +
                 "${NutrientFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun observeNutrients(filterName: String): Flow<List<NutrientFilterPOJO>>
 
     @Query(
-        "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} WHERE " +
-                "${BaseFieldFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${SearchFilterEntity.TABLE_NAME} WHERE " +
+                "${SearchFilterEntity.Columns.NAME} LIKE '%' || :filterName || '%'"
     )
-    fun observeBaseFields(filterName: String): Flow<List<BaseFieldFilterPOJO>>
+    fun observeFilter(filterName: String): Flow<SearchFilterEditPOJO>
 
 
     @Query(

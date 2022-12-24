@@ -15,7 +15,7 @@ interface RepositoryRecipes {
 
     fun getByFilter(query: String): Flow<PagingData<RecipeShortModel>>
 
-    fun getById(id: String): Flow<State<RecipeModel>>
+    fun getByIdExtended(id: String): Flow<State<RecipeExtendedModel>>
 
     fun getByIdIngredients(id: String): Flow<State<List<RecipeIngredientModel>>>
 
