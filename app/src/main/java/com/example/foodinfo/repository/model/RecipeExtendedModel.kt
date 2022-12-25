@@ -12,7 +12,7 @@ data class RecipeExtendedModel(
     val servings: Int,
     val previewURL: String,
     val isFavorite: Boolean,
-    val ingredients: List<RecipeIngredientModel>,
+    val ingredients: List<String>,
     val categories: List<CategoryRecipeModel>,
     val protein: NutrientRecipeModel,
     val carb: NutrientRecipeModel,

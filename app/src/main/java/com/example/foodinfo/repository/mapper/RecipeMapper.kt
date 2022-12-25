@@ -44,7 +44,7 @@ fun RecipeExtendedPOJO.toModelExtended(): RecipeExtendedModel {
         servings = this.servings,
         previewURL = this.previewURL,
         isFavorite = this.favoriteMark.isFavorite,
-        ingredients = this.ingredients.map { it.toModel() },
+        ingredients = this.ingredients.map { it.previewURL },
         categories = this.labels.toModelRecipe(),
         protein = this.nutrients.findLast { it.name == "Protein" }!!.toModel(),
         carb = this.nutrients.findLast { it.name == "Carbs" }!!.toModel(),

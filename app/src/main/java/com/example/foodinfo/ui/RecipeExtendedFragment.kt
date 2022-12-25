@@ -1,6 +1,6 @@
 package com.example.foodinfo.ui
 
-import androidx.core.view.get
+import androidx.core.view.forEachIndexed
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -145,60 +145,50 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
 
     private fun initRecipe(recipe: RecipeExtendedModel) {
-        binding.tvRecipeName.text = recipe.name
-        Glide.with(binding.ivRecipePreview.context)
-            .load(recipe.previewURL)
-            .error(R.drawable.ic_no_image)
-            .placeholder(null)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .into(binding.ivRecipePreview)
+        with(binding) {
+            tvRecipeName.text = recipe.name
+            Glide.with(ivRecipePreview.context)
+                .load(recipe.previewURL)
+                .error(R.drawable.ic_no_image)
+                .placeholder(null)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(ivRecipePreview)
 
-        binding.tvServingsValue.text = getString(
-            R.string.serving_value,
-            recipe.servings
-        )
-        binding.tvWeightValue.text = getString(
-            R.string.gram_int_value,
-            recipe.totalWeight
-        )
-        binding.tvTimeValue.text = getString(
-            R.string.time_value,
-            recipe.totalTime
-        )
+            tvServingsValue.text = getString(R.string.serving_value, recipe.servings)
+            tvWeightValue.text = getString(R.string.gram_int_value, recipe.totalWeight)
+            tvTimeValue.text = getString(R.string.time_value, recipe.totalTime)
 
-        binding.iEnergy.tvTitle.text = resources.getString(R.string.calories_header)
-        binding.iEnergy.tvValue.text = recipe.calories
-        binding.iEnergy.progressBar.progress = recipe.caloriesDaily
+            iEnergy.tvTitle.text = getString(R.string.calories_header)
+            iEnergy.tvValue.text = recipe.calories
+            iEnergy.progressBar.progress = recipe.caloriesDaily
 
-        binding.btnFavorite.setFavorite(
-            recipe.isFavorite,
-            falseColor = R.attr.appMainFontColor
-        )
+            btnFavorite.setFavorite(recipe.isFavorite, falseColor = R.attr.appMainFontColor)
 
-        recipe.protein.apply {
-            binding.iProtein.tvTitle.text = label
-            binding.iProtein.tvValue.text = getString(R.string.float_value, totalWeight)
-            binding.iProtein.progressBar.progress = dailyPercent
+            recipe.protein.apply {
+                iProtein.tvTitle.text = label
+                iProtein.tvValue.text = getString(R.string.float_value, totalWeight)
+                iProtein.progressBar.progress = dailyPercent
+            }
+
+            recipe.carb.apply {
+                iCarbs.tvTitle.text = label
+                iCarbs.tvValue.text = getString(R.string.float_value, totalWeight)
+                iCarbs.progressBar.progress = dailyPercent
+            }
+
+            recipe.fat.apply {
+                iFat.tvTitle.text = label
+                iFat.tvValue.text = getString(R.string.float_value, totalWeight)
+                iFat.progressBar.progress = dailyPercent
+            }
+
+            clIngredients.forEachIndexed { index, view ->
+                GlideApp.with(requireContext())
+                    .load(recipe.ingredients.getOrNull(index))
+                    .into(view as ShapeableImageView)
+            }
+
+            recyclerAdapter.submitList(recipe.categories)
         }
-
-        recipe.carb.apply {
-            binding.iCarbs.tvTitle.text = label
-            binding.iCarbs.tvValue.text = getString(R.string.float_value, totalWeight)
-            binding.iCarbs.progressBar.progress = dailyPercent
-        }
-
-        recipe.fat.apply {
-            binding.iFat.tvTitle.text = label
-            binding.iFat.tvValue.text = getString(R.string.float_value, totalWeight)
-            binding.iFat.progressBar.progress = dailyPercent
-        }
-
-        for (index in 0..3) {
-            GlideApp.with(requireContext())
-                .load(recipe.ingredients.getOrNull(index)?.previewURL)
-                .into(binding.clIngredients[index] as ShapeableImageView)
-        }
-
-        recyclerAdapter.submitList(recipe.categories)
     }
 }

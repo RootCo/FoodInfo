@@ -6,7 +6,6 @@ import com.example.foodinfo.local.pojo.NutrientFilterPOJO
 import com.example.foodinfo.local.pojo.NutrientRecipePOJO
 import com.example.foodinfo.repository.model.*
 import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
-import java.lang.Integer.min
 
 
 fun NutrientFieldEntity.toModelHint(): NutrientHintModel {
@@ -25,10 +24,7 @@ fun NutrientRecipePOJO.toModel(): NutrientRecipeModel {
         measure = this.fieldInfo.measure,
         totalWeight = this.totalValue,
         dailyWeight = this.fieldInfo.dailyAllowance,
-        dailyPercent = min(
-            (this.totalValue * 100 / this.fieldInfo.dailyAllowance).toInt(),
-            100
-        )
+        dailyPercent = (this.totalValue * 100 / this.fieldInfo.dailyAllowance).toInt()
     )
 }
 
@@ -46,7 +42,7 @@ fun NutrientFilterPOJO.toModelEdit(): NutrientFilterEditModel {
 }
 
 fun List<NutrientFilterPOJO>.toModelPreview(): List<NutrientFilterPreviewModel> {
-    return this.map { nutrient ->
+    return this.mapNotNull { nutrient ->
         if (
             nutrient.minValue == nutrient.fieldInfo.rangeMin &&
             nutrient.maxValue == nutrient.fieldInfo.rangeMax
@@ -61,7 +57,7 @@ fun List<NutrientFilterPOJO>.toModelPreview(): List<NutrientFilterPreviewModel> 
                 maxValue = nutrient.maxValue,
             )
         }
-    }.filterNotNull()
+    }
 }
 
 fun List<NutrientFilterPOJO>.toModelFilterField(): List<NutrientFilterField> {
