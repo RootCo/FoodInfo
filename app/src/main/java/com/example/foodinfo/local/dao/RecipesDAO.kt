@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipesDAO {
+    @Transaction
     @Query(
         "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
                 "WHERE ${RecipeEntity.Columns.ID} " +
@@ -20,6 +21,7 @@ interface RecipesDAO {
     )
     fun getPopular(): PagingSource<Int, RecipePOJO>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
                 "WHERE ${RecipeEntity.Columns.ID} " +
@@ -38,6 +40,7 @@ interface RecipesDAO {
     )
     fun getFavoriteIds(): List<String>
 
+    @Transaction
     @RawQuery(
         observedEntities = [
             RecipeEntity::class,
@@ -49,6 +52,7 @@ interface RecipesDAO {
     )
     fun getByFilter(query: SupportSQLiteQuery): PagingSource<Int, RecipePOJO>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
                 "WHERE ${RecipeEntity.Columns.ID} " +
@@ -63,6 +67,7 @@ interface RecipesDAO {
     )
     fun getByIdIngredients(id: String): Flow<List<RecipeIngredientEntity>>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${NutrientRecipeEntity.TABLE_NAME} " +
                 "WHERE ${NutrientRecipeEntity.Columns.RECIPE_ID} " +

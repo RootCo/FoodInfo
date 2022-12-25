@@ -23,12 +23,14 @@ interface SearchFilterDAO {
     )
     fun getLabelsAll(filterName: String): List<LabelFilterEntity>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} WHERE " +
                 "${NutrientFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getNutrients(filterName: String): List<NutrientFilterPOJO>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${BaseFieldFilterEntity.TABLE_NAME} WHERE " +
                 "${BaseFieldFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
@@ -43,12 +45,14 @@ interface SearchFilterDAO {
     )
     fun observeLabelsCategory(filterName: String, categoryName: String): Flow<List<LabelFilterEntity>>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${NutrientFilterEntity.TABLE_NAME} WHERE " +
                 "${NutrientFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun observeNutrients(filterName: String): Flow<List<NutrientFilterPOJO>>
 
+    @Transaction
     @Query(
         "SELECT * FROM ${SearchFilterEntity.TABLE_NAME} WHERE " +
                 "${SearchFilterEntity.Columns.NAME} LIKE '%' || :filterName || '%'"
