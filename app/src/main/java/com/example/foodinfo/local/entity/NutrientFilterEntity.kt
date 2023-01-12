@@ -1,6 +1,7 @@
 package com.example.foodinfo.local.entity
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -24,8 +25,8 @@ data class NutrientFilterEntity(
     @ColumnInfo(name = Columns.FILTER_NAME)
     val filterName: String,
 
-    @ColumnInfo(name = Columns.NAME)
-    val name: String,
+    @Embedded
+    val fieldInfo: NutrientFieldEntity,
 
     @ColumnInfo(name = Columns.MIN_VALUE)
     val minValue: Float,
@@ -36,7 +37,6 @@ data class NutrientFilterEntity(
     object Columns {
         const val ID = "id"
         const val FILTER_NAME = "nutrient_filter_name"
-        const val NAME = "name"
         const val MIN_VALUE = "min_value"
         const val MAX_VALUE = "max_value"
     }

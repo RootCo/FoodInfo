@@ -4,9 +4,7 @@ import androidx.paging.PagingSource
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.example.foodinfo.local.entity.*
-import com.example.foodinfo.local.pojo.NutrientRecipePOJO
 import com.example.foodinfo.local.pojo.RecipeExtendedPOJO
-import com.example.foodinfo.local.pojo.RecipePOJO
 import kotlinx.coroutines.flow.Flow
 
 
@@ -19,24 +17,18 @@ interface RecipesDAO {
                 "IN (SELECT ${RecipeEntity.Columns.ID} " +
                 "FROM ${RecipeEntity.TABLE_NAME} ORDER BY RANDOM())"
     )
-    fun getPopular(): PagingSource<Int, RecipePOJO>
+    fun getPopular(): PagingSource<Int, RecipeEntity>
 
     @Transaction
     @Query(
         "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
-                "IN (SELECT ${FavoriteMarkEntity.Columns.RECIPE_ID} " +
-                "FROM ${FavoriteMarkEntity.TABLE_NAME} " +
-                "WHERE ${FavoriteMarkEntity.Columns.IS_FAVORITE} == 1)"
+                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
     )
-    fun getFavorite(): PagingSource<Int, RecipePOJO>
+    fun getFavorite(): PagingSource<Int, RecipeEntity>
 
     @Query(
         "SELECT ${RecipeEntity.Columns.ID} FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
-                "IN (SELECT ${FavoriteMarkEntity.Columns.RECIPE_ID} " +
-                "FROM ${FavoriteMarkEntity.TABLE_NAME} " +
-                "WHERE ${FavoriteMarkEntity.Columns.IS_FAVORITE} == 1)"
+                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
     )
     fun getFavoriteIds(): List<String>
 
@@ -47,10 +39,9 @@ interface RecipesDAO {
             NutrientRecipeEntity::class,
             RecipeIngredientEntity::class,
             LabelRecipeEntity::class,
-            FavoriteMarkEntity::class
         ]
     )
-    fun getByFilter(query: SupportSQLiteQuery): PagingSource<Int, RecipePOJO>
+    fun getByFilter(query: SupportSQLiteQuery): PagingSource<Int, RecipeEntity>
 
     @Transaction
     @Query(
@@ -73,7 +64,7 @@ interface RecipesDAO {
                 "WHERE ${NutrientRecipeEntity.Columns.RECIPE_ID} " +
                 "LIKE '%' || :id || '%'"
     )
-    fun getByIdNutrients(id: String): Flow<List<NutrientRecipePOJO>>
+    fun getByIdNutrients(id: String): Flow<List<NutrientRecipeEntity>>
 
     @Query(
         "SELECT * FROM ${LabelRecipeEntity.TABLE_NAME} " +
@@ -84,19 +75,19 @@ interface RecipesDAO {
 
 
     @Query(
-        "UPDATE ${FavoriteMarkEntity.TABLE_NAME} " +
-                "SET ${FavoriteMarkEntity.Columns.IS_FAVORITE} = " +
-                "NOT ${FavoriteMarkEntity.Columns.IS_FAVORITE} " +
-                "WHERE ${FavoriteMarkEntity.Columns.RECIPE_ID}=:recipeId"
+        "UPDATE ${RecipeEntity.TABLE_NAME} " +
+                "SET ${RecipeEntity.Columns.IS_FAVORITE} = " +
+                "NOT ${RecipeEntity.Columns.IS_FAVORITE} " +
+                "WHERE ${RecipeEntity.Columns.ID} = :id"
     )
-    fun updateFavoriteStatus(recipeId: String)
+    fun updateFavoriteStatus(id: String)
 
     @Query(
-        "UPDATE ${FavoriteMarkEntity.TABLE_NAME} " +
-                "SET ${FavoriteMarkEntity.Columns.IS_FAVORITE} = 0 " +
-                "WHERE ${FavoriteMarkEntity.Columns.RECIPE_ID} IN (:recipeId)"
+        "UPDATE ${RecipeEntity.TABLE_NAME} " +
+                "SET ${RecipeEntity.Columns.IS_FAVORITE} = 0 " +
+                "WHERE ${RecipeEntity.Columns.ID} IN (:id)"
     )
-    fun delFromFavorite(recipeId: List<String>)
+    fun delFromFavorite(id: List<String>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRecipe(recipe: RecipeEntity)
@@ -114,28 +105,16 @@ interface RecipesDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addLabels(dietLabels: List<LabelRecipeEntity>)
 
-    /*
-        При обновлении рецепта из сети создается объект RecipeEntity с isFavorite = false
-        поэтому тут без OnConflictStrategy.REPLACE чтобы избежать ситуаций, когда
-        рецепт был добавлен в закладки, потом рецепт обновился на сервере и isFavorite
-        поле изменилось на false. Для добавления/удаления рецепта из закладок
-        есть отдельный метод: changeFavoriteStatus()
-     */
-    @Insert
-    fun addFavoriteMarks(favoriteMarks: List<FavoriteMarkEntity>)
-
     @Transaction
     fun addAll(
         recipes: List<RecipeEntity>,
         nutrients: List<NutrientRecipeEntity>,
         ingredients: List<RecipeIngredientEntity>,
         labels: List<LabelRecipeEntity>,
-        favoriteMarks: List<FavoriteMarkEntity>
     ) {
         addRecipes(recipes)
         addNutrients(nutrients)
         addIngredients(ingredients)
         addLabels(labels)
-        addFavoriteMarks(favoriteMarks)
     }
 }

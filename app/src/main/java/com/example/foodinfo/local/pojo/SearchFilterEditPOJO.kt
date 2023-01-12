@@ -22,7 +22,7 @@ data class SearchFilterEditPOJO(
         entityColumn = BaseFieldFilterEntity.Columns.FILTER_NAME,
         entity = BaseFieldFilterEntity::class
     )
-    val baseFields: List<BaseFieldFilterPOJO>,
+    val baseFields: List<BaseFieldFilterEntity>,
 
     @Relation(
         parentColumn = SearchFilterEntity.Columns.NAME,
@@ -35,5 +35,5 @@ data class SearchFilterEditPOJO(
         entityColumn = NutrientFilterEntity.Columns.FILTER_NAME,
         entity = NutrientFilterEntity::class
     )
-    val nutrients: List<NutrientFilterPOJO>
+    val nutrients: List<NutrientFilterEntity>
 )

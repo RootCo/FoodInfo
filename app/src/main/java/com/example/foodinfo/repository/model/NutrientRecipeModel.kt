@@ -5,10 +5,8 @@ import androidx.recyclerview.widget.DiffUtil
 
 data class NutrientRecipeModel(
     val id: Long,
-    val label: String,
-    val measure: String,
+    val fieldInfo: NutrientFieldModel,
     val totalWeight: Float,
-    val dailyWeight: Float,
     val dailyPercent: Int,
 ) {
 
@@ -26,7 +24,7 @@ data class NutrientRecipeModel(
             oldItem: NutrientRecipeModel,
             newItem: NutrientRecipeModel
         ): Boolean {
-            return oldItem.label == newItem.label &&
+            return oldItem.fieldInfo == newItem.fieldInfo &&
                     oldItem.totalWeight == newItem.totalWeight &&
                     oldItem.dailyPercent == newItem.dailyPercent
         }

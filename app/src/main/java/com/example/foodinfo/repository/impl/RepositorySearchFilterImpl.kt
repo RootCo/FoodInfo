@@ -63,7 +63,7 @@ class RepositorySearchFilterImpl @Inject constructor(
         val baseFields = recipeFieldsInfoDao.getBaseFields().map { field ->
             BaseFieldFilterEntity(
                 filterName = filterName,
-                name = field.name,
+                fieldInfo = field,
                 minValue = field.rangeMin,
                 maxValue = field.rangeMax
             )
@@ -71,7 +71,7 @@ class RepositorySearchFilterImpl @Inject constructor(
         val nutrients = recipeFieldsInfoDao.getNutrientFields().map { nutrient ->
             NutrientFilterEntity(
                 filterName = filterName,
-                name = nutrient.name,
+                fieldInfo = nutrient,
                 minValue = nutrient.rangeMin,
                 maxValue = nutrient.rangeMax
             )
@@ -99,7 +99,7 @@ class RepositorySearchFilterImpl @Inject constructor(
             BaseFieldFilterEntity(
                 id = field.id,
                 filterName = filterName,
-                name = field.name,
+                fieldInfo = field.fieldInfo,
                 minValue = field.fieldInfo.rangeMin,
                 maxValue = field.fieldInfo.rangeMax
             )
@@ -112,7 +112,7 @@ class RepositorySearchFilterImpl @Inject constructor(
             NutrientFilterEntity(
                 id = nutrient.id,
                 filterName = filterName,
-                name = nutrient.name,
+                fieldInfo = nutrient.fieldInfo,
                 minValue = nutrient.fieldInfo.rangeMin,
                 maxValue = nutrient.fieldInfo.rangeMax
             )

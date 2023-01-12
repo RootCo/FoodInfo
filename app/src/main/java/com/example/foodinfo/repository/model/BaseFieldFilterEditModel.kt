@@ -5,11 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 
 data class BaseFieldFilterEditModel(
     val id: Long,
-    val name: String,
-    val measure: String,
-    val stepSize: Float,
-    val rangeMin: Float,
-    val rangeMax: Float,
+    val fieldInfo: BaseFieldModel,
     var minValue: Float,
     var maxValue: Float
 ) {
@@ -28,11 +24,7 @@ data class BaseFieldFilterEditModel(
             oldItem: BaseFieldFilterEditModel,
             newItem: BaseFieldFilterEditModel
         ): Boolean {
-            return oldItem.name == newItem.name &&
-                    oldItem.measure == newItem.measure &&
-                    oldItem.stepSize == newItem.stepSize &&
-                    oldItem.rangeMin == newItem.rangeMin &&
-                    oldItem.rangeMax == newItem.rangeMax &&
+            return oldItem.fieldInfo == newItem.fieldInfo &&
                     oldItem.minValue == newItem.minValue &&
                     oldItem.maxValue == newItem.maxValue
         }

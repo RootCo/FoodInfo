@@ -5,6 +5,7 @@ data class RecipeModel(
     val id: String,
     val name: String,
     val calories: String,
+    val totalIngredients: Int,
     val caloriesDaily: Int,
     val source: String,
     val totalWeight: Int,

@@ -12,17 +12,17 @@ class NutrientsViewHolder(
 ) : BaseViewHolder<RvItemRecipeNutrientBinding, NutrientRecipeModel>(binding) {
 
     init {
-        binding.clNutrient.setOnClickListener { onNutrientClickListener(item.label) }
+        binding.clNutrient.setOnClickListener { onNutrientClickListener(item.fieldInfo.name) }
     }
 
 
     override fun bind(newItem: NutrientRecipeModel) {
         super.bind(newItem)
-        binding.tvName.text = item.label
+        binding.tvName.text = item.fieldInfo.name
         binding.tvWeight.text = onGetNutrientWeight.invoke(
             item.totalWeight,
-            item.dailyWeight,
-            item.measure
+            item.fieldInfo.dailyAllowance,
+            item.fieldInfo.measure
         )
         binding.tvPercent.text = onGetNutrientPercent.invoke(item.dailyPercent)
         binding.progressBar.progress = item.dailyPercent

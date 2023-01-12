@@ -23,13 +23,15 @@ class FilterBaseFieldViewHolder(
     override fun bind(newItem: BaseFieldFilterEditModel) {
         super.bind(newItem)
         with(binding.root) {
-            header = item.name
-            measure = item.measure
-            rangeMin = item.rangeMin
-            rangeMax = item.rangeMax
-            stepSize = item.stepSize
-            maxValue = item.maxValue
-            minValue = item.minValue
+            item.apply {
+                header = fieldInfo.name
+                measure = fieldInfo.measure
+                rangeMin = fieldInfo.rangeMin
+                rangeMax = fieldInfo.rangeMax
+                stepSize = fieldInfo.stepSize
+                maxValue = maxValue
+                minValue = minValue
+            }
         }
     }
 }

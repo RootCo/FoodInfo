@@ -44,7 +44,7 @@ data class NutrientFieldEntity(
 
     ) {
     object Columns {
-        const val ID = "id"
+        const val ID = "id1"
         const val NAME = "name"
         const val TAG = "tag"
         const val MEASURE = "measure"

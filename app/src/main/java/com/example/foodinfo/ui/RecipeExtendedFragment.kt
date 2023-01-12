@@ -146,38 +146,38 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
 
     private fun initRecipe(recipe: RecipeExtendedModel) {
         with(binding) {
-            tvRecipeName.text = recipe.name
+            tvRecipeName.text = recipe.fieldInfo.name
             Glide.with(ivRecipePreview.context)
-                .load(recipe.previewURL)
+                .load(recipe.fieldInfo.previewURL)
                 .error(R.drawable.ic_no_image)
                 .placeholder(null)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivRecipePreview)
 
-            tvServingsValue.text = getString(R.string.serving_value, recipe.servings)
-            tvWeightValue.text = getString(R.string.gram_int_value, recipe.totalWeight)
-            tvTimeValue.text = getString(R.string.time_value, recipe.totalTime)
+            tvServingsValue.text = getString(R.string.serving_value, recipe.fieldInfo.servings)
+            tvWeightValue.text = getString(R.string.gram_int_value, recipe.fieldInfo.totalWeight)
+            tvTimeValue.text = getString(R.string.time_value, recipe.fieldInfo.totalTime)
 
             iEnergy.tvTitle.text = getString(R.string.calories_header)
-            iEnergy.tvValue.text = recipe.calories
-            iEnergy.progressBar.progress = recipe.caloriesDaily
+            iEnergy.tvValue.text = recipe.fieldInfo.calories
+            iEnergy.progressBar.progress = recipe.fieldInfo.caloriesDaily
 
-            btnFavorite.setFavorite(recipe.isFavorite, falseColor = R.attr.appMainFontColor)
+            btnFavorite.setFavorite(recipe.fieldInfo.isFavorite, falseColor = R.attr.appMainFontColor)
 
             recipe.protein.apply {
-                iProtein.tvTitle.text = label
+                iProtein.tvTitle.text = fieldInfo.name
                 iProtein.tvValue.text = getString(R.string.float_value, totalWeight)
                 iProtein.progressBar.progress = dailyPercent
             }
 
             recipe.carb.apply {
-                iCarbs.tvTitle.text = label
+                iCarbs.tvTitle.text = fieldInfo.name
                 iCarbs.tvValue.text = getString(R.string.float_value, totalWeight)
                 iCarbs.progressBar.progress = dailyPercent
             }
 
             recipe.fat.apply {
-                iFat.tvTitle.text = label
+                iFat.tvTitle.text = fieldInfo.name
                 iFat.tvValue.text = getString(R.string.float_value, totalWeight)
                 iFat.progressBar.progress = dailyPercent
             }

@@ -22,7 +22,6 @@ import com.example.foodinfo.local.entity.*
         LabelRecipeEntity::class,
         LabelFieldEntity::class,
         CategoryFieldEntity::class,
-        FavoriteMarkEntity::class,
         LabelFilterEntity::class,
         NutrientFilterEntity::class,
         NutrientFieldEntity::class,

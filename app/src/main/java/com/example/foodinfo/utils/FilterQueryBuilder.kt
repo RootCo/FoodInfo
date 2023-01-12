@@ -1,9 +1,6 @@
 package com.example.foodinfo.utils
 
-import com.example.foodinfo.local.entity.LabelRecipeEntity
-import com.example.foodinfo.local.entity.NutrientRecipeEntity
-import com.example.foodinfo.local.entity.RecipeEntity
-import com.example.foodinfo.local.entity.SearchFilterEntity
+import com.example.foodinfo.local.entity.*
 import com.example.foodinfo.repository.model.filter_field.BaseFilterField
 import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
 import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
@@ -58,7 +55,7 @@ data class FilterQueryBuilder(
         name: String, minValue: Float?, maxValue: Float?
     ): String {
         var query = ""
-        query += "WHEN ${NutrientRecipeEntity.Columns.NAME} = '$name' THEN "
+        query += "WHEN ${NutrientFieldEntity.Columns.NAME} = '$name' THEN "
         query += rangeFieldToQuery(
             NutrientRecipeEntity.Columns.TOTAL_VALUE,
             minValue,

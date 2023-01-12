@@ -37,7 +37,10 @@ data class RecipeEntity(
     val totalTime: Int,
 
     @ColumnInfo(name = Columns.SERVINGS)
-    val servings: Int
+    val servings: Int,
+
+    @ColumnInfo(name = Columns.IS_FAVORITE)
+    val isFavorite: Boolean = false
 ) {
 
     object Columns {
@@ -50,6 +53,7 @@ data class RecipeEntity(
         const val TOTAL_WEIGHT = "weight"
         const val TOTAL_TIME = "time"
         const val SERVINGS = "servings"
+        const val IS_FAVORITE = "is_favorite"
     }
 
     companion object {
