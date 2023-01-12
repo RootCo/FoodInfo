@@ -1,6 +1,7 @@
 package com.example.foodinfo.local.entity
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
@@ -24,8 +25,8 @@ data class NutrientRecipeEntity(
     @ColumnInfo(name = Columns.RECIPE_ID)
     val recipeId: String,
 
-    @ColumnInfo(name = Columns.NAME)
-    val name: String,
+    @Embedded
+    val nutrient: NutrientFieldEntity,
 
     @ColumnInfo(name = Columns.TOTAL_VALUE)
     val totalValue: Float,
@@ -36,7 +37,6 @@ data class NutrientRecipeEntity(
     object Columns {
         const val ID = "id"
         const val RECIPE_ID = "nutrient_recipe_id"
-        const val NAME = "name"
         const val TOTAL_VALUE = "total_value"
         const val DAILY_VALUE = "daily_value"
     }
