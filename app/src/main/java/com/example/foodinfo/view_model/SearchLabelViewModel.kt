@@ -30,8 +30,8 @@ class SearchLabelViewModel @Inject constructor(
             .shareIn(viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1)
     }
 
-    fun updateFavoriteMark(recipeId: String) {
-        repositoryRecipes.updateFavoriteMark(recipeId)
+    fun invertFavoriteStatus(recipeId: String) {
+        repositoryRecipes.invertFavoriteStatus(recipeId)
     }
 
     fun getLabel(category: String, label: String): LabelHintModel {

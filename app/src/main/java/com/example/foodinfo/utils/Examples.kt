@@ -4,24 +4,36 @@ package com.example.foodinfo.utils
 fun queryExample() {
     /*
         SELECT * FROM recipe WHERE
-            total_time >= 40
-            AND servings <= 4
-            AND calories BETWEEN 1343 AND 1345
-            AND id IN (SELECT nutrient_recipe_id FROM recipe_nutrients WHERE CASE
-                    WHEN label = 'Fat' THEN total_value BETWEEN 16.0 AND 16.5
-                    WHEN label = 'Carbs' THEN total_value <= 18.0
-                    WHEN label = 'Protein' THEN total_value >= 20.0
+            servings <= 10
+            AND calories BETWEEN 200 AND 250
+            AND id IN (SELECT recipe_id FROM nutrients WHERE CASE
+                    WHEN label = 'Fat' THEN total_value BETWEEN 18.0 AND 20.5
+                    WHEN label = 'Carbs' THEN total_value <= 6.0
+                    WHEN label = 'Protein' THEN total_value >= 2.0
                     ELSE NULL END
-                GROUP BY nutrient_recipe_id
-                HAVING  count(nutrient_recipe_id) = 3)
-            AND id IN (SELECT label_recipe_id FROM recipe_labels WHERE CASE
-                    WHEN category = 'cuisine' THEN label IN ('Japanese')
-                    WHEN category = 'dish' THEN label IN ('omelet', 'egg')
-                    WHEN category = 'meal' THEN label IN ('breakfast', 'dinner')
+                GROUP BY recipe_id
+                HAVING  count(recipe_id) = 3)
+            AND id IN (SELECT recipe_id FROM (
+                SELECT recipe_id, category FROM recipe_labels WHERE CASE
+                    WHEN category = 'diet' THEN name IN ('high-fiber', 'high-protein')
+                    WHEN category = 'meal' THEN name IN ('lunch', 'dinner', 'snack')
+                    WHEN category = 'cuisine' THEN name IN ('Asian')
                     ELSE NULL END
-                GROUP BY label_recipe_id
-                HAVING  count(label_recipe_id) = 5)
-
-   will return recipe with ID: 1MMVGIN7W58TZAXUI8C8
+                GROUP BY recipe_id, category)
+            GROUP BY recipe_id
+            HAVING  count(recipe_id) = 3)
      */
 }
+
+/*
+SELECT name FROM recipe WHERE id IN (SELECT recipe_id FROM (
+    SELECT recipe_id, category, name FROM recipe_labels WHERE CASE
+        WHEN category = 'diet' THEN name IN ('high-fiber', 'high-protein')
+        WHEN category = 'meal' THEN name IN ('lunch', 'dinner', 'snack')
+        WHEN category = 'cuisine' THEN name IN ('Asian')
+        ELSE NULL END
+    GROUP BY recipe_id, category)
+GROUP BY recipe_id
+HAVING  count(recipe_id) = 3)
+
+ */

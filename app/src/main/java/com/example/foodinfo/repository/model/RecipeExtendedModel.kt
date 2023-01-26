@@ -4,8 +4,6 @@ package com.example.foodinfo.repository.model
 data class RecipeExtendedModel(
     val id: String,
     val name: String,
-    val calories: String,
-    val caloriesDaily: Int,
     val source: String,
     val totalWeight: Int,
     val totalTime: Int,
@@ -14,6 +12,7 @@ data class RecipeExtendedModel(
     val isFavorite: Boolean,
     val ingredients: List<String>,
     val categories: List<CategoryRecipeModel>,
+    val energy: NutrientRecipeModel,
     val protein: NutrientRecipeModel,
     val carb: NutrientRecipeModel,
     val fat: NutrientRecipeModel

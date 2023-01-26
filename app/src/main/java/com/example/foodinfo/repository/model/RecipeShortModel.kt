@@ -8,8 +8,8 @@ data class RecipeShortModel(
     val name: String,
     val calories: String,
     val servings: String,
-    val totalTime: Int,
-    val totalIngredients: String,
+    val cookingTime: Int,
+    val ingredientsCount: String,
     val previewURL: String,
     val isFavorite: Boolean
 ) {
@@ -27,8 +27,8 @@ data class RecipeShortModel(
             return oldItem.name == newItem.name &&
                     oldItem.calories == newItem.calories &&
                     oldItem.servings == newItem.servings &&
-                    oldItem.totalTime == newItem.totalTime &&
-                    oldItem.totalIngredients == newItem.totalIngredients &&
+                    oldItem.cookingTime == newItem.cookingTime &&
+                    oldItem.ingredientsCount == newItem.ingredientsCount &&
                     oldItem.previewURL == newItem.previewURL &&
                     oldItem.isFavorite == newItem.isFavorite
 

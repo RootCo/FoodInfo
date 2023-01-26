@@ -51,7 +51,7 @@ data class RecipeIngredientEntity(
 
     object Columns {
         const val ID = "id"
-        const val RECIPE_ID = "ingredient_recipe_id"
+        const val RECIPE_ID = "recipe_id"
         const val TEXT = "text"
         const val QUANTITY = "quantity"
         const val MEASURE = "measure"

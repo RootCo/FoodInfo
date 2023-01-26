@@ -6,7 +6,6 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.foodinfo.repository.RepositoryRecipes
 import com.example.foodinfo.repository.model.RecipeFavoriteModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -50,7 +49,7 @@ class FavoriteViewModel @Inject constructor(
         return id in selectedRecipes
     }
 
-    fun delSelected() {
+    fun delRecipesFromFavorite() {
         repositoryRecipes.delFromFavorite(selectedRecipes.toList())
     }
 

@@ -72,10 +72,6 @@ class MainActivity : AppCompatActivity() {
             gson.fromJson(
                 dbRecipes.get(AssetsKeyWords.LABELS).toString(),
                 object : TypeToken<List<LabelRecipeEntity>>() {}.type
-            ),
-            gson.fromJson(
-                dbRecipes.get(AssetsKeyWords.FAVORITE_MARKS).toString(),
-                object : TypeToken<List<FavoriteMarkEntity>>() {}.type
             )
         )
         dataBase.searchHistoryDAO.addHistory(

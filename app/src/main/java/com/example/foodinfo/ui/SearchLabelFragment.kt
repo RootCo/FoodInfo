@@ -62,7 +62,7 @@ class SearchLabelFragment : BaseFragment<FragmentSearchLabelBinding>(
     }
 
     private val onFavoriteClickListener: (String) -> Unit = { id ->
-        viewModel.updateFavoriteMark(id)
+        viewModel.invertFavoriteStatus(id)
     }
 
     private val onGetTime: (Int) -> String = { time ->

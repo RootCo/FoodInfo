@@ -35,7 +35,7 @@ data class NutrientRecipeEntity(
 ) {
     object Columns {
         const val ID = "id"
-        const val RECIPE_ID = "nutrient_recipe_id"
+        const val RECIPE_ID = "recipe_id"
         const val NAME = "name"
         const val TOTAL_VALUE = "total_value"
         const val DAILY_VALUE = "daily_value"

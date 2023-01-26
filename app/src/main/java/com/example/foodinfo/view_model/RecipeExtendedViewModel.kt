@@ -31,7 +31,7 @@ class RecipeExtendedViewModel @Inject constructor(
         return repositoryRecipeFieldsInfo.getLabelHint(category, label)
     }
 
-    fun updateFavoriteMark() {
-        repositoryRecipes.updateFavoriteMark(recipeId)
+    fun invertFavoriteStatus() {
+        repositoryRecipes.invertFavoriteStatus(recipeId)
     }
 }

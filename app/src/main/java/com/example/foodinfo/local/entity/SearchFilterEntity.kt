@@ -25,6 +25,6 @@ data class SearchFilterEntity(
 
     companion object {
         const val TABLE_NAME = "filter_search"
-        const val DEFAULT_NAME = "default_filter_name"
+        const val DEFAULT_NAME = "default_name"
     }
 }

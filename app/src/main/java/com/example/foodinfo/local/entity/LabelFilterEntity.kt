@@ -36,7 +36,7 @@ data class LabelFilterEntity(
 ) {
     object Columns {
         const val ID = "id"
-        const val FILTER_NAME = "label_filter_name"
+        const val FILTER_NAME = "filter_name"
         const val CATEGORY = "category"
         const val NAME = "name"
         const val IS_SELECTED = "is_selected"

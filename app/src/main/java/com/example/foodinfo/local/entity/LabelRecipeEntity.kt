@@ -33,7 +33,7 @@ data class LabelRecipeEntity(
 ) {
     object Columns {
         const val ID = "id"
-        const val RECIPE_ID = "label_recipe_id"
+        const val RECIPE_ID = "recipe_id"
         const val CATEGORY = "category"
         const val NAME = "name"
     }

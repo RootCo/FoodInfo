@@ -24,19 +24,13 @@ interface RecipesDAO {
     @Transaction
     @Query(
         "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
-                "IN (SELECT ${FavoriteMarkEntity.Columns.RECIPE_ID} " +
-                "FROM ${FavoriteMarkEntity.TABLE_NAME} " +
-                "WHERE ${FavoriteMarkEntity.Columns.IS_FAVORITE} == 1)"
+                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
     )
     fun getFavorite(): PagingSource<Int, RecipePOJO>
 
     @Query(
         "SELECT ${RecipeEntity.Columns.ID} FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
-                "IN (SELECT ${FavoriteMarkEntity.Columns.RECIPE_ID} " +
-                "FROM ${FavoriteMarkEntity.TABLE_NAME} " +
-                "WHERE ${FavoriteMarkEntity.Columns.IS_FAVORITE} == 1)"
+                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
     )
     fun getFavoriteIds(): List<String>
 
@@ -46,8 +40,7 @@ interface RecipesDAO {
             RecipeEntity::class,
             NutrientRecipeEntity::class,
             RecipeIngredientEntity::class,
-            LabelRecipeEntity::class,
-            FavoriteMarkEntity::class
+            LabelRecipeEntity::class
         ]
     )
     fun getByFilter(query: SupportSQLiteQuery): PagingSource<Int, RecipePOJO>
@@ -84,58 +77,80 @@ interface RecipesDAO {
 
 
     @Query(
-        "UPDATE ${FavoriteMarkEntity.TABLE_NAME} " +
-                "SET ${FavoriteMarkEntity.Columns.IS_FAVORITE} = " +
-                "NOT ${FavoriteMarkEntity.Columns.IS_FAVORITE} " +
-                "WHERE ${FavoriteMarkEntity.Columns.RECIPE_ID}=:recipeId"
+        "UPDATE ${RecipeEntity.TABLE_NAME} " +
+                "SET ${RecipeEntity.Columns.IS_FAVORITE} = " +
+                "NOT ${RecipeEntity.Columns.IS_FAVORITE} " +
+                "WHERE ${RecipeEntity.Columns.ID}=:recipeID"
     )
-    fun updateFavoriteStatus(recipeId: String)
+    fun invertFavoriteStatus(recipeID: String)
 
     @Query(
-        "UPDATE ${FavoriteMarkEntity.TABLE_NAME} " +
-                "SET ${FavoriteMarkEntity.Columns.IS_FAVORITE} = 0 " +
-                "WHERE ${FavoriteMarkEntity.Columns.RECIPE_ID} IN (:recipeId)"
+        "UPDATE ${RecipeEntity.TABLE_NAME} " +
+                "SET ${RecipeEntity.Columns.IS_FAVORITE} = 0 " +
+                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIDs)"
     )
-    fun delFromFavorite(recipeId: List<String>)
+    fun delFromFavorite(recipeIDs: List<String>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRecipe(recipe: RecipeEntity)
+    @Query(
+        "UPDATE ${RecipeEntity.TABLE_NAME} " +
+                "SET ${RecipeEntity.Columns.IS_FAVORITE} = 1 " +
+                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+    )
+    fun addToFavorite(recipeIds: List<String>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addRecipes(recipes: List<RecipeEntity>)
+    @MapInfo(keyColumn = RecipeEntity.Columns.ID, valueColumn = RecipeEntity.Columns.IS_FAVORITE)
+    @Query(
+        "SELECT ${RecipeEntity.Columns.ID}, ${RecipeEntity.Columns.IS_FAVORITE} " +
+                "FROM ${RecipeEntity.TABLE_NAME} " +
+                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+    )
+    fun getFavoriteMarks(recipeIds: List<String>): Map<String, Boolean>
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query(
+        "DELETE FROM ${RecipeEntity.TABLE_NAME} " +
+                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+    )
+    fun removeRecipes(recipeIds: List<String>)
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun addRecipes(recipes: List<RecipeEntity>): List<Long>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addNutrients(nutrients: List<NutrientRecipeEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addIngredients(nutrients: List<RecipeIngredientEntity>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addLabels(dietLabels: List<LabelRecipeEntity>)
 
     /*
-        При обновлении рецепта из сети создается объект RecipeEntity с isFavorite = false
-        поэтому тут без OnConflictStrategy.REPLACE чтобы избежать ситуаций, когда
-        рецепт был добавлен в закладки, потом рецепт обновился на сервере и isFavorite
-        поле изменилось на false. Для добавления/удаления рецепта из закладок
-        есть отдельный метод: changeFavoriteStatus()
+        when adding recipe from server into local DB there is way update it by id in case it's already exists,
+        but because of auto generated ids for nutrients, ingredients and labels there is no way to check
+        whether some of them was updated/removed or the new one was added on the server
+        so if recipe already exists in local DB it's had to be removed and reinserted
      */
-    @Insert
-    fun addFavoriteMarks(favoriteMarks: List<FavoriteMarkEntity>)
-
     @Transaction
     fun addAll(
         recipes: List<RecipeEntity>,
         nutrients: List<NutrientRecipeEntity>,
         ingredients: List<RecipeIngredientEntity>,
-        labels: List<LabelRecipeEntity>,
-        favoriteMarks: List<FavoriteMarkEntity>
+        labels: List<LabelRecipeEntity>
     ) {
+        // save favorite marks before deleting recipes
+        val favoriteMarks = getFavoriteMarks(recipes.map { it.id })
+
+        // remove recipes that already in DB (foreign key will also delete nutrients etc.)
+        removeRecipes(favoriteMarks.keys.toList())
+
         addRecipes(recipes)
         addNutrients(nutrients)
         addIngredients(ingredients)
         addLabels(labels)
-        addFavoriteMarks(favoriteMarks)
+
+        // change favorite mark for recipes that was marked as favorite before deleting
+        addToFavorite(recipes.filter { it.isFavorite }.map { it.id })
     }
 }

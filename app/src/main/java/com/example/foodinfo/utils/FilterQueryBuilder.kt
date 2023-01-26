@@ -43,14 +43,12 @@ data class FilterQueryBuilder(
             )
         }
         var query = "${RecipeEntity.Columns.ID} IN "
-        query += "("
-        query += "SELECT ${NutrientRecipeEntity.Columns.RECIPE_ID} "
+        query += "(SELECT ${NutrientRecipeEntity.Columns.RECIPE_ID} "
         query += "FROM ${NutrientRecipeEntity.TABLE_NAME} WHERE CASE "
         query += nutrientQueryList.joinToString(" ")
         query += " ELSE NULL END "
         query += "GROUP BY ${NutrientRecipeEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${NutrientRecipeEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size}"
-        query += ")"
+        query += "HAVING  count(${NutrientRecipeEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size})"
         return query
     }
 
@@ -91,17 +89,18 @@ data class FilterQueryBuilder(
             )
         }
         if (categoryQueryList.isEmpty()) return ""
-        query += "("
-        query += "SELECT ${LabelRecipeEntity.Columns.RECIPE_ID} "
-        query += "FROM ${LabelRecipeEntity.TABLE_NAME} WHERE CASE "
+
+        query += "(SELECT ${LabelRecipeEntity.Columns.RECIPE_ID} FROM "
+        query += "(SELECT ${LabelRecipeEntity.Columns.RECIPE_ID}, ${LabelRecipeEntity.Columns.CATEGORY} FROM "
+        query += "${LabelRecipeEntity.TABLE_NAME} WHERE CASE "
         query += categoryQueryList.joinToString(" ")
         query += " ELSE NULL END "
+        query += "GROUP BY ${LabelRecipeEntity.Columns.RECIPE_ID}, ${LabelRecipeEntity.Columns.CATEGORY}) "
         query += "GROUP BY ${LabelRecipeEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${LabelRecipeEntity.Columns.RECIPE_ID}) = "
-        query += "${categoryFilterFields.sumOf { it.labels.size }}"
-        query += ")"
+        query += "HAVING  count(${LabelRecipeEntity.Columns.RECIPE_ID}) = ${categoryFilterFields.size})"
         return query
     }
+
 
     private fun categoryFieldToQuery(
         column: String, labels: List<String>

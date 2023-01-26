@@ -1,5 +1,6 @@
 package com.example.foodinfo.repository.impl
 
+import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import kotlin.system.measureTimeMillis
 
 
 class RepositoryRecipesImpl @Inject constructor(
@@ -89,8 +91,8 @@ class RepositoryRecipesImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun updateFavoriteMark(id: String) {
-        recipesDAO.updateFavoriteStatus(id)
+    override fun invertFavoriteStatus(id: String) {
+        recipesDAO.invertFavoriteStatus(id)
     }
 
     override fun delFromFavorite(id: List<String>) {

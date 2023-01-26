@@ -27,17 +27,20 @@ data class RecipeEntity(
     @ColumnInfo(name = Columns.CALORIES)
     val calories: Int,
 
-    @ColumnInfo(name = Columns.TOTAL_INGREDIENTS)
-    val totalIngredients: Int,
+    @ColumnInfo(name = Columns.INGREDIENTS_COUNT)
+    val ingredientsCount: Int,
 
-    @ColumnInfo(name = Columns.TOTAL_WEIGHT)
-    val totalWeight: Int,
+    @ColumnInfo(name = Columns.WEIGHT)
+    val weight: Int,
 
-    @ColumnInfo(name = Columns.TOTAL_TIME)
-    val totalTime: Int,
+    @ColumnInfo(name = Columns.COOKING_TIME)
+    val cookingTime: Int,
 
     @ColumnInfo(name = Columns.SERVINGS)
-    val servings: Int
+    val servings: Int,
+
+    @ColumnInfo(name = Columns.IS_FAVORITE)
+    val isFavorite: Boolean = false
 ) {
 
     object Columns {
@@ -46,10 +49,11 @@ data class RecipeEntity(
         const val NAME = "name"
         const val PREVIEW_URL = "preview_url"
         const val CALORIES = "calories"
-        const val TOTAL_INGREDIENTS = "ingredients"
-        const val TOTAL_WEIGHT = "weight"
-        const val TOTAL_TIME = "time"
+        const val INGREDIENTS_COUNT = "ingredients"
+        const val WEIGHT = "weight"
+        const val COOKING_TIME = "time"
         const val SERVINGS = "servings"
+        const val IS_FAVORITE = "is_favorite"
     }
 
     companion object {

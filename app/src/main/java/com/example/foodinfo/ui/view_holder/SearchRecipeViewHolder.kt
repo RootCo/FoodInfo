@@ -29,7 +29,7 @@ class SearchRecipeViewHolder(
     override fun bind(newItem: RecipeShortModel) {
         super.bind(newItem)
         binding.tvName.text = item.name
-        binding.tvTimeValue.text = onGetTime.invoke(item.totalTime)
+        binding.tvTimeValue.text = onGetTime.invoke(item.cookingTime)
         binding.tvServingsValue.text = item.servings
         binding.tvCaloriesValue.text = item.calories
         GlideApp.with(binding.ivPreview.context)

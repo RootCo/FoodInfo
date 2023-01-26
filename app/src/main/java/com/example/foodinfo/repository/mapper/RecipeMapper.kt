@@ -4,7 +4,6 @@ import com.example.foodinfo.local.pojo.RecipeExtendedPOJO
 import com.example.foodinfo.local.pojo.RecipePOJO
 import com.example.foodinfo.repository.model.RecipeExtendedModel
 import com.example.foodinfo.repository.model.RecipeFavoriteModel
-import com.example.foodinfo.repository.model.RecipeModel
 import com.example.foodinfo.repository.model.RecipeShortModel
 
 
@@ -14,10 +13,10 @@ fun RecipePOJO.toModelShort(): RecipeShortModel {
         name = this.name,
         calories = this.calories.toString(),
         servings = this.servings.toString(),
-        totalTime = this.totalTime,
-        totalIngredients = this.totalIngredients.toString(),
+        cookingTime = this.cookingTime,
+        ingredientsCount = this.ingredientsCount.toString(),
         previewURL = this.previewURL,
-        isFavorite = this.favoriteMark.isFavorite
+        isFavorite = this.isFavorite
     )
 }
 
@@ -36,16 +35,15 @@ fun RecipeExtendedPOJO.toModelExtended(): RecipeExtendedModel {
     return RecipeExtendedModel(
         id = this.id,
         name = this.name,
-        calories = this.calories.toString(),
-        caloriesDaily = this.calories * 100 / RecipeModel.CALORIES_CAP,
         source = this.source,
-        totalWeight = this.totalWeight,
-        totalTime = this.totalTime,
+        totalWeight = this.weight,
+        totalTime = this.cookingTime,
         servings = this.servings,
         previewURL = this.previewURL,
-        isFavorite = this.favoriteMark.isFavorite,
+        isFavorite = this.isFavorite,
         ingredients = this.ingredients.map { it.previewURL },
         categories = this.labels.toModelRecipe(),
+        energy = this.nutrients.findLast { it.name == "Protein" }!!.toModel(), // TODO change to "Energy"
         protein = this.nutrients.findLast { it.name == "Protein" }!!.toModel(),
         carb = this.nutrients.findLast { it.name == "Carbs" }!!.toModel(),
         fat = this.nutrients.findLast { it.name == "Fat" }!!.toModel()

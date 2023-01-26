@@ -45,7 +45,7 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
     }
 
     private val onFavoriteClickListener: () -> Unit = {
-        viewModel.updateFavoriteMark()
+        viewModel.invertFavoriteStatus()
     }
 
     private val onShareClickListener: () -> Unit = { }
@@ -158,11 +158,13 @@ class RecipeExtendedFragment : BaseFragment<FragmentRecipeExtendedBinding>(
             tvWeightValue.text = getString(R.string.gram_int_value, recipe.totalWeight)
             tvTimeValue.text = getString(R.string.time_value, recipe.totalTime)
 
-            iEnergy.tvTitle.text = getString(R.string.calories_header)
-            iEnergy.tvValue.text = recipe.calories
-            iEnergy.progressBar.progress = recipe.caloriesDaily
-
             btnFavorite.setFavorite(recipe.isFavorite, falseColor = R.attr.appMainFontColor)
+
+            recipe.energy.apply {
+                iEnergy.tvTitle.text = label
+                iEnergy.tvValue.text = totalWeight.toInt().toString()
+                iEnergy.progressBar.progress = dailyPercent
+            }
 
             recipe.protein.apply {
                 iProtein.tvTitle.text = label

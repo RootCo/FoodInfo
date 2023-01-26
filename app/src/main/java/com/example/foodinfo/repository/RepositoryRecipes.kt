@@ -23,7 +23,7 @@ interface RepositoryRecipes {
 
     fun getByIdLabels(id: String): Flow<State<List<CategoryRecipeModel>>>
 
-    fun updateFavoriteMark(id: String)
+    fun invertFavoriteStatus(id: String)
 
     fun delFromFavorite(id: List<String>)
 }
