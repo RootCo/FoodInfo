@@ -47,14 +47,14 @@ class SearchFilterFragment : BaseFragment<FragmentSearchFilterBinding>(
         )
     }
 
-    private val onBaseFieldValueChangedCallback: (Long, Float, Float) -> Unit = { id, minValue, maxValue ->
+    private val onBaseFieldValueChangedCallback: (Int, Float, Float) -> Unit = { id, minValue, maxValue ->
         viewModel.updateField(id, minValue, maxValue)
     }
 
-    private val onCategoryChangedCallback: (String) -> Unit = { category ->
+    private val onCategoryChangedCallback: (Int) -> Unit = { categoryID ->
         findNavController().navigate(
             SearchFilterFragmentDirections.actionFSearchFilterToFSearchFilterCategory(
-                category,
+                categoryID,
                 viewModel.filterName
             )
         )
