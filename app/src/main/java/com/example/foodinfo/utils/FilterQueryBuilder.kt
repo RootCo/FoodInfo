@@ -127,7 +127,6 @@ data class FilterQueryBuilder(
         if (subQueryList.size > 0) {
             query += " WHERE " + subQueryList.joinToString(SEPARATOR)
         }
-        Log.d("123", query)
         return query
     }
 
