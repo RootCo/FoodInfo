@@ -1,6 +1,5 @@
 package com.example.foodinfo.utils
 
-import android.util.Log
 import com.example.foodinfo.local.dto.LabelOfRecipeDB
 import com.example.foodinfo.local.dto.LabelRecipeAttrDB
 import com.example.foodinfo.local.dto.NutrientOfRecipeDB
@@ -58,7 +57,7 @@ data class FilterQueryBuilder(
         infoID: Int, minValue: Float?, maxValue: Float?
     ): String {
         var query = ""
-        query += "WHEN ${NutrientOfRecipeDB.Columns.INFO_ID} = '$infoID' THEN "
+        query += "WHEN ${NutrientOfRecipeDB.Columns.INFO_ID} = $infoID THEN "
         query += rangeFieldToQuery(
             NutrientOfRecipeDB.Columns.TOTAL_VALUE,
             minValue,
