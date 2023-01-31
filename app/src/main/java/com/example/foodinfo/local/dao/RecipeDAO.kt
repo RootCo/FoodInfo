@@ -6,6 +6,7 @@ import com.example.foodinfo.local.dto.*
 import kotlinx.coroutines.flow.Flow
 
 
+// All UPDATE functions must truly UPDATE content (not DELETE and INSERT) so all indices will stay the same
 interface RecipeDAO {
 
     // return recipes in random order (in case there is no such attribute as "Popular" for recipe yet)
