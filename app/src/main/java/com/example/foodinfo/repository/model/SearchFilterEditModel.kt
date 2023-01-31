@@ -1,12 +1,12 @@
 package com.example.foodinfo.repository.model
 
-import com.example.foodinfo.local.entity.SearchFilterEntity
+import com.example.foodinfo.local.dto.SearchFilterDB
 
 
 data class SearchFilterEditModel(
-    val id: Long = 0,
-    val name: String = SearchFilterEntity.DEFAULT_NAME,
-    val baseFields: List<BaseFieldFilterEditModel>,
-    val categories: List<CategoryFilterPreviewModel>,
+    val ID: Int = 0,
+    val name: String = SearchFilterDB.DEFAULT_NAME,
+    val baseFields: List<BasicOfSearchFilterEditModel>,
+    val categories: List<CategoryOfSearchFilterPreviewModel>,
     val nutrients: List<NutrientFilterPreviewModel>
 )

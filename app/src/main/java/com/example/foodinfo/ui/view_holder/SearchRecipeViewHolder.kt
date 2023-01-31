@@ -17,11 +17,11 @@ class SearchRecipeViewHolder(
 
     init {
         binding.clContent.setOnClickListener {
-            onItemClickListener(item.id)
+            onItemClickListener(item.ID)
         }
 
         binding.btnFavorite.setOnClickListener {
-            onFavoriteClickListener(item.id)
+            onFavoriteClickListener(item.ID)
         }
     }
 

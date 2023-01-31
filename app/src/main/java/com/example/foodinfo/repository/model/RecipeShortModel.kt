@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 
 
 data class RecipeShortModel(
-    val id: String,
+    val ID: String,
     val name: String,
     val calories: String,
     val servings: String,
@@ -18,7 +18,7 @@ data class RecipeShortModel(
         override fun areItemsTheSame(
             oldItem: RecipeShortModel, newItem: RecipeShortModel
         ): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.ID == newItem.ID
         }
 
         override fun areContentsTheSame(

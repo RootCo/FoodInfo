@@ -2,8 +2,8 @@ package com.example.foodinfo.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.foodinfo.repository.RepositoryRecipeFieldsInfo
-import com.example.foodinfo.repository.RepositoryRecipes
+import com.example.foodinfo.repository.RecipeAttrRepository
+import com.example.foodinfo.repository.RecipeRepository
 import com.example.foodinfo.repository.model.LabelHintModel
 import com.example.foodinfo.repository.model.RecipeExtendedModel
 import com.example.foodinfo.utils.State
@@ -14,24 +14,24 @@ import javax.inject.Inject
 
 
 class RecipeExtendedViewModel @Inject constructor(
-    private val repositoryRecipes: RepositoryRecipes,
-    private val repositoryRecipeFieldsInfo: RepositoryRecipeFieldsInfo
+    private val recipeRepository: RecipeRepository,
+    private val recipeAttrRepository: RecipeAttrRepository
 ) :
     ViewModel() {
 
     var recipeId: String = ""
 
     val recipe: SharedFlow<State<RecipeExtendedModel>> by lazy {
-        repositoryRecipes.getByIdExtended(recipeId).shareIn(
+        recipeRepository.getByIdExtended(recipeId).shareIn(
             viewModelScope, SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000), 1
         )
     }
 
-    fun getLabel(category: String, label: String): LabelHintModel {
-        return repositoryRecipeFieldsInfo.getLabelHint(category, label)
+    fun getLabel(ID: Int): LabelHintModel {
+        return recipeAttrRepository.getLabelHint(ID)
     }
 
     fun invertFavoriteStatus() {
-        repositoryRecipes.invertFavoriteStatus(recipeId)
+        recipeRepository.invertFavoriteStatus(recipeId)
     }
 }
