@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 interface SearchFilterDAORoom : SearchFilterDAO {
     @Transaction
     @Query(
-        "SELECT * FROM ${LabelOfSearchFilterEntity.TABLE_NAME} WHERE " +
-                "${LabelOfSearchFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${LabelOfSearchFilterDB.TABLE_NAME} WHERE " +
+                "${LabelOfSearchFilterDB.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getLabelsPOJO(filterName: String): List<LabelOfSearchFilterExtendedPOJO>
 
@@ -23,8 +23,8 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${NutrientOfSearchFilterEntity.TABLE_NAME} WHERE " +
-                "${NutrientOfSearchFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${NutrientOfSearchFilterDB.TABLE_NAME} WHERE " +
+                "${NutrientOfSearchFilterDB.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getNutrientsPOJO(filterName: String): List<NutrientOfSearchFilterExtendedPOJO>
 
@@ -34,8 +34,8 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${BasicOfSearchFilterEntity.TABLE_NAME} WHERE " +
-                "${BasicOfSearchFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${BasicOfSearchFilterDB.TABLE_NAME} WHERE " +
+                "${BasicOfSearchFilterDB.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun getBasicsPOJO(filterName: String): List<BasicOfSearchFilterExtendedPOJO>
 
@@ -46,8 +46,8 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${LabelOfSearchFilterEntity.TABLE_NAME} WHERE " +
-                "${LabelOfSearchFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${LabelOfSearchFilterDB.TABLE_NAME} WHERE " +
+                "${LabelOfSearchFilterDB.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun observeLabelsPOJO(filterName: String): Flow<List<LabelOfSearchFilterExtendedPOJO>>
 
@@ -57,8 +57,8 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${NutrientOfSearchFilterEntity.TABLE_NAME} WHERE " +
-                "${NutrientOfSearchFilterEntity.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${NutrientOfSearchFilterDB.TABLE_NAME} WHERE " +
+                "${NutrientOfSearchFilterDB.Columns.FILTER_NAME} LIKE '%' || :filterName || '%'"
     )
     fun observeNutrientsPOJO(filterName: String): Flow<List<NutrientOfSearchFilterExtendedPOJO>>
 
@@ -68,8 +68,8 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${SearchFilterEntity.TABLE_NAME} WHERE " +
-                "${SearchFilterEntity.Columns.NAME} LIKE '%' || :filterName || '%'"
+        "SELECT * FROM ${SearchFilterDB.TABLE_NAME} WHERE " +
+                "${SearchFilterDB.Columns.NAME} LIKE '%' || :filterName || '%'"
     )
     fun observeFilterExtendedPOJO(filterName: String): Flow<SearchFilterExtendedPOJO>
 
@@ -92,25 +92,25 @@ interface SearchFilterDAORoom : SearchFilterDAO {
 
 
     @Query(
-        "UPDATE ${BasicOfSearchFilterEntity.TABLE_NAME} SET " +
-                "${BasicOfSearchFilterEntity.Columns.MIN_VALUE} = :minValue," +
-                "${BasicOfSearchFilterEntity.Columns.MAX_VALUE} = :maxValue " +
-                "WHERE ${BasicOfSearchFilterEntity.Columns.ID} == :id"
+        "UPDATE ${BasicOfSearchFilterDB.TABLE_NAME} SET " +
+                "${BasicOfSearchFilterDB.Columns.MIN_VALUE} = :minValue," +
+                "${BasicOfSearchFilterDB.Columns.MAX_VALUE} = :maxValue " +
+                "WHERE ${BasicOfSearchFilterDB.Columns.ID} == :id"
     )
     override fun updateBasic(id: Int, minValue: Float, maxValue: Float)
 
     @Query(
-        "UPDATE ${LabelOfSearchFilterEntity.TABLE_NAME} SET " +
-                "${LabelOfSearchFilterEntity.Columns.IS_SELECTED} = :isSelected " +
-                "WHERE ${LabelOfSearchFilterEntity.Columns.ID} == :id"
+        "UPDATE ${LabelOfSearchFilterDB.TABLE_NAME} SET " +
+                "${LabelOfSearchFilterDB.Columns.IS_SELECTED} = :isSelected " +
+                "WHERE ${LabelOfSearchFilterDB.Columns.ID} == :id"
     )
     override fun updateLabel(id: Int, isSelected: Boolean)
 
     @Query(
-        "UPDATE ${NutrientOfSearchFilterEntity.TABLE_NAME} SET " +
-                "${NutrientOfSearchFilterEntity.Columns.MIN_VALUE} = :minValue," +
-                "${NutrientOfSearchFilterEntity.Columns.MAX_VALUE} = :maxValue " +
-                "WHERE ${NutrientOfSearchFilterEntity.Columns.ID} == :id"
+        "UPDATE ${NutrientOfSearchFilterDB.TABLE_NAME} SET " +
+                "${NutrientOfSearchFilterDB.Columns.MIN_VALUE} = :minValue," +
+                "${NutrientOfSearchFilterDB.Columns.MAX_VALUE} = :maxValue " +
+                "WHERE ${NutrientOfSearchFilterDB.Columns.ID} == :id"
     )
     override fun updateNutrient(id: Int, minValue: Float, maxValue: Float)
 

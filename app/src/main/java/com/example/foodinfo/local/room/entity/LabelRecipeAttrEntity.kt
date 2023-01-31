@@ -8,8 +8,8 @@ import com.example.foodinfo.local.dto.LabelRecipeAttrDB
 
 
 @Entity(
-    tableName = LabelRecipeAttrEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(LabelRecipeAttrEntity.Columns.ID), unique = true)]
+    tableName = LabelRecipeAttrDB.TABLE_NAME,
+    indices = [Index(value = arrayOf(LabelRecipeAttrDB.Columns.ID), unique = true)]
 )
 data class LabelRecipeAttrEntity(
     @PrimaryKey
@@ -40,18 +40,7 @@ data class LabelRecipeAttrEntity(
     previewURL = previewURL
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val CATEGORY_ID = "category_id"
-        const val TAG = "tag"
-        const val NAME = "name"
-        const val DESCRIPTION = "description"
-        const val PREVIEW_URL = "preview_url"
-    }
-
     companion object {
-        const val TABLE_NAME = "label_recipe_attr"
-
         fun fromDB(item: LabelRecipeAttrDB): LabelRecipeAttrEntity {
             return LabelRecipeAttrEntity(
                 ID = item.ID,

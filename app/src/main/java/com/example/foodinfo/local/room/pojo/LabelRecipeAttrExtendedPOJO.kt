@@ -2,33 +2,34 @@ package com.example.foodinfo.local.room.pojo
 
 import androidx.room.ColumnInfo
 import androidx.room.Relation
+import com.example.foodinfo.local.dto.CategoryRecipeAttrDB
+import com.example.foodinfo.local.dto.LabelRecipeAttrDB
 import com.example.foodinfo.local.dto.LabelRecipeAttrExtendedDB
 import com.example.foodinfo.local.room.entity.CategoryRecipeAttrEntity
-import com.example.foodinfo.local.room.entity.LabelRecipeAttrEntity
 
 
 data class LabelRecipeAttrExtendedPOJO(
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.ID)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.ID)
     override val ID: Int,
 
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.CATEGORY_ID)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.CATEGORY_ID)
     override val categoryID: Int,
 
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.TAG)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.TAG)
     override val tag: String,
 
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.NAME)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.NAME)
     override val name: String,
 
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.DESCRIPTION)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.DESCRIPTION)
     override val description: String,
 
-    @ColumnInfo(name = LabelRecipeAttrEntity.Columns.PREVIEW_URL)
+    @ColumnInfo(name = LabelRecipeAttrDB.Columns.PREVIEW_URL)
     override val previewURL: String,
 
     @Relation(
-        parentColumn = LabelRecipeAttrEntity.Columns.CATEGORY_ID,
-        entityColumn = CategoryRecipeAttrEntity.Columns.ID,
+        parentColumn = LabelRecipeAttrDB.Columns.CATEGORY_ID,
+        entityColumn = CategoryRecipeAttrDB.Columns.ID,
     )
     override val categoryInfo: CategoryRecipeAttrEntity
 

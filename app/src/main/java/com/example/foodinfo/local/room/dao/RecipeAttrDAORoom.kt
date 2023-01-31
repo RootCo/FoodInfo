@@ -19,23 +19,23 @@ import com.example.foodinfo.local.room.entity.NutrientRecipeAttrEntity
 interface RecipeAttrDAORoom : RecipeAttrDAO {
 
     @Query(
-        "SELECT * FROM ${NutrientRecipeAttrEntity.TABLE_NAME} " +
-                "WHERE ${NutrientRecipeAttrEntity.Columns.ID} = :ID"
+        "SELECT * FROM ${NutrientRecipeAttrDB.TABLE_NAME} " +
+                "WHERE ${NutrientRecipeAttrDB.Columns.ID} = :ID"
     )
     override fun getNutrient(ID: Int): NutrientRecipeAttrEntity
 
 
     @Transaction
     @Query(
-        "SELECT * FROM ${LabelRecipeAttrEntity.TABLE_NAME} " +
-                "WHERE ${LabelRecipeAttrEntity.Columns.ID} = :ID"
+        "SELECT * FROM ${LabelRecipeAttrDB.TABLE_NAME} " +
+                "WHERE ${LabelRecipeAttrDB.Columns.ID} = :ID"
     )
     override fun getLabel(ID: Int): LabelRecipeAttrEntity
 
     @Transaction
     @Query(
-        "SELECT * FROM ${LabelRecipeAttrEntity.TABLE_NAME} " +
-                "WHERE ${LabelRecipeAttrEntity.Columns.CATEGORY_ID} = :categoryID"
+        "SELECT * FROM ${LabelRecipeAttrDB.TABLE_NAME} " +
+                "WHERE ${LabelRecipeAttrDB.Columns.CATEGORY_ID} = :categoryID"
     )
     fun getCategoryLabelsEntity(categoryID: Int): List<LabelRecipeAttrEntity>
 
@@ -44,34 +44,34 @@ interface RecipeAttrDAORoom : RecipeAttrDAO {
     }
 
     @Query(
-        "SELECT * FROM ${CategoryRecipeAttrEntity.TABLE_NAME} " +
-                "WHERE ${CategoryRecipeAttrEntity.Columns.ID} = :ID"
+        "SELECT * FROM ${CategoryRecipeAttrDB.TABLE_NAME} " +
+                "WHERE ${CategoryRecipeAttrDB.Columns.ID} = :ID"
     )
     override fun getCategory(ID: Int): CategoryRecipeAttrEntity
 
 
-    @Query("SELECT * FROM ${CategoryRecipeAttrEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${CategoryRecipeAttrDB.TABLE_NAME}")
     fun getCategoriesAllEntity(): List<CategoryRecipeAttrEntity>
 
     override fun getCategoriesAll(): List<CategoryRecipeAttrDB> {
         return getCategoriesAllEntity()
     }
 
-    @Query("SELECT * FROM ${NutrientRecipeAttrEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${NutrientRecipeAttrDB.TABLE_NAME}")
     fun getNutrientsAllEntity(): List<NutrientRecipeAttrEntity>
 
     override fun getNutrientsAll(): List<NutrientRecipeAttrDB> {
         return getNutrientsAllEntity()
     }
 
-    @Query("SELECT * FROM ${BasicRecipeAttrEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${BasicRecipeAttrDB.TABLE_NAME}")
     fun getBasicsAllEntity(): List<BasicRecipeAttrEntity>
 
     override fun getBasicsAll(): List<BasicRecipeAttrDB> {
         return getBasicsAllEntity()
     }
 
-    @Query("SELECT * FROM ${LabelRecipeAttrEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${LabelRecipeAttrDB.TABLE_NAME}")
     fun getLabelsAllEntity(): List<LabelRecipeAttrEntity>
 
     override fun getLabelsAll(): List<LabelRecipeAttrDB> {

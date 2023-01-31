@@ -5,14 +5,15 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.foodinfo.local.dto.NutrientOfRecipeDB
+import com.example.foodinfo.local.dto.RecipeDB
 
 
 @Entity(
-    tableName = NutrientOfRecipeEntity.TABLE_NAME,
+    tableName = NutrientOfRecipeDB.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = RecipeEntity::class,
-        parentColumns = arrayOf(RecipeEntity.Columns.ID),
-        childColumns = arrayOf(NutrientOfRecipeEntity.Columns.RECIPE_ID),
+        parentColumns = arrayOf(RecipeDB.Columns.ID),
+        childColumns = arrayOf(NutrientOfRecipeDB.Columns.RECIPE_ID),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
@@ -38,16 +39,7 @@ data class NutrientOfRecipeEntity(
     value = value
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val RECIPE_ID = "recipe_id"
-        const val INFO_ID = "info_id"
-        const val TOTAL_VALUE = "total_value"
-    }
-
     companion object {
-        const val TABLE_NAME = "nutrient_of_recipe"
-
         fun fromDB(item: NutrientOfRecipeDB): NutrientOfRecipeEntity {
             return NutrientOfRecipeEntity(
                 ID = item.ID,

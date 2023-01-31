@@ -5,14 +5,15 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.foodinfo.local.dto.IngredientOfRecipeDB
+import com.example.foodinfo.local.dto.RecipeDB
 
 
 @Entity(
-    tableName = IngredientOfRecipeEntity.TABLE_NAME,
+    tableName = IngredientOfRecipeDB.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = RecipeEntity::class,
-        parentColumns = arrayOf(RecipeEntity.Columns.ID),
-        childColumns = arrayOf(IngredientOfRecipeEntity.Columns.RECIPE_ID),
+        parentColumns = arrayOf(RecipeDB.Columns.ID),
+        childColumns = arrayOf(IngredientOfRecipeDB.Columns.RECIPE_ID),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
@@ -62,22 +63,7 @@ data class IngredientOfRecipeEntity(
     previewURL = previewURL
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val RECIPE_ID = "recipe_id"
-        const val TEXT = "text"
-        const val QUANTITY = "quantity"
-        const val MEASURE = "measure"
-        const val WEIGHT = "weight"
-        const val FOOD = "food"
-        const val FOOD_CATEGORY = "food_category"
-        const val FOOD_ID = "food_id"
-        const val PREVIEW_URL = "preview_url"
-    }
-
     companion object {
-        const val TABLE_NAME = "ingredient_of_recipe"
-
         fun fromDB(item: IngredientOfRecipeDB): IngredientOfRecipeEntity {
             return IngredientOfRecipeEntity(
                 ID = item.ID,

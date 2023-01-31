@@ -8,8 +8,8 @@ import com.example.foodinfo.local.dto.SearchInputDB
 
 
 @Entity(
-    tableName = SearchInputEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(SearchInputEntity.Columns.INPUT_TEXT), unique = true)]
+    tableName = SearchInputDB.TABLE_NAME,
+    indices = [Index(value = arrayOf(SearchInputDB.Columns.INPUT_TEXT), unique = true)]
 )
 data class SearchInputEntity(
     @PrimaryKey(autoGenerate = true)
@@ -28,16 +28,7 @@ data class SearchInputEntity(
     date = date
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val INPUT_TEXT = "input_text"
-        const val DATE = "date"
-    }
-
     companion object {
-        const val TABLE_NAME = "search_input"
-        const val LIMIT = 7
-
         fun fromDB(item: SearchInputDB): SearchInputEntity {
             return SearchInputEntity(
                 ID = item.ID,

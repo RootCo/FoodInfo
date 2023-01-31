@@ -5,14 +5,15 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.foodinfo.local.dto.LabelOfSearchFilterDB
+import com.example.foodinfo.local.dto.SearchFilterDB
 
 
 @Entity(
-    tableName = LabelOfSearchFilterEntity.TABLE_NAME,
+    tableName = LabelOfSearchFilterDB.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = SearchFilterEntity::class,
-        parentColumns = arrayOf(SearchFilterEntity.Columns.NAME),
-        childColumns = arrayOf(LabelOfSearchFilterEntity.Columns.FILTER_NAME),
+        parentColumns = arrayOf(SearchFilterDB.Columns.NAME),
+        childColumns = arrayOf(LabelOfSearchFilterDB.Columns.FILTER_NAME),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
@@ -38,16 +39,7 @@ data class LabelOfSearchFilterEntity(
     isSelected = isSelected
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val FILTER_NAME = "filter_name"
-        const val INFO_ID = "info_id"
-        const val IS_SELECTED = "is_selected"
-    }
-
     companion object {
-        const val TABLE_NAME = "label_of_search_filter"
-
         fun fromDB(item: LabelOfSearchFilterDB): LabelOfSearchFilterEntity {
             return LabelOfSearchFilterEntity(
                 ID = item.ID,

@@ -8,8 +8,8 @@ import com.example.foodinfo.local.dto.RecipeDB
 
 
 @Entity(
-    tableName = RecipeEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(RecipeEntity.Columns.ID), unique = true)]
+    tableName = RecipeDB.TABLE_NAME,
+    indices = [Index(value = arrayOf(RecipeDB.Columns.ID), unique = true)]
 )
 data class RecipeEntity(
     @PrimaryKey
@@ -56,22 +56,7 @@ data class RecipeEntity(
     isFavorite = isFavorite
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val SOURCE = "source"
-        const val NAME = "name"
-        const val PREVIEW_URL = "preview_url"
-        const val CALORIES = "calories"
-        const val INGREDIENTS_COUNT = "ingredients"
-        const val WEIGHT = "weight"
-        const val COOKING_TIME = "time"
-        const val SERVINGS = "servings"
-        const val IS_FAVORITE = "is_favorite"
-    }
-
     companion object {
-        const val TABLE_NAME = "recipe"
-
         fun fromDB(item: RecipeDB): RecipeEntity {
             return RecipeEntity(
                 ID = item.ID,

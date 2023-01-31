@@ -8,8 +8,8 @@ import com.example.foodinfo.local.dto.SearchFilterDB
 
 
 @Entity(
-    tableName = SearchFilterEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(SearchFilterEntity.Columns.NAME), unique = true)]
+    tableName = SearchFilterDB.TABLE_NAME,
+    indices = [Index(value = arrayOf(SearchFilterDB.Columns.NAME), unique = true)]
 )
 data class SearchFilterEntity(
     @PrimaryKey
@@ -18,13 +18,4 @@ data class SearchFilterEntity(
 
 ) : SearchFilterDB(
     name = name
-) {
-
-    object Columns {
-        const val NAME = "name"
-    }
-
-    companion object {
-        const val TABLE_NAME = "search_filter"
-    }
-}
+)

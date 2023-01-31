@@ -2,30 +2,31 @@ package com.example.foodinfo.local.room.pojo
 
 import androidx.room.ColumnInfo
 import androidx.room.Relation
+import com.example.foodinfo.local.dto.NutrientOfSearchFilterDB
 import com.example.foodinfo.local.dto.NutrientOfSearchFilterExtendedDB
-import com.example.foodinfo.local.room.entity.NutrientOfSearchFilterEntity
+import com.example.foodinfo.local.dto.NutrientRecipeAttrDB
 import com.example.foodinfo.local.room.entity.NutrientRecipeAttrEntity
 
 
 data class NutrientOfSearchFilterExtendedPOJO(
-    @ColumnInfo(name = NutrientOfSearchFilterEntity.Columns.ID)
+    @ColumnInfo(name = NutrientOfSearchFilterDB.Columns.ID)
     override val ID: Int = 0,
 
-    @ColumnInfo(name = NutrientOfSearchFilterEntity.Columns.FILTER_NAME)
+    @ColumnInfo(name = NutrientOfSearchFilterDB.Columns.FILTER_NAME)
     override val filterName: String,
 
-    @ColumnInfo(name = NutrientOfSearchFilterEntity.Columns.INFO_ID)
+    @ColumnInfo(name = NutrientOfSearchFilterDB.Columns.INFO_ID)
     override val infoID: Int,
 
-    @ColumnInfo(name = NutrientOfSearchFilterEntity.Columns.MIN_VALUE)
+    @ColumnInfo(name = NutrientOfSearchFilterDB.Columns.MIN_VALUE)
     override val minValue: Float,
 
-    @ColumnInfo(name = NutrientOfSearchFilterEntity.Columns.MAX_VALUE)
+    @ColumnInfo(name = NutrientOfSearchFilterDB.Columns.MAX_VALUE)
     override val maxValue: Float,
 
     @Relation(
-        parentColumn = NutrientOfSearchFilterEntity.Columns.INFO_ID,
-        entityColumn = NutrientRecipeAttrEntity.Columns.ID
+        parentColumn = NutrientOfSearchFilterDB.Columns.INFO_ID,
+        entityColumn = NutrientRecipeAttrDB.Columns.ID
     )
     override val attrInfo: NutrientRecipeAttrEntity
 

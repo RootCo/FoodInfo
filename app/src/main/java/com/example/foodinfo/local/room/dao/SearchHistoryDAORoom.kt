@@ -12,11 +12,11 @@ import com.example.foodinfo.local.room.entity.SearchInputEntity
 @Dao
 interface SearchHistoryDAORoom : SearchHistoryDAO {
     @Query(
-        "SELECT * FROM ${SearchInputEntity.TABLE_NAME} " +
-                "WHERE ${SearchInputEntity.Columns.INPUT_TEXT} " +
+        "SELECT * FROM ${SearchInputDB.TABLE_NAME} " +
+                "WHERE ${SearchInputDB.Columns.INPUT_TEXT} " +
                 "LIKE '%' || :inputText || '%' " +
-                "ORDER BY ${SearchInputEntity.Columns.DATE} DESC " +
-                "LIMIT ${SearchInputEntity.LIMIT}"
+                "ORDER BY ${SearchInputDB.Columns.DATE} DESC " +
+                "LIMIT ${SearchInputDB.LIMIT}"
     )
     fun getHistoryLatestEntity(inputText: String): List<SearchInputEntity>
 
@@ -25,8 +25,8 @@ interface SearchHistoryDAORoom : SearchHistoryDAO {
     }
 
     @Query(
-        "SELECT * FROM ${SearchInputEntity.TABLE_NAME} " +
-                "ORDER BY ${SearchInputEntity.Columns.DATE}"
+        "SELECT * FROM ${SearchInputDB.TABLE_NAME} " +
+                "ORDER BY ${SearchInputDB.Columns.DATE}"
     )
     fun getHistoryAllEntity(): List<SearchInputEntity>
 

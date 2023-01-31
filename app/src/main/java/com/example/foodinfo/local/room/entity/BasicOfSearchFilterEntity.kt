@@ -5,14 +5,15 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.foodinfo.local.dto.BasicOfSearchFilterDB
+import com.example.foodinfo.local.dto.SearchFilterDB
 
 
 @Entity(
-    tableName = BasicOfSearchFilterEntity.TABLE_NAME,
+    tableName = BasicOfSearchFilterDB.TABLE_NAME,
     foreignKeys = [ForeignKey(
         entity = SearchFilterEntity::class,
-        parentColumns = arrayOf(SearchFilterEntity.Columns.NAME),
-        childColumns = arrayOf(BasicOfSearchFilterEntity.Columns.FILTER_NAME),
+        parentColumns = arrayOf(SearchFilterDB.Columns.NAME),
+        childColumns = arrayOf(BasicOfSearchFilterDB.Columns.FILTER_NAME),
         onUpdate = ForeignKey.CASCADE,
         onDelete = ForeignKey.CASCADE
     )]
@@ -41,18 +42,7 @@ data class BasicOfSearchFilterEntity(
     minValue = minValue,
     maxValue = maxValue
 ) {
-
-    object Columns {
-        const val ID = "id"
-        const val INFO_ID = "info_id"
-        const val FILTER_NAME = "filter_name"
-        const val MIN_VALUE = "min_value"
-        const val MAX_VALUE = "max_value"
-    }
-
     companion object {
-        const val TABLE_NAME = "basic_of_search_filter"
-
         fun fromDB(item: BasicOfSearchFilterDB): BasicOfSearchFilterEntity {
             return BasicOfSearchFilterEntity(
                 ID = item.ID,

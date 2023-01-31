@@ -8,8 +8,8 @@ import com.example.foodinfo.local.dto.BasicRecipeAttrDB
 
 
 @Entity(
-    tableName = BasicRecipeAttrEntity.TABLE_NAME,
-    indices = [Index(value = arrayOf(BasicRecipeAttrEntity.Columns.ID), unique = true)]
+    tableName = BasicRecipeAttrDB.TABLE_NAME,
+    indices = [Index(value = arrayOf(BasicRecipeAttrDB.Columns.ID), unique = true)]
 )
 data class BasicRecipeAttrEntity(
     @PrimaryKey
@@ -48,20 +48,7 @@ data class BasicRecipeAttrEntity(
     stepSize = stepSize
 ) {
 
-    object Columns {
-        const val ID = "id"
-        const val TAG = "tag"
-        const val NAME = "name"
-        const val COLUMN_NAME = "column_name"
-        const val MEASURE = "measure"
-        const val RANGE_MIN = "range_min"
-        const val RANGE_MAX = "range_max"
-        const val STEP_SIZE = "step_size"
-    }
-
     companion object {
-        const val TABLE_NAME = "basic_recipe_attr"
-
         fun fromDB(item: BasicRecipeAttrDB): BasicRecipeAttrEntity {
             return BasicRecipeAttrEntity(
                 ID = item.ID,

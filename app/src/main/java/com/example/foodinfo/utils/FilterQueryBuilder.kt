@@ -1,6 +1,11 @@
 package com.example.foodinfo.utils
 
-import com.example.foodinfo.local.room.entity.*
+import com.example.foodinfo.local.dto.LabelOfRecipeDB
+import com.example.foodinfo.local.dto.LabelRecipeAttrDB
+import com.example.foodinfo.local.dto.NutrientOfRecipeDB
+import com.example.foodinfo.local.dto.RecipeDB
+import com.example.foodinfo.local.room.entity.RecipeEntity
+import com.example.foodinfo.local.room.entity.SearchFilterEntity
 import com.example.foodinfo.repository.model.filter_field.BaseFilterField
 import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
 import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
@@ -39,13 +44,13 @@ data class FilterQueryBuilder(
                 field.maxValue
             )
         }
-        var query = "${RecipeEntity.Columns.ID} IN "
-        query += "(SELECT ${NutrientOfRecipeEntity.Columns.RECIPE_ID} "
-        query += "FROM ${NutrientOfRecipeEntity.TABLE_NAME} WHERE CASE "
+        var query = "${RecipeDB.Columns.ID} IN "
+        query += "(SELECT ${NutrientOfRecipeDB.Columns.RECIPE_ID} "
+        query += "FROM ${NutrientOfRecipeDB.TABLE_NAME} WHERE CASE "
         query += nutrientQueryList.joinToString(" ")
         query += " ELSE NULL END "
-        query += "GROUP BY ${NutrientOfRecipeEntity.Columns.RECIPE_ID} "
-        query += "HAVING  count(${NutrientOfRecipeEntity.Columns.RECIPE_ID}) = ${nutrientQueryList.size})"
+        query += "GROUP BY ${NutrientOfRecipeDB.Columns.RECIPE_ID} "
+        query += "HAVING  count(${NutrientOfRecipeDB.Columns.RECIPE_ID}) = ${nutrientQueryList.size})"
         return query
     }
 
@@ -53,9 +58,9 @@ data class FilterQueryBuilder(
         infoID: Int, minValue: Float?, maxValue: Float?
     ): String {
         var query = ""
-        query += "WHEN ${NutrientOfRecipeEntity.Columns.INFO_ID} = '$infoID' THEN "
+        query += "WHEN ${NutrientOfRecipeDB.Columns.INFO_ID} = '$infoID' THEN "
         query += rangeFieldToQuery(
-            NutrientOfRecipeEntity.Columns.TOTAL_VALUE,
+            NutrientOfRecipeDB.Columns.TOTAL_VALUE,
             minValue,
             maxValue
         )
@@ -81,23 +86,23 @@ data class FilterQueryBuilder(
         val labels = categoryFilterFields.flatMap { it.labelInfoIDs }
         if (labels.isEmpty()) return ""
 
-        var query = "${RecipeEntity.Columns.ID} IN "
-        query += "(SELECT ${LabelOfRecipeEntity.Columns.RECIPE_ID} FROM "
-        query += "(SELECT ${LabelOfRecipeEntity.Columns.RECIPE_ID}, ${LabelRecipeAttrEntity.Columns.CATEGORY_ID} "
-        query += "FROM ${LabelOfRecipeEntity.TABLE_NAME} INNER JOIN ${LabelRecipeAttrEntity.TABLE_NAME} "
-        query += "ON ${LabelOfRecipeEntity.Columns.INFO_ID} = "
-        query += "${LabelRecipeAttrEntity.TABLE_NAME}.${LabelRecipeAttrEntity.Columns.ID} "
-        query += "WHERE ${LabelOfRecipeEntity.Columns.INFO_ID} IN (${labels.joinToString(", ")}) "
-        query += "GROUP BY ${LabelOfRecipeEntity.Columns.RECIPE_ID}, ${LabelRecipeAttrEntity.Columns.CATEGORY_ID}) "
-        query += "GROUP BY ${LabelOfRecipeEntity.Columns.RECIPE_ID} "
-        query += "HAVING count(${LabelOfRecipeEntity.Columns.RECIPE_ID}) = ${categoryFilterFields.size})"
+        var query = "${RecipeDB.Columns.ID} IN "
+        query += "(SELECT ${LabelOfRecipeDB.Columns.RECIPE_ID} FROM "
+        query += "(SELECT ${LabelOfRecipeDB.Columns.RECIPE_ID}, ${LabelRecipeAttrDB.Columns.CATEGORY_ID} "
+        query += "FROM ${LabelOfRecipeDB.TABLE_NAME} INNER JOIN ${LabelRecipeAttrDB.TABLE_NAME} "
+        query += "ON ${LabelOfRecipeDB.Columns.INFO_ID} = "
+        query += "${LabelRecipeAttrDB.TABLE_NAME}.${LabelRecipeAttrDB.Columns.ID} "
+        query += "WHERE ${LabelOfRecipeDB.Columns.INFO_ID} IN (${labels.joinToString(", ")}) "
+        query += "GROUP BY ${LabelOfRecipeDB.Columns.RECIPE_ID}, ${LabelRecipeAttrDB.Columns.CATEGORY_ID}) "
+        query += "GROUP BY ${LabelOfRecipeDB.Columns.RECIPE_ID} "
+        query += "HAVING count(${LabelOfRecipeDB.Columns.RECIPE_ID}) = ${categoryFilterFields.size})"
         return query
     }
 
 
     private fun inputTextToQuery(): String {
         if (inputText == "") return ""
-        return "${RecipeEntity.Columns.NAME} LIKE '%$inputText%'"
+        return "${RecipeDB.Columns.NAME} LIKE '%$inputText%'"
     }
 
     fun setInputText(text: String) {
@@ -118,7 +123,7 @@ data class FilterQueryBuilder(
         subQueryList.add(categoryFieldsToQuery())
         subQueryList.add(inputTextToQuery())
         subQueryList.removeAll(setOf(""))
-        query += "SELECT * FROM ${RecipeEntity.TABLE_NAME}"
+        query += "SELECT * FROM ${RecipeDB.TABLE_NAME}"
         if (subQueryList.size > 0) {
             query += " WHERE " + subQueryList.joinToString(SEPARATOR)
         }

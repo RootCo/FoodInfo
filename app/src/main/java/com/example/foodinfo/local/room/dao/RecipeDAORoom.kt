@@ -14,23 +14,23 @@ import kotlinx.coroutines.flow.Flow
 interface RecipeDAORoom : RecipeDAO {
     @Transaction
     @Query(
-        "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
-                "IN (SELECT ${RecipeEntity.Columns.ID} " +
-                "FROM ${RecipeEntity.TABLE_NAME} ORDER BY RANDOM())"
+        "SELECT * FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.ID} " +
+                "IN (SELECT ${RecipeDB.Columns.ID} " +
+                "FROM ${RecipeDB.TABLE_NAME} ORDER BY RANDOM())"
     )
     override fun getPopular(): PagingSource<Int, RecipeEntity>
 
     @Transaction
     @Query(
-        "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
+        "SELECT * FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.IS_FAVORITE} == 1"
     )
     override fun getFavorite(): PagingSource<Int, RecipeEntity>
 
     @Query(
-        "SELECT ${RecipeEntity.Columns.ID} FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.IS_FAVORITE} == 1"
+        "SELECT ${RecipeDB.Columns.ID} FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.IS_FAVORITE} == 1"
     )
     override fun getFavoriteIds(): List<String>
 
@@ -47,8 +47,8 @@ interface RecipeDAORoom : RecipeDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} " +
+        "SELECT * FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.ID} " +
                 "LIKE '%' || :recipeID || '%'"
     )
     fun getByIdExtendedPOJO(recipeID: String): Flow<RecipeExtendedPOJO>
@@ -58,8 +58,8 @@ interface RecipeDAORoom : RecipeDAO {
     }
 
     @Query(
-        "SELECT * FROM ${IngredientOfRecipeEntity.TABLE_NAME} " +
-                "WHERE ${IngredientOfRecipeEntity.Columns.RECIPE_ID} " +
+        "SELECT * FROM ${IngredientOfRecipeDB.TABLE_NAME} " +
+                "WHERE ${IngredientOfRecipeDB.Columns.RECIPE_ID} " +
                 "LIKE '%' || :recipeID || '%'"
     )
     fun getIngredientsEntity(recipeID: String): Flow<List<IngredientOfRecipeEntity>>
@@ -70,8 +70,8 @@ interface RecipeDAORoom : RecipeDAO {
 
     @Transaction
     @Query(
-        "SELECT * FROM ${NutrientOfRecipeEntity.TABLE_NAME} " +
-                "WHERE ${NutrientOfRecipeEntity.Columns.RECIPE_ID} " +
+        "SELECT * FROM ${NutrientOfRecipeDB.TABLE_NAME} " +
+                "WHERE ${NutrientOfRecipeDB.Columns.RECIPE_ID} " +
                 "LIKE '%' || :recipeID || '%'"
     )
     fun getNutrientsPOJO(recipeID: String): Flow<List<NutrientOfRecipeExtendedPOJO>>
@@ -81,8 +81,8 @@ interface RecipeDAORoom : RecipeDAO {
     }
 
     @Query(
-        "SELECT * FROM ${LabelOfRecipeEntity.TABLE_NAME} " +
-                "WHERE ${LabelOfRecipeEntity.Columns.RECIPE_ID} " +
+        "SELECT * FROM ${LabelOfRecipeDB.TABLE_NAME} " +
+                "WHERE ${LabelOfRecipeDB.Columns.RECIPE_ID} " +
                 "LIKE '%' || :recipeID || '%'"
     )
     fun getLabelsPOJO(recipeID: String): Flow<List<LabelOfRecipeExtendedPOJO>>
@@ -93,39 +93,39 @@ interface RecipeDAORoom : RecipeDAO {
 
 
     @Query(
-        "UPDATE ${RecipeEntity.TABLE_NAME} " +
-                "SET ${RecipeEntity.Columns.IS_FAVORITE} = " +
-                "NOT ${RecipeEntity.Columns.IS_FAVORITE} " +
-                "WHERE ${RecipeEntity.Columns.ID}=:recipeID"
+        "UPDATE ${RecipeDB.TABLE_NAME} " +
+                "SET ${RecipeDB.Columns.IS_FAVORITE} = " +
+                "NOT ${RecipeDB.Columns.IS_FAVORITE} " +
+                "WHERE ${RecipeDB.Columns.ID}=:recipeID"
     )
     override fun invertFavoriteStatus(recipeID: String)
 
     @Query(
-        "UPDATE ${RecipeEntity.TABLE_NAME} " +
-                "SET ${RecipeEntity.Columns.IS_FAVORITE} = 0 " +
-                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIDs)"
+        "UPDATE ${RecipeDB.TABLE_NAME} " +
+                "SET ${RecipeDB.Columns.IS_FAVORITE} = 0 " +
+                "WHERE ${RecipeDB.Columns.ID} IN (:recipeIDs)"
     )
     override fun delFromFavorite(recipeIDs: List<String>)
 
     @Query(
-        "UPDATE ${RecipeEntity.TABLE_NAME} " +
-                "SET ${RecipeEntity.Columns.IS_FAVORITE} = 1 " +
-                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+        "UPDATE ${RecipeDB.TABLE_NAME} " +
+                "SET ${RecipeDB.Columns.IS_FAVORITE} = 1 " +
+                "WHERE ${RecipeDB.Columns.ID} IN (:recipeIds)"
     )
     fun addToFavorite(recipeIds: List<String>)
 
-    @MapInfo(keyColumn = RecipeEntity.Columns.ID, valueColumn = RecipeEntity.Columns.IS_FAVORITE)
+    @MapInfo(keyColumn = RecipeDB.Columns.ID, valueColumn = RecipeDB.Columns.IS_FAVORITE)
     @Query(
-        "SELECT ${RecipeEntity.Columns.ID}, ${RecipeEntity.Columns.IS_FAVORITE} " +
-                "FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+        "SELECT ${RecipeDB.Columns.ID}, ${RecipeDB.Columns.IS_FAVORITE} " +
+                "FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.ID} IN (:recipeIds)"
     )
     fun getFavoriteMarks(recipeIds: List<String>): Map<String, Boolean>
 
 
     @Query(
-        "DELETE FROM ${RecipeEntity.TABLE_NAME} " +
-                "WHERE ${RecipeEntity.Columns.ID} IN (:recipeIds)"
+        "DELETE FROM ${RecipeDB.TABLE_NAME} " +
+                "WHERE ${RecipeDB.Columns.ID} IN (:recipeIds)"
     )
     override fun removeRecipes(recipeIds: List<String>)
 

@@ -2,28 +2,29 @@ package com.example.foodinfo.local.room.pojo
 
 import androidx.room.ColumnInfo
 import androidx.room.Relation
+import com.example.foodinfo.local.dto.LabelOfRecipeDB
+import com.example.foodinfo.local.dto.LabelOfSearchFilterDB
 import com.example.foodinfo.local.dto.LabelOfSearchFilterExtendedDB
-import com.example.foodinfo.local.room.entity.LabelOfRecipeEntity
-import com.example.foodinfo.local.room.entity.LabelOfSearchFilterEntity
+import com.example.foodinfo.local.dto.LabelRecipeAttrDB
 import com.example.foodinfo.local.room.entity.LabelRecipeAttrEntity
 
 
 data class LabelOfSearchFilterExtendedPOJO(
-    @ColumnInfo(name = LabelOfSearchFilterEntity.Columns.ID)
+    @ColumnInfo(name = LabelOfSearchFilterDB.Columns.ID)
     override val ID: Int = 0,
 
-    @ColumnInfo(name = LabelOfSearchFilterEntity.Columns.FILTER_NAME)
+    @ColumnInfo(name = LabelOfSearchFilterDB.Columns.FILTER_NAME)
     override val filterName: String,
 
-    @ColumnInfo(name = LabelOfSearchFilterEntity.Columns.INFO_ID)
+    @ColumnInfo(name = LabelOfSearchFilterDB.Columns.INFO_ID)
     override val infoID: Int,
 
-    @ColumnInfo(name = LabelOfSearchFilterEntity.Columns.IS_SELECTED)
+    @ColumnInfo(name = LabelOfSearchFilterDB.Columns.IS_SELECTED)
     override val isSelected: Boolean,
 
     @Relation(
-        parentColumn = LabelOfRecipeEntity.Columns.INFO_ID,
-        entityColumn = LabelRecipeAttrEntity.Columns.ID,
+        parentColumn = LabelOfRecipeDB.Columns.INFO_ID,
+        entityColumn = LabelRecipeAttrDB.Columns.ID,
         entity = LabelRecipeAttrEntity::class
     )
     override val attrInfo: LabelRecipeAttrExtendedPOJO
