@@ -3,7 +3,6 @@ package com.example.foodinfo.local.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Transaction
 import com.example.foodinfo.local.dao.RecipeAttrDAO
 import com.example.foodinfo.local.dto.BasicRecipeAttrDB
 import com.example.foodinfo.local.dto.CategoryRecipeAttrDB
@@ -25,14 +24,12 @@ interface RecipeAttrDAORoom : RecipeAttrDAO {
     override fun getNutrient(ID: Int): NutrientRecipeAttrEntity
 
 
-    @Transaction
     @Query(
         "SELECT * FROM ${LabelRecipeAttrDB.TABLE_NAME} " +
                 "WHERE ${LabelRecipeAttrDB.Columns.ID} = :ID"
     )
     override fun getLabel(ID: Int): LabelRecipeAttrEntity
 
-    @Transaction
     @Query(
         "SELECT * FROM ${LabelRecipeAttrDB.TABLE_NAME} " +
                 "WHERE ${LabelRecipeAttrDB.Columns.CATEGORY_ID} = :categoryID"

@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeDAORoom : RecipeDAO {
-    @Transaction
     @Query(
         "SELECT * FROM ${RecipeDB.TABLE_NAME} " +
                 "WHERE ${RecipeDB.Columns.ID} " +
@@ -21,7 +20,6 @@ interface RecipeDAORoom : RecipeDAO {
     )
     override fun getPopular(): PagingSource<Int, RecipeEntity>
 
-    @Transaction
     @Query(
         "SELECT * FROM ${RecipeDB.TABLE_NAME} " +
                 "WHERE ${RecipeDB.Columns.IS_FAVORITE} == 1"
@@ -80,6 +78,7 @@ interface RecipeDAORoom : RecipeDAO {
         return getNutrientsPOJO(recipeID)
     }
 
+    @Transaction
     @Query(
         "SELECT * FROM ${LabelOfRecipeDB.TABLE_NAME} " +
                 "WHERE ${LabelOfRecipeDB.Columns.RECIPE_ID} " +
