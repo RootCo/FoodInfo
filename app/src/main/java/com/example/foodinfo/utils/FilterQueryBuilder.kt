@@ -1,25 +1,25 @@
 package com.example.foodinfo.utils
 
+import android.util.Log
 import com.example.foodinfo.local.dto.LabelOfRecipeDB
 import com.example.foodinfo.local.dto.LabelRecipeAttrDB
 import com.example.foodinfo.local.dto.NutrientOfRecipeDB
 import com.example.foodinfo.local.dto.RecipeDB
 import com.example.foodinfo.local.room.entity.RecipeEntity
 import com.example.foodinfo.local.room.entity.SearchFilterEntity
-import com.example.foodinfo.repository.model.filter_field.BaseFilterField
-import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
-import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
+import com.example.foodinfo.repository.model.filter_field.BasicOfFilterPreset
+import com.example.foodinfo.repository.model.filter_field.CategoryOfFilterPreset
+import com.example.foodinfo.repository.model.filter_field.NutrientOfFilterPreset
 
 
 /**
  * Class that generate query by [SearchFilterEntity]
  *
  * Fields order:
- * * Base fields - fastest one, search goes through the fields of [RecipeEntity] itself
- * * Nutrient fields - slowly than Range fields but only one query to another table
+ * * Basics - fastest one, search goes through the fields of [RecipeEntity] itself
+ * * Nutrients - slowly than Range fields but only one query to another table
  * for multiple nutrients
- * * Category fields - the slowest one, also only one query to another table
- * for multiple categories but each value needs to be compared against every element in list
+ * * Labels - the slowest one, has more than one query to other tables
  *
  * Because of AND separator between subqueries if any of subquery don't
  * match the condition, row will be denied, so it makes sense to check the fastest
@@ -28,16 +28,16 @@ import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
  * @sample queryExample
  */
 data class FilterQueryBuilder(
-    val baseFilterFields: List<BaseFilterField> = listOf(),
-    val categoryFilterFields: List<CategoryFilterField> = listOf(),
-    val nutrientFilterFields: List<NutrientFilterField> = listOf()
+    val basicsOfFilterPresets: List<BasicOfFilterPreset> = listOf(),
+    val categoriesOfFilterPreset: List<CategoryOfFilterPreset> = listOf(),
+    val nutrientsOfFilterPreset: List<NutrientOfFilterPreset> = listOf()
 ) {
     private var inputText: String = ""
 
 
     private fun nutrientFieldsToQuery(): String {
-        if (nutrientFilterFields.isEmpty()) return ""
-        val nutrientQueryList = nutrientFilterFields.map { field ->
+        if (nutrientsOfFilterPreset.isEmpty()) return ""
+        val nutrientQueryList = nutrientsOfFilterPreset.map { field ->
             nutrientFieldToQuery(
                 field.infoID,
                 field.minValue,
@@ -83,7 +83,7 @@ data class FilterQueryBuilder(
     }
 
     private fun categoryFieldsToQuery(): String {
-        val labels = categoryFilterFields.flatMap { it.labelInfoIDs }
+        val labels = categoriesOfFilterPreset.flatMap { it.labelInfoIDs }
         if (labels.isEmpty()) return ""
 
         var query = "${RecipeDB.Columns.ID} IN "
@@ -95,7 +95,7 @@ data class FilterQueryBuilder(
         query += "WHERE ${LabelOfRecipeDB.Columns.INFO_ID} IN (${labels.joinToString(", ")}) "
         query += "GROUP BY ${LabelOfRecipeDB.Columns.RECIPE_ID}, ${LabelRecipeAttrDB.Columns.CATEGORY_ID}) "
         query += "GROUP BY ${LabelOfRecipeDB.Columns.RECIPE_ID} "
-        query += "HAVING count(${LabelOfRecipeDB.Columns.RECIPE_ID}) = ${categoryFilterFields.size})"
+        query += "HAVING count(${LabelOfRecipeDB.Columns.RECIPE_ID}) = ${categoriesOfFilterPreset.size})"
         return query
     }
 
@@ -112,7 +112,7 @@ data class FilterQueryBuilder(
     fun getQuery(): String {
         var query = ""
         val subQueryList = arrayListOf<String>()
-        subQueryList.addAll(baseFilterFields.map { field ->
+        subQueryList.addAll(basicsOfFilterPresets.map { field ->
             rangeFieldToQuery(
                 field.columnName,
                 field.minValue,
@@ -127,6 +127,7 @@ data class FilterQueryBuilder(
         if (subQueryList.size > 0) {
             query += " WHERE " + subQueryList.joinToString(SEPARATOR)
         }
+        Log.d("123", query)
         return query
     }
 

@@ -3,7 +3,7 @@ package com.example.foodinfo.repository.mapper
 import com.example.foodinfo.local.dto.BasicOfSearchFilterDB
 import com.example.foodinfo.local.dto.BasicOfSearchFilterExtendedDB
 import com.example.foodinfo.repository.model.BasicOfSearchFilterEditModel
-import com.example.foodinfo.repository.model.filter_field.BaseFilterField
+import com.example.foodinfo.repository.model.filter_field.BasicOfFilterPreset
 
 
 fun BasicOfSearchFilterExtendedDB.toModelEdit(): BasicOfSearchFilterEditModel {
@@ -20,9 +20,9 @@ fun BasicOfSearchFilterExtendedDB.toModelEdit(): BasicOfSearchFilterEditModel {
     )
 }
 
-fun List<BasicOfSearchFilterExtendedDB>.toModelFilterField(): List<BaseFilterField> {
+fun List<BasicOfSearchFilterExtendedDB>.toModelFilterField(): List<BasicOfFilterPreset> {
     return this.map { field ->
-        BaseFilterField(
+        BasicOfFilterPreset(
             columnName = field.attrInfo.columnName,
             minValue = if (field.minValue == field.attrInfo.rangeMin) null else field.minValue,
             maxValue = if (field.maxValue == field.attrInfo.rangeMax) null else field.maxValue

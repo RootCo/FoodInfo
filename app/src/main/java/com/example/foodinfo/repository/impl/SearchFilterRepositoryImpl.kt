@@ -12,7 +12,7 @@ import com.example.foodinfo.repository.mapper.toModelFilterField
 import com.example.foodinfo.repository.model.CategoryOfSearchFilterEditModel
 import com.example.foodinfo.repository.model.NutrientOfSearchFilterEditModel
 import com.example.foodinfo.repository.model.SearchFilterEditModel
-import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
+import com.example.foodinfo.repository.model.filter_field.CategoryOfFilterPreset
 import com.example.foodinfo.utils.FilterQueryBuilder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -36,7 +36,7 @@ class SearchFilterRepositoryImpl @Inject constructor(
 
     override fun getQueryByLabel(labelID: Int): String {
         val builder = FilterQueryBuilder(
-            categoryFilterFields = listOf(CategoryFilterField(listOf(labelID)))
+            categoriesOfFilterPreset = listOf(CategoryOfFilterPreset(listOf(labelID)))
         )
         return builder.getQuery()
     }

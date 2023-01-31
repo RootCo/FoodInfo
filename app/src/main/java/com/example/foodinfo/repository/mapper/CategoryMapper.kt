@@ -4,7 +4,7 @@ import com.example.foodinfo.local.dto.CategoryRecipeAttrDB
 import com.example.foodinfo.local.dto.LabelOfRecipeExtendedDB
 import com.example.foodinfo.local.dto.LabelOfSearchFilterExtendedDB
 import com.example.foodinfo.repository.model.*
-import com.example.foodinfo.repository.model.filter_field.CategoryFilterField
+import com.example.foodinfo.repository.model.filter_field.CategoryOfFilterPreset
 
 
 fun CategoryRecipeAttrDB.toModel(): CategorySearchModel {
@@ -40,9 +40,9 @@ fun List<LabelOfSearchFilterExtendedDB>.toModelFilterPreview(): List<CategoryOfS
     }
 }
 
-fun List<LabelOfSearchFilterExtendedDB>.toModelFilterField(): List<CategoryFilterField> {
+fun List<LabelOfSearchFilterExtendedDB>.toModelFilterField(): List<CategoryOfFilterPreset> {
     return this.groupBy { label -> label.attrInfo.categoryInfo.name }.entries.map { category ->
-        CategoryFilterField(
+        CategoryOfFilterPreset(
             labelInfoIDs = category.value.filter { it.isSelected }.map { it.infoID }
         )
     }.filter { it.labelInfoIDs.isNotEmpty() }

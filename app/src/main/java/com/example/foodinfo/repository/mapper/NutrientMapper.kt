@@ -5,7 +5,7 @@ import com.example.foodinfo.local.dto.NutrientOfSearchFilterDB
 import com.example.foodinfo.local.dto.NutrientOfSearchFilterExtendedDB
 import com.example.foodinfo.local.dto.NutrientRecipeAttrDB
 import com.example.foodinfo.repository.model.*
-import com.example.foodinfo.repository.model.filter_field.NutrientFilterField
+import com.example.foodinfo.repository.model.filter_field.NutrientOfFilterPreset
 
 
 fun NutrientRecipeAttrDB.toModelHint(): NutrientHintModel {
@@ -62,9 +62,9 @@ fun List<NutrientOfSearchFilterExtendedDB>.toModelPreview(): List<NutrientFilter
     }
 }
 
-fun List<NutrientOfSearchFilterExtendedDB>.toModelFilterField(): List<NutrientFilterField> {
+fun List<NutrientOfSearchFilterExtendedDB>.toModelFilterField(): List<NutrientOfFilterPreset> {
     return this.map { nutrient ->
-        NutrientFilterField(
+        NutrientOfFilterPreset(
             infoID = nutrient.attrInfo.ID,
             minValue = if (nutrient.minValue == nutrient.attrInfo.rangeMin) null else nutrient.minValue,
             maxValue = if (nutrient.maxValue == nutrient.attrInfo.rangeMax) null else nutrient.maxValue
